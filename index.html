@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">E-Commerce SARPRAS Al-Imam Islamic School</title>
+  <meta name="description" content="Sistem E-Commerce Pengadaan Internal & Manajemen RAPBS SARPRAS Sekolah">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: 'var(--primary-50)',
+              100: 'var(--primary-100)',
+              500: 'var(--primary-500)',
+              600: 'var(--primary-600)',
+              700: 'var(--primary-700)',
+              800: 'var(--primary-800)',
+              900: 'var(--primary-900)',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS & Print Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- ================= TOP NAVIGATION BAR ================= -->
+  <header class="glass-nav sticky top-0 z-40 px-4 lg:px-8 py-3 transition-all duration-200">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Left: Logo & Brand -->
+      <div class="flex items-center space-x-3">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 text-slate-600 hover:text-emerald-700 focus:outline-none">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+        
+        <!-- Dynamic Brand Logo Container -->
+        <div id="navBrandLogoContainer" class="w-10 h-10 rounded-xl theme-gradient-bg flex items-center justify-center text-white shadow-md shadow-emerald-900/20 overflow-hidden shrink-0">
+          <i id="navBrandIcon" class="fa-solid fa-mosque text-lg"></i>
+          <img id="navBrandImg" class="hidden w-full h-full object-cover" alt="Logo">
+        </div>
+
+        <div>
+          <div class="flex items-center space-x-2">
+            <span id="navBrandSchoolName" class="font-extrabold text-lg tracking-tight text-slate-900">AL-IMAM</span>
+            <span id="navBrandSystemBadge" class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-300">SARPRAS</span>
+          </div>
+          <p id="navBrandTagline" class="text-[11px] text-slate-500 font-medium hidden sm:block">Sistem Pengadaan & E-Commerce Internal Sekolah</p>
+        </div>
+      </div>
+
+      <!-- Center: Saldo RAPBS Live Pill (For Unit) -->
+      <div id="unitQuotaPill" class="hidden md:flex items-center bg-emerald-50 border border-emerald-200 rounded-full px-4 py-1.5 shadow-sm">
+        <div class="flex items-center space-x-2 mr-3">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 badge-pulse"></span>
+          <span class="text-xs font-semibold text-slate-800">Saldo Poin RAPBS:</span>
+        </div>
+        <div class="flex items-baseline space-x-1">
+          <span class="text-xs text-brand-primary font-bold">Rp</span>
+          <span id="navSaldoPoin" class="text-sm font-extrabold text-slate-900 font-heading">0</span>
+        </div>
+        <span class="mx-2 text-slate-300">|</span>
+        <span id="navUnitName" class="text-xs font-medium text-slate-600">Unit SD</span>
+      </div>
+
+      <!-- Right: Actions, Cart & User Menu -->
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        
+        <!-- CMS Quick Button -->
+        <button onclick="app.navigate('cms')" title="Buka CMS White-Label & Tampilan Sekolah" class="hidden sm:flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200">
+          <i class="fa-solid fa-palette text-amber-600"></i>
+          <span>CMS Branding</span>
+        </button>
+
+        <!-- Live/Mock Status Badge -->
+        <button onclick="app.openSettingsModal()" title="Konfigurasi Google Apps Script Backend" class="flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-semibold transition border" id="apiStatusBadge">
+          <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+          <span class="hidden sm:inline" id="apiStatusText">Mode: Simulasi</span>
+          <i class="fa-solid fa-gear text-[11px] ml-1 opacity-70"></i>
+        </button>
+
+        <!-- Cart Button -->
+        <button onclick="app.toggleCartDrawer()" class="relative p-2.5 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-xl transition">
+          <i class="fa-solid fa-cart-shopping text-lg"></i>
+          <span id="cartCountBadge" class="absolute -top-1 -right-1 bg-brand-primary text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md">0</span>
+        </button>
+
+        <!-- Role & User Profile Switcher -->
+        <div class="relative">
+          <button id="userMenuBtn" onclick="app.toggleUserMenu()" class="flex items-center space-x-2 p-1.5 pl-2 pr-3 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl transition shadow-sm">
+            <div id="userAvatar" class="w-7 h-7 rounded-lg bg-brand-primary text-white text-xs font-bold flex items-center justify-center">
+              SD
+            </div>
+            <div class="text-left hidden sm:block">
+              <p id="userNameDisplay" class="text-xs font-bold text-slate-800 leading-tight">SD Al-Imam</p>
+              <p id="userRoleDisplay" class="text-[10px] text-brand-primary font-semibold uppercase">Unit</p>
+            </div>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+          </button>
+
+          <!-- User Dropdown Menu -->
+          <div id="userMenuDropdown" class="hidden absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50">
+            <div class="px-4 py-2 border-b border-slate-100">
+              <p class="text-xs text-slate-500">Masuk sebagai:</p>
+              <p id="dropdownFullName" class="text-sm font-bold text-slate-800">Unit SD Al-Imam</p>
+              <span id="dropdownRoleBadge" class="inline-block mt-1 px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded-md">Unit Pemohon</span>
+            </div>
+            
+            <div class="py-1">
+              <div class="px-4 py-1 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Ganti Akun Demo</div>
+              <button onclick="app.switchUser('unit_tk')" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-50 flex items-center justify-between text-slate-700">
+                <span><i class="fa-solid fa-child-reaching text-amber-500 mr-2"></i>TK Al-Imam</span>
+                <span class="text-[10px] text-slate-400">Unit</span>
+              </button>
+              <button onclick="app.switchUser('unit_sd')" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-50 flex items-center justify-between text-slate-700">
+                <span><i class="fa-solid fa-school text-emerald-600 mr-2"></i>SD Al-Imam</span>
+                <span class="text-[10px] text-slate-400">Unit</span>
+              </button>
+              <button onclick="app.switchUser('unit_smp')" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-50 flex items-center justify-between text-slate-700">
+                <span><i class="fa-solid fa-graduation-cap text-blue-600 mr-2"></i>SMP Al-Imam</span>
+                <span class="text-[10px] text-slate-400">Unit</span>
+              </button>
+              <button onclick="app.switchUser('unit_sma')" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-50 flex items-center justify-between text-slate-700">
+                <span><i class="fa-solid fa-building-columns text-purple-600 mr-2"></i>SMA Al-Imam</span>
+                <span class="text-[10px] text-slate-400">Unit</span>
+              </button>
+              <div class="border-t border-slate-100 my-1"></div>
+              <button onclick="app.switchUser('bendahara')" class="w-full text-left px-4 py-2 text-xs hover:bg-amber-50 flex items-center justify-between text-slate-800 font-bold">
+                <span><i class="fa-solid fa-scale-balanced text-amber-600 mr-2"></i>Bendahara Yayasan</span>
+                <span class="text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded">Approver</span>
+              </button>
+              <button onclick="app.switchUser('admin')" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-100 flex items-center justify-between text-slate-800 font-bold">
+                <span><i class="fa-solid fa-boxes-stacked text-slate-700 mr-2"></i>Admin Sarpras</span>
+                <span class="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded">Inventory</span>
+              </button>
+            </div>
+            
+            <div class="border-t border-slate-100 pt-1">
+              <button onclick="app.navigate('cms')" class="w-full text-left px-4 py-2 text-xs text-amber-700 hover:bg-amber-50 font-bold flex items-center">
+                <i class="fa-solid fa-palette text-amber-600 mr-2"></i>CMS & Tampilan White-Label
+              </button>
+              <button onclick="app.openSettingsModal()" class="w-full text-left px-4 py-2 text-xs text-slate-600 hover:bg-slate-50 flex items-center">
+                <i class="fa-solid fa-sliders text-slate-400 mr-2"></i>Pengaturan Koneksi API
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTAINER WITH SIDEBAR & CONTENT ================= -->
+  <div class="max-w-7xl mx-auto w-full flex-1 flex px-4 lg:px-8 py-6 gap-6">
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside id="sidebar" class="hidden lg:block w-64 shrink-0">
+      <div class="sticky top-24 bg-white rounded-3xl p-4 border border-slate-100 shadow-sm space-y-6">
+        
+        <!-- Unit Saldo Card in Sidebar -->
+        <div id="sidebarSaldoCard" class="theme-gradient-bg text-white rounded-2xl p-4 shadow-lg shadow-emerald-950/20">
+          <div class="flex items-center justify-between text-white/80 text-xs mb-1">
+            <span>Plafon RAPBS SARPRAS</span>
+            <i class="fa-solid fa-wallet text-amber-300"></i>
+          </div>
+          <div class="text-xl font-extrabold text-white font-heading tracking-tight" id="sidebarSaldoTersedia">
+            Rp 0
+          </div>
+          <div class="mt-3 pt-3 border-t border-white/20 flex justify-between text-[11px] text-white/90">
+            <div>
+              <span class="block text-white/70">Terpakai:</span>
+              <span class="font-bold text-white" id="sidebarTerpakai">Rp 0</span>
+            </div>
+            <div class="text-right">
+              <span class="block text-white/70">Total Kuota:</span>
+              <span class="font-bold text-white" id="sidebarTotalPlafond">Rp 0</span>
+            </div>
+          </div>
+          
+          <!-- Quota Progress Bar -->
+          <div class="mt-3 bg-black/20 rounded-full h-1.5 overflow-hidden">
+            <div id="sidebarProgressBar" class="bg-amber-400 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="space-y-1">
+          <div class="px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Menu Utama</div>
+          
+          <button onclick="app.navigate('dashboard')" id="nav-dashboard" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-brand-primary hover:bg-slate-50 transition nav-tab-active">
+            <i class="fa-solid fa-chart-pie w-4 text-center text-sm"></i>
+            <span>Dashboard</span>
+          </button>
+          
+          <button onclick="app.navigate('catalog')" id="nav-catalog" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-brand-primary hover:bg-slate-50 transition">
+            <i class="fa-solid fa-store w-4 text-center text-sm"></i>
+            <span>Katalog E-Commerce</span>
+          </button>
+          
+          <button onclick="app.navigate('reimburse')" id="nav-reimburse" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-brand-primary hover:bg-slate-50 transition">
+            <i class="fa-solid fa-receipt w-4 text-center text-sm"></i>
+            <span>Reimbursement (Talangan)</span>
+          </button>
+          
+          <button onclick="app.navigate('custom-request')" id="nav-custom-request" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-brand-primary hover:bg-slate-50 transition">
+            <i class="fa-solid fa-bag-shopping w-4 text-center text-sm"></i>
+            <span>Request Barang Baru</span>
+          </button>
+          
+          <button onclick="app.navigate('orders')" id="nav-orders" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-brand-primary hover:bg-slate-50 transition">
+            <i class="fa-solid fa-clock-rotate-left w-4 text-center text-sm"></i>
+            <span>Riwayat & Dokumen</span>
+          </button>
+        </div>
+
+        <!-- Management Menu (For Bendahara / Admin) -->
+        <div id="adminNavSection" class="space-y-1 pt-2 border-t border-slate-100">
+          <div class="px-3 text-[11px] font-bold text-amber-700 uppercase tracking-wider mb-2 flex items-center justify-between">
+            <span>Yayasan & Sarpras</span>
+            <span class="bg-amber-100 text-amber-800 text-[9px] px-1.5 py-0.5 rounded font-extrabold">ADMIN</span>
+          </div>
+
+          <button onclick="app.navigate('verification')" id="nav-verification" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-brand-primary hover:bg-slate-50 transition">
+            <div class="flex items-center space-x-3">
+              <i class="fa-solid fa-stamp w-4 text-center text-sm text-amber-600"></i>
+              <span>Verifikasi Pengajuan</span>
+            </div>
+            <span id="pendingApprovalBadge" class="bg-amber-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">0</span>
+          </button>
+
+          <button onclick="app.navigate('inventory')" id="nav-inventory" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-brand-primary hover:bg-slate-50 transition">
+            <div class="flex items-center space-x-3">
+              <i class="fa-solid fa-boxes-stacked w-4 text-center text-sm text-emerald-600"></i>
+              <span>Stok & Restock (FIFO)</span>
+            </div>
+            <span id="lowStockNavBadge" class="hidden bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">!</span>
+          </button>
+
+          <button onclick="app.navigate('ledger')" id="nav-ledger" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-brand-primary hover:bg-slate-50 transition">
+            <i class="fa-solid fa-book-bookmark w-4 text-center text-sm text-indigo-600"></i>
+            <span>Buku Kas & Log RAPBS</span>
+          </button>
+
+          <!-- NEW: CMS & White-Label Customizer Menu Item -->
+          <button onclick="app.navigate('cms')" id="nav-cms" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-amber-900 bg-amber-50/80 hover:bg-amber-100 transition border border-amber-200/80">
+            <div class="flex items-center space-x-3">
+              <i class="fa-solid fa-palette w-4 text-center text-sm text-amber-600"></i>
+              <span>CMS & Branding Studio</span>
+            </div>
+            <span class="bg-amber-500 text-slate-900 text-[9px] font-black px-1.5 py-0.5 rounded">CMS</span>
+          </button>
+        </div>
+
+        <!-- Quick Help -->
+        <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200/70 text-[11px] text-slate-500">
+          <p class="font-bold text-slate-700 mb-1"><i class="fa-solid fa-circle-info text-emerald-600 mr-1"></i>White-Label Ready</p>
+          <p class="leading-relaxed">Ganti logo, kop surat, tema warna, dan nama sekolah secara instan di menu <b>CMS & Branding Studio</b>.</p>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- MAIN DYNAMIC CONTENT AREA -->
+    <main class="flex-1 min-w-0">
+
+      <!-- ================= VIEW 1: DASHBOARD ================= -->
+      <section id="view-dashboard" class="space-y-6">
+        
+        <!-- Welcome Banner -->
+        <div class="theme-gradient-bg rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-lg shadow-emerald-950/15">
+          <div class="absolute right-0 top-0 translate-x-8 -translate-y-8 text-white/5 pointer-events-none">
+            <i id="dashWatermarkIcon" class="fa-solid fa-mosque text-[220px]"></i>
+          </div>
+          <div class="relative z-10 max-w-2xl">
+            <span class="inline-block px-3 py-1 bg-white/15 backdrop-blur-md rounded-full text-xs font-semibold tracking-wide text-white mb-3">
+              <i class="fa-solid fa-calendar-check mr-1.5"></i>Tahun Ajaran 2026/2027 • Anggaran RAPBS SARPRAS
+            </span>
+            <h1 class="text-2xl sm:text-3xl font-extrabold font-heading mb-2 leading-tight">
+              Ahlan Wa Sahlan, <span id="dashUnitNameGreeting">Unit SD Al-Imam</span>
+            </h1>
+            <p class="text-white/85 text-sm leading-relaxed mb-6">
+              Sistem Pengadaan Terpadu <b id="dashSchoolNameBanner">Sekolah Islam Al-Imam</b>. Kelola belanja operasional, klaim reimbursement, dan pantau kuota RAPBS secara akuntabel.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <button onclick="app.navigate('catalog')" class="px-5 py-2.5 bg-brand-accent hover:opacity-90 text-slate-900 font-bold text-xs rounded-xl shadow-md transition flex items-center space-x-2">
+                <i class="fa-solid fa-cart-plus"></i>
+                <span>Belanja Barang (E-Commerce)</span>
+              </button>
+              <button onclick="app.navigate('reimburse')" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-xl backdrop-blur-md border border-white/20 transition flex items-center space-x-2">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                <span>Ajukan Reimburse</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm card-hover">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400 uppercase">Plafon Anggaran</span>
+              <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-landmark"></i>
+              </div>
+            </div>
+            <div class="text-xl font-black text-slate-800 font-heading" id="metricTotalPlafond">Rp 0</div>
+            <p class="text-[11px] text-slate-400 mt-1">Alokasi RAPBS Unit SARPRAS</p>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm card-hover">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400 uppercase">Total Terpakai</span>
+              <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
+            </div>
+            <div class="text-xl font-black text-slate-800 font-heading" id="metricTerpakai">Rp 0</div>
+            <p class="text-[11px] text-slate-400 mt-1" id="metricUsagePercent">0% dari total plafon</p>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm card-hover">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400 uppercase">Saldo Poin Tersedia</span>
+              <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-coins"></i>
+              </div>
+            </div>
+            <div class="text-xl font-black text-brand-primary font-heading" id="metricSaldoTersedia">Rp 0</div>
+            <p class="text-[11px] text-brand-primary font-medium mt-1">Siap digunakan belanja</p>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm card-hover">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400 uppercase">Menunggu Verifikasi</span>
+              <div class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-hourglass-half"></i>
+              </div>
+            </div>
+            <div class="text-xl font-black text-slate-800 font-heading" id="metricPendingCount">0</div>
+            <p class="text-[11px] text-slate-400 mt-1">Pengajuan diproses Bendahara</p>
+          </div>
+        </div>
+
+        <!-- Active Alerts (Restock alert if stock is 0 or budget warning) -->
+        <div id="dashboardAlertBanner" class="hidden"></div>
+
+        <!-- Quick Access Shortcuts & Recent Orders -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h3 class="font-bold text-base text-slate-800 font-heading">Pengajuan Terakhir Unit</h3>
+                <p class="text-xs text-slate-400">Status pesanan belanja & klaim reimbursement</p>
+              </div>
+              <button onclick="app.navigate('orders')" class="text-xs font-bold text-brand-primary hover:underline">
+                Lihat Semua <i class="fa-solid fa-arrow-right ml-1"></i>
+              </button>
+            </div>
+            <div id="dashRecentOrdersList" class="divide-y divide-slate-100"></div>
+          </div>
+
+          <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+            <h3 class="font-bold text-base text-slate-800 font-heading">Menu Cepat Pengadaan</h3>
+            <div class="space-y-3">
+              <div onclick="app.navigate('catalog')" class="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-brand-primary cursor-pointer transition flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-primary text-white flex items-center justify-center text-base">
+                  <i class="fa-solid fa-boxes-packing"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-slate-800">Belanja Stok Gudang</h4>
+                  <p class="text-[11px] text-slate-500">Spidol, Kertas HVS, Tinta, Sabun</p>
+                </div>
+              </div>
+
+              <div onclick="app.navigate('reimburse')" class="p-4 rounded-2xl bg-amber-50/70 border border-amber-100 hover:border-amber-300 cursor-pointer transition flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-900 flex items-center justify-center text-base">
+                  <i class="fa-solid fa-hand-holding-dollar"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-slate-800">Reimburse Talangan</h4>
+                  <p class="text-[11px] text-slate-500">Klaim servis AC, printer, atau jasa</p>
+                </div>
+              </div>
+
+              <div onclick="app.navigate('custom-request')" class="p-4 rounded-2xl bg-indigo-50/70 border border-indigo-100 hover:border-indigo-300 cursor-pointer transition flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-base">
+                  <i class="fa-solid fa-link"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-slate-800">Request Item (Marketplace)</h4>
+                  <p class="text-[11px] text-slate-500">Ajukan link Tokopedia / Shopee</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- School Branding Card -->
+            <div class="mt-4 p-4 rounded-2xl bg-slate-900 text-white text-xs space-y-2">
+              <div class="flex items-center space-x-2 text-amber-400 font-bold">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span id="dashRulesFoundationName">Aturan Yayasan Al-Imam</span>
+              </div>
+              <p class="text-slate-300 text-[11px] leading-relaxed" id="dashRulesDesc">
+                Setiap transaksi otomatis mengurangi saldo poin RAPBS setelah verifikasi disetujui. Bukti nota & LPJ wajib diarsip secara resmi.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ================= VIEW 2: E-COMMERCE CATALOG ================= -->
+      <section id="view-catalog" class="hidden space-y-6">
+        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h2 class="text-xl font-extrabold text-slate-800 font-heading">Katalog Stok SARPRAS Sekolah</h2>
+              <p class="text-xs text-slate-500">Pilih barang kebutuhan unit Anda. Sistem menggunakan alokasi FIFO otomatis.</p>
+            </div>
+            
+            <div class="relative w-full md:w-80">
+              <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <input type="text" id="catalogSearchInput" oninput="app.filterCatalog()" placeholder="Cari nama barang / spidol / kertas..." class="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition">
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-2 overflow-x-auto pb-1" id="catalogCategoryContainer">
+            <button onclick="app.setCategoryFilter('ALL')" class="category-pill active px-3.5 py-1.5 rounded-full text-xs font-bold bg-brand-primary text-white transition shadow-sm" data-cat="ALL">Semua Kategori</button>
+            <button onclick="app.setCategoryFilter('ATK & Kertas')" class="category-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-cat="ATK & Kertas">ATK & Kertas</button>
+            <button onclick="app.setCategoryFilter('Kebersihan & Sanitasi')" class="category-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-cat="Kebersihan & Sanitasi">Kebersihan & Sanitasi</button>
+            <button onclick="app.setCategoryFilter('Elektronik & IT')" class="category-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-cat="Elektronik & IT">Elektronik & IT</button>
+            <button onclick="app.setCategoryFilter('Perlengkapan Kelas')" class="category-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-cat="Perlengkapan Kelas">Perlengkapan Kelas</button>
+            <button onclick="app.setCategoryFilter('Buku & Modul')" class="category-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-cat="Buku & Modul">Buku & Modul</button>
+          </div>
+        </div>
+
+        <div id="catalogGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"></div>
+
+        <div id="catalogEmptyState" class="hidden bg-white rounded-3xl p-12 text-center border border-slate-100">
+          <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-2xl mx-auto mb-3">
+            <i class="fa-solid fa-box-open"></i>
+          </div>
+          <h4 class="text-base font-bold text-slate-700">Barang tidak ditemukan</h4>
+          <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">Barang yang Anda cari sedang habis atau tidak tersedia. Silakan gunakan menu Request Barang Baru.</p>
+          <button onclick="app.navigate('custom-request')" class="mt-4 px-4 py-2 bg-brand-primary text-white rounded-xl text-xs font-bold transition">
+            <i class="fa-solid fa-plus mr-1"></i>Ajukan Barang Baru
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= VIEW 3: REIMBURSEMENT ================= -->
+      <section id="view-reimburse" class="hidden space-y-6">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm max-w-4xl mx-auto">
+          <div class="border-b border-slate-100 pb-5 mb-6">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-900 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+              </div>
+              <div>
+                <h2 class="text-xl font-extrabold text-slate-800 font-heading">Formulir Klaim Reimbursement (Talangan Unit)</h2>
+                <p class="text-xs text-slate-500">Gunakan form ini untuk klaim biaya jasa/barang yang dibayarkan terlebih dahulu oleh unit.</p>
+              </div>
+            </div>
+          </div>
+
+          <form id="reimburseForm" onsubmit="app.handleReimburseSubmit(event)" class="space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div class="sm:col-span-2">
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Nama Keperluan / Uraian Pengadaan *</label>
+                <input type="text" id="reimbTitle" required placeholder="Contoh: Servis Printer Kantor & Pengisian Toner Epson L3110" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Nominal Biaya (Rp) *</label>
+                <div class="relative">
+                  <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-bold">Rp</span>
+                  <input type="number" id="reimbAmount" required min="1000" placeholder="350000" class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:bg-white focus:outline-none focus:border-brand-primary transition">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Tanggal Pembayaran *</label>
+                <input type="date" id="reimbDate" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Nama Penerima Reimburse *</label>
+                <input type="text" id="reimbRecipient" required placeholder="Nama Guru / Staf yang menalangi" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Nomor Rekening & Bank Tujuan *</label>
+                <input type="text" id="reimbBank" required placeholder="BSI 7123456789 a.n Ahmad Fauzi" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Nama Penanggung Jawab (PJ SARPRAS Unit) *</label>
+                <input type="text" id="reimbPJ" required placeholder="Nama Koordinator Sarpras Unit" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Kategori Beban RAPBS *</label>
+                <select id="reimbCategory" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition">
+                  <option value="Pemeliharaan & Servis">Pemeliharaan & Servis Fasilitas</option>
+                  <option value="Pengadaan Jasa">Pengadaan Jasa Pihak Ketiga</option>
+                  <option value="Belanja Konsumsi & Kegiatan">Belanja Konsumsi / Acara Sekolah</option>
+                  <option value="Belanja Urgent Unit">Belanja Urgent / Material Mendadak</option>
+                </select>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Keterangan / Justifikasi Kebutuhan *</label>
+                <textarea id="reimbNotes" rows="2" required placeholder="Jelaskan alasan perbaikan atau kebutuhan mendesak..." class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition"></textarea>
+              </div>
+            </div>
+
+            <!-- Upload Bukti Dokumen -->
+            <div class="pt-4 border-t border-slate-100">
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-2">
+                <i class="fa-solid fa-paperclip text-brand-primary mr-1"></i>Upload Lampiran Bukti (Kwitansi/Nota, Bukti Transfer, Foto Fisik)
+              </label>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="border-2 border-dashed border-slate-200 hover:border-brand-primary rounded-2xl p-4 text-center transition bg-slate-50/50 relative">
+                  <input type="file" id="fileReceipt" accept="image/*,.pdf" onchange="app.handleFileUpload(event, 'previewReceipt', 'receiptBase64')" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
+                  <div id="previewReceipt" class="space-y-1">
+                    <i class="fa-solid fa-receipt text-2xl text-slate-400"></i>
+                    <p class="text-xs font-bold text-slate-700">1. Kwitansi / Nota *</p>
+                    <p class="text-[10px] text-slate-400">Klik untuk upload foto</p>
+                  </div>
+                  <input type="hidden" id="receiptBase64">
+                </div>
+
+                <div class="border-2 border-dashed border-slate-200 hover:border-brand-primary rounded-2xl p-4 text-center transition bg-slate-50/50 relative">
+                  <input type="file" id="fileTransfer" accept="image/*,.pdf" onchange="app.handleFileUpload(event, 'previewTransfer', 'transferBase64')" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
+                  <div id="previewTransfer" class="space-y-1">
+                    <i class="fa-solid fa-money-bill-transfer text-2xl text-slate-400"></i>
+                    <p class="text-xs font-bold text-slate-700">2. Bukti Transfer</p>
+                    <p class="text-[10px] text-slate-400">Opsional / Bukti Bayar</p>
+                  </div>
+                  <input type="hidden" id="transferBase64">
+                </div>
+
+                <div class="border-2 border-dashed border-slate-200 hover:border-brand-primary rounded-2xl p-4 text-center transition bg-slate-50/50 relative">
+                  <input type="file" id="filePhoto" accept="image/*,.pdf" onchange="app.handleFileUpload(event, 'previewPhoto', 'photoBase64')" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
+                  <div id="previewPhoto" class="space-y-1">
+                    <i class="fa-solid fa-camera text-2xl text-slate-400"></i>
+                    <p class="text-xs font-bold text-slate-700">3. Foto Fisik / Jasa</p>
+                    <p class="text-[10px] text-slate-400">Foto barang / servis AC</p>
+                  </div>
+                  <input type="hidden" id="photoBase64">
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-slate-100">
+              <div class="text-xs text-slate-500">
+                <i class="fa-solid fa-circle-check text-brand-primary mr-1"></i>Dana akan dipotong dari Saldo RAPBS setelah disetujui Bendahara.
+              </div>
+              <button type="submit" id="btnSubmitReimburse" class="px-6 py-3 bg-brand-primary hover:opacity-90 text-white font-bold text-xs rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Kirim Pengajuan Reimburse</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ================= VIEW 4: CUSTOM ITEM REQUEST ================= -->
+      <section id="view-custom-request" class="hidden space-y-6">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm max-w-4xl mx-auto">
+          <div class="border-b border-slate-100 pb-5 mb-6">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-lg">
+                <i class="fa-solid fa-link"></i>
+              </div>
+              <div>
+                <h2 class="text-xl font-extrabold text-slate-800 font-heading">Pengajuan Pengadaan Barang Baru (Non-Katalog)</h2>
+                <p class="text-xs text-slate-500">Barang tidak ada di stok gudang? Cantumkan link Tokopedia / Shopee / Supplier untuk dibeli oleh Yayasan.</p>
+              </div>
+            </div>
+          </div>
+
+          <form id="customRequestForm" onsubmit="app.handleCustomRequestSubmit(event)" class="space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div class="sm:col-span-2">
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Nama Barang & Merek Spesifik *</label>
+                <input type="text" id="custItemName" required placeholder="Contoh: Mic Wireless Boya BY-WM4 PRO K2 Dual Channel" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition">
+              </div>
+
+              <div class="sm:col-span-2">
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Link Marketplace (Tokopedia / Shopee / Lainnya) *</label>
+                <div class="relative">
+                  <i class="fa-solid fa-globe absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                  <input type="url" id="custItemUrl" required placeholder="https://www.tokopedia.com/..." class="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Jumlah Kebutuhan (Qty) *</label>
+                <input type="number" id="custItemQty" required min="1" value="1" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold focus:bg-white focus:outline-none focus:border-brand-primary transition">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Estimasi Harga Satuan (Rp) *</label>
+                <div class="relative">
+                  <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-bold">Rp</span>
+                  <input type="number" id="custItemPrice" required min="1000" placeholder="1250000" class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:bg-white focus:outline-none focus:border-brand-primary transition">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Kategori Barang *</label>
+                <select id="custItemCategory" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition">
+                  <option value="Elektronik & Multimedia">Elektronik & Multimedia</option>
+                  <option value="Perlengkapan Kelas & Lab">Perlengkapan Kelas & Lab</option>
+                  <option value="Sarana Olahraga & Ekstra">Sarana Olahraga & Ekstrakurikuler</option>
+                  <option value="Buku & Referensi Guru">Buku & Referensi Guru</option>
+                  <option value="Lain-lain">Lain-lain</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Penanggung Jawab Unit *</label>
+                <input type="text" id="custItemPJ" required placeholder="Nama Koordinator Sarpras Unit" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition">
+              </div>
+
+              <div class="sm:col-span-2">
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Urgensi & Justifikasi Kebutuhan *</label>
+                <textarea id="custItemNotes" rows="3" required placeholder="Jelaskan untuk kegiatan apa barang ini dibutuhkan..." class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition"></textarea>
+              </div>
+            </div>
+
+            <div class="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-slate-100">
+              <div class="text-xs text-slate-500">
+                <i class="fa-solid fa-info-circle text-indigo-600 mr-1"></i>Pengadaan akan diproses oleh Tim Logistik Yayasan.
+              </div>
+              <button type="submit" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Ajukan Permintaan Pengadaan</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ================= VIEW 5: ORDER HISTORY & DOCUMENTS ================= -->
+      <section id="view-orders" class="hidden space-y-6">
+        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h2 class="text-xl font-extrabold text-slate-800 font-heading">Riwayat Pengajuan & Dokumen Resmi</h2>
+              <p class="text-xs text-slate-500">Pantau status verifikasi, cetak Kwitansi/Invoice, Proposal, dan LPJ Unit.</p>
+            </div>
+
+            <div class="flex items-center space-x-2">
+              <select id="orderStatusFilter" onchange="app.renderOrdersTable()" class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-brand-primary">
+                <option value="ALL">Semua Status</option>
+                <option value="Pending_Verification">Menunggu Verifikasi</option>
+                <option value="Approved">Disetujui (Approved)</option>
+                <option value="Rejected">Ditolak (Rejected)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-50 text-slate-400 font-bold uppercase tracking-wider text-[10px]">
+                <tr>
+                  <th class="px-4 py-3 rounded-l-xl">No. Order / Invoice</th>
+                  <th class="px-4 py-3">Jenis Pengajuan</th>
+                  <th class="px-4 py-3">Rincian Barang / Jasa</th>
+                  <th class="px-4 py-3">Total Nominal</th>
+                  <th class="px-4 py-3">Status</th>
+                  <th class="px-4 py-3">Tanggal</th>
+                  <th class="px-4 py-3 rounded-r-xl text-center">Aksi & Cetak</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTableBody" class="divide-y divide-slate-100 font-medium"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= VIEW 6: BENDAHARA VERIFICATION CENTER ================= -->
+      <section id="view-verification" class="hidden space-y-6">
+        <div class="bg-amber-500/10 border border-amber-200 rounded-3xl p-6 mb-6">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <div class="w-12 h-12 rounded-2xl bg-amber-500 text-slate-900 flex items-center justify-center text-xl shadow-md">
+                <i class="fa-solid fa-stamp"></i>
+              </div>
+              <div>
+                <h2 class="text-xl font-black text-amber-900 font-heading">Pusat Verifikasi & Approval Bendahara Yayasan</h2>
+                <p class="text-xs text-amber-800">Menyetujui pengajuan akan memotong stok FIFO dan mengurangi saldo plafon RAPBS Unit secara otomatis.</p>
+              </div>
+            </div>
+            <div class="hidden sm:block text-right">
+              <span class="text-[10px] uppercase font-bold text-amber-800 tracking-wider">Antrean Menunggu:</span>
+              <div class="text-2xl font-black text-amber-900 font-heading" id="verifPendingCountHeader">0 Pengajuan</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+          <h3 class="font-bold text-base text-slate-800 font-heading">Daftar Pengajuan Butuh Persetujuan</h3>
+          <div id="verificationCardsContainer" class="space-y-4"></div>
+        </div>
+      </section>
+
+      <!-- ================= VIEW 7: INVENTORY & FIFO RESTOCK ================= -->
+      <section id="view-inventory" class="hidden space-y-6">
+        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-xl font-extrabold text-slate-800 font-heading">Manajemen Stok & Log Batch FIFO</h2>
+            <p class="text-xs text-slate-500">Pantau pergerakan batch barang masuk & keluar berdasarkan metode First In First Out.</p>
+          </div>
+          <button onclick="app.openRestockModal()" class="px-4 py-2.5 bg-brand-primary hover:opacity-90 text-white text-xs font-bold rounded-xl shadow-md transition flex items-center space-x-2">
+            <i class="fa-solid fa-plus"></i>
+            <span>Tambah Batch Restock Baru</span>
+          </button>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-base text-slate-800 font-heading">Daftar Batch Inventaris (Sheet: Stock_Inventory)</h3>
+            <span class="text-xs text-slate-400">Total Batch Aktif: <span id="activeBatchCount" class="font-bold text-slate-700">0</span></span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-50 text-slate-400 font-bold uppercase tracking-wider text-[10px]">
+                <tr>
+                  <th class="px-4 py-3 rounded-l-xl">Batch ID</th>
+                  <th class="px-4 py-3">Nama Produk</th>
+                  <th class="px-4 py-3">Kategori</th>
+                  <th class="px-4 py-3">Sisa Stok</th>
+                  <th class="px-4 py-3">Harga Beli Satuan</th>
+                  <th class="px-4 py-3">Tanggal Masuk</th>
+                  <th class="px-4 py-3">Metode</th>
+                  <th class="px-4 py-3 rounded-r-xl">Status</th>
+                </tr>
+              </thead>
+              <tbody id="inventoryTableBody" class="divide-y divide-slate-100 font-medium"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= VIEW 8: BUKU KAS & LOG RAPBS ================= -->
+      <section id="view-ledger" class="hidden space-y-6">
+        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h2 class="text-xl font-extrabold text-slate-800 font-heading">Buku Kas & Log Transaksi RAPBS (Transactions_Log)</h2>
+              <p class="text-xs text-slate-500">Semua riwayat pemotongan saldo plafon yang telah disetujui Bendahara.</p>
+            </div>
+            
+            <button onclick="app.exportTransactionsCSV()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition flex items-center space-x-2">
+              <i class="fa-solid fa-file-csv text-brand-primary"></i>
+              <span>Export CSV</span>
+            </button>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-50 text-slate-400 font-bold uppercase tracking-wider text-[10px]">
+                <tr>
+                  <th class="px-4 py-3 rounded-l-xl">Log ID</th>
+                  <th class="px-4 py-3">No. Invoice</th>
+                  <th class="px-4 py-3">Unit Sekolah</th>
+                  <th class="px-4 py-3">Nominal Potong</th>
+                  <th class="px-4 py-3">Sisa Saldo Unit</th>
+                  <th class="px-4 py-3 rounded-r-xl">Waktu Transaksi</th>
+                </tr>
+              </thead>
+              <tbody id="ledgerTableBody" class="divide-y divide-slate-100 font-medium"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= VIEW 9: CMS & WHITE-LABEL BRANDING STUDIO ================= -->
+      <section id="view-cms" class="hidden space-y-6">
+        
+        <!-- CMS Header -->
+        <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+          <div class="absolute right-0 top-0 translate-x-8 -translate-y-8 text-white/5 pointer-events-none">
+            <i class="fa-solid fa-palette text-[180px]"></i>
+          </div>
+          <div class="relative z-10 max-w-2xl">
+            <span class="inline-block px-3 py-1 bg-amber-400/20 text-amber-300 border border-amber-400/30 rounded-full text-[11px] font-bold tracking-wide uppercase mb-2">
+              <i class="fa-solid fa-wand-magic-sparkles mr-1.5"></i>White-Label CMS & Branding Customizer
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-white leading-tight">
+              Pusat Kustomisasi Sekolah & Tampilan
+            </h2>
+            <p class="text-slate-300 text-xs sm:text-sm mt-1 leading-relaxed">
+              Konfigurasikan sistem untuk client sekolah Anda (Jual Putus / Multi-Client). Ubah nama yayasan, logo, skema warna website, font, pejabat penandatangan, hingga ekspor lisensi preset dalam format JSON.
+            </p>
+          </div>
+        </div>
+
+        <!-- CMS Sub-Tabs Navigation -->
+        <div class="bg-white rounded-2xl p-2 border border-slate-200/80 shadow-sm flex items-center space-x-2 overflow-x-auto">
+          <button onclick="app.switchCmsTab('identity')" id="cmsTabBtn-identity" class="px-4 py-2 rounded-xl text-xs font-bold bg-amber-100 text-amber-900 transition flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-building-columns"></i>
+            <span>1. Identitas Sekolah & Yayasan</span>
+          </button>
+          
+          <button onclick="app.switchCmsTab('logo')" id="cmsTabBtn-logo" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-image"></i>
+            <span>2. Logo & Visual Branding</span>
+          </button>
+          
+          <button onclick="app.switchCmsTab('theme')" id="cmsTabBtn-theme" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-palette"></i>
+            <span>3. Tema & Warna (Appearance)</span>
+          </button>
+          
+          <button onclick="app.switchCmsTab('units')" id="cmsTabBtn-units" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>4. Unit & Plafon RAPBS</span>
+          </button>
+
+          <button onclick="app.switchCmsTab('presets')" id="cmsTabBtn-presets" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-file-export"></i>
+            <span>5. Export/Import Preset Client</span>
+          </button>
+        </div>
+
+        <!-- CMS FORM CONTAINER -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm">
+          
+          <!-- SUB-TAB 1: IDENTITAS SEKOLAH & YAYASAN -->
+          <div id="cmsSubTab-identity" class="space-y-6">
+            <div class="border-b border-slate-100 pb-4">
+              <h3 class="font-extrabold text-base text-slate-800 font-heading">Informasi Profil Instansi & Kop Surat Resmi</h3>
+              <p class="text-xs text-slate-400">Data ini digunakan pada navigasi web, header dashboard, serta kop surat Kwitansi, Proposal, dan LPJ.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Yayasan / Badan Pengelola *</label>
+                <input type="text" id="cmsFoundationName" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-brand-primary">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Sekolah / Lembaga Utama *</label>
+                <input type="text" id="cmsSchoolName" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-brand-primary">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Sistem / Brand Aplikasi *</label>
+                <input type="text" id="cmsAppName" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-brand-primary">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Slogan / Tagline Aplikasi</label>
+                <input type="text" id="cmsTagline" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary">
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Alamat Lengkap & Kota *</label>
+                <input type="text" id="cmsAddress" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nomor Telepon Kantor</label>
+                <input type="text" id="cmsPhone" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Email Resmi Sekolah</label>
+                <input type="email" id="cmsEmail" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary">
+              </div>
+            </div>
+
+            <!-- Signatures Config for Print -->
+            <div class="pt-4 border-t border-slate-100">
+              <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide mb-3 flex items-center">
+                <i class="fa-solid fa-signature text-brand-primary mr-2"></i>Pejabat Penandatangan Resmi (Kop Dokumen Cetak)
+              </h4>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                  <span class="text-[10px] font-bold text-slate-400 uppercase">Pejabat 1 (Urusan SARPRAS)</span>
+                  <div class="mt-2 space-y-2">
+                    <input type="text" id="cmsSignerKaurName" placeholder="Nama Pejabat SARPRAS" class="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold">
+                    <input type="text" id="cmsSignerKaurTitle" placeholder="Kaur SARPRAS Yayasan" class="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-[11px] text-slate-500">
+                  </div>
+                </div>
+
+                <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                  <span class="text-[10px] font-bold text-slate-400 uppercase">Pejabat 2 (Bendahara Yayasan)</span>
+                  <div class="mt-2 space-y-2">
+                    <input type="text" id="cmsSignerBendaharaName" placeholder="Nama Bendahara" class="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold">
+                    <input type="text" id="cmsSignerBendaharaTitle" placeholder="Bendahara Yayasan" class="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-[11px] text-slate-500">
+                  </div>
+                </div>
+
+                <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                  <span class="text-[10px] font-bold text-slate-400 uppercase">Pejabat 3 (Pimpinan / Ketua Yayasan)</span>
+                  <div class="mt-2 space-y-2">
+                    <input type="text" id="cmsSignerLeaderName" placeholder="Nama Ketua Yayasan" class="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold">
+                    <input type="text" id="cmsSignerLeaderTitle" placeholder="Ketua Yayasan" class="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-[11px] text-slate-500">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-TAB 2: LOGO & VISUAL BRANDING -->
+          <div id="cmsSubTab-logo" class="hidden space-y-6">
+            <div class="border-b border-slate-100 pb-4">
+              <h3 class="font-extrabold text-base text-slate-800 font-heading">Logo Sekolah & Favicon Branding</h3>
+              <p class="text-xs text-slate-400">Pilih antara menggunakan File Gambar Logo Sekolah Asli atau Icon Vektor.</p>
+            </div>
+
+            <!-- Logo Type Selector -->
+            <div class="flex items-center space-x-4">
+              <label class="flex items-center space-x-2 cursor-pointer">
+                <input type="radio" name="cmsLogoMode" value="icon" id="logoModeIcon" onchange="app.toggleLogoMode('icon')" checked class="text-brand-primary">
+                <span class="text-xs font-bold text-slate-700">Gunakan Icon Simbol</span>
+              </label>
+              <label class="flex items-center space-x-2 cursor-pointer">
+                <input type="radio" name="cmsLogoMode" value="image" id="logoModeImage" onchange="app.toggleLogoMode('image')" class="text-brand-primary">
+                <span class="text-xs font-bold text-slate-700">Upload Gambar Logo Sekolah Asli (PNG/JPG)</span>
+              </label>
+            </div>
+
+            <!-- Image Logo Upload Container -->
+            <div id="cmsImageUploadContainer" class="p-5 bg-slate-50 rounded-2xl border border-slate-200 hidden space-y-4">
+              <div class="flex flex-col sm:flex-row items-center gap-6">
+                <div class="w-24 h-24 rounded-2xl bg-white border-2 border-dashed border-slate-300 flex items-center justify-center overflow-hidden shrink-0 shadow-inner">
+                  <img id="cmsLogoPreviewImg" class="w-full h-full object-contain hidden" alt="Logo Preview">
+                  <i id="cmsLogoPreviewPlaceholder" class="fa-solid fa-cloud-arrow-up text-3xl text-slate-300"></i>
+                </div>
+
+                <div class="space-y-2 text-center sm:text-left">
+                  <h4 class="text-xs font-bold text-slate-800">Upload File Logo Sekolah</h4>
+                  <p class="text-[11px] text-slate-500">Format disarankan: PNG transparan resolusi minimal 200x200 px.</p>
+                  
+                  <div class="flex flex-wrap items-center gap-2 justify-center sm:justify-start">
+                    <label class="px-4 py-2 bg-brand-primary hover:opacity-90 text-white font-bold text-xs rounded-xl cursor-pointer transition inline-flex items-center space-x-2">
+                      <i class="fa-solid fa-upload"></i>
+                      <span>Pilih File Logo</span>
+                      <input type="file" accept="image/*" onchange="app.handleCmsLogoUpload(event)" class="hidden">
+                    </label>
+
+                    <button type="button" onclick="app.removeCmsLogoImage()" id="btnRemoveLogoImg" class="px-3 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-bold text-xs rounded-xl transition hidden">
+                      <i class="fa-solid fa-trash mr-1"></i>Hapus Logo
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vector Icon Picker Container -->
+            <div id="cmsIconPickerContainer" class="space-y-3">
+              <label class="block text-xs font-bold text-slate-700 uppercase">Pilih Simbol / Icon Lambang Sekolah:</label>
+              <div class="grid grid-cols-3 sm:grid-cols-6 gap-3" id="cmsIconGrid">
+                <!-- Dynamically Rendered Icons -->
+              </div>
+            </div>
+
+            <!-- Watermark / Background In Dashboard -->
+            <div class="pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Singkatan Logo / Inisial (2-3 Karakter)</label>
+                <input type="text" id="cmsLogoShort" maxlength="4" placeholder="AI" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold focus:bg-white focus:outline-none focus:border-brand-primary uppercase">
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-TAB 3: TEMA & WARNA (APPEARANCE) -->
+          <div id="cmsSubTab-theme" class="hidden space-y-6">
+            <div class="border-b border-slate-100 pb-4">
+              <h3 class="font-extrabold text-base text-slate-800 font-heading">Studio Tema & Skema Warna Website</h3>
+              <p class="text-xs text-slate-400">Pilih palet warna siap pakai atau sesuaikan warna primer, aksen, dan font tipografi sesuai identitas sekolah client.</p>
+            </div>
+
+            <!-- Instant Theme Presets Cards -->
+            <div class="space-y-3">
+              <label class="block text-xs font-bold text-slate-700 uppercase">Pilihan Preset Skema Warna Sekolah:</label>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3" id="themePresetsContainer">
+                
+                <!-- Preset 1: Emerald Islamic -->
+                <div onclick="app.applyThemePreset('emerald')" class="p-3.5 rounded-2xl border-2 cursor-pointer transition card-hover border-emerald-500 bg-emerald-50/40 relative">
+                  <div class="flex items-center space-x-2 mb-2">
+                    <span class="w-4 h-4 rounded-full bg-emerald-700"></span>
+                    <span class="w-4 h-4 rounded-full bg-amber-500"></span>
+                  </div>
+                  <h4 class="text-xs font-bold text-slate-800">Emerald Islamic</h4>
+                  <p class="text-[10px] text-slate-500">Hijau Zamrud & Emas (Standar Pesantren)</p>
+                </div>
+
+                <!-- Preset 2: Royal Blue Corporate -->
+                <div onclick="app.applyThemePreset('royal_blue')" class="p-3.5 rounded-2xl border-2 cursor-pointer transition card-hover border-slate-200 hover:border-blue-500 bg-blue-50/40 relative">
+                  <div class="flex items-center space-x-2 mb-2">
+                    <span class="w-4 h-4 rounded-full bg-blue-700"></span>
+                    <span class="w-4 h-4 rounded-full bg-amber-500"></span>
+                  </div>
+                  <h4 class="text-xs font-bold text-slate-800">Royal Sapphire</h4>
+                  <p class="text-[10px] text-slate-500">Biru Mewah & Amber (Sekolah Modern)</p>
+                </div>
+
+                <!-- Preset 3: Modern Maroon & Gold -->
+                <div onclick="app.applyThemePreset('maroon')" class="p-3.5 rounded-2xl border-2 cursor-pointer transition card-hover border-slate-200 hover:border-rose-700 bg-rose-50/40 relative">
+                  <div class="flex items-center space-x-2 mb-2">
+                    <span class="w-4 h-4 rounded-full bg-rose-900"></span>
+                    <span class="w-4 h-4 rounded-full bg-amber-500"></span>
+                  </div>
+                  <h4 class="text-xs font-bold text-slate-800">Maroon & Gold</h4>
+                  <p class="text-[10px] text-slate-500">Merah Marun & Emas (Boarding School)</p>
+                </div>
+
+                <!-- Preset 4: Teal Cyber Techno -->
+                <div onclick="app.applyThemePreset('teal')" class="p-3.5 rounded-2xl border-2 cursor-pointer transition card-hover border-slate-200 hover:border-teal-600 bg-teal-50/40 relative">
+                  <div class="flex items-center space-x-2 mb-2">
+                    <span class="w-4 h-4 rounded-full bg-teal-700"></span>
+                    <span class="w-4 h-4 rounded-full bg-cyan-500"></span>
+                  </div>
+                  <h4 class="text-xs font-bold text-slate-800">Teal Cyber</h4>
+                  <p class="text-[10px] text-slate-500">Toska & Cyan (STEM / IT High School)</p>
+                </div>
+
+                <!-- Preset 5: Dark Luxury Charcoal -->
+                <div onclick="app.applyThemePreset('dark_gold')" class="p-3.5 rounded-2xl border-2 cursor-pointer transition card-hover border-slate-200 hover:border-slate-800 bg-slate-100 relative">
+                  <div class="flex items-center space-x-2 mb-2">
+                    <span class="w-4 h-4 rounded-full bg-slate-900"></span>
+                    <span class="w-4 h-4 rounded-full bg-amber-400"></span>
+                  </div>
+                  <h4 class="text-xs font-bold text-slate-800">Dark Luxury</h4>
+                  <p class="text-[10px] text-slate-500">Charcoal & Gold (Executive Academy)</p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Custom Color Pickers -->
+            <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
+              <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide">Kustomisasi Manual Kode Warna (HEX)</h4>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Warna Utama / Primer (Navbar, Tombol, Header)</label>
+                  <div class="flex items-center space-x-2">
+                    <input type="color" id="cmsColorPrimaryPicker" onchange="app.updatePrimaryColorFromPicker(this.value)" class="w-10 h-10 rounded-xl cursor-pointer border border-slate-300 p-0.5">
+                    <input type="text" id="cmsColorPrimaryHex" oninput="app.updatePrimaryColorFromHex(this.value)" class="flex-1 px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-xs font-mono font-bold">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Warna Aksen / Highlight (Badge, Saldo, Tombol CTA)</label>
+                  <div class="flex items-center space-x-2">
+                    <input type="color" id="cmsColorAccentPicker" onchange="app.updateAccentColorFromPicker(this.value)" class="w-10 h-10 rounded-xl cursor-pointer border border-slate-300 p-0.5">
+                    <input type="text" id="cmsColorAccentHex" oninput="app.updateAccentColorFromHex(this.value)" class="flex-1 px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-xs font-mono font-bold">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Typography & Styling Options -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Pilihan Jenis Font (Typography)</label>
+                <select id="cmsFontFamily" onchange="app.updateFontFamily(this.value)" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold">
+                  <option value="Plus Jakarta Sans">Plus Jakarta Sans (Modern & Clean)</option>
+                  <option value="Outfit">Outfit (Geometric & Bold)</option>
+                  <option value="Inter">Inter (High Legibility Corporate)</option>
+                  <option value="Poppins">Poppins (Friendly & Rounded)</option>
+                  <option value="Roboto">Roboto (Classic Standard)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Gaya Kelengkungan Sudut (Border Radius)</label>
+                <select id="cmsBorderRadius" onchange="app.updateBorderRadius(this.value)" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold">
+                  <option value="1.5rem">Super Rounded (Modern 24px)</option>
+                  <option value="0.875rem">Soft Rounded (Standar 14px)</option>
+                  <option value="0.375rem">Classic Crisp (Minimalis 6px)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-TAB 4: MANAJEMEN UNIT & RAPBS -->
+          <div id="cmsSubTab-units" class="hidden space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+              <div>
+                <h3 class="font-extrabold text-base text-slate-800 font-heading">Daftar Unit Sekolah & Alokasi RAPBS</h3>
+                <p class="text-xs text-slate-400">Atur unit-unit yang berhak mengajukan pengadaan barang di sekolah client.</p>
+              </div>
+
+              <button type="button" onclick="app.openAddUnitModal()" class="px-4 py-2 bg-brand-primary text-white text-xs font-bold rounded-xl shadow-sm transition flex items-center space-x-1.5">
+                <i class="fa-solid fa-plus"></i>
+                <span>Tambah Unit Baru</span>
+              </button>
+            </div>
+
+            <!-- Units Table -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-50 text-slate-400 font-bold uppercase tracking-wider text-[10px]">
+                  <tr>
+                    <th class="px-4 py-3 rounded-l-xl">Unit ID</th>
+                    <th class="px-4 py-3">Nama Unit Sekolah</th>
+                    <th class="px-4 py-3">Total Plafon RAPBS (Rp)</th>
+                    <th class="px-4 py-3">Terpakai (Rp)</th>
+                    <th class="px-4 py-3">Saldo Tersedia (Rp)</th>
+                    <th class="px-4 py-3 rounded-r-xl text-center">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="cmsUnitsTableBody" class="divide-y divide-slate-100 font-medium"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- SUB-TAB 5: EXPORT / IMPORT PRESET CLIENT -->
+          <div id="cmsSubTab-presets" class="hidden space-y-6">
+            <div class="border-b border-slate-100 pb-4">
+              <h3 class="font-extrabold text-base text-slate-800 font-heading">Lisensi & Export / Import Konfigurasi Client</h3>
+              <p class="text-xs text-slate-400">Fitur khusus untuk menjual putus ke sekolah lain. Export setelan ini ke file JSON untuk di-deploy ke client baru dengan 1 klik.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              
+              <!-- Export Box -->
+              <div class="p-6 bg-slate-50 rounded-3xl border border-slate-200 flex flex-col justify-between space-y-4">
+                <div>
+                  <div class="w-10 h-10 rounded-2xl bg-brand-primary text-white flex items-center justify-center text-lg mb-3">
+                    <i class="fa-solid fa-file-arrow-down"></i>
+                  </div>
+                  <h4 class="text-sm font-bold text-slate-800">Export Konfigurasi Client (.JSON)</h4>
+                  <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                    Download seluruh setelan identitas sekolah, nama yayasan, kop surat, tema warna, logo, dan unit sekolah dalam satu file terenkripsi JSON.
+                  </p>
+                </div>
+
+                <button type="button" onclick="app.exportBrandingConfig()" class="w-full py-2.5 bg-slate-900 hover:bg-black text-white font-bold text-xs rounded-xl transition flex items-center justify-center space-x-2">
+                  <i class="fa-solid fa-download"></i>
+                  <span>Download File Konfigurasi Branding</span>
+                </button>
+              </div>
+
+              <!-- Import Box -->
+              <div class="p-6 bg-slate-50 rounded-3xl border border-slate-200 flex flex-col justify-between space-y-4">
+                <div>
+                  <div class="w-10 h-10 rounded-2xl bg-amber-500 text-slate-900 flex items-center justify-center text-lg mb-3">
+                    <i class="fa-solid fa-file-arrow-up"></i>
+                  </div>
+                  <h4 class="text-sm font-bold text-slate-800">Import Konfigurasi Client</h4>
+                  <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                    Terapkan preset dari file JSON yang sudah disiapkan untuk client sekolah lain. Sistem akan otomatis berganti identitas & tema instan.
+                  </p>
+                </div>
+
+                <label class="w-full py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold text-xs rounded-xl transition flex items-center justify-center space-x-2 cursor-pointer text-center">
+                  <i class="fa-solid fa-upload"></i>
+                  <span>Upload & Terapkan File JSON</span>
+                  <input type="file" accept=".json" onchange="app.importBrandingConfig(event)" class="hidden">
+                </label>
+              </div>
+
+            </div>
+
+            <!-- Reset Default Button -->
+            <div class="pt-4 border-t border-slate-100 flex justify-between items-center">
+              <div class="text-xs text-slate-400">
+                <i class="fa-solid fa-triangle-exclamation mr-1 text-amber-500"></i>Kembalikan ke pengaturan standar default Al-Imam jika diperlukan.
+              </div>
+
+              <button type="button" onclick="app.resetCmsToDefault()" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-bold text-xs rounded-xl transition">
+                <i class="fa-solid fa-rotate-left mr-1"></i>Reset ke Default Al-Imam
+              </button>
+            </div>
+          </div>
+
+          <!-- Bottom Action Buttons (Save) -->
+          <div class="mt-8 pt-5 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-400">
+              <i class="fa-solid fa-circle-check text-brand-primary mr-1"></i>Perubahan langsung diterapkan secara live pada tampilan web.
+            </span>
+
+            <button type="button" onclick="app.saveCmsSettings()" class="px-8 py-3 bg-brand-primary hover:opacity-90 text-white font-extrabold text-xs rounded-xl shadow-lg transition flex items-center space-x-2">
+              <i class="fa-solid fa-floppy-disk"></i>
+              <span>Simpan & Terapkan Perubahan CMS</span>
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- ================= CART DRAWER ================= -->
+  <div id="cartDrawerBackdrop" onclick="app.toggleCartDrawer()" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+  
+  <div id="cartDrawer" class="fixed inset-y-0 right-0 max-w-md w-full bg-white z-50 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out">
+    <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+      <div class="flex items-center space-x-2">
+        <div class="w-8 h-8 rounded-lg theme-gradient-bg text-white flex items-center justify-center text-sm">
+          <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-sm text-slate-800 font-heading">Keranjang Pengadaan Unit</h3>
+          <p class="text-[11px] text-slate-400" id="cartUnitLabel">Unit SD Al-Imam</p>
+        </div>
+      </div>
+      <button onclick="app.toggleCartDrawer()" class="w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-slate-600 flex items-center justify-center text-xs">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div id="cartItemsList" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
+
+    <div class="p-5 border-t border-slate-100 bg-slate-50 space-y-3">
+      <div class="space-y-1.5 text-xs">
+        <div class="flex justify-between text-slate-500">
+          <span>Metode Pembayaran:</span>
+          <span class="font-bold text-brand-primary">RAPBS Poin SARPRAS</span>
+        </div>
+        <div class="flex justify-between text-slate-500">
+          <span>Saldo Tersedia Unit:</span>
+          <span class="font-bold text-slate-700" id="cartAvailableSaldo">Rp 0</span>
+        </div>
+        <div class="flex justify-between text-slate-500">
+          <span>Total Belanja:</span>
+          <span class="font-bold text-slate-900" id="cartTotalSubtotal">Rp 0</span>
+        </div>
+        <div class="pt-2 border-t border-slate-200 flex justify-between text-sm font-extrabold text-brand-primary font-heading">
+          <span>Sisa Saldo Setelah Belanja:</span>
+          <span id="cartEstimatedRemaining">Rp 0</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-[11px] font-semibold text-slate-600 mb-1">Catatan Kebutuhan / Ruang Penggunaan:</label>
+        <input type="text" id="cartCheckoutNotes" placeholder="Contoh: Kebutuhan ATK Ujian Semester & Kelas 1-6" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-primary">
+      </div>
+
+      <button id="btnCheckoutSubmit" onclick="app.submitCartOrder()" class="w-full py-3 bg-brand-primary hover:opacity-90 text-white font-bold text-xs rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
+        <i class="fa-solid fa-check-to-slot"></i>
+        <span>Kirim Pengajuan Pesanan</span>
+      </button>
+
+      <button onclick="app.clearCart()" class="w-full py-1.5 text-[11px] font-semibold text-slate-400 hover:text-red-500 transition text-center">
+        Kosongkan Keranjang
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: RESTOCK INVENTORY BATCH ================= -->
+  <div id="restockModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+        <div class="flex items-center space-x-2">
+          <div class="w-9 h-9 rounded-xl bg-brand-primary text-white flex items-center justify-center text-sm">
+            <i class="fa-solid fa-boxes-packing"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-slate-800 font-heading">Tambah Batch Stok Masuk (Restock)</h3>
+            <p class="text-[11px] text-slate-400">Dicatat ke Sheet: Stock_Inventory</p>
+          </div>
+        </div>
+        <button onclick="app.closeRestockModal()" class="text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <form onsubmit="app.handleRestockSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Produk *</label>
+          <input type="text" id="restockProdName" required placeholder="Contoh: Spidol Whiteboard Snowman Hitam" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Kategori *</label>
+            <select id="restockCategory" required class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary">
+              <option value="ATK & Kertas">ATK & Kertas</option>
+              <option value="Kebersihan & Sanitasi">Kebersihan & Sanitasi</option>
+              <option value="Elektronik & IT">Elektronik & IT</option>
+              <option value="Perlengkapan Kelas">Perlengkapan Kelas</option>
+              <option value="Buku & Modul">Buku & Modul</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Metode Inventory</label>
+            <select id="restockMethod" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary">
+              <option value="FIFO">FIFO (First In First Out)</option>
+              <option value="LIFO">LIFO (Last In First Out)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Jumlah Masuk (Qty) *</label>
+            <input type="number" id="restockQty" required min="1" placeholder="50" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold focus:bg-white focus:outline-none focus:border-brand-primary">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Harga Beli Satuan (Rp) *</label>
+            <input type="number" id="restockPrice" required min="500" placeholder="10000" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold focus:bg-white focus:outline-none focus:border-brand-primary">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tanggal Masuk Stok *</label>
+          <input type="date" id="restockDateIn" required class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary">
+        </div>
+
+        <div class="pt-3 flex justify-end space-x-2">
+          <button type="button" onclick="app.closeRestockModal()" class="px-4 py-2 bg-slate-100 text-slate-600 text-xs font-bold rounded-xl hover:bg-slate-200 transition">Batal</button>
+          <button type="submit" class="px-5 py-2 bg-brand-primary hover:opacity-90 text-white text-xs font-bold rounded-xl shadow-md transition">Simpan Batch Restock</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: ADD / EDIT UNIT ================= -->
+  <div id="unitModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="font-bold text-sm text-slate-800 font-heading">Tambah / Edit Unit Sekolah</h3>
+        <button onclick="app.closeUnitModal()" class="text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <form onsubmit="app.handleSaveUnit(event)" class="space-y-3">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Unit ID (Kode Unik) *</label>
+          <input type="text" id="unitModalId" required placeholder="unit_asrama" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono font-bold">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Lengkap Unit *</label>
+          <input type="text" id="unitModalName" required placeholder="Pesantren & Asrama Santri" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Total Plafon Anggaran RAPBS (Rp) *</label>
+          <input type="number" id="unitModalPlafond" required min="1000000" placeholder="25000000" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold">
+        </div>
+        <div class="pt-2 flex justify-end space-x-2">
+          <button type="button" onclick="app.closeUnitModal()" class="px-4 py-2 bg-slate-100 text-slate-600 text-xs font-bold rounded-xl">Batal</button>
+          <button type="submit" class="px-5 py-2 bg-brand-primary text-white text-xs font-bold rounded-xl shadow-md">Simpan Unit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: PRINT ENGINE & DOCUMENT PREVIEW ================= -->
+  <div id="printModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 my-auto">
+      <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50 rounded-t-3xl no-print">
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 rounded-lg bg-brand-primary text-white flex items-center justify-center text-xs">
+            <i class="fa-solid fa-print"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm text-slate-800 font-heading">Dokumen Resmi Pengadaan SARPRAS</h3>
+            <p class="text-[10px] text-slate-400">Siap cetak format standar A4 dengan Kop Resmi Sekolah</p>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-2">
+          <button onclick="app.switchPrintDocType('invoice')" id="btnPrintTypeInvoice" class="px-2.5 py-1 bg-brand-light font-bold text-xs rounded-lg">Kwitansi/Invoice</button>
+          <button onclick="app.switchPrintDocType('proposal')" id="btnPrintTypeProposal" class="px-2.5 py-1 bg-slate-100 text-slate-600 font-semibold text-xs rounded-lg hover:bg-slate-200">Proposal</button>
+          <button onclick="app.switchPrintDocType('lpj')" id="btnPrintTypeLPJ" class="px-2.5 py-1 bg-slate-100 text-slate-600 font-semibold text-xs rounded-lg hover:bg-slate-200">LPJ Unit</button>
+          
+          <button onclick="window.print()" class="px-3.5 py-1.5 bg-brand-primary hover:opacity-90 text-white text-xs font-bold rounded-xl shadow-sm transition flex items-center space-x-1.5">
+            <i class="fa-solid fa-print"></i>
+            <span>Cetak PDF / Print</span>
+          </button>
+          <button onclick="app.closePrintModal()" class="w-7 h-7 rounded-lg bg-slate-200 text-slate-600 hover:bg-slate-300 flex items-center justify-center text-xs">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="printableDocumentWrapper" class="flex-1 overflow-y-auto p-6 sm:p-8 bg-white">
+        <div id="printDocumentContent" class="print-page max-w-2xl mx-auto border border-slate-200 p-8 rounded-2xl bg-white shadow-sm"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: SETTINGS & GAS API CONFIG ================= -->
+  <div id="settingsModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-slate-800 text-white flex items-center justify-center text-xs">
+            <i class="fa-solid fa-gear"></i>
+          </div>
+          <h3 class="font-bold text-sm text-slate-800 font-heading">Pengaturan API & Database</h3>
+        </div>
+        <button onclick="app.closeSettingsModal()" class="text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 uppercase mb-1">Google Apps Script Web App URL</label>
+          <input type="url" id="gasEndpointUrl" placeholder="https://script.google.com/macros/s/.../exec" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary font-mono">
+          <p class="text-[10px] text-slate-400 mt-1">Kosongkan URL jika ingin menggunakan <b>Mode Simulasi / Mock Offline</b> dengan data realistis.</p>
+        </div>
+
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-[11px] text-slate-700 space-y-1">
+          <p class="font-bold"><i class="fa-solid fa-check-double mr-1 text-brand-primary"></i>Status Integrasi Backend</p>
+          <p id="settingsModeStatus">Aplikasi saat ini berjalan dalam Mode Simulasi (Local Storage Cache).</p>
+        </div>
+
+        <div class="pt-2 flex flex-col gap-2">
+          <button onclick="app.testGasConnection()" class="w-full py-2 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl transition flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-satellite-dish"></i>
+            <span>Tes Koneksi & Sync ke Google Sheets</span>
+          </button>
+          
+          <button onclick="app.resetDemoData()" class="w-full py-2 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 font-semibold rounded-xl transition flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-arrows-rotate text-amber-600"></i>
+            <span>Reset Data Transaksi ke Standar Awal</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t border-slate-100 flex justify-end">
+        <button onclick="app.saveSettings()" class="px-5 py-2 bg-brand-primary text-white font-bold text-xs rounded-xl shadow-md transition">Simpan Pengaturan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notifications Container -->
+  <div id="toastContainer"></div>
+
+  <!-- Footer -->
+  <footer class="mt-auto border-t border-slate-200/80 bg-white py-4 px-4 text-center text-xs text-slate-400 no-print">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p>&copy; 2026 <span id="footerSchoolName">E-Commerce SARPRAS Al-Imam Islamic School</span>. All rights reserved.</p>
+      <div class="flex items-center space-x-4">
+        <span>White-Label Ready</span>
+        <span>•</span>
+        <span>Google Apps Script REST</span>
+        <span>•</span>
+        <span>FIFO Stock Engine</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application JS Controller & Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

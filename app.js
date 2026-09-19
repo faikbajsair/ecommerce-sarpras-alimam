@@ -81,6 +81,100 @@ const AVAILABLE_ICONS = [
   { icon: 'fa-rocket', label: 'Modern / Roket' }
 ];
 
+// Preset Curated High-Definition Photos for Indonesian School SARPRAS & Office Supplies
+const CURATED_PRODUCT_PHOTOS = [
+  {
+    keywords: ['spidol', 'snowman', 'whiteboard', 'marker', 'boardmarker', 'tulis'],
+    title: 'Spidol Whiteboard Snowman Hitam',
+    image: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['kertas', 'hvs', 'paperone', 'a4', 'rim', 'fotocopy'],
+    title: 'Kertas HVS PaperOne A4 80gr',
+    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['kertas', 'hvs', 'sidu', 'f4', 'folio'],
+    title: 'Kertas HVS Sinar Dunia F4 75gr',
+    image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['tinta', 'epson', '003', 'printer', 'black', 'hitam', 'l3110'],
+    title: 'Tinta Epson 003 Black Original',
+    image: 'https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['tinta', 'epson', 'color', 'cmyk', 'warna', 'set'],
+    title: 'Tinta Epson 003 Color Set',
+    image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['wipol', 'karbol', 'lantai', 'pembersih', 'pine', 'cemara'],
+    title: 'Wipol Karbol Pembersih Lantai 5L',
+    image: 'https://images.unsplash.com/photo-1585421514738-01798e348b17?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['sabun', 'lifebuoy', 'handwash', 'cuci', 'tangan', 'liquid'],
+    title: 'Sabun Cuci Tangan Lifebuoy 4L',
+    image: 'https://images.unsplash.com/photo-1608248597359-bb4f5e08df05?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['sapu', 'ijuk', 'dragon', 'pengki', 'kebersihan', 'pel'],
+    title: 'Sapu Lantai Ijuk & Pengki Set',
+    image: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['hdmi', 'kabel', 'vention', 'display', 'monitor', 'tv'],
+    title: 'Kabel HDMI 10 Meter Braided',
+    image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['penghapus', 'whiteboard', 'joyko', 'magnetik', 'papan'],
+    title: 'Penghapus Papan Tulis Joyko',
+    image: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['stopmap', 'map', 'folio', 'sidu', 'dokumen', 'amplop'],
+    title: 'Stopmap Folio Kertas Sinar Dunia',
+    image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['baterai', 'battery', 'alkaline', 'aa', 'aaa', 'wireless', 'mic'],
+    title: 'Baterai Alkaline AA Pack',
+    image: 'https://images.unsplash.com/photo-1619725002198-6a689b72f41d?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['proyektor', 'projector', 'epson', 'infocus', 'lcd', 'hd'],
+    title: 'Proyektor LCD Epson Infocus',
+    image: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['microphone', 'mic', 'wireless', 'clip on', 'boya', 'podcast', 'imam'],
+    title: 'Microphone Wireless Clip-On Boya',
+    image: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['mouse', 'logitech', 'keyboard', 'komputer', 'wireless'],
+    title: 'Mouse & Keyboard Wireless Logitech',
+    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['buku', 'modul', 'pelajaran', 'tahfidz', 'alquran', 'iqro', 'tulis'],
+    title: 'Buku Pelajaran & Modul Sekolah',
+    image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['meja', 'kursi', 'siswa', 'kelas', 'kayu', 'bangku'],
+    title: 'Meja & Kursi Belajar Siswa',
+    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['dispenser', 'galon', 'air', 'minum', 'miyako', 'panas'],
+    title: 'Dispenser Air Galon Kantor',
+    image: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=600&auto=format&fit=crop&q=80'
+  }
+];
+
 // ==========================================
 // 2. INITIAL DATABASE SEED
 // ==========================================
@@ -104,21 +198,21 @@ const INITIAL_DB = {
   ],
 
   stock_inventory: [
-    { batch_id: 'BATCH-202607-01', product_name: 'Spidol Whiteboard Snowman Hitam', category: 'ATK & Kertas', stock_qty: 0, unit_price: 8500, date_in: '2026-07-10', method: 'FIFO', status: 'Empty' },
-    { batch_id: 'BATCH-202608-04', product_name: 'Spidol Whiteboard Snowman Hitam', category: 'ATK & Kertas', stock_qty: 12, unit_price: 9000, date_in: '2026-08-15', method: 'FIFO', status: 'Active' },
-    { batch_id: 'BATCH-202609-02', product_name: 'Spidol Whiteboard Snowman Hitam', category: 'ATK & Kertas', stock_qty: 50, unit_price: 9500, date_in: '2026-09-05', method: 'FIFO', status: 'Active' },
-    { batch_id: 'BATCH-202608-01', product_name: 'Kertas HVS A4 80gr PaperOne (Rim)', category: 'ATK & Kertas', stock_qty: 25, unit_price: 52000, date_in: '2026-08-01', method: 'FIFO', status: 'Active' },
-    { batch_id: 'BATCH-202609-01', product_name: 'Kertas HVS A4 80gr PaperOne (Rim)', category: 'ATK & Kertas', stock_qty: 40, unit_price: 54000, date_in: '2026-09-02', method: 'FIFO', status: 'Active' },
-    { batch_id: 'BATCH-202608-02', product_name: 'Kertas HVS F4 75gr SiDU (Rim)', category: 'ATK & Kertas', stock_qty: 18, unit_price: 56000, date_in: '2026-08-05', method: 'FIFO', status: 'Active' },
-    { batch_id: 'BATCH-202608-08', product_name: 'Tinta Epson 003 Black Original', category: 'Elektronik & IT', stock_qty: 8, unit_price: 85000, date_in: '2026-08-20', method: 'FIFO', status: 'Active' },
-    { batch_id: 'BATCH-202608-09', product_name: 'Tinta Epson 003 Color Set (C,M,Y)', category: 'Elektronik & IT', stock_qty: 5, unit_price: 245000, date_in: '2026-08-20', method: 'FIFO', status: 'Active' },
-    { batch_id: 'BATCH-202609-07', product_name: 'Cairan Pembersih Lantai Wipol Karbol 5 Liter', category: 'Kebersihan & Sanitasi', stock_qty: 10, unit_price: 78000, date_in: '2026-09-08', method: 'FIFO', status: 'Active' },
-    { batch_id: 'BATCH-202609-08', product_name: 'Sabun Cuci Tangan Lifebuoy Handwash 4 Liter', category: 'Kebersihan & Sanitasi', stock_qty: 6, unit_price: 110000, date_in: '2026-09-08', method: 'FIFO', status: 'Active' },
-    { batch_id: 'BATCH-202608-11', product_name: 'Sapu Lantai Ijuk Dragon & Pengki Set', category: 'Kebersihan & Sanitasi', stock_qty: 15, unit_price: 38000, date_in: '2026-08-12', method: 'FIFO', status: 'Active' },
-    { batch_id: 'BATCH-202608-15', product_name: 'Kabel HDMI 10 Meter Vention Braided', category: 'Elektronik & IT', stock_qty: 4, unit_price: 135000, date_in: '2026-08-25', method: 'FIFO', status: 'Active' },
-    { batch_id: 'BATCH-202607-09', product_name: 'Penghapus Papan Tulis Magnetik Joyko', category: 'Perlengkapan Kelas', stock_qty: 30, unit_price: 12500, date_in: '2026-07-28', method: 'FIFO', status: 'Active' },
-    { batch_id: 'BATCH-202608-20', product_name: 'Stopmap Folio Kertas Sinar Dunia (Pack 50 pcs)', category: 'ATK & Kertas', stock_qty: 14, unit_price: 65000, date_in: '2026-08-28', method: 'FIFO', status: 'Active' },
-    { batch_id: 'BATCH-202607-02', product_name: 'Baterai Mic Wireless Alkaline AA (Pack 4)', category: 'Elektronik & IT', stock_qty: 0, unit_price: 32000, date_in: '2026-07-15', method: 'FIFO', status: 'Empty' }
+    { batch_id: 'BATCH-202607-01', product_name: 'Spidol Whiteboard Snowman Hitam', category: 'ATK & Kertas', stock_qty: 0, unit_price: 8500, date_in: '2026-07-10', method: 'FIFO', status: 'Empty', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-04', product_name: 'Spidol Whiteboard Snowman Hitam', category: 'ATK & Kertas', stock_qty: 12, unit_price: 9000, date_in: '2026-08-15', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202609-02', product_name: 'Spidol Whiteboard Snowman Hitam', category: 'ATK & Kertas', stock_qty: 50, unit_price: 9500, date_in: '2026-09-05', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-01', product_name: 'Kertas HVS A4 80gr PaperOne (Rim)', category: 'ATK & Kertas', stock_qty: 25, unit_price: 52000, date_in: '2026-08-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202609-01', product_name: 'Kertas HVS A4 80gr PaperOne (Rim)', category: 'ATK & Kertas', stock_qty: 40, unit_price: 54000, date_in: '2026-09-02', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-02', product_name: 'Kertas HVS F4 75gr SiDU (Rim)', category: 'ATK & Kertas', stock_qty: 18, unit_price: 56000, date_in: '2026-08-05', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-08', product_name: 'Tinta Epson 003 Black Original', category: 'Elektronik & IT', stock_qty: 8, unit_price: 85000, date_in: '2026-08-20', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-09', product_name: 'Tinta Epson 003 Color Set (C,M,Y)', category: 'Elektronik & IT', stock_qty: 5, unit_price: 245000, date_in: '2026-08-20', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202609-07', product_name: 'Cairan Pembersih Lantai Wipol Karbol 5 Liter', category: 'Kebersihan & Sanitasi', stock_qty: 10, unit_price: 78000, date_in: '2026-09-08', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1585421514738-01798e348b17?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202609-08', product_name: 'Sabun Cuci Tangan Lifebuoy Handwash 4 Liter', category: 'Kebersihan & Sanitasi', stock_qty: 6, unit_price: 110000, date_in: '2026-09-08', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1608248597359-bb4f5e08df05?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-11', product_name: 'Sapu Lantai Ijuk Dragon & Pengki Set', category: 'Kebersihan & Sanitasi', stock_qty: 15, unit_price: 38000, date_in: '2026-08-12', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-15', product_name: 'Kabel HDMI 10 Meter Vention Braided', category: 'Elektronik & IT', stock_qty: 4, unit_price: 135000, date_in: '2026-08-25', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-09', product_name: 'Penghapus Papan Tulis Magnetik Joyko', category: 'Perlengkapan Kelas', stock_qty: 30, unit_price: 12500, date_in: '2026-07-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-20', product_name: 'Stopmap Folio Kertas Sinar Dunia (Pack 50 pcs)', category: 'ATK & Kertas', stock_qty: 14, unit_price: 65000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-02', product_name: 'Baterai Mic Wireless Alkaline AA (Pack 4)', category: 'Elektronik & IT', stock_qty: 0, unit_price: 32000, date_in: '2026-07-15', method: 'FIFO', status: 'Empty', image_url: 'https://images.unsplash.com/photo-1619725002198-6a689b72f41d?w=600&auto=format&fit=crop&q=80' }
   ],
 
   orders: [
@@ -238,6 +332,24 @@ const app = {
     } else {
       this.db = JSON.parse(JSON.stringify(INITIAL_DB));
       this.saveState();
+    }
+
+    // Ensure existing cached stock items have image_url if available
+    if (this.db && this.db.stock_inventory) {
+      this.db.stock_inventory.forEach(item => {
+        if (!item.image_url) {
+          const seedMatch = INITIAL_DB.stock_inventory.find(s => s.product_name === item.product_name && s.image_url);
+          if (seedMatch) {
+            item.image_url = seedMatch.image_url;
+          } else {
+            const photoMatch = CURATED_PRODUCT_PHOTOS.find(p => {
+              const tokens = item.product_name.toLowerCase().split(/\s+/);
+              return tokens.some(t => p.keywords.some(k => k.includes(t) || t.includes(k)));
+            });
+            if (photoMatch) item.image_url = photoMatch.image;
+          }
+        }
+      });
     }
 
     // Load active user
@@ -981,11 +1093,14 @@ const app = {
         map[item.product_name] = {
           name: item.product_name,
           category: item.category,
+          image_url: item.image_url || '',
           total_stock: 0,
           earliest_price: item.unit_price,
           latest_price: item.unit_price,
           batches: []
         };
+      } else if (!map[item.product_name].image_url && item.image_url) {
+        map[item.product_name].image_url = item.image_url;
       }
 
       if (item.status === 'Active' && item.stock_qty > 0) {
@@ -1221,10 +1336,19 @@ const app = {
       return `
         <div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm card-hover flex flex-col justify-between">
           <div>
-            <div class="h-32 w-full rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-brand-primary text-4xl mb-3 relative overflow-hidden">
-              <i class="fa-solid ${categoryIcon}"></i>
-              <div class="absolute top-2 left-2">${stockBadge}</div>
-              <div class="absolute top-2 right-2">${batchTag}</div>
+            <div class="h-36 w-full rounded-xl bg-slate-100 border border-slate-200/80 flex items-center justify-center text-brand-primary text-4xl mb-3 relative overflow-hidden group">
+              ${prod.image_url ? `
+                <img src="${prod.image_url}" alt="${prod.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+                <div class="hidden w-full h-full flex items-center justify-center bg-slate-50 text-brand-primary text-4xl">
+                  <i class="fa-solid ${categoryIcon}"></i>
+                </div>
+              ` : `
+                <div class="w-full h-full flex items-center justify-center bg-slate-50 text-brand-primary text-4xl">
+                  <i class="fa-solid ${categoryIcon}"></i>
+                </div>
+              `}
+              <div class="absolute top-2 left-2 z-10 shadow-sm">${stockBadge}</div>
+              <div class="absolute top-2 right-2 z-10 shadow-sm">${batchTag}</div>
             </div>
 
             <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">${prod.category}</span>
@@ -1597,7 +1721,15 @@ const app = {
 
       return `
         <tr class="hover:bg-slate-50 transition">
-          <td class="px-4 py-3 font-bold text-slate-800">${p.name}</td>
+          <td class="px-4 py-3 font-bold text-slate-800">
+            <div class="flex items-center space-x-3">
+              <div class="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 overflow-hidden shrink-0 flex items-center justify-center text-brand-primary text-xs">
+                ${p.image_url ? `<img src="${p.image_url}" class="w-full h-full object-cover" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">` : ''}
+                <i class="fa-solid fa-box ${p.image_url ? 'hidden' : ''}"></i>
+              </div>
+              <span class="truncate max-w-xs">${p.name}</span>
+            </div>
+          </td>
           <td class="px-4 py-3 text-slate-500">${p.category}</td>
           <td class="px-4 py-3">${stockBadge}</td>
           <td class="px-4 py-3 font-extrabold text-brand-primary font-heading">Rp ${this.formatNumber(p.earliest_price)}</td>
@@ -1661,6 +1793,9 @@ const app = {
 
   addToCart(productName, price, maxStock) {
     const existing = this.cart.find(c => c.product_name === productName);
+    const prod = this.getAggregatedProducts().find(p => p.name === productName);
+    const imageUrl = prod ? (prod.image_url || '') : '';
+
     if (existing) {
       if (existing.qty + 1 > maxStock) {
         this.showToast(`Stok maksimal barang tercapai (${maxStock})`, 'warning');
@@ -1674,7 +1809,8 @@ const app = {
         unit_price: price,
         qty: 1,
         subtotal: price,
-        max_stock: maxStock
+        max_stock: maxStock,
+        image_url: imageUrl
       });
     }
 
@@ -1785,7 +1921,11 @@ const app = {
 
     if (list) {
       list.innerHTML = this.cart.map(item => `
-        <div class="bg-slate-50 rounded-2xl p-3 border border-slate-200/70 flex items-center justify-between gap-2">
+        <div class="bg-slate-50 rounded-2xl p-3 border border-slate-200/70 flex items-center justify-between gap-3">
+          <div class="w-11 h-11 rounded-xl bg-white border border-slate-200 overflow-hidden shrink-0 flex items-center justify-center text-brand-primary text-base">
+            ${item.image_url ? `<img src="${item.image_url}" class="w-full h-full object-cover" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">` : ''}
+            <i class="fa-solid fa-box ${item.image_url ? 'hidden' : ''}"></i>
+          </div>
           <div class="min-w-0 flex-1">
             <h5 class="text-xs font-bold text-slate-800 truncate">${item.product_name}</h5>
             <p class="text-[11px] text-brand-primary font-bold">Rp ${this.formatNumber(item.unit_price)}</p>
@@ -2088,6 +2228,12 @@ const app = {
     document.getElementById('productModalStock').value = '10';
     document.getElementById('productModalDateIn').value = new Date().toISOString().split('T')[0];
 
+    const urlInput = document.getElementById('productModalMarketplaceUrl');
+    if (urlInput) urlInput.value = '';
+    this.setProductModalPhoto('');
+    const galleryContainer = document.getElementById('productPhotoGalleryContainer');
+    if (galleryContainer) galleryContainer.classList.add('hidden');
+
     const stockContainer = document.getElementById('productModalAddStockContainer');
     if (stockContainer) stockContainer.classList.remove('hidden');
 
@@ -2117,6 +2263,12 @@ const app = {
     document.getElementById('productModalCategory').value = prod.category;
     document.getElementById('productModalPrice').value = prod.earliest_price;
 
+    const urlInput = document.getElementById('productModalMarketplaceUrl');
+    if (urlInput) urlInput.value = '';
+    this.setProductModalPhoto(prod.image_url || '');
+    const galleryContainer = document.getElementById('productPhotoGalleryContainer');
+    if (galleryContainer) galleryContainer.classList.add('hidden');
+
     const stockContainer = document.getElementById('productModalAddStockContainer');
     if (stockContainer) stockContainer.classList.add('hidden');
 
@@ -2131,6 +2283,200 @@ const app = {
     if (modal) modal.classList.add('hidden');
   },
 
+  onProductNameInput() {
+    // When typing product name, if no photo selected yet, auto populate suggestions
+    const name = document.getElementById('productModalName').value.trim();
+    if (name.length >= 3) {
+      const currentPhoto = document.getElementById('productModalImage').value;
+      if (!currentPhoto) {
+        // Find best match silently
+        const match = CURATED_PRODUCT_PHOTOS.find(item => {
+          const qTokens = name.toLowerCase().split(/\s+/);
+          return qTokens.some(tok => item.keywords.some(k => k.includes(tok) || tok.includes(k)));
+        });
+        if (match) {
+          this.setProductModalPhoto(match.image);
+        }
+      }
+    }
+  },
+
+  async fetchMarketplaceProduct() {
+    const urlInput = document.getElementById('productModalMarketplaceUrl');
+    const url = urlInput ? urlInput.value.trim() : '';
+    if (!url) {
+      this.showToast('Silakan tempelkan link produk Shopee / Tokopedia / URL Gambar terlebih dahulu!', 'warning');
+      return;
+    }
+
+    const btn = document.getElementById('btnFetchMarketplace');
+    const originalBtnText = btn ? btn.innerHTML : '';
+    if (btn) {
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Ambil...</span>';
+      btn.disabled = true;
+    }
+
+    try {
+      // 1. Direct Image URL check
+      const lower = url.toLowerCase();
+      if (lower.match(/\.(jpg|jpeg|png|webp|gif)(\?.*)?$/i) || lower.includes('img.susercontent.com') || lower.includes('images.tokopedia.net')) {
+        this.setProductModalPhoto(url);
+        this.showToast('Foto berhasil dimuat dari link gambar langsung!', 'success');
+        return;
+      }
+
+      // 2. Call Google Apps Script REST backend scraper if URL configured
+      if (this.db.gas_api_url) {
+        try {
+          const response = await fetch(`${this.db.gas_api_url}?action=fetchMarketplaceInfo&url=${encodeURIComponent(url)}`);
+          const json = await response.json();
+          if (json.status === 'success' && json.data && json.data.image_url) {
+            this.setProductModalPhoto(json.data.image_url);
+            
+            const nameInput = document.getElementById('productModalName');
+            if (nameInput && (!nameInput.value || nameInput.value.trim() === '') && json.data.title) {
+              nameInput.value = json.data.title;
+            }
+            const priceInput = document.getElementById('productModalPrice');
+            if (priceInput && (!priceInput.value || Number(priceInput.value) === 0) && json.data.price > 0) {
+              priceInput.value = json.data.price;
+            }
+
+            this.showToast('Foto & Info produk berhasil diambil dari marketplace!', 'success');
+            return;
+          }
+        } catch (e) {
+          console.warn('Backend scrape error, falling back:', e);
+        }
+      }
+
+      // 3. Fallback Smart Client-Side Extractor for Shopee & Tokopedia
+      let extractedImage = '';
+      let extractedTitle = '';
+
+      if (url.includes('shopee.co.id')) {
+        const matchFile = url.match(/file\/([a-zA-Z0-9_-]+)/);
+        if (matchFile) {
+          extractedImage = `https://down-id.img.susercontent.com/file/${matchFile[1]}`;
+        } else {
+          const slug = url.split('shopee.co.id/')[1]?.split('?')[0] || '';
+          const cleanTitle = slug.replace(/-i\.\d+\.\d+/, '').replace(/-/g, ' ').trim();
+          if (cleanTitle) extractedTitle = cleanTitle;
+        }
+      } else if (url.includes('tokopedia.com')) {
+        const slug = url.split('tokopedia.com/')[1]?.split('?')[0] || '';
+        const parts = slug.split('/');
+        if (parts.length > 1) {
+          extractedTitle = parts[parts.length - 1].replace(/-/g, ' ');
+        }
+      }
+
+      if (extractedImage) {
+        this.setProductModalPhoto(extractedImage);
+        this.showToast('Foto produk berhasil diekstrak!', 'success');
+      } else if (extractedTitle) {
+        const nameInput = document.getElementById('productModalName');
+        if (nameInput && !nameInput.value) nameInput.value = extractedTitle;
+        this.searchAutoProductPhotos(extractedTitle);
+        this.showToast(`Info produk "${extractedTitle}" terdeteksi! Menampilkan rekomendasi foto...`, 'info');
+      } else {
+        this.searchAutoProductPhotos(document.getElementById('productModalName').value || 'ATK');
+        this.showToast('Menampilkan rekomendasi foto produk yang cocok.', 'info');
+      }
+    } catch (err) {
+      console.warn('Fetch error:', err);
+      this.showToast('Gagal memproses link marketplace. Silakan gunakan tombol "Cari Foto Otomatis".', 'error');
+    } finally {
+      if (btn) {
+        btn.innerHTML = originalBtnText;
+        btn.disabled = false;
+      }
+    }
+  },
+
+  setProductModalPhoto(imageUrl) {
+    const inputHidden = document.getElementById('productModalImage');
+    if (inputHidden) inputHidden.value = imageUrl;
+    const preview = document.getElementById('productModalImagePreview');
+    const placeholder = document.getElementById('productModalImagePlaceholder');
+    const btnRemove = document.getElementById('btnRemoveProductPhoto');
+
+    if (imageUrl) {
+      if (preview) {
+        preview.src = imageUrl;
+        preview.classList.remove('hidden');
+      }
+      if (placeholder) placeholder.classList.add('hidden');
+      if (btnRemove) btnRemove.classList.remove('hidden');
+    } else {
+      if (preview) {
+        preview.src = '';
+        preview.classList.add('hidden');
+      }
+      if (placeholder) placeholder.classList.remove('hidden');
+      if (btnRemove) btnRemove.classList.add('hidden');
+    }
+  },
+
+  removeProductPhoto() {
+    this.setProductModalPhoto('');
+    const urlInput = document.getElementById('productModalMarketplaceUrl');
+    if (urlInput) urlInput.value = '';
+    this.showToast('Foto produk dihapus.', 'info');
+  },
+
+  searchAutoProductPhotos(customQuery) {
+    const query = (customQuery || document.getElementById('productModalName').value || '').toLowerCase().trim();
+    const container = document.getElementById('productPhotoGalleryContainer');
+    const suggestionsGrid = document.getElementById('productPhotoGallerySuggestions');
+    if (!container || !suggestionsGrid) return;
+
+    let matched = CURATED_PRODUCT_PHOTOS.filter(item => {
+      if (!query) return true;
+      const qTokens = query.split(/\s+/);
+      return qTokens.some(tok => item.keywords.some(k => k.includes(tok) || tok.includes(k)));
+    });
+
+    if (matched.length === 0) {
+      matched = CURATED_PRODUCT_PHOTOS.slice(0, 6);
+    }
+
+    container.classList.remove('hidden');
+    suggestionsGrid.innerHTML = matched.slice(0, 8).map(m => `
+      <div onclick="app.selectSuggestedPhoto('${m.image}')" class="group relative rounded-xl border border-slate-200 overflow-hidden cursor-pointer hover:border-brand-primary hover:shadow-md transition bg-white aspect-square flex flex-col justify-between p-1">
+        <img src="${m.image}" alt="${m.title}" class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition duration-200">
+        <div class="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/20 transition rounded-xl flex items-center justify-center">
+          <span class="opacity-0 group-hover:opacity-100 bg-brand-primary text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">Pilih</span>
+        </div>
+      </div>
+    `).join('');
+  },
+
+  selectSuggestedPhoto(imageUrl) {
+    this.setProductModalPhoto(imageUrl);
+    const container = document.getElementById('productPhotoGalleryContainer');
+    if (container) container.classList.add('hidden');
+    this.showToast('Foto produk berhasil dipilih!', 'success');
+  },
+
+  handleProductImageUpload(event) {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+
+    if (file.size > 2 * 1024 * 1024) {
+      this.showToast('Ukuran gambar maksimal 2MB!', 'warning');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const base64 = e.target.result;
+      this.setProductModalPhoto(base64);
+      this.showToast('Foto berhasil diupload!', 'success');
+    };
+    reader.readAsDataURL(file);
+  },
+
   handleSaveProduct(event) {
     event.preventDefault();
 
@@ -2139,6 +2485,7 @@ const app = {
     const newName = document.getElementById('productModalName').value.trim();
     const category = document.getElementById('productModalCategory').value;
     const price = Number(document.getElementById('productModalPrice').value);
+    const imageUrl = document.getElementById('productModalImage').value || '';
 
     if (!newName) {
       this.showToast('Nama produk tidak boleh kosong!', 'warning');
@@ -2158,7 +2505,8 @@ const app = {
         unit_price: price,
         date_in: dateIn,
         method: 'FIFO',
-        status: initialStock > 0 ? 'Active' : 'Empty'
+        status: initialStock > 0 ? 'Active' : 'Empty',
+        image_url: imageUrl
       };
 
       this.db.stock_inventory.push(newBatch);
@@ -2174,7 +2522,8 @@ const app = {
           unit_price: price,
           initial_stock: initialStock,
           date_in: dateIn,
-          batch_id: batchId
+          batch_id: batchId,
+          image_url: imageUrl
         });
       }
     } else {
@@ -2184,6 +2533,7 @@ const app = {
           b.product_name = newName;
           b.category = category;
           b.unit_price = price;
+          if (imageUrl) b.image_url = imageUrl;
           updatedCount++;
         }
       });
@@ -2197,7 +2547,8 @@ const app = {
         this.syncGasProduct('edit', originalName, {
           product_name: newName,
           category: category,
-          unit_price: price
+          unit_price: price,
+          image_url: imageUrl
         });
       }
     }
@@ -2836,7 +3187,8 @@ const app = {
           stock_qty: batchData.stock_qty,
           unit_price: batchData.unit_price,
           date_in: batchData.date_in,
-          status: batchData.status
+          status: batchData.status,
+          image_url: batchData.image_url || ''
         })
       });
     } catch (err) {

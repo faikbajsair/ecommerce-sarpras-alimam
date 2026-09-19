@@ -48,6 +48,9 @@ function doGet(e) {
       case 'getSettings':
         return createJsonResponse({ status: 'success', data: getSettingsData(ss) });
 
+      case 'fetchMarketplaceInfo':
+        return createJsonResponse(handleFetchMarketplaceInfo(e.parameter || {}));
+
       case 'initDatabase':
         initDatabase();
         return createJsonResponse({ status: 'success', message: 'Database sheets initialized with seed data successfully!' });
@@ -57,7 +60,7 @@ function doGet(e) {
           status: 'success',
           message: 'E-Commerce SARPRAS REST API is online.',
           version: '2.0.0 (White-Label Ready)',
-          available_actions: ['getCatalog', 'getRAPBS', 'getOrders', 'getTransactions', 'getLowStockAlerts', 'getSettings', 'initDatabase']
+          available_actions: ['getCatalog', 'getRAPBS', 'getOrders', 'getTransactions', 'getLowStockAlerts', 'getSettings', 'fetchMarketplaceInfo', 'initDatabase']
         });
     }
   } catch (err) {
@@ -116,6 +119,9 @@ function doPost(e) {
 
       case 'uploadFile':
         return createJsonResponse(handleFileUpload(payload));
+
+      case 'fetchMarketplaceInfo':
+        return createJsonResponse(handleFetchMarketplaceInfo(payload));
 
       case 'initDatabase':
         initDatabase();
@@ -348,7 +354,8 @@ function handleRestockInventory(ss, payload) {
     Number(batch.unit_price),
     dateInStr,
     batch.method || 'FIFO',
-    'Active'
+    'Active',
+    batch.image_url || ''
   ];
 
   sheet.appendRow(newRow);
@@ -362,6 +369,7 @@ function handleSaveProduct(ss, payload) {
   const newName = payload.product_name;
   const category = payload.category || 'ATK & Kertas';
   const price = Number(payload.unit_price) || 0;
+  const imageUrl = payload.image_url || '';
 
   if (mode === 'add') {
     const initialStock = Number(payload.initial_stock) || 0;
@@ -376,7 +384,8 @@ function handleSaveProduct(ss, payload) {
       price,
       dateInStr,
       'FIFO',
-      initialStock > 0 ? 'Active' : 'Empty'
+      initialStock > 0 ? 'Active' : 'Empty',
+      imageUrl
     ];
     sheet.appendRow(newRow);
     return { status: 'success', message: 'Master product added successfully', batch_id: batchId };
@@ -388,6 +397,9 @@ function handleSaveProduct(ss, payload) {
         sheet.getRange(i + 1, 2).setValue(newName);
         sheet.getRange(i + 1, 3).setValue(category);
         sheet.getRange(i + 1, 5).setValue(price);
+        if (imageUrl) {
+          sheet.getRange(i + 1, 9).setValue(imageUrl);
+        }
         updated++;
       }
     }
@@ -423,6 +435,7 @@ function handleUpdateBatch(ss, payload) {
       if (payload.unit_price !== undefined) sheet.getRange(i + 1, 5).setValue(Number(payload.unit_price));
       if (payload.date_in) sheet.getRange(i + 1, 6).setValue(payload.date_in);
       if (payload.status) sheet.getRange(i + 1, 8).setValue(payload.status);
+      if (payload.image_url !== undefined) sheet.getRange(i + 1, 9).setValue(payload.image_url);
       return { status: 'success', message: `Batch ${batchId} updated successfully` };
     }
   }
@@ -441,6 +454,91 @@ function handleDeleteBatch(ss, payload) {
     }
   }
   return { status: 'error', message: `Batch ${batchId} not found` };
+}
+
+function handleFetchMarketplaceInfo(payload) {
+  const url = payload.url || '';
+  if (!url) {
+    return { status: 'error', message: 'URL tidak boleh kosong.' };
+  }
+
+  const lower = url.toLowerCase();
+  if (lower.match(/\.(jpg|jpeg|png|webp|gif)(\?.*)?$/i) || lower.includes('img.susercontent.com') || lower.includes('images.tokopedia.net')) {
+    return {
+      status: 'success',
+      data: {
+        title: '',
+        image_url: url,
+        price: 0,
+        source: 'direct_image'
+      }
+    };
+  }
+
+  try {
+    const response = UrlFetchApp.fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7'
+      },
+      muteHttpExceptions: true,
+      followRedirects: true
+    });
+
+    const html = response.getContentText();
+    let ogImage = '';
+    let ogTitle = '';
+    let ogPrice = 0;
+
+    const imageMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i) ||
+                       html.match(/<meta\s+content=["']([^"']+)["']\s+property=["']og:image["']/i) ||
+                       html.match(/<meta\s+name=["']twitter:image["']\s+content=["']([^"']+)["']/i) ||
+                       html.match(/<meta\s+content=["']([^"']+)["']\s+name=["']twitter:image["']/i);
+    if (imageMatch && imageMatch[1]) {
+      ogImage = imageMatch[1].replace(/&amp;/g, '&');
+    }
+
+    const titleMatch = html.match(/<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i) ||
+                       html.match(/<meta\s+content=["']([^"']+)["']\s+property=["']og:title["']/i) ||
+                       html.match(/<title>([^<]+)<\/title>/i);
+    if (titleMatch && titleMatch[1]) {
+      ogTitle = titleMatch[1].replace(/&amp;/g, '&').trim();
+      ogTitle = ogTitle.split(' | Tokopedia')[0].split(' | Shopee Indonesia')[0].split(' - Shopee')[0].trim();
+    }
+
+    const priceMatch = html.match(/<meta\s+property=["']product:price:amount["']\s+content=["']([^"']+)["']/i) ||
+                       html.match(/<meta\s+property=["']og:price:amount["']\s+content=["']([^"']+)["']/i);
+    if (priceMatch && priceMatch[1]) {
+      ogPrice = parseFloat(priceMatch[1]) || 0;
+    }
+
+    if (!ogImage) {
+      const shopeeCdn = html.match(/https:\/\/(cf\.shopee\.co\.id|down-id\.img\.susercontent\.com)\/file\/([a-zA-Z0-9_-]+)/i);
+      if (shopeeCdn) {
+        ogImage = shopeeCdn[0];
+      }
+      const tokpedCdn = html.match(/https:\/\/images\.tokopedia\.net\/img\/cache\/[^\s"'>]+/i);
+      if (tokpedCdn) {
+        ogImage = tokpedCdn[0];
+      }
+    }
+
+    return {
+      status: 'success',
+      data: {
+        title: ogTitle,
+        image_url: ogImage,
+        price: ogPrice,
+        source: 'marketplace_scraper'
+      }
+    };
+  } catch (err) {
+    return {
+      status: 'error',
+      message: 'Gagal mengekstrak data dari URL: ' + err.toString()
+    };
+  }
 }
 
 function handleSaveSettings(ss, payload) {
@@ -489,7 +587,8 @@ function getCatalogData(ss) {
       unit_price: Number(rows[i][4]),
       date_in: rows[i][5] instanceof Date ? Utilities.formatDate(rows[i][5], 'Asia/Jakarta', 'yyyy-MM-dd') : String(rows[i][5]),
       method: rows[i][6],
-      status: rows[i][7]
+      status: rows[i][7],
+      image_url: rows[i][8] ? String(rows[i][8]) : ''
     });
   }
   return items;
@@ -631,12 +730,12 @@ function initDatabase() {
   let stockSheet = ss.getSheetByName(CONFIG.SHEETS.STOCK);
   if (!stockSheet) {
     stockSheet = ss.insertSheet(CONFIG.SHEETS.STOCK);
-    stockSheet.appendRow(['Batch_ID', 'Product_Name', 'Category', 'Stock_Qty', 'Unit_Price', 'Date_In', 'Method', 'Status']);
-    stockSheet.appendRow(['BATCH-202607-01', 'Spidol Whiteboard Snowman Hitam', 'ATK & Kertas', 0, 8500, '2026-07-10', 'FIFO', 'Empty']);
-    stockSheet.appendRow(['BATCH-202608-04', 'Spidol Whiteboard Snowman Hitam', 'ATK & Kertas', 12, 9000, '2026-08-15', 'FIFO', 'Active']);
-    stockSheet.appendRow(['BATCH-202609-02', 'Spidol Whiteboard Snowman Hitam', 'ATK & Kertas', 50, 9500, '2026-09-05', 'FIFO', 'Active']);
-    stockSheet.appendRow(['BATCH-202608-01', 'Kertas HVS A4 80gr PaperOne (Rim)', 'ATK & Kertas', 25, 52000, '2026-08-01', 'FIFO', 'Active']);
-    stockSheet.appendRow(['BATCH-202609-01', 'Kertas HVS A4 80gr PaperOne (Rim)', 'ATK & Kertas', 40, 54000, '2026-09-02', 'FIFO', 'Active']);
+    stockSheet.appendRow(['Batch_ID', 'Product_Name', 'Category', 'Stock_Qty', 'Unit_Price', 'Date_In', 'Method', 'Status', 'Image_URL']);
+    stockSheet.appendRow(['BATCH-202607-01', 'Spidol Whiteboard Snowman Hitam', 'ATK & Kertas', 0, 8500, '2026-07-10', 'FIFO', 'Empty', 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202608-04', 'Spidol Whiteboard Snowman Hitam', 'ATK & Kertas', 12, 9000, '2026-08-15', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-02', 'Spidol Whiteboard Snowman Hitam', 'ATK & Kertas', 50, 9500, '2026-09-05', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202608-01', 'Kertas HVS A4 80gr PaperOne (Rim)', 'ATK & Kertas', 25, 52000, '2026-08-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-01', 'Kertas HVS A4 80gr PaperOne (Rim)', 'ATK & Kertas', 40, 54000, '2026-09-02', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
   }
 
   // 4. Orders Sheet

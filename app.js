@@ -301,6 +301,12 @@ const app = {
   currentPrintType: 'invoice',
   activeCmsTab: 'identity',
   
+  // New State for Care Unit Split & Approval Center
+  careUnitSplitSdPercent: 50,
+  careUnitSplitSmpPercent: 50,
+  orderItemApprovals: {}, // orderId -> [true, true, ...]
+  pendingTransferProofs: {}, // orderId -> base64/url
+  
   // Storage keys
   STORAGE_KEY: 'ECOMMERCE_ALIMAM_DATA_V2',
   AUTH_KEY: 'ECOMMERCE_ALIMAM_AUTH_USER_V2',
@@ -1494,6 +1500,8 @@ const app = {
   renderVerificationView() {
     const pending = this.db.orders.filter(o => o.status === 'Pending_Verification');
     const container = document.getElementById('verificationCardsContainer');
+    const badge = document.getElementById('verifPendingCountHeader');
+    if (badge) badge.textContent = `${pending.length} Pengajuan`;
     if (!container) return;
 
     if (pending.length === 0) {
@@ -1512,22 +1520,38 @@ const app = {
     container.innerHTML = pending.map(ord => {
       const unitObj = this.db.users.find(u => u.unit_id === ord.unit_id) || { unit_name: ord.unit_id };
       const rapbsObj = this.db.rapbs_poin.find(r => r.unit_id === ord.unit_id) || { saldo_tersedia: 0 };
-      const hasEnoughQuota = rapbsObj.saldo_tersedia >= ord.total_amount;
 
       let items = [];
       try { items = JSON.parse(ord.items_json); } catch(e) {}
+
+      // Initialize item-level approvals state if not yet defined
+      if (!this.orderItemApprovals[ord.order_id]) {
+        this.orderItemApprovals[ord.order_id] = items.map(it => it.status !== 'Rejected');
+      }
+
+      // Calculate dynamically approved amount
+      const approvals = this.orderItemApprovals[ord.order_id] || [];
+      const approvedItems = items.filter((_, idx) => approvals[idx] !== false);
+      const approvedTotalAmount = approvedItems.reduce((acc, it) => acc + (Number(it.subtotal) || 0), 0);
+      const hasEnoughQuota = rapbsObj.saldo_tersedia >= approvedTotalAmount;
 
       let typeTag = '';
       if (ord.order_type === 'E-Commerce') {
         typeTag = '<span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-lg"><i class="fa-solid fa-cart-shopping mr-1"></i>E-Commerce SARPRAS</span>';
       } else if (ord.order_type === 'Reimburse') {
         typeTag = '<span class="px-2.5 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-lg"><i class="fa-solid fa-receipt mr-1"></i>Klaim Reimbursement</span>';
+      } else if (ord.order_type === 'Sarpras_Bersama') {
+        typeTag = '<span class="px-2.5 py-1 bg-purple-100 text-purple-800 text-xs font-bold rounded-lg"><i class="fa-solid fa-users-gear mr-1"></i>Sarpras Bersama (Care Unit)</span>';
       } else {
         typeTag = '<span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 text-xs font-bold rounded-lg"><i class="fa-solid fa-link mr-1"></i>Request Barang Baru</span>';
       }
 
+      const receiptUrl = (ord.attachments && ord.attachments.receipt) ? ord.attachments.receipt : '';
+      const transferUrl = this.pendingTransferProofs[ord.order_id] || (ord.attachments && ord.attachments.transfer) || '';
+
       return `
         <div class="bg-white rounded-2xl border ${hasEnoughQuota ? 'border-slate-200' : 'border-red-300 bg-red-50/20'} p-5 shadow-sm space-y-4">
+          <!-- Header Card -->
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
             <div class="flex items-center space-x-2">
               ${typeTag}
@@ -1541,82 +1565,164 @@ const app = {
             </div>
           </div>
 
-          <div class="bg-slate-50 rounded-xl p-3 border border-slate-100">
-            <table class="w-full text-xs text-left">
-              <thead class="text-[10px] text-slate-400 uppercase font-bold">
-                <tr>
-                  <th class="pb-1">Rincian Item</th>
-                  <th class="pb-1 text-center">Jumlah</th>
-                  <th class="pb-1 text-right">Harga Satuan</th>
-                  <th class="pb-1 text-right">Subtotal</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-200/50">
-                ${items.map(item => `
+          <!-- Item Table with Per-Item Approval Toggle -->
+          <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-100 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold text-slate-700 uppercase flex items-center">
+                <i class="fa-solid fa-list-check text-brand-primary mr-1.5"></i>Persetujuan Per-Item / Produk:
+              </span>
+              <span class="text-[10px] text-slate-400">Klik toggle untuk setujui / tolak item spesifik</span>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs text-left">
+                <thead class="text-[10px] text-slate-400 uppercase font-bold border-b border-slate-200/60 pb-1">
                   <tr>
-                    <td class="py-1.5 font-semibold text-slate-800">${item.product_name || item.item_name}</td>
-                    <td class="py-1.5 text-center font-bold text-slate-700">${item.qty}</td>
-                    <td class="py-1.5 text-right text-slate-600">Rp ${this.formatNumber(item.unit_price)}</td>
-                    <td class="py-1.5 text-right font-bold text-slate-900">Rp ${this.formatNumber(item.subtotal)}</td>
+                    <th class="pb-1.5 w-28 text-center">Status Item</th>
+                    <th class="pb-1.5">Rincian Barang / Jasa</th>
+                    <th class="pb-1.5 text-center">Jumlah</th>
+                    <th class="pb-1.5 text-right">Harga Satuan</th>
+                    <th class="pb-1.5 text-right">Subtotal</th>
                   </tr>
-                `).join('')}
-              </tbody>
-            </table>
+                </thead>
+                <tbody class="divide-y divide-slate-200/50">
+                  ${items.map((item, idx) => {
+                    const isApproved = approvals[idx] !== false;
+                    const itemSubtotal = Number(item.subtotal) || (Number(item.qty) * Number(item.unit_price)) || 0;
+                    const isCustomReq = item.item_type === 'custom_request' || ord.order_type === 'Request_Barang_Baru';
+                    const isReimb = item.item_type === 'reimbursement' || ord.order_type === 'Reimburse';
+
+                    return `
+                      <tr class="${isApproved ? 'bg-white/80' : 'bg-red-50/50 text-slate-400'} transition">
+                        <td class="py-2 text-center">
+                          <button type="button" onclick="app.toggleItemApproval('${ord.order_id}', ${idx})" class="px-2.5 py-1 rounded-lg text-[10px] font-bold transition flex items-center space-x-1 mx-auto shadow-sm ${isApproved ? 'bg-emerald-100 hover:bg-emerald-200 text-emerald-800' : 'bg-red-100 hover:bg-red-200 text-red-800'}">
+                            <i class="fa-solid ${isApproved ? 'fa-check' : 'fa-xmark'}"></i>
+                            <span>${isApproved ? 'Disetujui' : 'Ditolak'}</span>
+                          </button>
+                        </td>
+                        <td class="py-2 font-semibold ${isApproved ? 'text-slate-800' : 'line-through text-slate-400'}">
+                          <div class="flex items-center space-x-2">
+                            ${isCustomReq ? '<span class="px-1.5 py-0.5 bg-indigo-100 text-indigo-800 text-[9px] font-bold rounded">Barang Baru</span>' : ''}
+                            ${isReimb ? '<span class="px-1.5 py-0.5 bg-amber-100 text-amber-800 text-[9px] font-bold rounded">Reimburse</span>' : ''}
+                            <span>${item.product_name || item.item_name}</span>
+                          </div>
+                          ${item.marketplace_url ? `
+                            <a href="${item.marketplace_url}" target="_blank" class="text-[10px] text-indigo-600 font-semibold hover:underline inline-flex items-center mt-0.5">
+                              <i class="fa-solid fa-arrow-up-right-from-square mr-1 text-[9px]"></i>Link Toko
+                            </a>
+                          ` : ''}
+                        </td>
+                        <td class="py-2 text-center font-bold ${isApproved ? 'text-slate-700' : 'line-through text-slate-400'}">${item.qty}</td>
+                        <td class="py-2 text-right ${isApproved ? 'text-slate-600' : 'line-through text-slate-400'}">Rp ${this.formatNumber(item.unit_price)}</td>
+                        <td class="py-2 text-right font-bold ${isApproved ? 'text-slate-900 font-heading' : 'line-through text-red-400'}">Rp ${this.formatNumber(itemSubtotal)}</td>
+                      </tr>
+                    `;
+                  }).join('')}
+                </tbody>
+              </table>
+            </div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-            <div>
-              <span class="text-slate-400 font-semibold block text-[11px]">Keterangan / Catatan:</span>
-              <p class="text-slate-700 bg-slate-50 p-2.5 rounded-xl border border-slate-100 text-[11px]">${ord.notes || 'Tidak ada catatan tambahan.'}</p>
+          <!-- Notes, Receipt Preview & Calculation Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 text-xs">
+            <div class="space-y-3">
+              <div>
+                <span class="text-slate-400 font-semibold block text-[11px] mb-1">Keterangan / Catatan Pengaju:</span>
+                <p class="text-slate-700 bg-slate-50 p-2.5 rounded-xl border border-slate-100 text-[11px]">${ord.notes || 'Tidak ada catatan tambahan.'}</p>
+              </div>
               
               ${ord.recipient_name ? `
-                <div class="mt-2 text-[11px] text-slate-600 space-y-0.5">
-                  <p><b>Penerima:</b> ${ord.recipient_name} (${ord.bank_account || '-'})</p>
+                <div class="text-[11px] text-slate-700 bg-amber-50/50 p-2.5 rounded-xl border border-amber-200/60 space-y-0.5">
+                  <p><b>Penerima Dana:</b> ${ord.recipient_name}</p>
+                  <p><b>Rekening Tujuan:</b> ${ord.bank_account || '-'}</p>
                   <p><b>PJ Unit:</b> ${ord.pj_name || '-'}</p>
                 </div>
               ` : ''}
 
-              ${ord.marketplace_url ? `
-                <div class="mt-2 text-[11px]">
-                  <a href="${ord.marketplace_url}" target="_blank" class="text-indigo-600 font-bold hover:underline inline-flex items-center">
-                    <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>Buka Link Marketplace
-                  </a>
+              <!-- Nota Kwitansi Interactive Preview -->
+              ${receiptUrl ? `
+                <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+                  <span class="text-[11px] font-bold text-slate-700 block flex items-center">
+                    <i class="fa-solid fa-receipt text-amber-600 mr-1.5"></i>Bukti Lampiran Nota Kwitansi:
+                  </span>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-16 h-16 rounded-xl bg-white border border-slate-200 overflow-hidden shrink-0 cursor-pointer shadow-sm group relative" onclick="app.viewReceiptImage('${receiptUrl}', 'Bukti Kwitansi Nota: ${ord.order_id}', 'Pengaju: ${unitObj.unit_name} | Total: Rp ${this.formatNumber(ord.total_amount)}')">
+                      <img src="${receiptUrl}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&auto=format&fit=crop&q=80'">
+                      <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-xs transition">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                      </div>
+                    </div>
+                    <div class="space-y-1">
+                      <p class="text-[11px] font-bold text-slate-800">Foto Nota Lampiran Unit</p>
+                      <button type="button" onclick="app.viewReceiptImage('${receiptUrl}', 'Bukti Kwitansi Nota: ${ord.order_id}', 'Pengaju: ${unitObj.unit_name} | Total: Rp ${this.formatNumber(ord.total_amount)}')" class="px-2.5 py-1 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-lg text-[10px] font-bold transition flex items-center space-x-1 shadow-sm">
+                        <i class="fa-solid fa-up-right-and-down-left-from-center text-amber-600"></i>
+                        <span>🔍 Zoom Bukti Nota Resolusi Penuh</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               ` : ''}
+
+              <!-- Upload Bukti Transfer Pelunasan Bendahara -->
+              <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+                <span class="text-[11px] font-bold text-slate-700 block flex items-center justify-between">
+                  <span class="flex items-center"><i class="fa-solid fa-money-bill-transfer text-emerald-600 mr-1.5"></i>Bukti Transfer Pelunasan (Bendahara):</span>
+                  <span class="text-[10px] text-slate-400">Opsional / Saat disetujui</span>
+                </span>
+
+                <div class="flex items-center space-x-3">
+                  <div class="w-14 h-14 rounded-xl bg-white border-2 border-dashed border-slate-300 overflow-hidden shrink-0 flex items-center justify-center text-slate-400">
+                    ${transferUrl ? `<img src="${transferUrl}" class="w-full h-full object-cover">` : '<i class="fa-solid fa-file-invoice-dollar text-xl text-slate-300"></i>'}
+                  </div>
+                  <div class="space-y-1.5">
+                    <label class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-[11px] font-bold transition flex items-center space-x-1 cursor-pointer shadow-sm inline-flex">
+                      <i class="fa-solid fa-cloud-arrow-up"></i>
+                      <span>${transferUrl ? 'Ganti Bukti Transfer' : 'Upload Bukti Transfer Bank'}</span>
+                      <input type="file" accept="image/*" onchange="app.handleTransferProofUpload(event, '${ord.order_id}')" class="hidden">
+                    </label>
+                    <p class="text-[10px] text-slate-400">${transferUrl ? '✅ Bukti transfer siap dilampirkan' : 'Foto bukti transfer m-banking / ATM'}</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 space-y-1.5 text-xs">
-              <div class="flex justify-between text-slate-600">
-                <span>Total Pengajuan:</span>
-                <span class="font-extrabold text-slate-900 font-heading">Rp ${this.formatNumber(ord.total_amount)}</span>
+            <!-- Calculation Box -->
+            <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 space-y-2 text-xs flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex justify-between text-slate-500">
+                  <span>Total Pengajuan Awal:</span>
+                  <span class="font-bold text-slate-700">Rp ${this.formatNumber(ord.total_amount)}</span>
+                </div>
+                <div class="flex justify-between text-slate-700 font-bold border-t border-slate-200/60 pt-1.5">
+                  <span class="text-brand-primary">Total Disetujui (${approvedItems.length} Item):</span>
+                  <span class="font-black text-brand-primary text-sm font-heading">Rp ${this.formatNumber(approvedTotalAmount)}</span>
+                </div>
+                <div class="flex justify-between text-slate-500">
+                  <span>Saldo Poin Unit Saat Ini:</span>
+                  <span class="font-bold text-slate-800">Rp ${this.formatNumber(rapbsObj.saldo_tersedia)}</span>
+                </div>
+                <div class="flex justify-between pt-2 border-t border-slate-200 font-bold ${hasEnoughQuota ? 'text-emerald-700' : 'text-red-600'}">
+                  <span>Sisa Saldo Setelah Approval:</span>
+                  <span class="font-heading">Rp ${this.formatNumber(rapbsObj.saldo_tersedia - approvedTotalAmount)}</span>
+                </div>
               </div>
-              <div class="flex justify-between text-slate-600">
-                <span>Saldo Poin Unit Saat Ini:</span>
-                <span class="font-bold text-brand-primary">Rp ${this.formatNumber(rapbsObj.saldo_tersedia)}</span>
-              </div>
-              <div class="flex justify-between pt-1 border-t border-slate-200 font-bold ${hasEnoughQuota ? 'text-brand-primary' : 'text-red-600'}">
-                <span>Sisa Saldo Setelah Approval:</span>
-                <span>Rp ${this.formatNumber(rapbsObj.saldo_tersedia - ord.total_amount)}</span>
+
+              <div class="p-2.5 bg-white rounded-xl border border-slate-200/80 text-[10px] text-slate-500 space-y-0.5">
+                <p><i class="fa-solid fa-shield-check text-brand-primary mr-1"></i><b>Otomatisasi Sistem:</b></p>
+                <p>• Item yang ditolak tidak akan memotong saldo RAPBS unit maupun stok gudang.</p>
+                <p>• Jika terdapat Request Barang Baru yang disetujui, master produk otomatis terdaftar di katalog.</p>
               </div>
             </div>
           </div>
 
-          ${ord.attachments && ord.attachments.receipt ? `
-            <div class="pt-2">
-              <span class="text-[11px] font-bold text-slate-600 block mb-1">Bukti Lampiran Nota:</span>
-              <a href="${ord.attachments.receipt}" target="_blank" class="inline-block px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold">
-                <i class="fa-solid fa-paperclip mr-1 text-brand-primary"></i>Lihat Foto Bukti Kwitansi
-              </a>
-            </div>
-          ` : ''}
-
-          <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-end gap-2">
-            <button onclick="app.rejectOrder('${ord.order_id}')" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold rounded-xl transition">
-              <i class="fa-solid fa-xmark mr-1"></i>Tolak Pengajuan
+          <!-- Bottom Action Buttons -->
+          <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-end gap-2.5">
+            <button type="button" onclick="app.rejectOrder('${ord.order_id}')" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold rounded-xl transition">
+              <i class="fa-solid fa-xmark mr-1"></i>Tolak Seluruh Pengajuan
             </button>
-            <button onclick="app.approveOrder('${ord.order_id}')" class="px-5 py-2 bg-brand-primary hover:opacity-90 text-white text-xs font-bold rounded-xl shadow-md transition flex items-center space-x-1.5">
+            <button type="button" onclick="app.approveOrderWithItemStates('${ord.order_id}')" class="px-5 py-2.5 bg-brand-primary hover:opacity-90 text-white text-xs font-bold rounded-xl shadow-md transition flex items-center space-x-1.5">
               <i class="fa-solid fa-check-double"></i>
-              <span>Setujui & Potong RAPBS (FIFO)</span>
+              <span>Setujui & Potong RAPBS (${approvedItems.length} Item Disetujui)</span>
             </button>
           </div>
         </div>
@@ -1788,7 +1894,7 @@ const app = {
   },
 
   // ==========================================
-  // 9. CART & CHECKOUT WORKFLOW
+  // 9. UNIFIED CART & CHECKOUT WORKFLOW
   // ==========================================
 
   addToCart(productName, price, maxStock) {
@@ -1805,7 +1911,10 @@ const app = {
       existing.subtotal = existing.qty * existing.unit_price;
     } else {
       this.cart.push({
+        id: 'cat-' + Date.now() + '-' + Math.floor(Math.random() * 100),
+        type: 'catalog',
         product_name: productName,
+        raw_product_name: productName,
         unit_price: price,
         qty: 1,
         subtotal: price,
@@ -1819,9 +1928,126 @@ const app = {
     this.renderCartDrawer();
   },
 
+  submitCustomRequestToCart(event) {
+    if (event) event.preventDefault();
+
+    const nameInput = document.getElementById('custItemName');
+    const urlInput = document.getElementById('custItemUrl');
+    const qtyInput = document.getElementById('custItemQty');
+    const priceInput = document.getElementById('custItemPrice');
+    const categoryInput = document.getElementById('custItemCategory');
+    const pjInput = document.getElementById('custItemPJ');
+    const notesInput = document.getElementById('custItemNotes');
+
+    const itemName = nameInput ? nameInput.value.trim() : '';
+    const url = urlInput ? urlInput.value.trim() : '';
+    const qty = qtyInput ? Number(qtyInput.value) : 1;
+    const price = priceInput ? Number(priceInput.value) : 0;
+    const category = categoryInput ? categoryInput.value : 'ATK & Kertas';
+    const pj = pjInput ? pjInput.value.trim() : '';
+    const notes = notesInput ? notesInput.value.trim() : '';
+
+    if (!itemName || price <= 0 || qty <= 0) {
+      this.showToast('Lengkapi nama barang, estimasi harga, dan jumlah!', 'warning');
+      return;
+    }
+
+    const subtotal = qty * price;
+    this.cart.push({
+      id: 'cust-' + Date.now() + '-' + Math.floor(Math.random() * 100),
+      type: 'custom_request',
+      product_name: `[Barang Baru] ${itemName}`,
+      raw_product_name: itemName,
+      unit_price: price,
+      qty: qty,
+      subtotal: subtotal,
+      max_stock: 999,
+      category: category,
+      marketplace_url: url,
+      pj_name: pj,
+      notes: notes,
+      image_url: 'https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=600&auto=format&fit=crop&q=80'
+    });
+
+    const form = document.getElementById('customRequestForm');
+    if (form) form.reset();
+
+    this.showToast(`Request barang "${itemName}" ditambahkan ke keranjang!`, 'success');
+    this.updateCartCount();
+    this.renderCartDrawer();
+    this.toggleCartDrawer();
+  },
+
+  submitReimburseToCart(event) {
+    if (event) event.preventDefault();
+
+    const titleInput = document.getElementById('reimbTitle');
+    const amountInput = document.getElementById('reimbAmount');
+    const dateInput = document.getElementById('reimbDate');
+    const recipientInput = document.getElementById('reimbRecipient');
+    const bankInput = document.getElementById('reimbBank');
+    const pjInput = document.getElementById('reimbPJ');
+    const categoryInput = document.getElementById('reimbCategory');
+    const notesInput = document.getElementById('reimbNotes');
+
+    const receipt = document.getElementById('receiptBase64') ? document.getElementById('receiptBase64').value : '';
+    const transfer = document.getElementById('transferBase64') ? document.getElementById('transferBase64').value : '';
+    const photo = document.getElementById('photoBase64') ? document.getElementById('photoBase64').value : '';
+
+    const title = titleInput ? titleInput.value.trim() : '';
+    const amount = amountInput ? Number(amountInput.value) : 0;
+    const date = dateInput ? dateInput.value : '';
+    const recipient = recipientInput ? recipientInput.value.trim() : '';
+    const bank = bankInput ? bankInput.value.trim() : '';
+    const pj = pjInput ? pjInput.value.trim() : '';
+    const category = categoryInput ? categoryInput.value : 'Pemeliharaan & Servis';
+    const notes = notesInput ? notesInput.value.trim() : '';
+
+    if (!title || amount <= 0 || !recipient) {
+      this.showToast('Lengkapi judul pengeluaran, nominal biaya, dan penerima!', 'warning');
+      return;
+    }
+
+    this.cart.push({
+      id: 'reimb-' + Date.now() + '-' + Math.floor(Math.random() * 100),
+      type: 'reimbursement',
+      product_name: `[Reimburse] ${title}`,
+      raw_product_name: title,
+      unit_price: amount,
+      qty: 1,
+      subtotal: amount,
+      max_stock: 1,
+      category: category,
+      recipient_name: recipient,
+      bank_account: bank,
+      payment_date: date,
+      pj_name: pj,
+      notes: notes,
+      image_url: receipt || 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&auto=format&fit=crop&q=80',
+      attachments: {
+        receipt: receipt || 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&auto=format&fit=crop&q=80',
+        transfer: transfer,
+        photo: photo
+      }
+    });
+
+    const form = document.getElementById('reimburseForm');
+    if (form) form.reset();
+
+    this.showToast(`Klaim reimbursement "${title}" ditambahkan ke keranjang!`, 'success');
+    this.updateCartCount();
+    this.renderCartDrawer();
+    this.toggleCartDrawer();
+  },
+
   updateCartQty(productName, delta) {
     const item = this.cart.find(c => c.product_name === productName);
     if (!item) return;
+
+    if (item.type === 'reimbursement') {
+      this.showToast('Jumlah klaim reimbursement adalah 1 paket.', 'warning');
+      return;
+    }
 
     const newQty = item.qty + delta;
     if (newQty <= 0) {
@@ -1872,6 +2098,39 @@ const app = {
     }
   },
 
+  onCartAllocationChange() {
+    const sel = document.getElementById('cartAllocationType');
+    const controls = document.getElementById('cartCareUnitSplitControls');
+    if (sel && controls) {
+      if (sel.value === 'care_unit') {
+        controls.classList.remove('hidden');
+      } else {
+        controls.classList.add('hidden');
+      }
+    }
+    this.renderCartDrawer();
+  },
+
+  setCareUnitSplitRatio(sdPercent, smpPercent) {
+    this.careUnitSplitSdPercent = sdPercent;
+    this.careUnitSplitSmpPercent = smpPercent;
+
+    const btn50 = document.getElementById('splitBtn5050');
+    const btn60 = document.getElementById('splitBtn6040');
+
+    if (btn50 && btn60) {
+      if (sdPercent === 50) {
+        btn50.className = 'px-2 py-0.5 bg-amber-500 text-slate-900 font-bold rounded text-[10px] shadow-sm';
+        btn60.className = 'px-2 py-0.5 bg-white text-slate-700 font-semibold rounded text-[10px] border border-amber-300';
+      } else {
+        btn60.className = 'px-2 py-0.5 bg-amber-500 text-slate-900 font-bold rounded text-[10px] shadow-sm';
+        btn50.className = 'px-2 py-0.5 bg-white text-slate-700 font-semibold rounded text-[10px] border border-amber-300';
+      }
+    }
+
+    this.renderCartDrawer();
+  },
+
   renderCartDrawer() {
     const list = document.getElementById('cartItemsList');
     const unitLabel = document.getElementById('cartUnitLabel');
@@ -1879,18 +2138,78 @@ const app = {
     const totalSub = document.getElementById('cartTotalSubtotal');
     const estRemaining = document.getElementById('cartEstimatedRemaining');
     const submitBtn = document.getElementById('btnCheckoutSubmit');
+    const adminAllocationSection = document.getElementById('cartAdminAllocationSection');
+    const allocationSelect = document.getElementById('cartAllocationType');
 
-    if (unitLabel) unitLabel.textContent = this.currentUser.unit_name;
+    const isStaff = this.currentUser.role === 'Admin' || this.currentUser.role === 'Bendahara';
+    if (adminAllocationSection) {
+      if (isStaff) adminAllocationSection.classList.remove('hidden');
+      else adminAllocationSection.classList.add('hidden');
+    }
 
-    const userRapbs = this.db.rapbs_poin.find(r => r.unit_id === this.currentUser.unit_id) || { saldo_tersedia: 0 };
+    const isCareUnit = isStaff && allocationSelect && allocationSelect.value === 'care_unit';
+
+    if (unitLabel) {
+      unitLabel.textContent = isCareUnit ? 'Sarpras Bersama / Care Unit (SD & SMP)' : this.currentUser.unit_name;
+    }
+
     const subtotal = this.cart.reduce((acc, c) => acc + c.subtotal, 0);
-    const remaining = userRapbs.saldo_tersedia - subtotal;
 
-    if (availSaldo) availSaldo.textContent = 'Rp ' + this.formatNumber(userRapbs.saldo_tersedia);
+    let hasEnoughBalance = true;
+    let balanceLabelText = '';
+    let remainingLabelText = '';
+
+    if (isCareUnit) {
+      const sdRapbs = this.db.rapbs_poin.find(r => r.unit_id === 'unit_sd') || { saldo_tersedia: 0 };
+      const smpRapbs = this.db.rapbs_poin.find(r => r.unit_id === 'unit_smp') || { saldo_tersedia: 0 };
+
+      const sdAmount = Math.round((subtotal * this.careUnitSplitSdPercent) / 100);
+      const smpAmount = subtotal - sdAmount;
+
+      const sdRemaining = sdRapbs.saldo_tersedia - sdAmount;
+      const smpRemaining = smpRapbs.saldo_tersedia - smpAmount;
+
+      hasEnoughBalance = sdRemaining >= 0 && smpRemaining >= 0;
+
+      const sdPercentEl = document.getElementById('cartSplitSdPercentLabel');
+      const sdAmountEl = document.getElementById('cartSplitSdAmount');
+      const sdRemEl = document.getElementById('cartSplitSdRemaining');
+
+      const smpPercentEl = document.getElementById('cartSplitSmpPercentLabel');
+      const smpAmountEl = document.getElementById('cartSplitSmpAmount');
+      const smpRemEl = document.getElementById('cartSplitSmpRemaining');
+
+      if (sdPercentEl) sdPercentEl.textContent = this.careUnitSplitSdPercent;
+      if (sdAmountEl) sdAmountEl.textContent = 'Rp ' + this.formatNumber(sdAmount);
+      if (sdRemEl) {
+        sdRemEl.textContent = `Sisa SD: Rp ${this.formatNumber(sdRemaining)}`;
+        sdRemEl.className = sdRemaining < 0 ? 'text-[9px] text-red-600 font-bold block' : 'text-[9px] text-emerald-600 font-medium block';
+      }
+
+      if (smpPercentEl) smpPercentEl.textContent = this.careUnitSplitSmpPercent;
+      if (smpAmountEl) smpAmountEl.textContent = 'Rp ' + this.formatNumber(smpAmount);
+      if (smpRemEl) {
+        smpRemEl.textContent = `Sisa SMP: Rp ${this.formatNumber(smpRemaining)}`;
+        smpRemEl.className = smpRemaining < 0 ? 'text-[9px] text-red-600 font-bold block' : 'text-[9px] text-emerald-600 font-medium block';
+      }
+
+      const totalAvailBoth = sdRapbs.saldo_tersedia + smpRapbs.saldo_tersedia;
+      balanceLabelText = 'Rp ' + this.formatNumber(totalAvailBoth) + ' (SD + SMP)';
+      remainingLabelText = 'Rp ' + this.formatNumber(totalAvailBoth - subtotal);
+    } else {
+      const userRapbs = this.db.rapbs_poin.find(r => r.unit_id === this.currentUser.unit_id) || { saldo_tersedia: 0 };
+      const remaining = userRapbs.saldo_tersedia - subtotal;
+      hasEnoughBalance = remaining >= 0;
+
+      balanceLabelText = 'Rp ' + this.formatNumber(userRapbs.saldo_tersedia);
+      remainingLabelText = 'Rp ' + this.formatNumber(remaining);
+    }
+
+    if (availSaldo) availSaldo.textContent = balanceLabelText;
     if (totalSub) totalSub.textContent = 'Rp ' + this.formatNumber(subtotal);
     if (estRemaining) {
-      estRemaining.textContent = 'Rp ' + this.formatNumber(remaining);
-      estRemaining.className = remaining < 0 ? 'text-red-600 font-extrabold' : 'text-brand-primary font-extrabold';
+      estRemaining.textContent = remainingLabelText;
+      estRemaining.className = !hasEnoughBalance ? 'text-red-600 font-extrabold' : 'text-brand-primary font-extrabold';
     }
 
     if (this.cart.length === 0) {
@@ -1899,7 +2218,7 @@ const app = {
           <div class="h-64 flex flex-col items-center justify-center text-center text-slate-400">
             <i class="fa-solid fa-cart-arrow-down text-3xl mb-2 text-slate-300"></i>
             <p class="text-xs font-bold text-slate-600">Keranjang Pengadaan Kosong</p>
-            <p class="text-[11px] text-slate-400 mt-0.5">Pilih barang dari menu Katalog untuk menambahkan pesanan.</p>
+            <p class="text-[11px] text-slate-400 mt-0.5">Pilih barang katalog, ajukan barang baru, atau klaim reimburse.</p>
           </div>
         `;
       }
@@ -1908,10 +2227,14 @@ const app = {
     }
 
     if (submitBtn) {
-      if (remaining < 0) {
+      if (!hasEnoughBalance) {
         submitBtn.disabled = true;
         submitBtn.className = 'w-full py-3 bg-red-100 text-red-700 font-bold text-xs rounded-xl cursor-not-allowed';
         submitBtn.innerHTML = '<i class="fa-solid fa-ban mr-1"></i> Saldo Poin RAPBS Tidak Cukup';
+      } else if (isCareUnit) {
+        submitBtn.disabled = false;
+        submitBtn.className = 'w-full py-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:opacity-90 text-white font-bold text-xs rounded-xl shadow-lg transition flex items-center justify-center space-x-2';
+        submitBtn.innerHTML = '<i class="fa-solid fa-bolt text-yellow-300"></i><span>⚡ Checkout & Auto-Approve Sarpras Bersama</span>';
       } else {
         submitBtn.disabled = false;
         submitBtn.className = 'w-full py-3 bg-brand-primary hover:opacity-90 text-white font-bold text-xs rounded-xl shadow-lg transition flex items-center justify-center space-x-2';
@@ -1920,44 +2243,187 @@ const app = {
     }
 
     if (list) {
-      list.innerHTML = this.cart.map(item => `
-        <div class="bg-slate-50 rounded-2xl p-3 border border-slate-200/70 flex items-center justify-between gap-3">
-          <div class="w-11 h-11 rounded-xl bg-white border border-slate-200 overflow-hidden shrink-0 flex items-center justify-center text-brand-primary text-base">
-            ${item.image_url ? `<img src="${item.image_url}" class="w-full h-full object-cover" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">` : ''}
-            <i class="fa-solid fa-box ${item.image_url ? 'hidden' : ''}"></i>
-          </div>
-          <div class="min-w-0 flex-1">
-            <h5 class="text-xs font-bold text-slate-800 truncate">${item.product_name}</h5>
-            <p class="text-[11px] text-brand-primary font-bold">Rp ${this.formatNumber(item.unit_price)}</p>
-          </div>
+      list.innerHTML = this.cart.map(item => {
+        let badgeHTML = '';
+        if (item.type === 'custom_request') {
+          badgeHTML = '<span class="px-1.5 py-0.5 bg-indigo-100 text-indigo-800 text-[9px] font-bold rounded">Barang Baru</span>';
+        } else if (item.type === 'reimbursement') {
+          badgeHTML = '<span class="px-1.5 py-0.5 bg-amber-100 text-amber-800 text-[9px] font-bold rounded">Reimburse</span>';
+        } else {
+          badgeHTML = '<span class="px-1.5 py-0.5 bg-emerald-100 text-emerald-800 text-[9px] font-bold rounded">Katalog</span>';
+        }
 
-          <div class="flex items-center space-x-1.5 bg-white border border-slate-200 rounded-xl p-1 shrink-0">
-            <button onclick="app.updateCartQty('${this.escapeQuotes(item.product_name)}', -1)" class="w-6 h-6 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-xs font-bold">-</button>
-            <span class="w-6 text-center text-xs font-extrabold text-slate-800">${item.qty}</span>
-            <button onclick="app.updateCartQty('${this.escapeQuotes(item.product_name)}', 1)" class="w-6 h-6 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 flex items-center justify-center text-xs font-bold">+</button>
-          </div>
+        const isReimb = item.type === 'reimbursement';
 
-          <button onclick="app.removeFromCart('${this.escapeQuotes(item.product_name)}')" class="p-1.5 text-slate-400 hover:text-red-500 rounded-lg text-xs">
-            <i class="fa-solid fa-trash"></i>
-          </button>
-        </div>
-      `).join('');
+        return `
+          <div class="bg-slate-50 rounded-2xl p-3 border border-slate-200/70 flex items-center justify-between gap-3 shadow-sm">
+            <div class="w-11 h-11 rounded-xl bg-white border border-slate-200 overflow-hidden shrink-0 flex items-center justify-center text-brand-primary text-base">
+              ${item.image_url ? `<img src="${item.image_url}" class="w-full h-full object-cover" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">` : ''}
+              <i class="fa-solid fa-box ${item.image_url ? 'hidden' : ''}"></i>
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center space-x-1.5 mb-0.5">
+                ${badgeHTML}
+                <h5 class="text-xs font-bold text-slate-800 truncate">${item.product_name}</h5>
+              </div>
+              <p class="text-[11px] text-brand-primary font-bold">Rp ${this.formatNumber(item.unit_price)} ${item.qty > 1 ? `<span class="text-slate-400 font-normal">x ${item.qty}</span>` : ''}</p>
+              ${item.recipient_name ? `<p class="text-[10px] text-slate-500">Penerima: ${item.recipient_name}</p>` : ''}
+            </div>
+
+            ${!isReimb ? `
+              <div class="flex items-center space-x-1 bg-white border border-slate-200 rounded-xl p-0.5 shrink-0">
+                <button onclick="app.updateCartQty('${this.escapeQuotes(item.product_name)}', -1)" class="w-6 h-6 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-xs font-bold">-</button>
+                <span class="w-5 text-center text-xs font-extrabold text-slate-800">${item.qty}</span>
+                <button onclick="app.updateCartQty('${this.escapeQuotes(item.product_name)}', 1)" class="w-6 h-6 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 flex items-center justify-center text-xs font-bold">+</button>
+              </div>
+            ` : ''}
+
+            <button onclick="app.removeFromCart('${this.escapeQuotes(item.product_name)}')" class="p-1.5 text-slate-400 hover:text-red-500 rounded-lg text-xs" title="Hapus Item">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        `;
+      }).join('');
     }
   },
 
   submitCartOrder() {
     if (this.cart.length === 0) return;
 
-    const userRapbs = this.db.rapbs_poin.find(r => r.unit_id === this.currentUser.unit_id) || { saldo_tersedia: 0 };
-    const totalAmount = this.cart.reduce((acc, c) => acc + c.subtotal, 0);
+    const isStaff = this.currentUser.role === 'Admin' || this.currentUser.role === 'Bendahara';
+    const allocationSelect = document.getElementById('cartAllocationType');
+    const isCareUnit = isStaff && allocationSelect && allocationSelect.value === 'care_unit';
 
+    const totalAmount = this.cart.reduce((acc, c) => acc + c.subtotal, 0);
+    const notesInput = document.getElementById('cartCheckoutNotes');
+    const notes = notesInput ? notesInput.value.trim() : '';
+
+    // If Sarpras Bersama (Care Unit) - Split SD & SMP with Instant Auto-Approval
+    if (isCareUnit) {
+      const sdRapbs = this.db.rapbs_poin.find(r => r.unit_id === 'unit_sd');
+      const smpRapbs = this.db.rapbs_poin.find(r => r.unit_id === 'unit_smp');
+
+      if (!sdRapbs || !smpRapbs) {
+        this.showToast('Unit SD atau SMP tidak ditemukan dalam database!', 'error');
+        return;
+      }
+
+      const sdAmount = Math.round((totalAmount * this.careUnitSplitSdPercent) / 100);
+      const smpAmount = totalAmount - sdAmount;
+
+      if (sdRapbs.saldo_tersedia < sdAmount || smpRapbs.saldo_tersedia < smpAmount) {
+        this.showToast('Saldo RAPBS salah satu unit tidak mencukupi untuk alokasi split!', 'error');
+        return;
+      }
+
+      // Deduct FIFO stock for catalog items
+      this.cart.forEach(c => {
+        if (c.type === 'catalog') {
+          this.deductStockFIFO(c.raw_product_name || c.product_name, c.qty);
+        }
+      });
+
+      // Deduct RAPBS from both units
+      sdRapbs.terpakai += sdAmount;
+      sdRapbs.saldo_tersedia -= sdAmount;
+      sdRapbs.updated_at = this.formatCurrentDateTime();
+
+      smpRapbs.terpakai += smpAmount;
+      smpRapbs.saldo_tersedia -= smpAmount;
+      smpRapbs.updated_at = this.formatCurrentDateTime();
+
+      const invCount = this.db.transactions_log.length + 1;
+      const schoolSlug = (this.db.cms_settings.app_name || 'AL-IMAM').toUpperCase().replace(/\s+/g, '-');
+      const invNum = `INV/${schoolSlug}/2026/09/${String(invCount).padStart(3, '0')}`;
+
+      const newOrderId = 'CARE-' + this.generateTimestampId();
+      const orderObj = {
+        order_id: newOrderId,
+        unit_id: 'care_unit',
+        order_type: 'Sarpras_Bersama',
+        items_json: JSON.stringify(this.cart.map(c => ({
+          product_name: c.raw_product_name || c.product_name,
+          qty: c.qty,
+          unit_price: c.unit_price,
+          subtotal: c.subtotal,
+          status: 'Approved',
+          item_type: c.type || 'catalog',
+          marketplace_url: c.marketplace_url || '',
+          category: c.category || 'Kebersihan & Sanitasi',
+          image_url: c.image_url || ''
+        }))),
+        total_amount: totalAmount,
+        status: 'Approved',
+        created_at: this.formatCurrentDateTime(),
+        approved_at: this.formatCurrentDateTime(),
+        notes: notes || 'Pengadaan Bersama Tim Kebersihan / Care Unit (SD & SMP)',
+        invoice_number: invNum,
+        split_units: [
+          { unit_id: 'unit_sd', unit_name: 'SD Islam Al-Imam', amount: sdAmount, percent: this.careUnitSplitSdPercent },
+          { unit_id: 'unit_smp', unit_name: 'SMP Islam Al-Imam', amount: smpAmount, percent: this.careUnitSplitSmpPercent }
+        ]
+      };
+
+      // Auto-create Master Product for custom request items
+      this.cart.forEach(c => {
+        if (c.type === 'custom_request') {
+          this.autoCreateMasterProductFromRequest({
+            product_name: c.raw_product_name || c.product_name,
+            category: c.category || 'Kebersihan & Sanitasi',
+            unit_price: c.unit_price,
+            image_url: c.image_url || '',
+            qty: c.qty
+          });
+        }
+      });
+
+      this.db.orders.push(orderObj);
+
+      // Add two transaction log records (one for SD, one for SMP)
+      const logId1 = 'LOG-' + this.generateTimestampId() + '-SD';
+      const logId2 = 'LOG-' + this.generateTimestampId() + '-SMP';
+
+      this.db.transactions_log.push({
+        log_id: logId1,
+        order_id: newOrderId,
+        unit_id: 'unit_sd',
+        amount_deducted: sdAmount,
+        remaining_balance: sdRapbs.saldo_tersedia,
+        timestamp: this.formatCurrentDateTime(),
+        invoice_number: `${invNum} (Split SD)`
+      });
+
+      this.db.transactions_log.push({
+        log_id: logId2,
+        order_id: newOrderId,
+        unit_id: 'unit_smp',
+        amount_deducted: smpAmount,
+        remaining_balance: smpRapbs.saldo_tersedia,
+        timestamp: this.formatCurrentDateTime(),
+        invoice_number: `${invNum} (Split SMP)`
+      });
+
+      this.saveState();
+      this.cart = [];
+      if (notesInput) notesInput.value = '';
+
+      this.toggleCartDrawer();
+      this.updateUI();
+      this.showToast(`Pengadaan Sarpras Bersama ${newOrderId} berhasil & otomatis disetujui!`, 'success');
+      this.navigate('orders');
+
+      if (this.db.gas_api_url) {
+        this.syncGasApproval(orderObj.order_id, 'Approved', invNum);
+      }
+      return;
+    }
+
+    // Standard Single Unit Order Checkout
+    const userRapbs = this.db.rapbs_poin.find(r => r.unit_id === this.currentUser.unit_id) || { saldo_tersedia: 0 };
     if (totalAmount > userRapbs.saldo_tersedia) {
       this.showToast('Saldo Poin RAPBS Unit tidak mencukupi!', 'error');
       return;
     }
-
-    const notesInput = document.getElementById('cartCheckoutNotes');
-    const notes = notesInput ? notesInput.value.trim() : '';
 
     const newOrderId = 'ORD-' + this.generateTimestampId();
     const orderObj = {
@@ -1965,18 +2431,35 @@ const app = {
       unit_id: this.currentUser.unit_id,
       order_type: 'E-Commerce',
       items_json: JSON.stringify(this.cart.map(c => ({
-        product_name: c.product_name,
+        product_name: c.raw_product_name || c.product_name,
         qty: c.qty,
         unit_price: c.unit_price,
-        subtotal: c.subtotal
+        subtotal: c.subtotal,
+        status: 'Approved',
+        item_type: c.type || 'catalog',
+        marketplace_url: c.marketplace_url || '',
+        category: c.category || 'ATK & Kertas',
+        image_url: c.image_url || '',
+        recipient_name: c.recipient_name || '',
+        bank_account: c.bank_account || '',
+        attachments: c.attachments || null
       }))),
       total_amount: totalAmount,
       status: 'Pending_Verification',
       created_at: this.formatCurrentDateTime(),
       approved_at: '',
-      notes: notes || 'Pengajuan E-Commerce Standar SARPRAS',
+      notes: notes || 'Pengajuan Pengadaan Terpadu SARPRAS',
       invoice_number: ''
     };
+
+    // Attach first reimbursement attachment if present
+    const firstReimb = this.cart.find(c => c.type === 'reimbursement');
+    if (firstReimb) {
+      orderObj.recipient_name = firstReimb.recipient_name;
+      orderObj.bank_account = firstReimb.bank_account;
+      orderObj.pj_name = firstReimb.pj_name;
+      orderObj.attachments = firstReimb.attachments;
+    }
 
     this.db.orders.push(orderObj);
     this.saveState();
@@ -1985,7 +2468,7 @@ const app = {
 
     this.toggleCartDrawer();
     this.updateUI();
-    this.showToast(`Pengajuan ${newOrderId} berhasil dikirim!`, 'success');
+    this.showToast(`Pengajuan ${newOrderId} berhasil dikirim ke Bendahara!`, 'success');
     this.navigate('orders');
 
     if (this.db.gas_api_url) {
@@ -1994,7 +2477,7 @@ const app = {
   },
 
   // ==========================================
-  // 10. REIMBURSEMENT & CUSTOM REQUESTS
+  // 10. REIMBURSEMENT & CUSTOM REQUESTS DIRECT SUBMIT
   // ==========================================
 
   handleFileUpload(event, previewId, hiddenInputId) {
@@ -2054,7 +2537,7 @@ const app = {
       unit_id: this.currentUser.unit_id,
       order_type: 'Reimburse',
       items_json: JSON.stringify([
-        { item_name: `[${category}] ${title}`, qty: 1, unit_price: amount, subtotal: amount }
+        { item_name: `[${category}] ${title}`, qty: 1, unit_price: amount, subtotal: amount, status: 'Approved', item_type: 'reimbursement' }
       ]),
       total_amount: amount,
       status: 'Pending_Verification',
@@ -2105,7 +2588,7 @@ const app = {
       unit_id: this.currentUser.unit_id,
       order_type: 'Request_Barang_Baru',
       items_json: JSON.stringify([
-        { item_name: `[${category}] ${itemName}`, qty: qty, unit_price: price, subtotal: totalAmount }
+        { item_name: `[${category}] ${itemName}`, qty: qty, unit_price: price, subtotal: totalAmount, status: 'Approved', item_type: 'custom_request', marketplace_url: url, category: category }
       ]),
       total_amount: totalAmount,
       status: 'Pending_Verification',
@@ -2131,61 +2614,185 @@ const app = {
   },
 
   // ==========================================
-  // 11. APPROVAL HOOKS (BENDAHARA)
+  // 11. ITEM APPROVAL & RECEIPT VIEWER CONTROLLER
   // ==========================================
 
-  approveOrder(orderId) {
-    const order = this.db.orders.find(o => o.order_id === orderId);
-    if (!order) return;
-
-    const unitRapbs = this.db.rapbs_poin.find(r => r.unit_id === order.unit_id);
-    if (!unitRapbs || unitRapbs.saldo_tersedia < order.total_amount) {
-      this.showToast('Saldo RAPBS Unit tidak mencukupi untuk disetujui!', 'error');
-      return;
-    }
-
-    if (order.order_type === 'E-Commerce') {
+  toggleItemApproval(orderId, itemIdx) {
+    if (!this.orderItemApprovals[orderId]) {
+      const ord = this.db.orders.find(o => o.order_id === orderId);
+      if (!ord) return;
       try {
-        const items = JSON.parse(order.items_json);
-        items.forEach(item => {
-          this.deductStockFIFO(item.product_name, item.qty);
-        });
+        const items = JSON.parse(ord.items_json);
+        this.orderItemApprovals[orderId] = items.map(it => it.status !== 'Rejected');
       } catch (e) {
-        console.error('Failed to parse items for FIFO deduction', e);
+        this.orderItemApprovals[orderId] = [];
       }
     }
 
-    unitRapbs.terpakai += order.total_amount;
-    unitRapbs.saldo_tersedia -= order.total_amount;
-    unitRapbs.updated_at = this.formatCurrentDateTime();
+    this.orderItemApprovals[orderId][itemIdx] = !this.orderItemApprovals[orderId][itemIdx];
+    this.renderVerificationView();
+  },
+
+  handleTransferProofUpload(event, orderId) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (file.size > 4 * 1024 * 1024) {
+      this.showToast('Ukuran file maksimal 4 MB!', 'warning');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const base64 = e.target.result;
+      this.pendingTransferProofs[orderId] = base64;
+      this.renderVerificationView();
+      this.showToast('Bukti transfer berhasil dipilih!', 'success');
+    };
+    reader.readAsDataURL(file);
+  },
+
+  viewReceiptImage(imageUrl, title, details) {
+    const modal = document.getElementById('receiptViewerModal');
+    const img = document.getElementById('receiptViewerImage');
+    const titleEl = document.getElementById('receiptViewerTitle');
+    const detailsEl = document.getElementById('receiptViewerDetails');
+    const downloadBtn = document.getElementById('receiptViewerDownloadBtn');
+
+    if (!modal || !img) return;
+
+    img.src = imageUrl || 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&auto=format&fit=crop&q=80';
+    if (titleEl) titleEl.textContent = title || 'Bukti Kwitansi Nota';
+    if (detailsEl) detailsEl.innerHTML = `<span class="text-xs font-semibold text-slate-700">${details || ''}</span>`;
+    if (downloadBtn) downloadBtn.href = img.src;
+
+    modal.classList.remove('hidden');
+  },
+
+  closeReceiptViewer() {
+    const modal = document.getElementById('receiptViewerModal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  autoCreateMasterProductFromRequest(req) {
+    const prodName = req.product_name;
+    const existing = this.db.stock_inventory.find(s => s.product_name.toLowerCase() === prodName.toLowerCase());
+    if (existing) return;
+
+    const dateStr = new Date().toISOString().split('T')[0];
+    const batchId = `BATCH-${dateStr.replace(/-/g, '').slice(0, 6)}-${Math.floor(Math.random() * 90 + 10)}`;
+    
+    this.db.stock_inventory.push({
+      batch_id: batchId,
+      product_name: prodName,
+      category: req.category || 'ATK & Kertas',
+      stock_qty: Number(req.qty) || 1,
+      unit_price: Number(req.unit_price) || 0,
+      date_in: dateStr,
+      method: 'FIFO',
+      status: 'Active',
+      image_url: req.image_url || 'https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=600&auto=format&fit=crop&q=80'
+    });
+
+    this.showToast(`Master produk baru "${prodName}" otomatis ditambahkan ke katalog!`, 'success');
+  },
+
+  approveOrderWithItemStates(orderId) {
+    const order = this.db.orders.find(o => o.order_id === orderId);
+    if (!order) return;
+
+    let items = [];
+    try { items = JSON.parse(order.items_json); } catch(e) {}
+
+    const approvals = this.orderItemApprovals[orderId] || items.map(() => true);
+    const approvedItems = items.filter((_, idx) => approvals[idx] !== false);
+
+    if (approvedItems.length === 0) {
+      this.showToast('Semua item ditolak. Silakan gunakan tombol Tolak Seluruh Pengajuan.', 'warning');
+      return;
+    }
+
+    const approvedAmount = approvedItems.reduce((acc, it) => acc + (Number(it.subtotal) || 0), 0);
+
+    const unitRapbs = this.db.rapbs_poin.find(r => r.unit_id === order.unit_id);
+    if (order.unit_id !== 'care_unit' && (!unitRapbs || unitRapbs.saldo_tersedia < approvedAmount)) {
+      this.showToast('Saldo RAPBS Unit tidak mencukupi untuk nominal yang disetujui!', 'error');
+      return;
+    }
+
+    // Deduct stock for approved catalog items
+    approvedItems.forEach(item => {
+      if (item.item_type === 'catalog' || (!item.item_type && order.order_type === 'E-Commerce')) {
+        this.deductStockFIFO(item.product_name || item.item_name, item.qty);
+      }
+    });
+
+    // Auto-create Master Products for approved custom requests
+    approvedItems.forEach(item => {
+      if (item.item_type === 'custom_request' || order.order_type === 'Request_Barang_Baru') {
+        this.autoCreateMasterProductFromRequest({
+          product_name: item.raw_product_name || item.product_name || item.item_name,
+          category: item.category || 'ATK & Kertas',
+          unit_price: item.unit_price,
+          image_url: item.image_url || '',
+          qty: item.qty
+        });
+      }
+    });
+
+    // Update RAPBS balance
+    if (unitRapbs) {
+      unitRapbs.terpakai += approvedAmount;
+      unitRapbs.saldo_tersedia -= approvedAmount;
+      unitRapbs.updated_at = this.formatCurrentDateTime();
+    }
 
     const invCount = this.db.transactions_log.length + 1;
     const schoolSlug = (this.db.cms_settings.app_name || 'AL-IMAM').toUpperCase().replace(/\s+/g, '-');
     const invNum = `INV/${schoolSlug}/2026/09/${String(invCount).padStart(3, '0')}`;
 
-    order.status = 'Approved';
+    // Update each item's status in items_json
+    const updatedItems = items.map((it, idx) => ({
+      ...it,
+      status: approvals[idx] !== false ? 'Approved' : 'Rejected'
+    }));
+
+    order.items_json = JSON.stringify(updatedItems);
+    order.total_amount = approvedAmount;
+    order.status = approvedItems.length === items.length ? 'Approved' : 'Approved';
     order.approved_at = this.formatCurrentDateTime();
     order.invoice_number = invNum;
+
+    // Attach transfer proof if uploaded
+    if (this.pendingTransferProofs[orderId]) {
+      if (!order.attachments) order.attachments = {};
+      order.attachments.transfer = this.pendingTransferProofs[orderId];
+      order.transfer_proof = this.pendingTransferProofs[orderId];
+    }
 
     const logId = 'LOG-' + this.generateTimestampId();
     this.db.transactions_log.push({
       log_id: logId,
       order_id: order.order_id,
       unit_id: order.unit_id,
-      amount_deducted: order.total_amount,
-      remaining_balance: unitRapbs.saldo_tersedia,
+      amount_deducted: approvedAmount,
+      remaining_balance: unitRapbs ? unitRapbs.saldo_tersedia : 0,
       timestamp: this.formatCurrentDateTime(),
       invoice_number: invNum
     });
 
     this.saveState();
     this.updateUI();
-    this.showToast(`Pengajuan ${order.order_id} BERHASIL DISETUJUI. Invoice: ${invNum}`, 'success');
+    this.showToast(`Pengajuan ${order.order_id} BERHASIL DISETUJUI (${approvedItems.length} item). Invoice: ${invNum}`, 'success');
     this.renderVerificationView();
 
     if (this.db.gas_api_url) {
       this.syncGasApproval(order.order_id, 'Approved', invNum);
     }
+  },
+
+  approveOrder(orderId) {
+    this.approveOrderWithItemStates(orderId);
   },
 
   rejectOrder(orderId) {
@@ -2844,30 +3451,56 @@ const app = {
                 <th class="text-center w-16">Qty</th>
                 <th class="text-right w-28">Harga Satuan</th>
                 <th class="text-right w-28">Jumlah (Rp)</th>
+                <th class="text-center w-24">Status</th>
               </tr>
             </thead>
             <tbody>
-              ${items.map((it, idx) => `
-                <tr>
-                  <td class="text-center">${idx + 1}</td>
-                  <td><b>${it.product_name || it.item_name}</b></td>
-                  <td class="text-center">${it.qty}</td>
-                  <td class="text-right">Rp ${this.formatNumber(it.unit_price)}</td>
-                  <td class="text-right font-bold">Rp ${this.formatNumber(it.subtotal)}</td>
-                </tr>
-              `).join('')}
+              ${items.map((it, idx) => {
+                const isItemApproved = it.status !== 'Rejected';
+                return `
+                  <tr class="${isItemApproved ? '' : 'text-slate-400 bg-red-50/20'}">
+                    <td class="text-center">${idx + 1}</td>
+                    <td class="${isItemApproved ? 'font-semibold' : 'line-through'}">${it.product_name || it.item_name}</td>
+                    <td class="text-center">${it.qty}</td>
+                    <td class="text-right">Rp ${this.formatNumber(it.unit_price)}</td>
+                    <td class="text-right font-bold ${isItemApproved ? '' : 'line-through text-red-500'}">Rp ${this.formatNumber(it.subtotal)}</td>
+                    <td class="text-center text-[10px] font-bold ${isItemApproved ? 'text-emerald-700' : 'text-red-600'}">${isItemApproved ? 'Disetujui' : 'Ditolak'}</td>
+                  </tr>
+                `;
+              }).join('')}
               <tr class="font-bold bg-slate-50">
                 <td colspan="4" class="text-right uppercase">TOTAL NOMINAL BEBAN RAPBS:</td>
-                <td class="text-right text-sm font-black">Rp ${this.formatNumber(ord.total_amount)}</td>
+                <td colspan="2" class="text-right text-sm font-black">Rp ${this.formatNumber(ord.total_amount)}</td>
               </tr>
             </tbody>
           </table>
 
-          <div class="p-2.5 bg-slate-50 border border-slate-200 rounded text-xs mb-6">
+          <div class="p-2.5 bg-slate-50 border border-slate-200 rounded text-xs mb-4">
             <p><b>Catatan / Keperluan:</b> ${ord.notes || '-'}</p>
+            ${ord.recipient_name ? `<p class="mt-1"><b>Penerima / No. Rek:</b> ${ord.recipient_name} (${ord.bank_account || '-'})</p>` : ''}
           </div>
 
-          <div class="print-signature-box grid grid-cols-3 gap-4 text-center text-xs mt-8">
+          ${ord.attachments && (ord.attachments.receipt || ord.attachments.transfer) ? `
+            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl mb-4 text-xs">
+              <span class="font-bold text-slate-700 block mb-2">Lampiran Bukti Transaksi:</span>
+              <div class="flex flex-wrap gap-4">
+                ${ord.attachments.receipt ? `
+                  <div class="space-y-1">
+                    <span class="text-[10px] font-semibold text-slate-500 block">1. Nota Kwitansi:</span>
+                    <img src="${ord.attachments.receipt}" class="h-24 w-auto rounded border border-slate-300 object-contain">
+                  </div>
+                ` : ''}
+                ${ord.attachments.transfer ? `
+                  <div class="space-y-1">
+                    <span class="text-[10px] font-semibold text-slate-500 block">2. Bukti Transfer Bank:</span>
+                    <img src="${ord.attachments.transfer}" class="h-24 w-auto rounded border border-slate-300 object-contain">
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+          ` : ''}
+
+          <div class="print-signature-box grid grid-cols-3 gap-4 text-center text-xs mt-6">
             <div>
               <p class="text-slate-500 mb-12">Pemohon / PJ Unit,</p>
               <p class="font-bold underline">${ord.pj_name || unitObj.unit_name}</p>

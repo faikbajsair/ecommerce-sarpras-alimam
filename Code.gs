@@ -221,7 +221,8 @@ function handleApproveOrder(ss, payload) {
         order_type: orderRows[i][2],
         items_json: orderRows[i][3],
         total_amount: Number(orderRows[i][4]),
-        status: orderRows[i][5]
+        status: orderRows[i][5],
+        attachments_json: orderRows[i][9] || ''
       };
       break;
     }
@@ -230,34 +231,26 @@ function handleApproveOrder(ss, payload) {
   if (!targetOrder) return { status: 'error', message: 'Order tidak ditemukan.' };
   if (targetOrder.status === 'Approved') return { status: 'error', message: 'Order ini sudah disetujui sebelumnya.' };
 
-  const rapbsRows = rapbsSheet.getDataRange().getValues();
-  let rapbsRowIdx = -1;
-  let currentPlafond = 0, currentTerpakai = 0, currentSaldo = 0;
-
-  for (let i = 1; i < rapbsRows.length; i++) {
-    if (rapbsRows[i][0] === targetOrder.unit_id) {
-      rapbsRowIdx = i + 1;
-      currentPlafond = Number(rapbsRows[i][1]);
-      currentTerpakai = Number(rapbsRows[i][2]);
-      currentSaldo = Number(rapbsRows[i][3]);
-      break;
-    }
+  let items = [];
+  try {
+    items = payload.items ? payload.items : JSON.parse(targetOrder.items_json);
+  } catch(e) {
+    items = [];
   }
 
-  if (rapbsRowIdx === -1 || currentSaldo < targetOrder.total_amount) {
-    return { status: 'error', message: 'Saldo RAPBS Unit tidak mencukupi untuk disetujui.' };
-  }
+  const approvedItems = items.filter(it => it.status !== 'Rejected');
+  const approvedAmount = Number(payload.approved_amount) || approvedItems.reduce((acc, it) => acc + (Number(it.subtotal) || (Number(it.qty) * Number(it.unit_price)) || 0), 0);
+  const nowStr = Utilities.formatDate(new Date(), 'Asia/Jakarta', 'yyyy-MM-dd HH:mm');
+  const yearMonth = Utilities.formatDate(new Date(), 'Asia/Jakarta', 'yyyy/MM');
+  const totalLogs = Math.max(1, logSheet.getLastRow());
+  const invNumber = payload.invoice_number || `INV/SARPRAS/${yearMonth}/${String(totalLogs).padStart(3, '0')}`;
 
-  // FIFO Deduction
-  if (targetOrder.order_type === 'E-Commerce') {
-    let items = [];
-    try { items = JSON.parse(targetOrder.items_json); } catch(e) {}
-
-    const stockData = stockSheet.getDataRange().getValues();
-
-    items.forEach(reqItem => {
-      let remainingToDeduct = Number(reqItem.qty);
-      const prodName = reqItem.product_name;
+  // 1. Stock FIFO deduction for approved catalog items
+  const stockData = stockSheet.getDataRange().getValues();
+  approvedItems.forEach(reqItem => {
+    if (reqItem.item_type === 'catalog' || (!reqItem.item_type && targetOrder.order_type === 'E-Commerce')) {
+      let remainingToDeduct = Number(reqItem.qty) || 1;
+      const prodName = reqItem.product_name || reqItem.item_name;
 
       const eligibleBatches = [];
       for (let r = 1; r < stockData.length; r++) {
@@ -286,41 +279,125 @@ function handleApproveOrder(ss, payload) {
           remainingToDeduct = 0;
         }
       }
+    }
+
+    // 2. Auto-create Master Product for custom requested items
+    if (reqItem.item_type === 'custom_request' || targetOrder.order_type === 'Request_Barang_Baru') {
+      const prodName = reqItem.product_name || reqItem.item_name;
+      let alreadyExists = false;
+      for (let r = 1; r < stockData.length; r++) {
+        if (String(stockData[r][1]).toLowerCase() === String(prodName).toLowerCase()) {
+          alreadyExists = true;
+          break;
+        }
+      }
+
+      if (!alreadyExists) {
+        const dateInStr = Utilities.formatDate(new Date(), 'Asia/Jakarta', 'yyyy-MM-dd');
+        const batchId = `BATCH-${dateInStr.replace(/-/g, '').slice(0,6)}-${Math.floor(Math.random() * 90 + 10)}`;
+        stockSheet.appendRow([
+          batchId,
+          prodName,
+          reqItem.category || 'ATK & Kertas',
+          Number(reqItem.qty) || 1,
+          Number(reqItem.unit_price) || 0,
+          dateInStr,
+          'FIFO',
+          'Active',
+          reqItem.image_url || ''
+        ]);
+      }
+    }
+  });
+
+  // 3. RAPBS Point Deduction & Ledger Logging
+  const rapbsRows = rapbsSheet.getDataRange().getValues();
+
+  // If Split Units (e.g. Care Unit SD & SMP)
+  if (payload.split_units && Array.isArray(payload.split_units) && payload.split_units.length > 0) {
+    payload.split_units.forEach(sp => {
+      const splitUnitId = sp.unit_id;
+      const splitAmount = Number(sp.amount);
+
+      for (let i = 1; i < rapbsRows.length; i++) {
+        if (rapbsRows[i][0] === splitUnitId) {
+          const curTerpakai = Number(rapbsRows[i][2]);
+          const curSaldo = Number(rapbsRows[i][3]);
+          const newTerpakai = curTerpakai + splitAmount;
+          const newSaldo = curSaldo - splitAmount;
+
+          rapbsSheet.getRange(i + 1, 3).setValue(newTerpakai);
+          rapbsSheet.getRange(i + 1, 4).setValue(newSaldo);
+          rapbsSheet.getRange(i + 1, 5).setValue(nowStr);
+
+          const logId = `LOG-${Utilities.formatDate(new Date(), 'Asia/Jakarta', 'yyyyMMdd')}-${Math.floor(Math.random() * 9000 + 1000)}`;
+          logSheet.appendRow([
+            logId,
+            targetOrder.order_id,
+            splitUnitId,
+            splitAmount,
+            newSaldo,
+            nowStr,
+            `${invNumber} (${sp.unit_name || splitUnitId})`
+          ]);
+          break;
+        }
+      }
     });
+  } else {
+    // Single Unit deduction
+    let rapbsRowIdx = -1;
+    let currentTerpakai = 0, currentSaldo = 0;
+
+    for (let i = 1; i < rapbsRows.length; i++) {
+      if (rapbsRows[i][0] === targetOrder.unit_id) {
+        rapbsRowIdx = i + 1;
+        currentTerpakai = Number(rapbsRows[i][2]);
+        currentSaldo = Number(rapbsRows[i][3]);
+        break;
+      }
+    }
+
+    if (rapbsRowIdx !== -1) {
+      const newTerpakai = currentTerpakai + approvedAmount;
+      const newSaldo = currentSaldo - approvedAmount;
+
+      rapbsSheet.getRange(rapbsRowIdx, 3).setValue(newTerpakai);
+      rapbsSheet.getRange(rapbsRowIdx, 4).setValue(newSaldo);
+      rapbsSheet.getRange(rapbsRowIdx, 5).setValue(nowStr);
+
+      const logId = `LOG-${Utilities.formatDate(new Date(), 'Asia/Jakarta', 'yyyyMMdd')}-${Math.floor(Math.random() * 9000 + 1000)}`;
+      logSheet.appendRow([
+        logId,
+        targetOrder.order_id,
+        targetOrder.unit_id,
+        approvedAmount,
+        newSaldo,
+        nowStr,
+        invNumber
+      ]);
+    }
   }
 
-  const newTerpakai = currentTerpakai + targetOrder.total_amount;
-  const newSaldo = currentSaldo - targetOrder.total_amount;
-  const nowStr = Utilities.formatDate(new Date(), 'Asia/Jakarta', 'yyyy-MM-dd HH:mm');
-
-  rapbsSheet.getRange(rapbsRowIdx, 3).setValue(newTerpakai);
-  rapbsSheet.getRange(rapbsRowIdx, 4).setValue(newSaldo);
-  rapbsSheet.getRange(rapbsRowIdx, 5).setValue(nowStr);
-
-  const totalLogs = Math.max(1, logSheet.getLastRow());
-  const yearMonth = Utilities.formatDate(new Date(), 'Asia/Jakarta', 'yyyy/MM');
-  const invNumber = `INV/SARPRAS/${yearMonth}/${String(totalLogs).padStart(3, '0')}`;
-
+  // 4. Update Order Record
+  orderSheet.getRange(orderRowIdx, 4).setValue(JSON.stringify(items));
+  orderSheet.getRange(orderRowIdx, 5).setValue(approvedAmount);
   orderSheet.getRange(orderRowIdx, 6).setValue('Approved');
   orderSheet.getRange(orderRowIdx, 8).setValue(nowStr);
   orderSheet.getRange(orderRowIdx, 11).setValue(invNumber);
 
-  const logId = `LOG-${Utilities.formatDate(new Date(), 'Asia/Jakarta', 'yyyyMMdd')}-${Math.floor(Math.random() * 900 + 100)}`;
-  logSheet.appendRow([
-    logId,
-    targetOrder.order_id,
-    targetOrder.unit_id,
-    targetOrder.total_amount,
-    newSaldo,
-    nowStr,
-    invNumber
-  ]);
+  if (payload.transfer_proof) {
+    let att = {};
+    try { att = JSON.parse(targetOrder.attachments_json || '{}'); } catch(e) {}
+    att.transfer = payload.transfer_proof;
+    orderSheet.getRange(orderRowIdx, 10).setValue(JSON.stringify(att));
+  }
 
   return {
     status: 'success',
     message: 'Order approved successfully.',
     invoice_number: invNumber,
-    remaining_balance: newSaldo
+    approved_amount: approvedAmount
   };
 }
 

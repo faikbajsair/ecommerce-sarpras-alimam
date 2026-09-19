@@ -583,12 +583,18 @@
 
             <div class="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-slate-100">
               <div class="text-xs text-slate-500">
-                <i class="fa-solid fa-circle-check text-brand-primary mr-1"></i>Dana akan dipotong dari Saldo RAPBS setelah disetujui Bendahara.
+                <i class="fa-solid fa-circle-check text-brand-primary mr-1"></i>Bisa dimasukkan ke Keranjang bersamaan belanja ATK atau diajukan langsung.
               </div>
-              <button type="submit" id="btnSubmitReimburse" class="px-6 py-3 bg-brand-primary hover:opacity-90 text-white font-bold text-xs rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
-                <i class="fa-solid fa-paper-plane"></i>
-                <span>Kirim Pengajuan Reimburse</span>
-              </button>
+              <div class="flex items-center space-x-2">
+                <button type="button" onclick="app.submitReimburseToCart(event)" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs rounded-xl shadow-md transition flex items-center space-x-2">
+                  <i class="fa-solid fa-cart-plus"></i>
+                  <span>🛒 Masukkan ke Keranjang</span>
+                </button>
+                <button type="submit" id="btnSubmitReimburse" class="px-5 py-2.5 bg-brand-primary hover:opacity-90 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center space-x-2">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  <span>Kirim Langsung</span>
+                </button>
+              </div>
             </div>
           </form>
         </div>
@@ -642,6 +648,7 @@
                 <select id="custItemCategory" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition">
                   <option value="Elektronik & Multimedia">Elektronik & Multimedia</option>
                   <option value="Perlengkapan Kelas & Lab">Perlengkapan Kelas & Lab</option>
+                  <option value="Kebersihan & Sanitasi">Kebersihan & Sanitasi</option>
                   <option value="Sarana Olahraga & Ekstra">Sarana Olahraga & Ekstrakurikuler</option>
                   <option value="Buku & Referensi Guru">Buku & Referensi Guru</option>
                   <option value="Lain-lain">Lain-lain</option>
@@ -661,12 +668,18 @@
 
             <div class="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-slate-100">
               <div class="text-xs text-slate-500">
-                <i class="fa-solid fa-info-circle text-indigo-600 mr-1"></i>Pengadaan akan diproses oleh Tim Logistik Yayasan.
+                <i class="fa-solid fa-info-circle text-indigo-600 mr-1"></i>Otomatis terdaftar jadi Master Produk di katalog saat disetujui Bendahara.
               </div>
-              <button type="submit" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
-                <i class="fa-solid fa-paper-plane"></i>
-                <span>Ajukan Permintaan Pengadaan</span>
-              </button>
+              <div class="flex items-center space-x-2">
+                <button type="button" onclick="app.submitCustomRequestToCart(event)" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center space-x-2">
+                  <i class="fa-solid fa-cart-plus"></i>
+                  <span>🛒 Masukkan ke Keranjang</span>
+                </button>
+                <button type="submit" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center space-x-2">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  <span>Kirim Langsung</span>
+                </button>
+              </div>
             </div>
           </form>
         </div>
@@ -1289,9 +1302,64 @@
       </button>
     </div>
 
+    <!-- Quick Non-Catalog Add shortcuts -->
+    <div class="px-5 py-2.5 bg-slate-100/70 border-b border-slate-200/60 flex items-center justify-between gap-2">
+      <span class="text-[10px] font-bold text-slate-500 uppercase">Tambah Non-Katalog:</span>
+      <div class="flex items-center space-x-1.5">
+        <button onclick="app.navigate('custom-request'); app.toggleCartDrawer();" class="px-2.5 py-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-[10px] font-bold rounded-lg transition border border-indigo-200 flex items-center space-x-1">
+          <i class="fa-solid fa-plus"></i>
+          <span>Barang Baru</span>
+        </button>
+        <button onclick="app.navigate('reimburse'); app.toggleCartDrawer();" class="px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-800 text-[10px] font-bold rounded-lg transition border border-amber-200 flex items-center space-x-1">
+          <i class="fa-solid fa-plus"></i>
+          <span>Reimburse</span>
+        </button>
+      </div>
+    </div>
+
     <div id="cartItemsList" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
 
     <div class="p-5 border-t border-slate-100 bg-slate-50 space-y-3">
+      <!-- Admin / Bendahara Care Unit Joint Budget Allocation -->
+      <div id="cartAdminAllocationSection" class="hidden p-3 bg-amber-50/80 border border-amber-200/80 rounded-2xl space-y-2.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="font-bold text-amber-900 text-[11px] flex items-center">
+            <i class="fa-solid fa-users-gear text-amber-600 mr-1.5"></i>Alokasi Pembebanan Anggaran:
+          </span>
+          <span class="bg-amber-500 text-slate-900 text-[9px] font-black px-1.5 py-0.5 rounded">BENDAHARA / ADMIN</span>
+        </div>
+
+        <select id="cartAllocationType" onchange="app.onCartAllocationChange()" class="w-full px-3 py-2 bg-white border border-amber-300 rounded-xl text-xs font-bold text-slate-800 focus:outline-none">
+          <option value="single">Unit Pemesan Aktif</option>
+          <option value="care_unit">🏢 Sarpras Bersama / Care Unit OB (Split SD & SMP)</option>
+        </select>
+
+        <!-- Care Unit Split Controls -->
+        <div id="cartCareUnitSplitControls" class="hidden space-y-2 pt-1 border-t border-amber-200">
+          <div class="flex items-center justify-between text-[11px]">
+            <span class="text-amber-800 font-semibold">Skema Bagi Beban:</span>
+            <div class="flex items-center space-x-1">
+              <button type="button" onclick="app.setCareUnitSplitRatio(50, 50)" id="splitBtn5050" class="px-2 py-0.5 bg-amber-500 text-slate-900 font-bold rounded text-[10px]">50:50</button>
+              <button type="button" onclick="app.setCareUnitSplitRatio(60, 40)" id="splitBtn6040" class="px-2 py-0.5 bg-white text-slate-700 font-semibold rounded text-[10px] border border-amber-300">60:40</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2 bg-white rounded-xl border border-amber-200 space-y-0.5">
+              <span class="text-slate-500 font-semibold block text-[10px]">Beban Unit SD (<span id="cartSplitSdPercentLabel">50</span>%):</span>
+              <span class="font-bold text-slate-800 block text-xs" id="cartSplitSdAmount">Rp 0</span>
+              <span class="text-[9px] text-emerald-600 font-medium block" id="cartSplitSdRemaining">Sisa: Rp 0</span>
+            </div>
+
+            <div class="p-2 bg-white rounded-xl border border-amber-200 space-y-0.5">
+              <span class="text-slate-500 font-semibold block text-[10px]">Beban Unit SMP (<span id="cartSplitSmpPercentLabel">50</span>%):</span>
+              <span class="font-bold text-slate-800 block text-xs" id="cartSplitSmpAmount">Rp 0</span>
+              <span class="text-[9px] text-emerald-600 font-medium block" id="cartSplitSmpRemaining">Sisa: Rp 0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="space-y-1.5 text-xs">
         <div class="flex justify-between text-slate-500">
           <span>Metode Pembayaran:</span>
@@ -1678,6 +1746,38 @@
       <div id="printableDocumentWrapper" class="flex-1 overflow-y-auto p-6 sm:p-8 bg-white">
         <div id="printDocumentContent" class="print-page max-w-2xl mx-auto border border-slate-200 p-8 rounded-2xl bg-white shadow-sm"></div>
       </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: RECEIPT & ATTACHMENT LIGHTBOX VIEWER ================= -->
+  <div id="receiptViewerModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 transition-opacity">
+    <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-700 overflow-hidden my-auto">
+      <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center text-sm shadow-sm">
+            <i class="fa-solid fa-receipt"></i>
+          </div>
+          <div>
+            <h3 id="receiptViewerTitle" class="font-bold text-sm text-slate-800 font-heading">Bukti Kwitansi / Nota Reimbursement</h3>
+            <p id="receiptViewerSubtitle" class="text-[11px] text-slate-400">Verifikasi keaslian nota belanja talangan unit</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2">
+          <a id="receiptViewerDownloadBtn" href="#" download="bukti-nota.png" target="_blank" class="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold rounded-xl transition flex items-center space-x-1">
+            <i class="fa-solid fa-download"></i>
+            <span>Unduh</span>
+          </a>
+          <button onclick="app.closeReceiptViewer()" class="w-8 h-8 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center text-xs transition">
+            <i class="fa-solid fa-xmark text-sm"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex-1 overflow-auto p-4 sm:p-6 bg-slate-900 flex items-center justify-center min-h-[350px]">
+        <img id="receiptViewerImage" src="" alt="Bukti Kwitansi" class="max-h-[60vh] w-auto max-w-full rounded-xl object-contain shadow-lg">
+      </div>
+
+      <div id="receiptViewerDetails" class="p-4 bg-slate-50 border-t border-slate-100 text-xs flex flex-wrap items-center justify-between gap-3 text-slate-600"></div>
     </div>
   </div>
 

@@ -35,6 +35,25 @@ Aplikasi ini dilengkapi dengan modul **CMS Studio Terintegrasi** yang memungkink
 
 ---
 
+## 📦 Fitur Manajemen Produk & Inventaris FIFO (Admin & Bendahara)
+
+Admin dan Bendahara memiliki kontrol penuh terhadap master katalog barang dan batch stok:
+1. **Tambah Master Produk Baru**:
+   - Masukkan Nama Barang, Kategori, Harga Jual RAPBS, dan Stok Awal + Tanggal Masuk batch pertama.
+   - Terhubung otomatis ke Katalog dan tersinkronisasi ke Google Sheets `Stock_Inventory`.
+2. **Edit Master Produk**:
+   - Edit nama produk, kategori, atau harga RAPBS. Seluruh batch aktif untuk produk tersebut otomatis diperbarui secara massal.
+   - Tombol Edit tersedia langsung di kartu katalog maupun di tabel Master Produk.
+3. **Restock Batch Masuk (FIFO)**:
+   - Tambah batch restock baru dengan harga modal beli dan tanggal masuk spesifik untuk alokasi FIFO otomatis saat pemesanan unit.
+4. **Edit & Hapus Batch Inventaris**:
+   - Edit sisa kuantiti stok per batch, harga satuan, status (Active/Empty), atau hapus batch yang salah input.
+5. **Sub-Tab Inventaris Cerdas**:
+   - Tab 1: **Log Semua Batch FIFO** (melihat detail per batch ID).
+   - Tab 2: **Daftar Master Produk Katalog** (melihat total stok agregat dan jumlah batch aktif).
+
+---
+
 ## 🏛️ Arsitektur Sistem (Flat MVC Model)
 
 ```

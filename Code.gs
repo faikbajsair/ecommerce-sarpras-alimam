@@ -99,6 +99,18 @@ function doPost(e) {
       case 'restockInventory':
         return createJsonResponse(handleRestockInventory(ss, payload));
 
+      case 'saveProduct':
+        return createJsonResponse(handleSaveProduct(ss, payload));
+
+      case 'deleteProduct':
+        return createJsonResponse(handleDeleteProduct(ss, payload));
+
+      case 'updateBatch':
+        return createJsonResponse(handleUpdateBatch(ss, payload));
+
+      case 'deleteBatch':
+        return createJsonResponse(handleDeleteBatch(ss, payload));
+
       case 'saveSettings':
         return createJsonResponse(handleSaveSettings(ss, payload));
 
@@ -341,6 +353,94 @@ function handleRestockInventory(ss, payload) {
 
   sheet.appendRow(newRow);
   return { status: 'success', message: 'Batch restock added successfully', batch_id: batchId };
+}
+
+function handleSaveProduct(ss, payload) {
+  const sheet = ss.getSheetByName(CONFIG.SHEETS.STOCK);
+  const mode = payload.mode || 'add';
+  const originalName = payload.original_name || '';
+  const newName = payload.product_name;
+  const category = payload.category || 'ATK & Kertas';
+  const price = Number(payload.unit_price) || 0;
+
+  if (mode === 'add') {
+    const initialStock = Number(payload.initial_stock) || 0;
+    const dateInStr = payload.date_in || Utilities.formatDate(new Date(), 'Asia/Jakarta', 'yyyy-MM-dd');
+    const batchId = payload.batch_id || `BATCH-${dateInStr.replace(/-/g, '').slice(0,6)}-${Math.floor(Math.random() * 90 + 10)}`;
+
+    const newRow = [
+      batchId,
+      newName,
+      category,
+      initialStock,
+      price,
+      dateInStr,
+      'FIFO',
+      initialStock > 0 ? 'Active' : 'Empty'
+    ];
+    sheet.appendRow(newRow);
+    return { status: 'success', message: 'Master product added successfully', batch_id: batchId };
+  } else {
+    const rows = sheet.getDataRange().getValues();
+    let updated = 0;
+    for (let i = 1; i < rows.length; i++) {
+      if (rows[i][1] === originalName) {
+        sheet.getRange(i + 1, 2).setValue(newName);
+        sheet.getRange(i + 1, 3).setValue(category);
+        sheet.getRange(i + 1, 5).setValue(price);
+        updated++;
+      }
+    }
+    return { status: 'success', message: `Master product updated (${updated} batches modified)` };
+  }
+}
+
+function handleDeleteProduct(ss, payload) {
+  const sheet = ss.getSheetByName(CONFIG.SHEETS.STOCK);
+  const productName = payload.product_name;
+  const rows = sheet.getDataRange().getValues();
+  let deleted = 0;
+
+  for (let i = rows.length - 1; i >= 1; i--) {
+    if (rows[i][1] === productName) {
+      sheet.deleteRow(i + 1);
+      deleted++;
+    }
+  }
+  return { status: 'success', message: `Product and ${deleted} batches deleted successfully` };
+}
+
+function handleUpdateBatch(ss, payload) {
+  const sheet = ss.getSheetByName(CONFIG.SHEETS.STOCK);
+  const batchId = payload.batch_id;
+  const rows = sheet.getDataRange().getValues();
+
+  for (let i = 1; i < rows.length; i++) {
+    if (rows[i][0] === batchId) {
+      if (payload.product_name) sheet.getRange(i + 1, 2).setValue(payload.product_name);
+      if (payload.category) sheet.getRange(i + 1, 3).setValue(payload.category);
+      if (payload.stock_qty !== undefined) sheet.getRange(i + 1, 4).setValue(Number(payload.stock_qty));
+      if (payload.unit_price !== undefined) sheet.getRange(i + 1, 5).setValue(Number(payload.unit_price));
+      if (payload.date_in) sheet.getRange(i + 1, 6).setValue(payload.date_in);
+      if (payload.status) sheet.getRange(i + 1, 8).setValue(payload.status);
+      return { status: 'success', message: `Batch ${batchId} updated successfully` };
+    }
+  }
+  return { status: 'error', message: `Batch ${batchId} not found` };
+}
+
+function handleDeleteBatch(ss, payload) {
+  const sheet = ss.getSheetByName(CONFIG.SHEETS.STOCK);
+  const batchId = payload.batch_id;
+  const rows = sheet.getDataRange().getValues();
+
+  for (let i = 1; i < rows.length; i++) {
+    if (rows[i][0] === batchId) {
+      sheet.deleteRow(i + 1);
+      return { status: 'success', message: `Batch ${batchId} deleted successfully` };
+    }
+  }
+  return { status: 'error', message: `Batch ${batchId} not found` };
 }
 
 function handleSaveSettings(ss, payload) {

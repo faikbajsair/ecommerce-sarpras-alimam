@@ -426,13 +426,24 @@
         <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <h2 class="text-xl font-extrabold text-slate-800 font-heading">Katalog Stok SARPRAS Sekolah</h2>
+              <div class="flex items-center space-x-2">
+                <h2 class="text-xl font-extrabold text-slate-800 font-heading">Katalog Stok SARPRAS Sekolah</h2>
+                <span id="catalogAdminBadge" class="hidden bg-amber-100 text-amber-900 text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-amber-300">ADMIN MODE</span>
+              </div>
               <p class="text-xs text-slate-500">Pilih barang kebutuhan unit Anda. Sistem menggunakan alokasi FIFO otomatis.</p>
             </div>
             
-            <div class="relative w-full md:w-80">
-              <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-              <input type="text" id="catalogSearchInput" oninput="app.filterCatalog()" placeholder="Cari nama barang / spidol / kertas..." class="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition">
+            <div class="flex items-center space-x-2.5">
+              <!-- Admin Action Buttons in Catalog -->
+              <button onclick="app.openAddProductModal()" id="btnAdminAddProductCatalog" class="hidden px-4 py-2 bg-brand-primary hover:opacity-90 text-white text-xs font-bold rounded-xl shadow-sm transition flex items-center space-x-1.5 shrink-0">
+                <i class="fa-solid fa-plus"></i>
+                <span>Tambah Master Produk</span>
+              </button>
+
+              <div class="relative w-full md:w-72">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <input type="text" id="catalogSearchInput" oninput="app.filterCatalog()" placeholder="Cari nama barang / spidol / kertas..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition">
+              </div>
             </div>
           </div>
 
@@ -453,10 +464,15 @@
             <i class="fa-solid fa-box-open"></i>
           </div>
           <h4 class="text-base font-bold text-slate-700">Barang tidak ditemukan</h4>
-          <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">Barang yang Anda cari sedang habis atau tidak tersedia. Silakan gunakan menu Request Barang Baru.</p>
-          <button onclick="app.navigate('custom-request')" class="mt-4 px-4 py-2 bg-brand-primary text-white rounded-xl text-xs font-bold transition">
-            <i class="fa-solid fa-plus mr-1"></i>Ajukan Barang Baru
-          </button>
+          <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">Barang yang Anda cari sedang habis atau belum ditambahkan ke katalog.</p>
+          <div class="mt-4 flex items-center justify-center space-x-2">
+            <button onclick="app.openAddProductModal()" class="px-4 py-2 bg-brand-primary text-white rounded-xl text-xs font-bold transition">
+              <i class="fa-solid fa-plus mr-1"></i>Tambah Produk ke Katalog
+            </button>
+            <button onclick="app.navigate('custom-request')" class="px-4 py-2 bg-slate-100 text-slate-700 rounded-xl text-xs font-bold transition">
+              Ajukan Barang Baru
+            </button>
+          </div>
         </div>
       </section>
 
@@ -725,15 +741,34 @@
         <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <h2 class="text-xl font-extrabold text-slate-800 font-heading">Manajemen Stok & Log Batch FIFO</h2>
-            <p class="text-xs text-slate-500">Pantau pergerakan batch barang masuk & keluar berdasarkan metode First In First Out.</p>
+            <p class="text-xs text-slate-500">Kelola master katalog barang dan pantau pergerakan batch masuk & keluar berdasarkan metode First In First Out.</p>
           </div>
-          <button onclick="app.openRestockModal()" class="px-4 py-2.5 bg-brand-primary hover:opacity-90 text-white text-xs font-bold rounded-xl shadow-md transition flex items-center space-x-2">
-            <i class="fa-solid fa-plus"></i>
-            <span>Tambah Batch Restock Baru</span>
+          <div class="flex items-center space-x-2.5">
+            <button onclick="app.openAddProductModal()" class="px-4 py-2.5 bg-slate-900 hover:bg-black text-white text-xs font-bold rounded-xl shadow-md transition flex items-center space-x-2">
+              <i class="fa-solid fa-box-open text-amber-400"></i>
+              <span>+ Master Produk Baru</span>
+            </button>
+            <button onclick="app.openRestockModal()" class="px-4 py-2.5 bg-brand-primary hover:opacity-90 text-white text-xs font-bold rounded-xl shadow-md transition flex items-center space-x-2">
+              <i class="fa-solid fa-plus"></i>
+              <span>+ Restock Batch (FIFO)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Inventory Sub-Tabs -->
+        <div class="bg-white rounded-2xl p-2 border border-slate-200/80 shadow-sm flex items-center space-x-2">
+          <button onclick="app.switchInventoryTab('batches')" id="invTabBtn-batches" class="px-4 py-2 rounded-xl text-xs font-bold bg-amber-100 text-amber-900 transition flex items-center space-x-2">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Log Semua Batch Inventaris (FIFO)</span>
+          </button>
+          <button onclick="app.switchInventoryTab('products')" id="invTabBtn-products" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition flex items-center space-x-2">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <span>Daftar Master Produk Katalog</span>
           </button>
         </div>
 
-        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+        <!-- TAB 1: BATCH INVENTORY TABLE -->
+        <div id="invSubTab-batches" class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
           <div class="flex items-center justify-between">
             <h3 class="font-bold text-base text-slate-800 font-heading">Daftar Batch Inventaris (Sheet: Stock_Inventory)</h3>
             <span class="text-xs text-slate-400">Total Batch Aktif: <span id="activeBatchCount" class="font-bold text-slate-700">0</span></span>
@@ -750,10 +785,35 @@
                   <th class="px-4 py-3">Harga Beli Satuan</th>
                   <th class="px-4 py-3">Tanggal Masuk</th>
                   <th class="px-4 py-3">Metode</th>
-                  <th class="px-4 py-3 rounded-r-xl">Status</th>
+                  <th class="px-4 py-3">Status</th>
+                  <th class="px-4 py-3 rounded-r-xl text-center">Aksi</th>
                 </tr>
               </thead>
               <tbody id="inventoryTableBody" class="divide-y divide-slate-100 font-medium"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 2: MASTER PRODUCTS TABLE -->
+        <div id="invSubTab-products" class="hidden bg-white rounded-3xl p-6 border border-slate-100 shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-base text-slate-800 font-heading">Master Data Produk & Total Stok Agregat</h3>
+            <span class="text-xs text-slate-400">Total Produk: <span id="totalProductsCount" class="font-bold text-slate-700">0</span></span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-50 text-slate-400 font-bold uppercase tracking-wider text-[10px]">
+                <tr>
+                  <th class="px-4 py-3 rounded-l-xl">Nama Produk</th>
+                  <th class="px-4 py-3">Kategori</th>
+                  <th class="px-4 py-3">Total Stok Aktif</th>
+                  <th class="px-4 py-3">Harga Jual RAPBS</th>
+                  <th class="px-4 py-3">Jumlah Batch</th>
+                  <th class="px-4 py-3 rounded-r-xl text-center">Aksi Master</th>
+                </tr>
+              </thead>
+              <tbody id="masterProductsTableBody" class="divide-y divide-slate-100 font-medium"></tbody>
             </table>
           </div>
         </div>
@@ -1264,6 +1324,165 @@
       <button onclick="app.clearCart()" class="w-full py-1.5 text-[11px] font-semibold text-slate-400 hover:text-red-500 transition text-center">
         Kosongkan Keranjang
       </button>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: ADD / EDIT MASTER PRODUCT ================= -->
+  <div id="productModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center space-x-2">
+          <div class="w-9 h-9 rounded-xl bg-brand-primary text-white flex items-center justify-center text-sm">
+            <i class="fa-solid fa-boxes-stacked"></i>
+          </div>
+          <div>
+            <h3 id="productModalTitle" class="font-bold text-base text-slate-800 font-heading">Tambah Master Produk</h3>
+            <p class="text-[11px] text-slate-400">Sinkronisasi langsung ke Katalog & Sheet Stock_Inventory</p>
+          </div>
+        </div>
+        <button onclick="app.closeProductModal()" class="text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <form onsubmit="app.handleSaveProduct(event)" class="space-y-4">
+        <input type="hidden" id="productModalMode" value="add">
+        <input type="hidden" id="productModalOriginalName" value="">
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Produk / Barang *</label>
+          <input type="text" id="productModalName" required placeholder="Contoh: Kertas HVS PaperOne A4 75gr (Rim)" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-brand-primary">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Kategori *</label>
+            <select id="productModalCategory" required class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary">
+              <option value="ATK & Kertas">ATK & Kertas</option>
+              <option value="Kebersihan & Sanitasi">Kebersihan & Sanitasi</option>
+              <option value="Elektronik & IT">Elektronik & IT</option>
+              <option value="Perlengkapan Kelas">Perlengkapan Kelas</option>
+              <option value="Buku & Modul">Buku & Modul</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Harga Jual RAPBS (Rp) *</label>
+            <input type="number" id="productModalPrice" required min="100" placeholder="52000" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold focus:bg-white focus:outline-none focus:border-brand-primary">
+          </div>
+        </div>
+
+        <!-- Initial Stock Fields (only for 'add' mode) -->
+        <div id="productModalAddStockContainer" class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3">
+          <p class="text-[11px] font-bold text-slate-700 uppercase flex items-center">
+            <i class="fa-solid fa-layer-group text-brand-primary mr-1.5"></i>Batch Stok Awal
+          </p>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-600 mb-1">Stok Awal (Qty) *</label>
+              <input type="number" id="productModalStock" min="0" value="10" placeholder="10" class="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-xl text-xs font-bold focus:outline-none focus:border-brand-primary">
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-600 mb-1">Tanggal Masuk *</label>
+              <input type="date" id="productModalDateIn" class="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-primary">
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-slate-100">
+          <button type="button" id="btnDeleteProduct" onclick="app.handleDeleteProductModal()" class="hidden px-3.5 py-2 bg-red-50 hover:bg-red-100 text-red-600 text-xs font-bold rounded-xl transition flex items-center space-x-1">
+            <i class="fa-solid fa-trash-can"></i>
+            <span>Hapus Produk</span>
+          </button>
+          
+          <div class="flex items-center space-x-2 ml-auto">
+            <button type="button" onclick="app.closeProductModal()" class="px-4 py-2 bg-slate-100 text-slate-600 text-xs font-bold rounded-xl hover:bg-slate-200 transition">Batal</button>
+            <button type="submit" class="px-5 py-2 bg-brand-primary hover:opacity-90 text-white text-xs font-bold rounded-xl shadow-md transition flex items-center space-x-1.5">
+              <i class="fa-solid fa-floppy-disk"></i>
+              <span id="productModalSubmitBtnText">Simpan Produk</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: EDIT BATCH INVENTORY ================= -->
+  <div id="editBatchModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center space-x-2">
+          <div class="w-9 h-9 rounded-xl bg-amber-500 text-slate-900 flex items-center justify-center text-sm">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-slate-800 font-heading">Edit Batch Inventaris FIFO</h3>
+            <p class="text-[11px] text-slate-400">ID: <span id="editBatchIdDisplay" class="font-mono font-bold text-slate-700"></span></p>
+          </div>
+        </div>
+        <button onclick="app.closeEditBatchModal()" class="text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <form onsubmit="app.handleSaveBatchEdit(event)" class="space-y-4">
+        <input type="hidden" id="editBatchId">
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Produk *</label>
+          <input type="text" id="editBatchProdName" required class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-brand-primary">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Kategori *</label>
+            <select id="editBatchCategory" required class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary">
+              <option value="ATK & Kertas">ATK & Kertas</option>
+              <option value="Kebersihan & Sanitasi">Kebersihan & Sanitasi</option>
+              <option value="Elektronik & IT">Elektronik & IT</option>
+              <option value="Perlengkapan Kelas">Perlengkapan Kelas</option>
+              <option value="Buku & Modul">Buku & Modul</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Status Batch *</label>
+            <select id="editBatchStatus" required class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary">
+              <option value="Active">Active</option>
+              <option value="Empty">Empty / Depleted</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Sisa Stok (Qty) *</label>
+            <input type="number" id="editBatchQty" required min="0" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold focus:bg-white focus:outline-none focus:border-brand-primary">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Harga Beli Satuan (Rp) *</label>
+            <input type="number" id="editBatchPrice" required min="0" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold focus:bg-white focus:outline-none focus:border-brand-primary">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tanggal Masuk Stok *</label>
+          <input type="date" id="editBatchDateIn" required class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary">
+        </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-slate-100">
+          <button type="button" onclick="app.handleDeleteBatchModal()" class="px-3.5 py-2 bg-red-50 hover:bg-red-100 text-red-600 text-xs font-bold rounded-xl transition flex items-center space-x-1">
+            <i class="fa-solid fa-trash-can"></i>
+            <span>Hapus Batch</span>
+          </button>
+          
+          <div class="flex items-center space-x-2 ml-auto">
+            <button type="button" onclick="app.closeEditBatchModal()" class="px-4 py-2 bg-slate-100 text-slate-600 text-xs font-bold rounded-xl hover:bg-slate-200 transition">Batal</button>
+            <button type="submit" class="px-5 py-2 bg-brand-primary hover:opacity-90 text-white text-xs font-bold rounded-xl shadow-md transition flex items-center space-x-1.5">
+              <i class="fa-solid fa-floppy-disk"></i>
+              <span>Simpan Perubahan</span>
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 

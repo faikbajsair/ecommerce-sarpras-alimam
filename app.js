@@ -527,6 +527,18 @@ const app = {
     const adminSection = document.getElementById('adminNavSection');
     if (adminSection) adminSection.classList.remove('hidden');
 
+    const isStaff = this.currentUser.role === 'Admin' || this.currentUser.role === 'Bendahara';
+    const catalogAdminBadge = document.getElementById('catalogAdminBadge');
+    const btnAdminAddProductCatalog = document.getElementById('btnAdminAddProductCatalog');
+    if (catalogAdminBadge) {
+      if (isStaff) catalogAdminBadge.classList.remove('hidden');
+      else catalogAdminBadge.classList.add('hidden');
+    }
+    if (btnAdminAddProductCatalog) {
+      if (isStaff) btnAdminAddProductCatalog.classList.remove('hidden');
+      else btnAdminAddProductCatalog.classList.add('hidden');
+    }
+
     const pendingOrders = this.db.orders.filter(o => o.status === 'Pending_Verification');
     const pendingBadge = document.getElementById('pendingApprovalBadge');
     if (pendingBadge) pendingBadge.textContent = pendingOrders.length;
@@ -1181,6 +1193,8 @@ const app = {
     }
 
     emptyState.classList.add('hidden');
+    const isStaff = this.currentUser.role === 'Admin' || this.currentUser.role === 'Bendahara';
+
     grid.innerHTML = filtered.map(prod => {
       const isOutOfStock = prod.total_stock <= 0;
       const isLowStock = prod.total_stock > 0 && prod.total_stock <= 5;
@@ -1217,23 +1231,38 @@ const app = {
             <h4 class="font-bold text-xs text-slate-800 line-clamp-2 mt-0.5 h-8 leading-snug">${prod.name}</h4>
           </div>
 
-          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-            <div>
-              <span class="text-[10px] text-slate-400 block leading-none">Harga RAPBS</span>
-              <span class="text-sm font-extrabold text-brand-primary font-heading">Rp ${this.formatNumber(prod.earliest_price)}</span>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-slate-400 block leading-none">Harga RAPBS</span>
+                <span class="text-sm font-extrabold text-brand-primary font-heading">Rp ${this.formatNumber(prod.earliest_price)}</span>
+              </div>
+
+              <button 
+                onclick="app.addToCart('${this.escapeQuotes(prod.name)}', ${prod.earliest_price}, ${prod.total_stock})"
+                ${isOutOfStock ? 'disabled' : ''}
+                class="px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center space-x-1 ${
+                  isOutOfStock 
+                    ? 'bg-slate-100 text-slate-400 cursor-not-allowed' 
+                    : 'bg-brand-primary hover:opacity-90 text-white shadow-sm'
+                }">
+                <i class="fa-solid fa-cart-plus"></i>
+                <span>Tambah</span>
+              </button>
             </div>
 
-            <button 
-              onclick="app.addToCart('${this.escapeQuotes(prod.name)}', ${prod.earliest_price}, ${prod.total_stock})"
-              ${isOutOfStock ? 'disabled' : ''}
-              class="px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center space-x-1 ${
-                isOutOfStock 
-                  ? 'bg-slate-100 text-slate-400 cursor-not-allowed' 
-                  : 'bg-brand-primary hover:opacity-90 text-white shadow-sm'
-              }">
-              <i class="fa-solid fa-cart-plus"></i>
-              <span>Tambah</span>
-            </button>
+            ${isStaff ? `
+              <div class="flex items-center justify-between gap-1.5 pt-1.5 border-t border-dashed border-slate-100">
+                <button onclick="app.openEditProductModal('${this.escapeQuotes(prod.name)}')" class="flex-1 py-1.5 px-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-bold transition flex items-center justify-center space-x-1" title="Edit Data Master Produk">
+                  <i class="fa-solid fa-pen text-amber-600"></i>
+                  <span>Edit Produk</span>
+                </button>
+                <button onclick="app.openRestockModalFor('${this.escapeQuotes(prod.name)}', '${prod.category}')" class="flex-1 py-1.5 px-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-[11px] font-bold transition flex items-center justify-center space-x-1" title="Tambah Batch Restock Masuk">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>Restock</span>
+                </button>
+              </div>
+            ` : ''}
           </div>
         </div>
       `;
@@ -1480,6 +1509,15 @@ const app = {
     const active = batches.filter(b => b.status === 'Active' && b.stock_qty > 0);
     if (activeCount) activeCount.textContent = active.length;
 
+    if (batches.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="9" class="text-center py-8 text-slate-400">Belum ada data batch inventaris.</td>
+        </tr>
+      `;
+      return;
+    }
+
     tbody.innerHTML = batches.map(b => {
       const isStatusActive = b.status === 'Active' && b.stock_qty > 0;
       const statusTag = isStatusActive
@@ -1496,6 +1534,89 @@ const app = {
           <td class="px-4 py-3 text-slate-500">${b.date_in}</td>
           <td class="px-4 py-3"><span class="bg-blue-50 text-blue-700 text-[10px] font-bold px-1.5 py-0.5 rounded">${b.method || 'FIFO'}</span></td>
           <td class="px-4 py-3">${statusTag}</td>
+          <td class="px-4 py-3 text-center">
+            <div class="flex items-center justify-center space-x-1.5">
+              <button onclick="app.openEditBatchModal('${b.batch_id}')" class="px-2 py-1 bg-amber-50 hover:bg-amber-100 text-amber-800 rounded font-bold text-xs transition" title="Edit Batch">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+              <button onclick="app.handleDeleteBatchDirect('${b.batch_id}')" class="px-2 py-1 bg-red-50 hover:bg-red-100 text-red-600 rounded font-bold text-xs transition" title="Hapus Batch">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  },
+
+  switchInventoryTab(tab) {
+    const tabBatches = document.getElementById('invSubTab-batches');
+    const tabProducts = document.getElementById('invSubTab-products');
+    const btnBatches = document.getElementById('invTabBtn-batches');
+    const btnProducts = document.getElementById('invTabBtn-products');
+
+    if (tab === 'batches') {
+      if (tabBatches) tabBatches.classList.remove('hidden');
+      if (tabProducts) tabProducts.classList.add('hidden');
+      if (btnBatches) btnBatches.className = 'px-4 py-2 rounded-xl text-xs font-bold bg-amber-100 text-amber-900 transition flex items-center space-x-2';
+      if (btnProducts) btnProducts.className = 'px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition flex items-center space-x-2';
+      this.renderInventoryTable();
+    } else {
+      if (tabBatches) tabBatches.classList.add('hidden');
+      if (tabProducts) tabProducts.classList.remove('hidden');
+      if (btnBatches) btnBatches.className = 'px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition flex items-center space-x-2';
+      if (btnProducts) btnProducts.className = 'px-4 py-2 rounded-xl text-xs font-bold bg-amber-100 text-amber-900 transition flex items-center space-x-2';
+      this.renderMasterProductsTable();
+    }
+  },
+
+  renderMasterProductsTable() {
+    const tbody = document.getElementById('masterProductsTableBody');
+    const totalCountEl = document.getElementById('totalProductsCount');
+    if (!tbody) return;
+
+    const prods = this.getAggregatedProducts();
+    if (totalCountEl) totalCountEl.textContent = prods.length;
+
+    if (prods.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="6" class="text-center py-8 text-slate-400">Belum ada master produk terdaftar.</td>
+        </tr>
+      `;
+      return;
+    }
+
+    tbody.innerHTML = prods.map(p => {
+      let stockBadge = `<span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-md">${p.total_stock} Unit</span>`;
+      if (p.total_stock <= 0) {
+        stockBadge = `<span class="bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-md">Habis</span>`;
+      } else if (p.total_stock <= 5) {
+        stockBadge = `<span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-md">Menipis (${p.total_stock})</span>`;
+      }
+
+      return `
+        <tr class="hover:bg-slate-50 transition">
+          <td class="px-4 py-3 font-bold text-slate-800">${p.name}</td>
+          <td class="px-4 py-3 text-slate-500">${p.category}</td>
+          <td class="px-4 py-3">${stockBadge}</td>
+          <td class="px-4 py-3 font-extrabold text-brand-primary font-heading">Rp ${this.formatNumber(p.earliest_price)}</td>
+          <td class="px-4 py-3 text-slate-600 font-semibold">${p.batches.length} Batch</td>
+          <td class="px-4 py-3 text-center">
+            <div class="flex items-center justify-center space-x-2">
+              <button onclick="app.openEditProductModal('${this.escapeQuotes(p.name)}')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-lg text-xs font-bold transition flex items-center space-x-1" title="Edit Master Produk">
+                <i class="fa-solid fa-pen text-amber-600"></i>
+                <span>Edit</span>
+              </button>
+              <button onclick="app.openRestockModalFor('${this.escapeQuotes(p.name)}', '${p.category}')" class="px-2.5 py-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-lg text-xs font-bold transition flex items-center space-x-1" title="Tambah Batch Restock">
+                <i class="fa-solid fa-plus"></i>
+                <span>Restock</span>
+              </button>
+              <button onclick="app.handleDeleteProductDirect('${this.escapeQuotes(p.name)}')" class="px-2 py-1 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg text-xs font-bold transition" title="Hapus Produk">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </td>
         </tr>
       `;
     }).join('');
@@ -1948,6 +2069,277 @@ const app = {
   // 12. RESTOCK INVENTORY BATCH
   // ==========================================
 
+  // ==========================================
+  // 12. MASTER PRODUCT & BATCH MANAGEMENT (CRUD)
+  // ==========================================
+
+  openAddProductModal() {
+    const modal = document.getElementById('productModal');
+    if (!modal) return;
+
+    document.getElementById('productModalMode').value = 'add';
+    document.getElementById('productModalOriginalName').value = '';
+    document.getElementById('productModalTitle').textContent = 'Tambah Master Produk Baru';
+    document.getElementById('productModalSubmitBtnText').textContent = 'Simpan Master Produk';
+    
+    document.getElementById('productModalName').value = '';
+    document.getElementById('productModalCategory').value = 'ATK & Kertas';
+    document.getElementById('productModalPrice').value = '';
+    document.getElementById('productModalStock').value = '10';
+    document.getElementById('productModalDateIn').value = new Date().toISOString().split('T')[0];
+
+    const stockContainer = document.getElementById('productModalAddStockContainer');
+    if (stockContainer) stockContainer.classList.remove('hidden');
+
+    const btnDelete = document.getElementById('btnDeleteProduct');
+    if (btnDelete) btnDelete.classList.add('hidden');
+
+    modal.classList.remove('hidden');
+  },
+
+  openEditProductModal(productName) {
+    const modal = document.getElementById('productModal');
+    if (!modal) return;
+
+    const prods = this.getAggregatedProducts();
+    const prod = prods.find(p => p.name === productName);
+    if (!prod) {
+      this.showToast('Produk tidak ditemukan', 'error');
+      return;
+    }
+
+    document.getElementById('productModalMode').value = 'edit';
+    document.getElementById('productModalOriginalName').value = productName;
+    document.getElementById('productModalTitle').textContent = `Edit Master Produk: ${productName}`;
+    document.getElementById('productModalSubmitBtnText').textContent = 'Simpan Perubahan Master';
+
+    document.getElementById('productModalName').value = prod.name;
+    document.getElementById('productModalCategory').value = prod.category;
+    document.getElementById('productModalPrice').value = prod.earliest_price;
+
+    const stockContainer = document.getElementById('productModalAddStockContainer');
+    if (stockContainer) stockContainer.classList.add('hidden');
+
+    const btnDelete = document.getElementById('btnDeleteProduct');
+    if (btnDelete) btnDelete.classList.remove('hidden');
+
+    modal.classList.remove('hidden');
+  },
+
+  closeProductModal() {
+    const modal = document.getElementById('productModal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  handleSaveProduct(event) {
+    event.preventDefault();
+
+    const mode = document.getElementById('productModalMode').value;
+    const originalName = document.getElementById('productModalOriginalName').value;
+    const newName = document.getElementById('productModalName').value.trim();
+    const category = document.getElementById('productModalCategory').value;
+    const price = Number(document.getElementById('productModalPrice').value);
+
+    if (!newName) {
+      this.showToast('Nama produk tidak boleh kosong!', 'warning');
+      return;
+    }
+
+    if (mode === 'add') {
+      const initialStock = Number(document.getElementById('productModalStock').value) || 0;
+      const dateIn = document.getElementById('productModalDateIn').value || new Date().toISOString().split('T')[0];
+      const batchId = 'BATCH-' + dateIn.replace(/-/g, '').slice(0, 6) + '-' + String(Math.floor(Math.random() * 90 + 10));
+
+      const newBatch = {
+        batch_id: batchId,
+        product_name: newName,
+        category: category,
+        stock_qty: initialStock,
+        unit_price: price,
+        date_in: dateIn,
+        method: 'FIFO',
+        status: initialStock > 0 ? 'Active' : 'Empty'
+      };
+
+      this.db.stock_inventory.push(newBatch);
+      this.saveState();
+      this.closeProductModal();
+      this.updateUI();
+      this.showToast(`Master produk '${newName}' berhasil ditambahkan ke katalog!`, 'success');
+
+      if (this.db.gas_api_url) {
+        this.syncGasProduct('add', '', {
+          product_name: newName,
+          category: category,
+          unit_price: price,
+          initial_stock: initialStock,
+          date_in: dateIn,
+          batch_id: batchId
+        });
+      }
+    } else {
+      let updatedCount = 0;
+      this.db.stock_inventory.forEach(b => {
+        if (b.product_name === originalName) {
+          b.product_name = newName;
+          b.category = category;
+          b.unit_price = price;
+          updatedCount++;
+        }
+      });
+
+      this.saveState();
+      this.closeProductModal();
+      this.updateUI();
+      this.showToast(`Master produk '${newName}' (${updatedCount} batch) berhasil diperbarui!`, 'success');
+
+      if (this.db.gas_api_url) {
+        this.syncGasProduct('edit', originalName, {
+          product_name: newName,
+          category: category,
+          unit_price: price
+        });
+      }
+    }
+
+    if (this.activeView === 'catalog') this.renderCatalog();
+    if (this.activeView === 'inventory') {
+      this.renderInventoryTable();
+      this.renderMasterProductsTable();
+    }
+  },
+
+  handleDeleteProductModal() {
+    const originalName = document.getElementById('productModalOriginalName').value;
+    if (originalName) {
+      this.closeProductModal();
+      this.handleDeleteProductDirect(originalName);
+    }
+  },
+
+  handleDeleteProductDirect(productName) {
+    if (!confirm(`Apakah Anda yakin ingin menghapus produk "${productName}" beserta seluruh batch stoknya dari sistem?`)) {
+      return;
+    }
+
+    const initialLength = this.db.stock_inventory.length;
+    this.db.stock_inventory = this.db.stock_inventory.filter(b => b.product_name !== productName);
+    const removedCount = initialLength - this.db.stock_inventory.length;
+
+    this.saveState();
+    this.updateUI();
+    this.showToast(`Produk "${productName}" (${removedCount} batch) berhasil dihapus!`, 'success');
+
+    if (this.db.gas_api_url) {
+      this.syncGasDeleteProduct(productName);
+    }
+
+    if (this.activeView === 'catalog') this.renderCatalog();
+    if (this.activeView === 'inventory') {
+      this.renderInventoryTable();
+      this.renderMasterProductsTable();
+    }
+  },
+
+  openEditBatchModal(batchId) {
+    const batch = this.db.stock_inventory.find(b => b.batch_id === batchId);
+    if (!batch) {
+      this.showToast('Batch tidak ditemukan!', 'error');
+      return;
+    }
+
+    const modal = document.getElementById('editBatchModal');
+    if (!modal) return;
+
+    document.getElementById('editBatchId').value = batch.batch_id;
+    document.getElementById('editBatchIdDisplay').textContent = batch.batch_id;
+    document.getElementById('editBatchProdName').value = batch.product_name;
+    document.getElementById('editBatchCategory').value = batch.category;
+    document.getElementById('editBatchStatus').value = batch.status;
+    document.getElementById('editBatchQty').value = batch.stock_qty;
+    document.getElementById('editBatchPrice').value = batch.unit_price;
+    document.getElementById('editBatchDateIn').value = batch.date_in;
+
+    modal.classList.remove('hidden');
+  },
+
+  closeEditBatchModal() {
+    const modal = document.getElementById('editBatchModal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  handleSaveBatchEdit(event) {
+    event.preventDefault();
+
+    const batchId = document.getElementById('editBatchId').value;
+    const batch = this.db.stock_inventory.find(b => b.batch_id === batchId);
+    if (!batch) {
+      this.showToast('Batch tidak ditemukan!', 'error');
+      return;
+    }
+
+    batch.product_name = document.getElementById('editBatchProdName').value.trim();
+    batch.category = document.getElementById('editBatchCategory').value;
+    batch.status = document.getElementById('editBatchStatus').value;
+    batch.stock_qty = Number(document.getElementById('editBatchQty').value);
+    batch.unit_price = Number(document.getElementById('editBatchPrice').value);
+    batch.date_in = document.getElementById('editBatchDateIn').value;
+
+    if (batch.stock_qty <= 0 && batch.status === 'Active') {
+      batch.status = 'Empty';
+    }
+
+    this.saveState();
+    this.closeEditBatchModal();
+    this.updateUI();
+    this.showToast(`Batch ${batchId} berhasil diperbarui!`, 'success');
+
+    if (this.db.gas_api_url) {
+      this.syncGasBatchEdit(batch);
+    }
+
+    if (this.activeView === 'inventory') {
+      this.renderInventoryTable();
+      this.renderMasterProductsTable();
+    }
+    if (this.activeView === 'catalog') this.renderCatalog();
+  },
+
+  handleDeleteBatchModal() {
+    const batchId = document.getElementById('editBatchId').value;
+    if (batchId) {
+      this.closeEditBatchModal();
+      this.handleDeleteBatchDirect(batchId);
+    }
+  },
+
+  handleDeleteBatchDirect(batchId) {
+    if (!confirm(`Hapus batch ${batchId} dari inventaris?`)) return;
+
+    this.db.stock_inventory = this.db.stock_inventory.filter(b => b.batch_id !== batchId);
+    this.saveState();
+    this.updateUI();
+    this.showToast(`Batch ${batchId} berhasil dihapus!`, 'success');
+
+    if (this.db.gas_api_url) {
+      this.syncGasDeleteBatch(batchId);
+    }
+
+    if (this.activeView === 'inventory') {
+      this.renderInventoryTable();
+      this.renderMasterProductsTable();
+    }
+    if (this.activeView === 'catalog') this.renderCatalog();
+  },
+
+  openRestockModalFor(productName, category) {
+    this.openRestockModal();
+    const nameInput = document.getElementById('restockProdName');
+    const catInput = document.getElementById('restockCategory');
+    if (nameInput) nameInput.value = productName;
+    if (catInput && category) catInput.value = category;
+  },
+
   openRestockModal() {
     const modal = document.getElementById('restockModal');
     if (modal) modal.classList.remove('hidden');
@@ -1989,7 +2381,14 @@ const app = {
     this.checkStockAlerts();
     this.showToast(`Batch restock ${newBatchId} (${prodName}) berhasil dicatat!`, 'success');
     
-    if (this.activeView === 'inventory') this.renderInventoryTable();
+    if (this.db.gas_api_url) {
+      this.syncGasRestock(newBatch);
+    }
+
+    if (this.activeView === 'inventory') {
+      this.renderInventoryTable();
+      this.renderMasterProductsTable();
+    }
     if (this.activeView === 'catalog') this.renderCatalog();
   },
 
@@ -2386,6 +2785,91 @@ const app = {
       });
     } catch (e) {
       console.warn('Sync approval error:', e);
+    }
+  },
+
+  async syncGasProduct(mode, originalName, productData) {
+    if (!this.db.gas_api_url) return;
+    try {
+      await fetch(this.db.gas_api_url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'saveProduct',
+          mode: mode,
+          original_name: originalName,
+          ...productData
+        })
+      });
+    } catch (err) {
+      console.warn('Sync Product to GAS error:', err);
+    }
+  },
+
+  async syncGasDeleteProduct(productName) {
+    if (!this.db.gas_api_url) return;
+    try {
+      await fetch(this.db.gas_api_url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'deleteProduct',
+          product_name: productName
+        })
+      });
+    } catch (err) {
+      console.warn('Sync Delete Product to GAS error:', err);
+    }
+  },
+
+  async syncGasBatchEdit(batchData) {
+    if (!this.db.gas_api_url) return;
+    try {
+      await fetch(this.db.gas_api_url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'updateBatch',
+          batch_id: batchData.batch_id,
+          product_name: batchData.product_name,
+          category: batchData.category,
+          stock_qty: batchData.stock_qty,
+          unit_price: batchData.unit_price,
+          date_in: batchData.date_in,
+          status: batchData.status
+        })
+      });
+    } catch (err) {
+      console.warn('Sync Batch Edit to GAS error:', err);
+    }
+  },
+
+  async syncGasDeleteBatch(batchId) {
+    if (!this.db.gas_api_url) return;
+    try {
+      await fetch(this.db.gas_api_url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'deleteBatch',
+          batch_id: batchId
+        })
+      });
+    } catch (err) {
+      console.warn('Sync Delete Batch to GAS error:', err);
+    }
+  },
+
+  async syncGasRestock(batch) {
+    if (!this.db.gas_api_url) return;
+    try {
+      await fetch(this.db.gas_api_url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action: 'restockInventory', batch: batch })
+      });
+    } catch (e) {
+      console.warn('Sync restock error:', e);
     }
   },
 

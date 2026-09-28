@@ -791,7 +791,6 @@ function initDatabase() {
     usersSheet.appendRow(['unit_tk', 'tk_alimam', 'hash_tk', 'TK Islam Al-Imam', 'Unit']);
     usersSheet.appendRow(['unit_sd', 'sd_alimam', 'hash_sd', 'SD Islam Al-Imam', 'Unit']);
     usersSheet.appendRow(['unit_smp', 'smp_alimam', 'hash_smp', 'SMP Islam Al-Imam', 'Unit']);
-    usersSheet.appendRow(['unit_sma', 'sma_alimam', 'hash_sma', 'SMA Islam Al-Imam', 'Unit']);
     usersSheet.appendRow(['bendahara', 'bendahara_yayasan', 'hash_ben', 'Bendahara Yayasan', 'Bendahara']);
     usersSheet.appendRow(['admin', 'admin_sarpras', 'hash_adm', 'Admin Logistik & SARPRAS', 'Admin']);
   }
@@ -804,7 +803,6 @@ function initDatabase() {
     rapbsSheet.appendRow(['unit_tk', 15000000, 2750000, 12250000, '2026-09-15 08:30']);
     rapbsSheet.appendRow(['unit_sd', 35884000, 8400000, 27484000, '2026-09-28 10:15']);
     rapbsSheet.appendRow(['unit_smp', 24506000, 6200000, 18306000, '2026-09-28 10:30']);
-    rapbsSheet.appendRow(['unit_sma', 40000000, 11500000, 28500000, '2026-09-18 09:00']);
   }
 
   // 3. Stock_Inventory Sheet

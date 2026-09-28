@@ -280,7 +280,6 @@ const INITIAL_DB = {
     { unit_id: 'unit_tk', username: 'tk_alimam', unit_name: 'TK Islam Al-Imam', role: 'Unit' },
     { unit_id: 'unit_sd', username: 'sd_alimam', unit_name: 'SD Islam Al-Imam', role: 'Unit' },
     { unit_id: 'unit_smp', username: 'smp_alimam', unit_name: 'SMP Islam Al-Imam', role: 'Unit' },
-    { unit_id: 'unit_sma', username: 'sma_alimam', unit_name: 'SMA Islam Al-Imam', role: 'Unit' },
     { unit_id: 'bendahara', username: 'bendahara_yayasan', unit_name: 'Bendahara Yayasan', role: 'Bendahara' },
     { unit_id: 'admin', username: 'admin_sarpras', unit_name: 'Admin Logistik & SARPRAS', role: 'Admin' }
   ],
@@ -288,8 +287,7 @@ const INITIAL_DB = {
   rapbs_poin: [
     { unit_id: 'unit_tk', total_plafond: 15000000, terpakai: 2750000, saldo_tersedia: 12250000, updated_at: '2026-09-15 08:30' },
     { unit_id: 'unit_sd', total_plafond: 35884000, terpakai: 8400000, saldo_tersedia: 27484000, updated_at: '2026-09-28 10:15' },
-    { unit_id: 'unit_smp', total_plafond: 24506000, terpakai: 6200000, saldo_tersedia: 18306000, updated_at: '2026-09-28 10:30' },
-    { unit_id: 'unit_sma', total_plafond: 40000000, terpakai: 11500000, saldo_tersedia: 28500000, updated_at: '2026-09-18 09:00' }
+    { unit_id: 'unit_smp', total_plafond: 24506000, terpakai: 6200000, saldo_tersedia: 18306000, updated_at: '2026-09-28 10:30' }
   ],
 
   // Rincian Pos Sumber Dana RAPBS SARPRAS (D.1 SD & D SMP)
@@ -580,13 +578,7 @@ const INITIAL_DB = {
     { ac_id: 'AC-SMP-11', unit_id: 'unit_smp', room_name: 'Ruang Kepala Sekolah SMP', brand: 'Sharp Inverter 1 PK', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-08-01', next_service_date: '2026-11-01', install_year: 2025, total_service_count: 2, notes: 'Pos D SMP Item 16' },
     { ac_id: 'AC-SMP-12', unit_id: 'unit_smp', room_name: 'Studio Podcast & Tahfidz SMP', brand: 'Gree Inverter 1 PK (Silent)', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-08-10', next_service_date: '2026-11-10', install_year: 2025, total_service_count: 2, notes: 'Akustik kedap suara' },
     { ac_id: 'AC-SMP-13', unit_id: 'unit_smp', room_name: 'Ruang BK & Konseling SMP', brand: 'Sharp Standard 0.75 PK', capacity_pk: '0.75 PK', condition: 'Baik / Normal', last_service_date: '2026-07-20', next_service_date: '2026-10-20', install_year: 2024, total_service_count: 3, notes: 'Pos D SMP Item 16' },
-    { ac_id: 'AC-SMP-14', unit_id: 'unit_smp', room_name: 'Ruang Server & IT Al-Imam', brand: 'Daikin Premium Inverter 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-20', next_service_date: '2026-11-20', install_year: 2025, total_service_count: 3, notes: 'Beroperasi 24/7 suhu 18-20 C' },
-
-    // SMA / Yayasan AC Assets (4 units)
-    { ac_id: 'AC-SMA-01', unit_id: 'unit_sma', room_name: 'Ruang Kelas 10 MIPA SMA', brand: 'Daikin 1 PK', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-08-05', next_service_date: '2026-11-05', install_year: 2025, total_service_count: 2, notes: 'Lantai 3' },
-    { ac_id: 'AC-SMA-02', unit_id: 'unit_sma', room_name: 'Ruang Kelas 11 MIPA SMA', brand: 'Daikin 1 PK', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-08-05', next_service_date: '2026-11-05', install_year: 2025, total_service_count: 2, notes: 'Lantai 3' },
-    { ac_id: 'AC-SMA-03', unit_id: 'unit_sma', room_name: 'Kantor Guru SMA & Yayasan', brand: 'Panasonic Inverter 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-07-22', next_service_date: '2026-10-22', install_year: 2024, total_service_count: 4, notes: 'Ruang gabungan' },
-    { ac_id: 'AC-SMA-04', unit_id: 'unit_sma', room_name: 'Aula Rapat Yayasan Al-Imam', brand: 'Daikin Standing Floor 3 PK', capacity_pk: '3 PK', condition: 'Baik / Normal', last_service_date: '2026-08-12', next_service_date: '2026-11-12', install_year: 2024, total_service_count: 3, notes: 'Kapasitas besar 100 orang' }
+    { ac_id: 'AC-SMP-14', unit_id: 'unit_smp', room_name: 'Ruang Server & IT Al-Imam', brand: 'Daikin Premium Inverter 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-20', next_service_date: '2026-11-20', install_year: 2025, total_service_count: 3, notes: 'Beroperasi 24/7 suhu 18-20 C' }
   ],
 
   ac_service_requests: [
@@ -889,18 +881,6 @@ const INITIAL_DB = {
       status: 'Perencanaan',
       notes: 'Perbaikan bak cuci piring lab kimia dan keramik meja praktikum.',
       created_at: '2026-09-26'
-    },
-    {
-      project_id: 'PRJ-SMA-01',
-      unit_id: 'unit_sma',
-      location_name: 'Pengecatan & Finishing Aula Pertemuan Yayasan',
-      category: 'Pengecatan Gedung / Kelas',
-      budget_estimate: 7500000,
-      progress_pct: 40,
-      target_date: '2026-10-18',
-      status: 'Dalam Pengerjaan',
-      notes: 'Pengecatan interior aula dinding tinggi dan pelapisan peredam akustik.',
-      created_at: '2026-09-23'
     }
   ],
 
@@ -1170,6 +1150,16 @@ const app = {
       if (this.db.cms_settings.branding.primary_color === '#047857') {
         this.db.cms_settings.branding.primary_color = '#00a86b';
       }
+    }
+
+    // Filter out SMA (unit_sma) from existing localStorage state
+    if (this.db) {
+      if (this.db.users) this.db.users = this.db.users.filter(u => u.unit_id !== 'unit_sma');
+      if (this.db.rapbs_poin) this.db.rapbs_poin = this.db.rapbs_poin.filter(r => r.unit_id !== 'unit_sma');
+      if (this.db.ac_inventory) this.db.ac_inventory = this.db.ac_inventory.filter(a => a.unit_id !== 'unit_sma');
+      if (this.db.renov_projects) this.db.renov_projects = this.db.renov_projects.filter(p => p.unit_id !== 'unit_sma');
+      if (this.db.ac_service_requests) this.db.ac_service_requests = this.db.ac_service_requests.filter(r => r.unit_id !== 'unit_sma');
+      if (this.db.renov_requests) this.db.renov_requests = this.db.renov_requests.filter(r => r.unit_id !== 'unit_sma');
     }
 
     // Synchronize newly added seed products to stock_inventory if missing
@@ -1448,7 +1438,6 @@ const app = {
     if (this.currentUser.unit_id === 'unit_tk') avatarText = 'TK';
     else if (this.currentUser.unit_id === 'unit_sd') avatarText = 'SD';
     else if (this.currentUser.unit_id === 'unit_smp') avatarText = 'SMP';
-    else if (this.currentUser.unit_id === 'unit_sma') avatarText = 'SMA';
     else if (this.currentUser.unit_id === 'bendahara') avatarText = 'BY';
     else if (this.currentUser.unit_id === 'admin') avatarText = 'ADM';
     document.getElementById('userAvatar').textContent = avatarText;
@@ -4941,7 +4930,7 @@ const app = {
   },
 
   // ==========================================
-  // 14.6. DEDICATED AC MANAGEMENT & SERVICE MODULE (PG-TK, SD, SMP, SMA)
+  // 14.6. DEDICATED AC MANAGEMENT & SERVICE MODULE (PG-TK, SD, SMP)
   // ==========================================
 
   renderAcServiceView() {
@@ -5086,7 +5075,7 @@ const app = {
   populateAcFormDropdowns() {
     const unitSelect = document.getElementById('acFormUnitSelect');
     if (unitSelect && this.currentUser && this.currentUser.unit_id) {
-      if (['unit_tk', 'unit_sd', 'unit_smp', 'unit_sma'].includes(this.currentUser.unit_id)) {
+      if (['unit_tk', 'unit_sd', 'unit_smp'].includes(this.currentUser.unit_id)) {
         unitSelect.value = this.currentUser.unit_id;
       }
     }
@@ -5301,13 +5290,11 @@ const app = {
       if (ac.unit_id === 'unit_tk') unitBadge = 'bg-amber-100 text-amber-800';
       else if (ac.unit_id === 'unit_sd') unitBadge = 'bg-emerald-100 text-emerald-800';
       else if (ac.unit_id === 'unit_smp') unitBadge = 'bg-blue-100 text-blue-800';
-      else if (ac.unit_id === 'unit_sma') unitBadge = 'bg-purple-100 text-purple-800';
 
       const unitNameMap = {
         unit_tk: 'PG-TK',
         unit_sd: 'SD',
-        unit_smp: 'SMP',
-        unit_sma: 'SMA'
+        unit_smp: 'SMP'
       };
 
       return `
@@ -5359,7 +5346,7 @@ const app = {
 
   filterAcInventory(unitId) {
     this.acUnitFilter = unitId;
-    const buttons = ['all', 'unit_tk', 'unit_sd', 'unit_smp', 'unit_sma'];
+    const buttons = ['all', 'unit_tk', 'unit_sd', 'unit_smp'];
 
     buttons.forEach(b => {
       const btn = document.getElementById(`acFilterUnit-${b}`);
@@ -5471,7 +5458,7 @@ const app = {
       this.showToast(`Data unit AC ${editId} berhasil diperbarui!`, 'success');
     } else {
       // Generate unique AC ID
-      const prefixMap = { unit_tk: 'AC-TK', unit_sd: 'AC-SD', unit_smp: 'AC-SMP', unit_sma: 'AC-SMA' };
+      const prefixMap = { unit_tk: 'AC-TK', unit_sd: 'AC-SD', unit_smp: 'AC-SMP' };
       const prefix = prefixMap[unitId] || 'AC-GEN';
       const countForUnit = this.db.ac_inventory.filter(a => a.unit_id === unitId).length + 1;
       const padNum = String(countForUnit).padStart(2, '0');
@@ -5611,8 +5598,7 @@ const app = {
       const units = [
         { id: 'unit_tk', name: 'PG-TK Al-Imam', plafond_ac: 3500000 },
         { id: 'unit_sd', name: 'SD Al-Imam', plafond_ac: 5500000 },
-        { id: 'unit_smp', name: 'SMP Al-Imam', plafond_ac: 4200000 }, // Pos D SMP Item 16 Maintenance AC = 4.200.000
-        { id: 'unit_sma', name: 'SMA / Yayasan', plafond_ac: 6000000 }
+        { id: 'unit_smp', name: 'SMP Al-Imam', plafond_ac: 4200000 } // Pos D SMP Item 16 Maintenance AC = 4.200.000
       ];
 
       const requests = this.db.ac_service_requests || [];
@@ -5666,7 +5652,7 @@ const app = {
         else if (r.status === 'Dalam Pengerjaan') statusBadge = 'bg-blue-100 text-blue-800';
         else if (r.status === 'Ditolak') statusBadge = 'bg-rose-100 text-rose-800';
 
-        const unitNameMap = { unit_tk: 'PG-TK', unit_sd: 'SD', unit_smp: 'SMP', unit_sma: 'SMA' };
+        const unitNameMap = { unit_tk: 'PG-TK', unit_sd: 'SD', unit_smp: 'SMP' };
 
         return `
           <tr class="hover:bg-slate-50 transition border-b border-slate-100 text-xs">
@@ -5802,14 +5788,12 @@ const app = {
       unit_tk: inventory.filter(a => a.unit_id === 'unit_tk').length,
       unit_sd: inventory.filter(a => a.unit_id === 'unit_sd').length,
       unit_smp: inventory.filter(a => a.unit_id === 'unit_smp').length,
-      unit_sma: inventory.filter(a => a.unit_id === 'unit_sma').length,
     };
 
     const unitExpense = {
       unit_tk: requests.filter(r => r.unit_id === 'unit_tk').reduce((s, r) => s + (Number(r.total_amount) || 0), 0),
       unit_sd: requests.filter(r => r.unit_id === 'unit_sd').reduce((s, r) => s + (Number(r.total_amount) || 0), 0),
       unit_smp: requests.filter(r => r.unit_id === 'unit_smp').reduce((s, r) => s + (Number(r.total_amount) || 0), 0),
-      unit_sma: requests.filter(r => r.unit_id === 'unit_sma').reduce((s, r) => s + (Number(r.total_amount) || 0), 0),
     };
 
     const tableRows = requests.map((r, idx) => `
@@ -5835,7 +5819,7 @@ const app = {
         </div>
 
         <h3 style="text-align: center; margin: 0 0 4px 0; text-transform: uppercase; font-size: 13pt;">REKAPITULASI BIAYA & PERAWATAN AC SEKOLAH</h3>
-        <p style="text-align: center; margin: 0 0 20px 0; font-size: 10pt; color: #555;">Tahun Ajaran 2026/2027 • Pos Anggaran Perawatan & Pengadaan AC (PG-TK, SD, SMP, SMA)</p>
+        <p style="text-align: center; margin: 0 0 20px 0; font-size: 10pt; color: #555;">Tahun Ajaran 2026/2027 • Pos Anggaran Perawatan & Pengadaan AC (PG-TK, SD, SMP)</p>
 
         <!-- Summary Table per Unit -->
         <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
@@ -5870,19 +5854,12 @@ const app = {
               <td style="border: 1px solid #333; padding: 6px; text-align: right; font-weight: bold;">Rp ${this.formatNumber(unitExpense.unit_smp)}</td>
               <td style="border: 1px solid #333; padding: 6px; text-align: center;">${Math.round((unitExpense.unit_smp / 4200000) * 100)}%</td>
             </tr>
-            <tr>
-              <td style="border: 1px solid #333; padding: 6px; font-weight: bold;">SMA Islam & Kantor Yayasan</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: center;">${unitCounts.unit_sma} Unit</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: right;">Rp 6.000.000</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: right; font-weight: bold;">Rp ${this.formatNumber(unitExpense.unit_sma)}</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: center;">${Math.round((unitExpense.unit_sma / 6000000) * 100)}%</td>
-            </tr>
             <tr style="background: #f8fafc; font-weight: bold;">
               <td style="border: 1px solid #333; padding: 7px;">TOTAL KESELURUHAN</td>
               <td style="border: 1px solid #333; padding: 7px; text-align: center;">${inventory.length} Unit</td>
-              <td style="border: 1px solid #333; padding: 7px; text-align: right;">Rp 19.200.000</td>
+              <td style="border: 1px solid #333; padding: 7px; text-align: right;">Rp 13.200.000</td>
               <td style="border: 1px solid #333; padding: 7px; text-align: right; font-size: 12pt; color: #0369a1;">Rp ${this.formatNumber(totalCost)}</td>
-              <td style="border: 1px solid #333; padding: 7px; text-align: center;">${Math.round((totalCost / 19200000) * 100)}%</td>
+              <td style="border: 1px solid #333; padding: 7px; text-align: center;">${Math.round((totalCost / 13200000) * 100)}%</td>
             </tr>
           </tbody>
         </table>
@@ -6071,7 +6048,7 @@ const app = {
   populateRenovFormDropdowns() {
     const unitSelect = document.getElementById('renovFormUnitSelect');
     if (unitSelect && this.currentUser && this.currentUser.unit_id) {
-      if (['unit_tk', 'unit_sd', 'unit_smp', 'unit_sma'].includes(this.currentUser.unit_id)) {
+      if (['unit_tk', 'unit_sd', 'unit_smp'].includes(this.currentUser.unit_id)) {
         unitSelect.value = this.currentUser.unit_id;
       }
     }
@@ -6321,8 +6298,7 @@ const app = {
     const unitMap = {
       unit_tk: { name: 'PG-TK Islam Al-Imam', badge: 'bg-emerald-100 text-emerald-800' },
       unit_sd: { name: 'SD Islam Al-Imam', badge: 'bg-blue-100 text-blue-800' },
-      unit_smp: { name: 'SMP Islam Al-Imam', badge: 'bg-indigo-100 text-indigo-800' },
-      unit_sma: { name: 'SMA Islam Al-Imam', badge: 'bg-purple-100 text-purple-800' }
+      unit_smp: { name: 'SMP Islam Al-Imam', badge: 'bg-indigo-100 text-indigo-800' }
     };
 
     tbody.innerHTML = list.map(p => {
@@ -6390,7 +6366,7 @@ const app = {
   filterRenovProjects(unitId) {
     this.renovUnitFilter = unitId;
 
-    const btns = ['all', 'unit_tk', 'unit_sd', 'unit_smp', 'unit_sma'];
+    const btns = ['all', 'unit_tk', 'unit_sd', 'unit_smp'];
     btns.forEach(b => {
       const el = document.getElementById(`renovFilterUnit-${b}`);
       if (el) {
@@ -6628,8 +6604,7 @@ const app = {
     const units = [
       { id: 'unit_tk', name: 'PG-TK Islam Al-Imam', budget: 4500000, icon: 'fa-shapes', color: 'emerald' },
       { id: 'unit_sd', name: 'SD Islam Al-Imam', budget: 12500000, icon: 'fa-school', color: 'blue' },
-      { id: 'unit_smp', name: 'SMP Islam Al-Imam', budget: 9700000, icon: 'fa-graduation-cap', color: 'indigo' },
-      { id: 'unit_sma', name: 'SMA & Gedung Yayasan', budget: 8500000, icon: 'fa-building', color: 'purple' }
+      { id: 'unit_smp', name: 'SMP Islam Al-Imam', budget: 9700000, icon: 'fa-graduation-cap', color: 'indigo' }
     ];
 
     if (cardsContainer) {
@@ -6814,7 +6789,6 @@ const app = {
       unit_tk: requests.filter(r => r.unit_id === 'unit_tk').reduce((s, r) => s + (Number(r.total_amount) || 0), 0),
       unit_sd: requests.filter(r => r.unit_id === 'unit_sd').reduce((s, r) => s + (Number(r.total_amount) || 0), 0),
       unit_smp: requests.filter(r => r.unit_id === 'unit_smp').reduce((s, r) => s + (Number(r.total_amount) || 0), 0),
-      unit_sma: requests.filter(r => r.unit_id === 'unit_sma').reduce((s, r) => s + (Number(r.total_amount) || 0), 0),
     };
 
     const tableRows = requests.map((r, idx) => `
@@ -6841,7 +6815,7 @@ const app = {
         </div>
 
         <h3 style="text-align: center; margin: 0 0 4px 0; text-transform: uppercase; font-size: 13pt;">REKAPITULASI BIAYA MATERIAL, CAT & UPAH TUKANG</h3>
-        <p style="text-align: center; margin: 0 0 20px 0; font-size: 10pt; color: #555;">Tahun Ajaran 2026/2027 • Pemeliharaan Fisik Gedung (PG-TK, SD, SMP, SMA)</p>
+        <p style="text-align: center; margin: 0 0 20px 0; font-size: 10pt; color: #555;">Tahun Ajaran 2026/2027 • Pemeliharaan Fisik Gedung (PG-TK, SD, SMP)</p>
 
         <!-- Summary Table per Unit -->
         <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
@@ -6876,19 +6850,12 @@ const app = {
               <td style="border: 1px solid #333; padding: 6px; text-align: right; font-weight: bold;">Rp ${this.formatNumber(unitExpense.unit_smp)}</td>
               <td style="border: 1px solid #333; padding: 6px; text-align: center;">${Math.round((unitExpense.unit_smp / 9700000) * 100)}%</td>
             </tr>
-            <tr>
-              <td style="border: 1px solid #333; padding: 6px; font-weight: bold;">SMA Islam & Aula Yayasan</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: center;">${projects.filter(p => p.unit_id === 'unit_sma').length} Titik</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: right;">Rp 8.500.000</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: right; font-weight: bold;">Rp ${this.formatNumber(unitExpense.unit_sma)}</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: center;">${Math.round((unitExpense.unit_sma / 8500000) * 100)}%</td>
-            </tr>
             <tr style="background: #f8fafc; font-weight: bold;">
               <td style="border: 1px solid #333; padding: 7px;">TOTAL KESELURUHAN</td>
               <td style="border: 1px solid #333; padding: 7px; text-align: center;">${projects.length} Titik</td>
-              <td style="border: 1px solid #333; padding: 7px; text-align: right;">Rp 35.200.000</td>
+              <td style="border: 1px solid #333; padding: 7px; text-align: right;">Rp 26.700.000</td>
               <td style="border: 1px solid #333; padding: 7px; text-align: right; font-size: 12pt; color: #b45309;">Rp ${this.formatNumber(totalCost)}</td>
-              <td style="border: 1px solid #333; padding: 7px; text-align: center;">${Math.round((totalCost / 35200000) * 100)}%</td>
+              <td style="border: 1px solid #333; padding: 7px; text-align: center;">${Math.round((totalCost / 26700000) * 100)}%</td>
             </tr>
           </tbody>
         </table>

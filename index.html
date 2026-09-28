@@ -133,10 +133,6 @@
                 <span><i class="fa-solid fa-graduation-cap text-blue-600 mr-2"></i>SMP Al-Imam</span>
                 <span class="text-[10px] text-slate-400">Unit</span>
               </button>
-              <button onclick="app.switchUser('unit_sma')" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-50 flex items-center justify-between text-slate-700">
-                <span><i class="fa-solid fa-building-columns text-purple-600 mr-2"></i>SMA Al-Imam</span>
-                <span class="text-[10px] text-slate-400">Unit</span>
-              </button>
               <div class="border-t border-slate-100 my-1"></div>
               <button onclick="app.switchUser('bendahara')" class="w-full text-left px-4 py-2 text-xs hover:bg-amber-50 flex items-center justify-between text-slate-800 font-bold">
                 <span><i class="fa-solid fa-scale-balanced text-amber-600 mr-2"></i>Bendahara Yayasan</span>
@@ -1357,7 +1353,7 @@
                 <i class="fa-solid fa-snowflake mr-1.5 animate-spin-slow"></i>Modul Khusus • Tata Udara & AC Sekolah
               </span>
               <span class="inline-block px-3 py-1 bg-amber-400/20 text-amber-300 border border-amber-400/30 rounded-full text-[11px] font-bold">
-                PG-TK • SD • SMP • SMA
+                PG-TK • SD • SMP
               </span>
             </div>
             <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-white leading-tight">
@@ -1393,7 +1389,7 @@
               </div>
             </div>
             <div class="text-2xl font-black text-slate-800 font-heading" id="metricAcTotalUnits">46 Unit</div>
-            <p class="text-[11px] text-slate-400 mt-1">Terpasang di PG-TK, SD, SMP & SMA</p>
+            <p class="text-[11px] text-slate-400 mt-1">Terpasang di PG-TK, SD & SMP</p>
           </div>
 
           <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm card-hover">
@@ -1497,7 +1493,6 @@
                     <option value="unit_tk">PG-TK Islam Al-Imam</option>
                     <option value="unit_sd" selected>SD Islam Al-Imam</option>
                     <option value="unit_smp">SMP Islam Al-Imam</option>
-                    <option value="unit_sma">SMA Islam Al-Imam</option>
                   </select>
                 </div>
 
@@ -1623,9 +1618,6 @@
               </button>
               <button onclick="app.filterAcInventory('unit_smp')" id="acFilterUnit-unit_smp" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
                 SMP
-              </button>
-              <button onclick="app.filterAcInventory('unit_sma')" id="acFilterUnit-unit_sma" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
-                SMA
               </button>
             </div>
 
@@ -1758,7 +1750,7 @@
                 <i class="fa-solid fa-trowel-bricks mr-1.5"></i>Modul Khusus • Pemeliharaan Sipil & Fisik Sekolah
               </span>
               <span class="inline-block px-3 py-1 bg-white/20 text-white border border-white/30 rounded-full text-[11px] font-bold">
-                PG-TK • SD • SMP • SMA
+                PG-TK • SD • SMP
               </span>
             </div>
             <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-white leading-tight">
@@ -1897,7 +1889,6 @@
                     <option value="unit_tk">PG-TK Islam Al-Imam</option>
                     <option value="unit_sd" selected>SD Islam Al-Imam</option>
                     <option value="unit_smp">SMP Islam Al-Imam</option>
-                    <option value="unit_sma">SMA Islam Al-Imam</option>
                   </select>
                 </div>
 
@@ -2053,9 +2044,6 @@
               </button>
               <button onclick="app.filterRenovProjects('unit_smp')" id="renovFilterUnit-unit_smp" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
                 SMP
-              </button>
-              <button onclick="app.filterRenovProjects('unit_sma')" id="renovFilterUnit-unit_sma" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
-                SMA
               </button>
             </div>
 
@@ -2861,7 +2849,6 @@
             <option value="unit_tk">PG-TK Islam Al-Imam</option>
             <option value="unit_sd" selected>SD Islam Al-Imam</option>
             <option value="unit_smp">SMP Islam Al-Imam</option>
-            <option value="unit_sma">SMA Islam Al-Imam</option>
           </select>
         </div>
 
@@ -3026,7 +3013,6 @@
             <option value="unit_tk">PG-TK Islam Al-Imam</option>
             <option value="unit_sd" selected>SD Islam Al-Imam</option>
             <option value="unit_smp">SMP Islam Al-Imam</option>
-            <option value="unit_sma">SMA Islam Al-Imam</option>
           </select>
         </div>
 

@@ -26,7 +26,7 @@ Aplikasi ini dilengkapi dengan modul **CMS Studio Terintegrasi** yang memungkink
    - **Pilihan Font**: *Plus Jakarta Sans*, *Outfit*, *Inter*, *Poppins*, *Roboto*.
    - **Kelengkungan Sudut (Border Radius)**: *Modern (24px)*, *Soft (14px)*, *Classic (6px)*.
 4. **Manajemen Unit Sekolah & RAPBS**:
-   - Tambah/Edit unit (TK, SD, SMP, SMA, Asrama, Dapur Umum, dll).
+   - Tambah/Edit unit (PG-TK, SD, SMP, Asrama, Dapur Umum, dll).
    - Atur dan ubah kuota plafon anggaran per unit.
 5. **Export & Import Konfigurasi JSON (Jual Putus / Multi-Client Deploy)**:
    - **Export Configuration**: Download seluruh setelan branding dalam satu file `.json`.

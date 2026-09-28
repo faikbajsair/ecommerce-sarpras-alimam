@@ -15,7 +15,11 @@ const CONFIG = {
     STOCK: 'Stock_Inventory',
     ORDERS: 'Orders',
     LOGS: 'Transactions_Log',
-    SETTINGS: 'Settings'
+    SETTINGS: 'Settings',
+    AC_INVENTORY: 'AC_Inventory',
+    AC_SERVICES: 'AC_Services',
+    RENOV_PROJECTS: 'Renov_Projects',
+    RENOV_REQUESTS: 'Renov_Requests'
   }
 };
 
@@ -798,8 +802,8 @@ function initDatabase() {
     rapbsSheet = ss.insertSheet(CONFIG.SHEETS.RAPBS);
     rapbsSheet.appendRow(['Unit_ID', 'Total_Plafond', 'Terpakai', 'Saldo_Tersedia', 'Updated_At']);
     rapbsSheet.appendRow(['unit_tk', 15000000, 2750000, 12250000, '2026-09-15 08:30']);
-    rapbsSheet.appendRow(['unit_sd', 35000000, 8400000, 26600000, '2026-09-16 10:15']);
-    rapbsSheet.appendRow(['unit_smp', 30000000, 6200000, 23800000, '2026-09-17 14:00']);
+    rapbsSheet.appendRow(['unit_sd', 35884000, 8400000, 27484000, '2026-09-28 10:15']);
+    rapbsSheet.appendRow(['unit_smp', 24506000, 6200000, 18306000, '2026-09-28 10:30']);
     rapbsSheet.appendRow(['unit_sma', 40000000, 11500000, 28500000, '2026-09-18 09:00']);
   }
 
@@ -808,11 +812,28 @@ function initDatabase() {
   if (!stockSheet) {
     stockSheet = ss.insertSheet(CONFIG.SHEETS.STOCK);
     stockSheet.appendRow(['Batch_ID', 'Product_Name', 'Category', 'Stock_Qty', 'Unit_Price', 'Date_In', 'Method', 'Status', 'Image_URL']);
-    stockSheet.appendRow(['BATCH-202607-01', 'Spidol Whiteboard Snowman Hitam', 'ATK & Kertas', 0, 8500, '2026-07-10', 'FIFO', 'Empty', 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202608-04', 'Spidol Whiteboard Snowman Hitam', 'ATK & Kertas', 12, 9000, '2026-08-15', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202609-02', 'Spidol Whiteboard Snowman Hitam', 'ATK & Kertas', 50, 9500, '2026-09-05', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202608-01', 'Kertas HVS A4 80gr PaperOne (Rim)', 'ATK & Kertas', 25, 52000, '2026-08-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202609-01', 'Kertas HVS A4 80gr PaperOne (Rim)', 'ATK & Kertas', 40, 54000, '2026-09-02', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-01', 'Alat kebersihan OB', 'Kebersihan & Sanitasi', 24, 100000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-02', 'Tinta white board 1 kelas/2/1botol', 'ATK & Kertas', 60, 15000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-03', 'Spidol', 'ATK & Kertas', 50, 10000, '2026-09-05', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-04', 'Kertas HVS F4 untuk admin guru', 'ATK & Kertas', 40, 60000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-05', 'Kertas HVS F4 untuk admin kantor', 'ATK & Kertas', 35, 50000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-06', 'Pewangi kelas', 'Kebersihan & Sanitasi', 50, 10000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-07', 'Gayung, Ember', 'Kebersihan & Sanitasi', 20, 35000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-08', 'Penghapus papan tulis', 'Perlengkapan Kelas', 40, 10000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-09', 'Tinta Printer Hitam dan warna 6 bln 1 set (4 btl)', 'Elektronik & IT', 15, 700000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-10', 'Fotocopy', 'Jasa & Operasional', 5000, 2000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1568667256549-094345857637?w=600&auto=format&fit=crop&q=80']);
+    // SMP items
+    stockSheet.appendRow(['BATCH-202609-20', 'Kertas SPR', 'ATK & Kertas', 500, 500, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-21', 'Kertas Dinas (rim)', 'ATK & Kertas', 20, 50000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-22', 'Tinta white board 1 kelas @10 botol', 'ATK & Kertas', 36, 15000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-23', 'Pena, Pensil, Penghapus', 'ATK & Kertas', 30, 15000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-24', 'Sabun kamar mandi', 'Kebersihan & Sanitasi', 72, 10000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1585421514738-01798e348b17?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-25', 'Pewangi kamar mandi', 'Kebersihan & Sanitasi', 72, 10000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-26', 'Obat pel', 'Kebersihan & Sanitasi', 30, 15000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1585421514738-01798e348b17?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-27', 'Lampu kelas @4 setahun', 'Elektronik & IT', 20, 35000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-28', 'Kebutuhan Kebersihan', 'Kebersihan & Sanitasi', 12, 300000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-29', 'Maintenance AC', 'Jasa & Operasional', 56, 75000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-30', 'Alat Peraga Olah Raga dll', 'Perlengkapan Kelas', 5, 1000000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80']);
   }
 
   // 4. Orders Sheet
@@ -836,6 +857,45 @@ function initDatabase() {
   if (!settingsSheet) {
     settingsSheet = ss.insertSheet(CONFIG.SHEETS.SETTINGS);
     settingsSheet.appendRow(['Key', 'Value', 'Updated_At']);
+  }
+
+  // 7. AC_Inventory Sheet
+  let acInventorySheet = ss.getSheetByName(CONFIG.SHEETS.AC_INVENTORY);
+  if (!acInventorySheet) {
+    acInventorySheet = ss.insertSheet(CONFIG.SHEETS.AC_INVENTORY);
+    acInventorySheet.appendRow(['AC_ID', 'Unit_ID', 'Room_Name', 'Brand', 'Capacity_PK', 'Condition', 'Last_Service_Date', 'Next_Service_Date', 'Install_Year', 'Total_Service_Count', 'Notes']);
+    acInventorySheet.appendRow(['AC-TK-01', 'unit_tk', 'Kelas TK A (Sentra Balok)', 'Daikin FTKC25 (Inverter)', '1 PK', 'Baik / Normal', '2026-07-10', '2026-10-10', 2024, 3, 'Outdoor di balkon lantai 1']);
+    acInventorySheet.appendRow(['AC-SD-01', 'unit_sd', 'Ruang Kelas 1A Abu Bakar', 'Daikin FTKC25 (Inverter)', '1 PK', 'Baik / Normal', '2026-08-01', '2026-11-01', 2024, 4, 'Outdoor di selasar lt. 1']);
+    acInventorySheet.appendRow(['AC-SMP-01', 'unit_smp', 'Ruang Kelas 7A Ibnu Sina', 'Daikin FTKC25 (Inverter)', '1 PK', 'Baik / Normal', '2026-07-18', '2026-10-18', 2024, 3, 'Pos D SMP Item 16']);
+    acInventorySheet.appendRow(['AC-SMP-14', 'unit_smp', 'Ruang Server & IT Al-Imam', 'Daikin Premium Inverter 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-08-20', '2026-11-20', 2025, 3, '24/7 suhu 18-20 C']);
+  }
+
+  // 8. AC_Services Sheet
+  let acServicesSheet = ss.getSheetByName(CONFIG.SHEETS.AC_SERVICES);
+  if (!acServicesSheet) {
+    acServicesSheet = ss.insertSheet(CONFIG.SHEETS.AC_SERVICES);
+    acServicesSheet.appendRow(['Request_ID', 'Unit_ID', 'Room_Name', 'AC_ID', 'Service_Name', 'Qty', 'Unit_Price', 'Total_Amount', 'Funding_Source', 'Scheduled_Date', 'Vendor_Name', 'Status', 'Created_At']);
+    acServicesSheet.appendRow(['AC-REQ-202609-01', 'unit_sd', 'Ruang Kelas 2B Ali bin Abi Thalib', 'AC-SD-04', 'Cuci Besar / Overhaul', 1, 150000, 150000, 'RAPBS_POIN', '2026-09-30', 'CV Sarana Sejuk Al-Imam', 'Dalam Pengerjaan', '2026-09-26 14:10']);
+    acServicesSheet.appendRow(['AC-REQ-202609-02', 'unit_smp', 'Ruang Kelas 7A & 7B (2 Unit)', 'AC-SMP-01', 'Cuci AC Rutin (Pos D SMP)', 2, 75000, 150000, 'RAPBS_POIN', '2026-09-25', 'CV Sarana Sejuk Al-Imam', 'Selesai', '2026-09-22 09:30']);
+  }
+
+  // 9. Renov_Projects Sheet
+  let renovProjectsSheet = ss.getSheetByName(CONFIG.SHEETS.RENOV_PROJECTS);
+  if (!renovProjectsSheet) {
+    renovProjectsSheet = ss.insertSheet(CONFIG.SHEETS.RENOV_PROJECTS);
+    renovProjectsSheet.appendRow(['Project_ID', 'Unit_ID', 'Location_Name', 'Category', 'Budget_Estimate', 'Progress_Pct', 'Target_Date', 'Status', 'Notes', 'Created_At']);
+    renovProjectsSheet.appendRow(['PRJ-TK-01', 'unit_tk', 'Pagar Depan & Area Bermain TK', 'Pengecatan Gedung / Kelas', 3500000, 75, '2026-10-05', 'Dalam Pengerjaan', 'Pengecatan pagar warna-warni ramah anak dan perbaikan ayunan.', '2026-09-20']);
+    renovProjectsSheet.appendRow(['PRJ-SD-01', 'unit_sd', 'Dinding Kelas 1A, 1B & Koridor Lantai 1', 'Pengecatan Gedung / Kelas', 5800000, 50, '2026-10-10', 'Dalam Pengerjaan', 'Pengecatan ulang Dulux Catylac interior dan perapian plamir retak rambut.', '2026-09-22']);
+    renovProjectsSheet.appendRow(['PRJ-SD-02', 'unit_sd', 'Toilet Siswa & Guru SD (Lantai 1)', 'Renovasi Toilet & Sanitasi', 4200000, 25, '2026-10-15', 'Dalam Pengerjaan', 'Penggantian keramik lantai anti slip, kran air dan perbaikan saluran pembuangan.', '2026-09-25']);
+    renovProjectsSheet.appendRow(['PRJ-SMP-01', 'unit_smp', 'Pengecatan Koridor & Kelas 7-9 SMP', 'Pengecatan Gedung / Kelas', 6500000, 60, '2026-10-08', 'Dalam Pengerjaan', 'Pengecatan dinding koridor utama dan pintu kelas SMP.', '2026-09-21']);
+  }
+
+  // 10. Renov_Requests Sheet
+  let renovRequestsSheet = ss.getSheetByName(CONFIG.SHEETS.RENOV_REQUESTS);
+  if (!renovRequestsSheet) {
+    renovRequestsSheet = ss.insertSheet(CONFIG.SHEETS.RENOV_REQUESTS);
+    renovRequestsSheet.appendRow(['Request_ID', 'Project_ID', 'Unit_ID', 'Location_Name', 'Category', 'Material_Name', 'Qty', 'Unit_Price', 'Material_Subtotal', 'Labor_Count', 'Labor_Days', 'Labor_Rate', 'Labor_Subtotal', 'Total_Amount', 'Scheduled_Date', 'Vendor_Name', 'Funding_Source', 'Status', 'Notes', 'Created_At']);
+    renovRequestsSheet.appendRow(['RNV-REQ-202609-01', 'PRJ-SD-01', 'unit_sd', 'Dinding Kelas 1A & 1B', 'Pengecatan Gedung / Kelas', 'Cat Tembok Interior Dulux / Catylac 20kg', 4, 650000, 2600000, 2, 4, 175000, 1400000, 4000000, '2026-09-28', 'TB. Al-Imam Jaya Material', 'RAPBS_POIN', 'Dalam Pengerjaan', 'Warna Putih Salju & Hijau Pastel kelas.', '2026-09-24 10:00']);
   }
 
   return ss;

@@ -194,6 +194,12 @@
           <div class="mt-3 bg-black/20 rounded-full h-1.5 overflow-hidden">
             <div id="sidebarProgressBar" class="bg-amber-400 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
           </div>
+
+          <!-- Quick Action to View RAPBS Pos D.1 Breakdown -->
+          <button type="button" onclick="app.openRapbsBreakdownModal(app.currentUser ? app.currentUser.unit_id : 'unit_sd')" class="mt-3 w-full text-center text-[10px] font-bold text-white/95 hover:text-white bg-white/15 hover:bg-white/25 py-1.5 px-2 rounded-xl transition flex items-center justify-center space-x-1.5 shadow-sm">
+            <i class="fa-solid fa-file-invoice-dollar text-amber-300"></i>
+            <span>Rincian Sumber Dana RAPBS</span>
+          </button>
         </div>
 
         <!-- Navigation Links -->
@@ -220,6 +226,24 @@
             <span>Request Barang Baru</span>
           </button>
           
+          <!-- NEW: Dedicated AC Management Menu -->
+          <button onclick="app.navigate('ac-service')" id="nav-ac-service" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-sky-800 bg-sky-50/70 hover:bg-sky-100/90 transition border border-sky-200/70 group">
+            <div class="flex items-center space-x-3">
+              <i class="fa-solid fa-snowflake w-4 text-center text-sm text-sky-600 group-hover:rotate-45 transition-transform duration-300"></i>
+              <span>Layanan & Aset AC</span>
+            </div>
+            <span class="bg-sky-500 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-md shadow-xs">PRIORITAS</span>
+          </button>
+
+          <!-- NEW: Dedicated Renovation, Material & Handyman Labor Menu -->
+          <button onclick="app.navigate('renov-material')" id="nav-renov-material" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-amber-900 bg-amber-50/70 hover:bg-amber-100/90 transition border border-amber-200/70 group">
+            <div class="flex items-center space-x-3">
+              <i class="fa-solid fa-paint-roller w-4 text-center text-sm text-amber-600 group-hover:rotate-12 transition-transform duration-300"></i>
+              <span>Renovasi, Cat & Tukang</span>
+            </div>
+            <span class="bg-amber-500 text-slate-900 text-[9px] font-extrabold px-1.5 py-0.5 rounded-md shadow-xs">PROYEK</span>
+          </button>
+
           <button onclick="app.navigate('orders')" id="nav-orders" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-brand-primary hover:bg-slate-50 transition">
             <i class="fa-solid fa-clock-rotate-left w-4 text-center text-sm"></i>
             <span>Riwayat & Dokumen</span>
@@ -317,7 +341,13 @@
               </div>
             </div>
             <div class="text-xl font-black text-slate-800 font-heading" id="metricTotalPlafond">Rp 0</div>
-            <p class="text-[11px] text-slate-400 mt-1">Alokasi RAPBS Unit SARPRAS</p>
+            <div class="mt-1 flex items-center justify-between">
+              <p class="text-[11px] text-slate-400">Alokasi RAPBS Unit SARPRAS</p>
+              <button type="button" onclick="app.openRapbsBreakdownModal('unit_sd')" class="text-[10px] font-bold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-2 py-0.5 rounded-lg transition inline-flex items-center space-x-1">
+                <i class="fa-solid fa-list-check mr-0.5"></i>
+                <span>Pos D.1 SARPRAS</span>
+              </button>
+            </div>
           </div>
 
           <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm card-hover">
@@ -403,6 +433,40 @@
                   <h4 class="text-xs font-bold text-slate-800">Request Item (Marketplace)</h4>
                   <p class="text-[11px] text-slate-500">Ajukan link Tokopedia / Shopee</p>
                 </div>
+              </div>
+
+              <!-- NEW: AC Fast Hub Card -->
+              <div onclick="app.navigate('ac-service')" class="p-4 rounded-2xl bg-sky-50/90 border border-sky-200/90 hover:border-sky-400 cursor-pointer transition flex items-center justify-between group shadow-sm">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center text-base shadow-md shadow-sky-600/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-snowflake"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center space-x-1.5">
+                      <h4 class="text-xs font-extrabold text-slate-900">Layanan & Aset AC</h4>
+                      <span class="bg-sky-200 text-sky-900 text-[9px] font-black px-1.5 py-0.5 rounded">Prioritas</span>
+                    </div>
+                    <p class="text-[11px] text-sky-800 font-medium">Cuci berkala, servis freon & unit baru PG-TK, SD & SMP</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-right text-xs text-sky-600 group-hover:translate-x-1 transition-transform"></i>
+              </div>
+
+              <!-- NEW: Renovation, Material & Handyman Quick Card -->
+              <div onclick="app.navigate('renov-material')" class="p-4 rounded-2xl bg-amber-50/90 border border-amber-200/90 hover:border-amber-400 cursor-pointer transition flex items-center justify-between group shadow-sm">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-xl bg-amber-600 text-white flex items-center justify-center text-base shadow-md shadow-amber-600/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-paint-roller"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center space-x-1.5">
+                      <h4 class="text-xs font-extrabold text-slate-900">Renovasi, Cat & Tukang</h4>
+                      <span class="bg-amber-200 text-amber-900 text-[9px] font-black px-1.5 py-0.5 rounded">Proyek</span>
+                    </div>
+                    <p class="text-[11px] text-amber-800 font-medium">Beli cat, semen, keramik & upah tukang PG-TK, SD & SMP</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-right text-xs text-amber-600 group-hover:translate-x-1 transition-transform"></i>
               </div>
             </div>
 
@@ -1279,6 +1343,836 @@
 
       </section>
 
+      <!-- ================= VIEW 10: MANAJEMEN & LAYANAN AC (KHUSUS PG-TK, SD, SMP) ================= -->
+      <section id="view-ac-service" class="hidden space-y-6">
+        
+        <!-- AC Hero Banner -->
+        <div class="bg-gradient-to-r from-sky-950 via-sky-900 to-indigo-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+          <div class="absolute right-0 top-0 translate-x-8 -translate-y-8 text-white/5 pointer-events-none">
+            <i class="fa-solid fa-snowflake text-[200px]"></i>
+          </div>
+          <div class="relative z-10 max-w-3xl">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="inline-block px-3 py-1 bg-sky-400/20 text-sky-300 border border-sky-400/30 rounded-full text-[11px] font-extrabold tracking-wide uppercase">
+                <i class="fa-solid fa-snowflake mr-1.5 animate-spin-slow"></i>Modul Khusus • Tata Udara & AC Sekolah
+              </span>
+              <span class="inline-block px-3 py-1 bg-amber-400/20 text-amber-300 border border-amber-400/30 rounded-full text-[11px] font-bold">
+                PG-TK • SD • SMP • SMA
+              </span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-white leading-tight">
+              Pusat Layanan, Perawatan & Pengadaan AC
+            </h2>
+            <p class="text-sky-100/80 text-xs sm:text-sm mt-2 leading-relaxed">
+              Solusi terintegrasi untuk menangani tingginya kebutuhan perawatan AC di seluruh unit sekolah. Kelola jadwal cuci berkala, tambah/isi freon, perbaikan kerusakan, serta pengadaan unit baru dengan kontrol anggaran RAPBS yang transparan.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <button onclick="app.switchAcSubTab('services')" class="px-5 py-2.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-black text-xs rounded-xl shadow-lg shadow-sky-900/40 transition flex items-center space-x-2">
+                <i class="fa-solid fa-plus-circle"></i>
+                <span>Ajukan Cuci / Servis / Unit Baru</span>
+              </button>
+              <button onclick="app.switchAcSubTab('inventory')" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-xl backdrop-blur-md border border-white/20 transition flex items-center space-x-2">
+                <i class="fa-solid fa-list-check"></i>
+                <span>Inventaris & Jadwal Cuci AC</span>
+              </button>
+              <button onclick="app.printAcReport()" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-xl backdrop-blur-md border border-white/20 transition flex items-center space-x-2">
+                <i class="fa-solid fa-print"></i>
+                <span>Cetak Rekap Biaya AC</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- AC Top Metrics Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm card-hover">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400 uppercase">Total Unit AC Terdata</span>
+              <div class="w-9 h-9 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-wind"></i>
+              </div>
+            </div>
+            <div class="text-2xl font-black text-slate-800 font-heading" id="metricAcTotalUnits">46 Unit</div>
+            <p class="text-[11px] text-slate-400 mt-1">Terpasang di PG-TK, SD, SMP & SMA</p>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm card-hover">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400 uppercase">Realisasi Biaya AC Th. Ini</span>
+              <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+              </div>
+            </div>
+            <div class="text-2xl font-black text-emerald-600 font-heading" id="metricAcTotalCost">Rp 0</div>
+            <p class="text-[11px] text-slate-400 mt-1">Cuci, servis & pengadaan unit baru</p>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm card-hover">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400 uppercase">Perlu Cuci Bulan Ini</span>
+              <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-bell"></i>
+              </div>
+            </div>
+            <div class="text-2xl font-black text-amber-600 font-heading" id="metricAcDueCleaning">0 Unit</div>
+            <p class="text-[11px] text-slate-400 mt-1">Jadwal perawatan berkala 3 bulanan</p>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm card-hover">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400 uppercase">Pengajuan AC Aktif</span>
+              <div class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+              </div>
+            </div>
+            <div class="text-2xl font-black text-purple-600 font-heading" id="metricAcActiveRequests">0</div>
+            <p class="text-[11px] text-slate-400 mt-1">Dalam proses / verifikasi</p>
+          </div>
+        </div>
+
+        <!-- AC Sub-Tabs Navigation -->
+        <div class="bg-white rounded-2xl p-2 border border-slate-200/80 shadow-sm flex items-center space-x-2 overflow-x-auto">
+          <button onclick="app.switchAcSubTab('services')" id="acSubTabBtn-services" class="px-4 py-2 rounded-xl text-xs font-bold bg-sky-100 text-sky-900 transition flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-cart-flatbed"></i>
+            <span>1. Paket Layanan & Form Pengajuan</span>
+          </button>
+          
+          <button onclick="app.switchAcSubTab('inventory')" id="acSubTabBtn-inventory" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <span>2. Master Inventaris & Jadwal Cuci</span>
+          </button>
+          
+          <button onclick="app.switchAcSubTab('analytics')" id="acSubTabBtn-analytics" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>3. Rekap Biaya & RAPBS Multi-Unit</span>
+          </button>
+          
+          <button onclick="app.switchAcSubTab('vendors')" id="acSubTabBtn-vendors" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-handshake"></i>
+            <span>4. Mitra Teknisi Rekanan</span>
+          </button>
+        </div>
+
+        <!-- ================= SUB-TAB 1: PAKET LAYANAN & FORM PENGAJUAN ================= -->
+        <div id="acSubTab-services" class="space-y-6">
+          
+          <!-- Section Title -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h3 class="font-black text-base text-slate-800 font-heading">Katalog Standar Tarif Layanan & Pengadaan AC</h3>
+              <p class="text-xs text-slate-400">Pilih paket resmi di bawah ini untuk pengisian otomatis pada formulir pengajuan.</p>
+            </div>
+            <span class="text-xs font-semibold text-sky-700 bg-sky-50 px-3 py-1 rounded-xl border border-sky-200">
+              <i class="fa-solid fa-circle-check text-sky-500 mr-1"></i>Garansi Servis 30 Hari
+            </span>
+          </div>
+
+          <!-- 8 Standard Package Cards Grid -->
+          <div id="acPackagesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Dynamically Rendered by app.renderAcPackagesGrid() -->
+          </div>
+
+          <!-- INTERACTIVE AC SERVICE REQUEST FORM -->
+          <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm space-y-6">
+            <div class="border-b border-slate-100 pb-4 flex items-center justify-between">
+              <div>
+                <h3 class="font-extrabold text-base text-slate-800 font-heading flex items-center space-x-2">
+                  <i class="fa-solid fa-file-pen text-sky-600"></i>
+                  <span>Formulir Pengajuan Layanan & Pengadaan AC</span>
+                </h3>
+                <p class="text-xs text-slate-400">Pengajuan akan otomatis memotong plafon RAPBS Pos Maintenance AC unit terkait setelah verifikasi.</p>
+              </div>
+              <span class="hidden sm:inline-block px-3 py-1 bg-emerald-50 text-emerald-800 text-[11px] font-bold rounded-xl border border-emerald-200">
+                Otomatis Sync RAPBS
+              </span>
+            </div>
+
+            <form id="acServiceRequestForm" onsubmit="app.submitAcServiceRequest(event)" class="space-y-5">
+              
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- 1. Unit Pemohon -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Unit Sekolah Pemohon *</label>
+                  <select id="acFormUnitSelect" onchange="app.onAcUnitSelectChange()" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-sky-500" required>
+                    <option value="unit_tk">PG-TK Islam Al-Imam</option>
+                    <option value="unit_sd" selected>SD Islam Al-Imam</option>
+                    <option value="unit_smp">SMP Islam Al-Imam</option>
+                    <option value="unit_sma">SMA Islam Al-Imam</option>
+                  </select>
+                </div>
+
+                <!-- 2. Target AC / Ruangan -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Pilih Unit AC Terdaftar</label>
+                  <select id="acFormAssetSelect" onchange="app.onAcAssetSelectChange()" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-sky-500">
+                    <option value="">-- Pilih Unit AC (atau Isi Ruangan Baru) --</option>
+                  </select>
+                </div>
+
+                <!-- 3. Nama Ruangan / Lokasi -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Lokasi / Ruangan Kelas *</label>
+                  <input type="text" id="acFormRoomName" placeholder="Contoh: Ruang Kelas 2A, Lab Komputer" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-sky-500" required>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- 4. Jenis Layanan / Paket -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Jenis Layanan / Pengadaan *</label>
+                  <select id="acFormServiceType" onchange="app.onAcServiceTypeChange()" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-sky-500" required>
+                    <option value="AC-SRV-CUCI-RUTIN">Cuci AC Rutin (Rp 75.000 / unit)</option>
+                    <option value="AC-SRV-CUCI-OVERHAUL">Cuci Besar / Overhaul + Anti-Jamur (Rp 150.000 / unit)</option>
+                    <option value="AC-SRV-FREON-TAMBAH">Tambah Freon R32/R410/R22 (Rp 125.000 / unit)</option>
+                    <option value="AC-SRV-FREON-ISI-TOTAL">Isi Freon Full (Vakum) (Rp 250.000 / unit)</option>
+                    <option value="AC-SRV-PERBAIKAN-KAPASITOR">Perbaikan Modul / Ganti Kapasitor (Rp 175.000 / unit)</option>
+                    <option value="AC-SRV-BONGKAR-PASANG">Bongkar Pasang / Relokasi AC (Rp 300.000 / unit)</option>
+                    <option value="AC-UNIT-BARU-1PK-STD">Pengadaan Unit AC Baru 1 PK Standard (Rp 3.850.000)</option>
+                    <option value="AC-UNIT-BARU-1PK-INVERTER">Pengadaan Unit AC Baru 1 PK Inverter Daikin (Rp 4.650.000)</option>
+                    <option value="AC-UNIT-BARU-2PK">Pengadaan Unit AC Baru 2 PK Heavy Duty (Rp 6.750.000)</option>
+                  </select>
+                </div>
+
+                <!-- 5. Jumlah Unit AC -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Jumlah Unit AC *</label>
+                  <input type="number" id="acFormQty" min="1" max="50" value="1" oninput="app.calculateAcFormTotal()" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-sky-500" required>
+                </div>
+
+                <!-- 6. Tarif Satuan -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tarif Satuan (Rp)</label>
+                  <input type="number" id="acFormUnitPrice" value="75000" oninput="app.calculateAcFormTotal()" class="w-full px-3.5 py-2.5 bg-slate-100 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:bg-white focus:outline-none focus:border-sky-500" required>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- 7. Jadwal Pengerjaan -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Jadwal Pengerjaan Diinginkan *</label>
+                  <input type="date" id="acFormDate" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-sky-500" required>
+                </div>
+
+                <!-- 8. Mitra Teknisi / Vendor -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Pilihan Mitra Teknisi / Vendor</label>
+                  <select id="acFormVendor" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-sky-500">
+                    <option value="VEN-AC-01">CV Sarana Sejuk Al-Imam (Teknisi Utama)</option>
+                    <option value="VEN-AC-02">PT Prima Dinamika Teknik AC</option>
+                    <option value="VEN-AC-03">Tim Teknisi Internal SARPRAS</option>
+                  </select>
+                </div>
+
+                <!-- 9. Sumber Pembiayaan -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Sumber Pembiayaan *</label>
+                  <select id="acFormFundingSource" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-sky-500">
+                    <option value="RAPBS_POIN">Poin RAPBS Unit (Pos Maintenance AC / Sarpras)</option>
+                    <option value="REIMBURSE">Talangan / Reimbursement Petugas</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- 10. Catatan & Keluhan -->
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Keluhan / Catatan Spesifik</label>
+                <textarea id="acFormNotes" rows="2" placeholder="Contoh: AC kurang dingin, menetes air di ruang kelas, atau butuh pemasangan sebelum tahun ajaran baru." class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:bg-white focus:outline-none focus:border-sky-500"></textarea>
+              </div>
+
+              <!-- Total & Submit Bar -->
+              <div class="pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-sky-50/60 p-4 rounded-2xl border border-sky-100">
+                <div>
+                  <span class="text-[11px] font-bold text-slate-500 uppercase">Total Estimasi Biaya Layanan:</span>
+                  <div class="text-2xl font-black text-sky-800 font-heading" id="acFormGrandTotal">Rp 75.000</div>
+                  <p class="text-[10px] text-slate-400 mt-0.5">Sudah termasuk biaya jasa teknisi dan bahan.</p>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                  <button type="reset" onclick="setTimeout(() => app.calculateAcFormTotal(), 50)" class="px-4 py-2.5 bg-white hover:bg-slate-100 text-slate-600 font-bold text-xs rounded-xl border border-slate-200 transition">
+                    Reset Form
+                  </button>
+                  <button type="submit" class="px-6 py-2.5 bg-sky-600 hover:bg-sky-500 text-white font-extrabold text-xs rounded-xl shadow-md transition flex items-center space-x-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Kirim Pengajuan Layanan AC</span>
+                  </button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+
+        <!-- ================= SUB-TAB 2: MASTER INVENTARIS ASET AC ================= -->
+        <div id="acSubTab-inventory" class="hidden space-y-6">
+          
+          <!-- Filters and Search Bar -->
+          <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+            
+            <!-- Filter Unit & Status -->
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-xs font-bold text-slate-400 mr-1">Filter Unit:</span>
+              <button onclick="app.filterAcInventory('all')" id="acFilterUnit-all" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-sky-600 text-white shadow-xs transition">
+                Semua Unit
+              </button>
+              <button onclick="app.filterAcInventory('unit_tk')" id="acFilterUnit-unit_tk" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
+                PG-TK
+              </button>
+              <button onclick="app.filterAcInventory('unit_sd')" id="acFilterUnit-unit_sd" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
+                SD
+              </button>
+              <button onclick="app.filterAcInventory('unit_smp')" id="acFilterUnit-unit_smp" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
+                SMP
+              </button>
+              <button onclick="app.filterAcInventory('unit_sma')" id="acFilterUnit-unit_sma" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
+                SMA
+              </button>
+            </div>
+
+            <!-- Search & Add Unit Button -->
+            <div class="flex items-center space-x-3">
+              <div class="relative w-full sm:w-56">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+                <input type="text" id="acSearchInput" oninput="app.onAcSearchChange(this.value)" placeholder="Cari ruang / merk AC..." class="w-full pl-9 pr-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:bg-white focus:outline-none focus:border-sky-500">
+              </div>
+
+              <button onclick="app.openAddAcUnitModal()" class="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center space-x-1.5 shrink-0">
+                <i class="fa-solid fa-plus"></i>
+                <span>Tambah Unit AC</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Master AC Inventory Table -->
+          <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
+            <div class="p-4 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-wind text-sky-600"></i>
+                <h4 class="font-extrabold text-sm text-slate-800 font-heading">Daftar Inventaris Unit AC Terpasang</h4>
+              </div>
+              <span class="text-xs text-slate-400" id="acInventoryCountLabel">Menampilkan 0 unit</span>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr class="bg-slate-100 text-slate-700 font-extrabold text-[11px] uppercase tracking-wider">
+                    <th class="px-4 py-3 text-center w-24">KODE ASET</th>
+                    <th class="px-4 py-3">UNIT & RUANGAN</th>
+                    <th class="px-4 py-3">SPESIFIKASI / MERK</th>
+                    <th class="px-4 py-3 text-center">KONDISI</th>
+                    <th class="px-4 py-3 text-center">CUCI TERAKHIR</th>
+                    <th class="px-4 py-3 text-center">JADWAL BERIKUTNYA</th>
+                    <th class="px-4 py-3 text-center">TOTAL SERVIS</th>
+                    <th class="px-4 py-3 text-center w-36">AKSI CEPAT</th>
+                  </tr>
+                </thead>
+                <tbody id="acInventoryTableBody" class="divide-y divide-slate-100 font-medium text-slate-800">
+                  <!-- Rendered dynamically by app.renderAcInventoryTable() -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= SUB-TAB 3: REKAP BIAYA & RAPBS MULTI-UNIT ================= -->
+        <div id="acSubTab-analytics" class="hidden space-y-6">
+          
+          <!-- Analytics Top Cards: Budget vs Realization per Unit -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4" id="acUnitBudgetCardsContainer">
+            <!-- Rendered by app.renderAcAnalytics() -->
+          </div>
+
+          <!-- Transactions & Service Logs Table -->
+          <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
+            <div class="p-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50">
+              <div>
+                <h4 class="font-black text-sm text-slate-800 font-heading flex items-center space-x-2">
+                  <i class="fa-solid fa-clock-rotate-left text-sky-600"></i>
+                  <span>Log Riwayat Pengajuan, Cuci & Pembelian Unit AC</span>
+                </h4>
+                <p class="text-xs text-slate-400 mt-0.5">Catatan seluruh transaksi perawatan pendingin ruangan yang diajukan unit sekolah.</p>
+              </div>
+
+              <div class="flex items-center space-x-2">
+                <button onclick="app.printAcReport()" class="px-3.5 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs rounded-xl transition flex items-center space-x-1.5">
+                  <i class="fa-solid fa-print"></i>
+                  <span>Cetak Laporan</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr class="bg-slate-100 text-slate-700 font-extrabold text-[11px] uppercase tracking-wider">
+                    <th class="px-4 py-3 text-center w-28">ID PENGAJUAN</th>
+                    <th class="px-4 py-3">UNIT & RUANGAN</th>
+                    <th class="px-4 py-3">JENIS LAYANAN</th>
+                    <th class="px-4 py-3 text-center">QTY</th>
+                    <th class="px-4 py-3 text-right">TOTAL BIAYA</th>
+                    <th class="px-4 py-3 text-center">SUMBER DANA</th>
+                    <th class="px-4 py-3 text-center">TANGGAL</th>
+                    <th class="px-4 py-3 text-center">STATUS</th>
+                    <th class="px-4 py-3 text-center w-28">AKSI</th>
+                  </tr>
+                </thead>
+                <tbody id="acRequestsLogTableBody" class="divide-y divide-slate-100 font-medium text-slate-800">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= SUB-TAB 4: MITRA TEKNISI & VENDOR REKANAN ================= -->
+        <div id="acSubTab-vendors" class="hidden space-y-6">
+          
+          <div class="border-b border-slate-100 pb-4">
+            <h3 class="font-black text-base text-slate-800 font-heading">Direktori Teknisi & Bengkel AC Rekanan Resmi</h3>
+            <p class="text-xs text-slate-400">Kontrak kerjasama resmi Sekolah Al-Imam dengan jaminan garansi 30 hari pengerjaan.</p>
+          </div>
+
+          <div id="acVendorsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <!-- Dynamically Rendered -->
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ================= VIEW 11: RENOVASI, MATERIAL & JASA TUKANG (PG-TK, SD, SMP) ================= -->
+      <section id="view-renov-material" class="hidden space-y-6">
+        
+        <!-- Renovation Hero Banner -->
+        <div class="bg-gradient-to-r from-amber-950 via-amber-900 to-stone-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+          <div class="absolute right-0 top-0 translate-x-8 -translate-y-8 text-white/5 pointer-events-none">
+            <i class="fa-solid fa-paint-roller text-[200px]"></i>
+          </div>
+          <div class="relative z-10 max-w-3xl">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="inline-block px-3 py-1 bg-amber-400/20 text-amber-300 border border-amber-400/30 rounded-full text-[11px] font-extrabold tracking-wide uppercase">
+                <i class="fa-solid fa-trowel-bricks mr-1.5"></i>Modul Khusus • Pemeliharaan Sipil & Fisik Sekolah
+              </span>
+              <span class="inline-block px-3 py-1 bg-white/20 text-white border border-white/30 rounded-full text-[11px] font-bold">
+                PG-TK • SD • SMP • SMA
+              </span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-white leading-tight">
+              Pusat Pengadaan Cat, Material & Upah Jasa Tukang
+            </h2>
+            <p class="text-amber-100/80 text-xs sm:text-sm mt-2 leading-relaxed">
+              Manajemen komprehensif untuk menangani tingginya kebutuhan cat kelas/pagar, semen, pasir, keramik, gypsum, perkakas toko bangunan, serta pembayaran upah tukang harian dan borongan seluruh unit sekolah yang terintegrasi dengan RAPBS.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <button onclick="app.switchRenovSubTab('materials')" class="px-5 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs rounded-xl shadow-lg shadow-amber-950/40 transition flex items-center space-x-2">
+                <i class="fa-solid fa-plus-circle"></i>
+                <span>Ajukan Material & Jasa Tukang</span>
+              </button>
+              <button onclick="app.switchRenovSubTab('projects')" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-xl backdrop-blur-md border border-white/20 transition flex items-center space-x-2">
+                <i class="fa-solid fa-helmet-safety"></i>
+                <span>Monitoring Titik Renovasi</span>
+              </button>
+              <button onclick="app.printRenovReport()" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-xl backdrop-blur-md border border-white/20 transition flex items-center space-x-2">
+                <i class="fa-solid fa-print"></i>
+                <span>Cetak Rekap Biaya Sipil</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Renovation Top Metrics Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm card-hover">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400 uppercase">Titik Renovasi Aktif</span>
+              <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-trowel-bricks"></i>
+              </div>
+            </div>
+            <div class="text-2xl font-black text-slate-800 font-heading" id="metricRenovActiveProjects">8 Titik</div>
+            <p class="text-[11px] text-slate-400 mt-1">Pengecatan, atap & perbaikan fisik</p>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm card-hover">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400 uppercase">Total Biaya Material & Jasa</span>
+              <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-money-bill-wave"></i>
+              </div>
+            </div>
+            <div class="text-2xl font-black text-emerald-600 font-heading" id="metricRenovTotalExpense">Rp 0</div>
+            <p class="text-[11px] text-slate-400 mt-1">Pembelian bahan & ongkos tukang</p>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm card-hover">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400 uppercase">Alokasi Upah Jasa Tukang</span>
+              <div class="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-user-gear"></i>
+              </div>
+            </div>
+            <div class="text-2xl font-black text-indigo-600 font-heading" id="metricRenovLaborExpense">Rp 0</div>
+            <p class="text-[11px] text-slate-400 mt-1">Upah tukang ahli & kenek harian/borongan</p>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm card-hover">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400 uppercase">Pengajuan Menunggu Approval</span>
+              <div class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-hourglass-half"></i>
+              </div>
+            </div>
+            <div class="text-2xl font-black text-purple-600 font-heading" id="metricRenovPendingRequests">0</div>
+            <p class="text-[11px] text-slate-400 mt-1">Pengajuan material/proyek baru</p>
+          </div>
+        </div>
+
+        <!-- Renovation Sub-Tabs Navigation -->
+        <div class="bg-white rounded-2xl p-2 border border-slate-200/80 shadow-sm flex items-center space-x-2 overflow-x-auto">
+          <button onclick="app.switchRenovSubTab('materials')" id="renovSubTabBtn-materials" class="px-4 py-2 rounded-xl text-xs font-bold bg-amber-100 text-amber-900 transition flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-paint-roller"></i>
+            <span>1. Katalog Material, Tukang & Form Pengajuan</span>
+          </button>
+          
+          <button onclick="app.switchRenovSubTab('projects')" id="renovSubTabBtn-projects" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-helmet-safety"></i>
+            <span>2. Monitoring Proyek & Titik Fisik</span>
+          </button>
+          
+          <button onclick="app.switchRenovSubTab('analytics')" id="renovSubTabBtn-analytics" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>3. Rekap Biaya & RAPBS Multi-Unit</span>
+          </button>
+          
+          <button onclick="app.switchRenovSubTab('vendors')" id="renovSubTabBtn-vendors" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-store"></i>
+            <span>4. Mitra Toko Bangunan & Mandor</span>
+          </button>
+        </div>
+
+        <!-- ================= SUB-TAB 1: KATALOG MATERIAL & FORM PENGAJUAN ================= -->
+        <div id="renovSubTab-materials" class="space-y-6">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h3 class="font-black text-base text-slate-800 font-heading">Katalog Standar Harga Cat, Material & Standar Upah Tukang</h3>
+              <p class="text-xs text-slate-400">Pilih paket material atau jasa tukang untuk pengisian formulir pengadaan instan.</p>
+            </div>
+            <span class="text-xs font-semibold text-amber-800 bg-amber-50 px-3 py-1 rounded-xl border border-amber-200">
+              <i class="fa-solid fa-certificate text-amber-600 mr-1"></i>Standar Harga Toko Bangunan Rekanan
+            </span>
+          </div>
+
+          <!-- Material & Labor Package Cards Grid -->
+          <div id="renovPackagesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Dynamically Rendered by app.renderRenovPackagesGrid() -->
+          </div>
+
+          <!-- INTERACTIVE RENOVATION REQUEST FORM -->
+          <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm space-y-6">
+            <div class="border-b border-slate-100 pb-4 flex items-center justify-between">
+              <div>
+                <h3 class="font-extrabold text-base text-slate-800 font-heading flex items-center space-x-2">
+                  <i class="fa-solid fa-trowel-bricks text-amber-600"></i>
+                  <span>Formulir Pengadaan Cat, Bahan Bangunan & Upah Jasa Tukang</span>
+                </h3>
+                <p class="text-xs text-slate-400">Pengajuan belanja material dan jasa tukang untuk pemeliharaan gedung & kelas sekolah.</p>
+              </div>
+              <span class="hidden sm:inline-block px-3 py-1 bg-amber-50 text-amber-800 text-[11px] font-bold rounded-xl border border-amber-200">
+                Plafon RAPBS Pemeliharaan
+              </span>
+            </div>
+
+            <form id="renovRequestForm" onsubmit="app.submitRenovRequest(event)" class="space-y-5">
+              
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- 1. Unit Pemohon -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Unit Sekolah Pemohon *</label>
+                  <select id="renovFormUnitSelect" onchange="app.onRenovUnitSelectChange()" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-amber-500" required>
+                    <option value="unit_tk">PG-TK Islam Al-Imam</option>
+                    <option value="unit_sd" selected>SD Islam Al-Imam</option>
+                    <option value="unit_smp">SMP Islam Al-Imam</option>
+                    <option value="unit_sma">SMA Islam Al-Imam</option>
+                  </select>
+                </div>
+
+                <!-- 2. Target Proyek / Ruangan -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Pilih Titik Proyek Terdaftar</label>
+                  <select id="renovFormProjectSelect" onchange="app.onRenovProjectSelectChange()" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-amber-500">
+                    <option value="">-- Pilih Titik Proyek (atau Input Ruangan Baru) --</option>
+                  </select>
+                </div>
+
+                <!-- 3. Lokasi / Ruangan -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Lokasi / Ruangan Pengerjaan *</label>
+                  <input type="text" id="renovFormLocation" placeholder="Contoh: Pagar Depan TK, Dinding Kelas 3B, Toilet SMP" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-amber-500" required>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- 4. Kategori Pekerjaan -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Kategori Pekerjaan *</label>
+                  <select id="renovFormCategory" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-amber-500" required>
+                    <option value="Pengecatan Ruang Kelas & Gedung">Pengecatan Ruang Kelas & Gedung</option>
+                    <option value="Perbaikan Plafon & Atap Bocor">Perbaikan Plafon & Atap Bocor</option>
+                    <option value="Renovasi Toilet & Sanitasi">Renovasi Toilet & Sanitasi</option>
+                    <option value="Pemasangan & Perbaikan Keramik">Pemasangan & Perbaikan Keramik</option>
+                    <option value="Perbaikan Pintu, Jendela & Meja Kayu">Perbaikan Pintu, Jendela & Meja Kayu</option>
+                    <option value="Pengadaan Material Toko Bangunan">Pengadaan Material Toko Bangunan (Semen, Pasir, Cat)</option>
+                    <option value="Upah Jasa Tukang Bangunan">Upah Jasa Tukang Bangunan (Harian/Borongan)</option>
+                  </select>
+                </div>
+
+                <!-- 5. Pilihan Material / Jasa -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Paket Bahan Material / Jasa *</label>
+                  <select id="renovFormMaterialSelect" onchange="app.onRenovMaterialSelectChange()" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-amber-500" required>
+                    <option value="MAT-CAT-INTERIOR-20KG">Cat Tembok Interior Dulux/Catylac 20kg (Rp 650.000 / pail)</option>
+                    <option value="MAT-CAT-EXTERIOR-20KG">Cat Exterior Weathershield 20kg (Rp 1.150.000 / pail)</option>
+                    <option value="MAT-SEMEN-50KG">Semen Portland Tiga Roda/Holcim 50kg (Rp 72.000 / sak)</option>
+                    <option value="MAT-PASIR-PICKUP">Pasir Pasang/Cor Per Pick-up (Rp 350.000 / rit)</option>
+                    <option value="MAT-SET-CAT-TOOLS">Perlengkapan Cat (Kuas, Roll, Bak, Thinner) (Rp 120.000 / set)</option>
+                    <option value="MAT-KERAMIK-40X40">Keramik 40x40 Dus (Rp 85.000 / dus)</option>
+                    <option value="JASA-TUKANG-HARIAN">Jasa Kepala Tukang Harian (Rp 175.000 / hari)</option>
+                    <option value="JASA-KENEK-HARIAN">Jasa Kenek/Pembantu Tukang (Rp 125.000 / hari)</option>
+                    <option value="PAKET-CAT-1KELAS">Paket Cat 1 Ruang Kelas (Cat + Borongan Tukang) (Rp 1.850.000)</option>
+                    <option value="PAKET-REPAIR-PLAFON">Paket Perbaikan Plafon & Atap Bocor (Rp 950.000)</option>
+                  </select>
+                </div>
+
+                <!-- 6. Jumlah Material & Harga Satuan -->
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Kuantitas *</label>
+                    <input type="number" id="renovFormQty" min="1" max="500" value="1" oninput="app.calculateRenovFormTotal()" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-amber-500" required>
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Harga Satuan (Rp)</label>
+                    <input type="number" id="renovFormUnitPrice" value="650000" oninput="app.calculateRenovFormTotal()" class="w-full px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:bg-white focus:outline-none focus:border-amber-500" required>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Extra Labor Estimation Row -->
+              <div class="p-4 bg-amber-50/50 rounded-2xl border border-amber-100/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                <div>
+                  <label class="block font-bold text-amber-900 uppercase mb-1">Kebutuhan Tukang Tambahan (Orang)</label>
+                  <input type="number" id="renovFormLaborCount" min="0" max="20" value="0" oninput="app.calculateRenovFormTotal()" class="w-full px-3 py-2 bg-white border border-amber-200 rounded-xl font-semibold focus:outline-none focus:border-amber-500" placeholder="0 jika hanya beli material">
+                </div>
+                <div>
+                  <label class="block font-bold text-amber-900 uppercase mb-1">Estimasi Durasi Kerja (Hari)</label>
+                  <input type="number" id="renovFormLaborDays" min="0" max="60" value="0" oninput="app.calculateRenovFormTotal()" class="w-full px-3 py-2 bg-white border border-amber-200 rounded-xl font-semibold focus:outline-none focus:border-amber-500" placeholder="0 jika borongan">
+                </div>
+                <div>
+                  <label class="block font-bold text-amber-900 uppercase mb-1">Tarif Upah Harian per Tukang (Rp)</label>
+                  <input type="number" id="renovFormLaborRate" value="150000" oninput="app.calculateRenovFormTotal()" class="w-full px-3 py-2 bg-white border border-amber-200 rounded-xl font-semibold focus:outline-none focus:border-amber-500">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- 7. Jadwal Pengerjaan -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Target Tanggal Pengerjaan *</label>
+                  <input type="date" id="renovFormDate" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-amber-500" required>
+                </div>
+
+                <!-- 8. Toko Bangunan / Mandor -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Pilihan Toko Bangunan / Mandor</label>
+                  <select id="renovFormVendor" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-amber-500">
+                    <option value="TB-01">TB Mitra Abadi Jaya (Toko Bangunan Rekanan Utama)</option>
+                    <option value="TB-02">TB Sinar Bangunan & Distributor Cat Dulux</option>
+                    <option value="MANDOR-01">Tim Mandor Bpk. Mulyono (Tukang Ahli Sekolah)</option>
+                    <option value="INTERNAL-SARPRAS">Tim Tukang & Pekerja Harian Internal SARPRAS</option>
+                  </select>
+                </div>
+
+                <!-- 9. Sumber Pembiayaan -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Sumber Pembiayaan *</label>
+                  <select id="renovFormFundingSource" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-amber-500">
+                    <option value="RAPBS_POIN">Poin RAPBS Unit (Pos Pemeliharaan Fisik & Sarpras)</option>
+                    <option value="REIMBURSE">Talangan / Reimbursement Petugas Toko Bangunan</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- 10. Catatan & Spesifikasi -->
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Rincian / Spesifikasi Warna Cat & Pekerjaan</label>
+                <textarea id="renovFormNotes" rows="2" placeholder="Contoh: Kode warna Catylac Hijau Apel (44510) untuk ruang kelas 3A, pengerjaan pengecatan dinding dan plafon termasuk plamir." class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:bg-white focus:outline-none focus:border-amber-500"></textarea>
+              </div>
+
+              <!-- Total & Submit Bar -->
+              <div class="pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-amber-50/70 p-4 rounded-2xl border border-amber-200/80">
+                <div>
+                  <span class="text-[11px] font-bold text-amber-900 uppercase">Total Estimasi Biaya Material + Tukang:</span>
+                  <div class="text-2xl font-black text-amber-950 font-heading" id="renovFormGrandTotal">Rp 650.000</div>
+                  <p class="text-[10px] text-amber-800 mt-0.5">Biaya Material: <span id="renovFormSubtotalMaterial" class="font-bold">Rp 650.000</span> | Upah Tukang: <span id="renovFormSubtotalLabor" class="font-bold">Rp 0</span></p>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                  <button type="reset" onclick="setTimeout(() => app.calculateRenovFormTotal(), 50)" class="px-4 py-2.5 bg-white hover:bg-slate-100 text-slate-600 font-bold text-xs rounded-xl border border-slate-200 transition">
+                    Reset Form
+                  </button>
+                  <button type="submit" class="px-6 py-2.5 bg-amber-600 hover:bg-amber-500 text-white font-extrabold text-xs rounded-xl shadow-md transition flex items-center space-x-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Kirim Pengajuan Proyek / Material</span>
+                  </button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+
+        <!-- ================= SUB-TAB 2: MONITORING PROYEK RENOVASI FISIK ================= -->
+        <div id="renovSubTab-projects" class="hidden space-y-6">
+          
+          <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <!-- Filter Unit -->
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-xs font-bold text-slate-400 mr-1">Filter Unit:</span>
+              <button onclick="app.filterRenovProjects('all')" id="renovFilterUnit-all" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-600 text-white shadow-xs transition">
+                Semua Unit
+              </button>
+              <button onclick="app.filterRenovProjects('unit_tk')" id="renovFilterUnit-unit_tk" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
+                PG-TK
+              </button>
+              <button onclick="app.filterRenovProjects('unit_sd')" id="renovFilterUnit-unit_sd" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
+                SD
+              </button>
+              <button onclick="app.filterRenovProjects('unit_smp')" id="renovFilterUnit-unit_smp" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
+                SMP
+              </button>
+              <button onclick="app.filterRenovProjects('unit_sma')" id="renovFilterUnit-unit_sma" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
+                SMA
+              </button>
+            </div>
+
+            <!-- Search & Add Project Button -->
+            <div class="flex items-center space-x-3">
+              <div class="relative w-full sm:w-56">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+                <input type="text" id="renovSearchInput" oninput="app.onRenovSearchChange(this.value)" placeholder="Cari lokasi / proyek..." class="w-full pl-9 pr-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:bg-white focus:outline-none focus:border-amber-500">
+              </div>
+
+              <button onclick="app.openAddRenovProjectModal()" class="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center space-x-1.5 shrink-0">
+                <i class="fa-solid fa-plus"></i>
+                <span>Tambah Titik Renovasi</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Master Renovation Projects Table -->
+          <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
+            <div class="p-4 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-helmet-safety text-amber-600"></i>
+                <h4 class="font-extrabold text-sm text-slate-800 font-heading">Daftar Titik Proyek & Renovasi Fisik Gedung</h4>
+              </div>
+              <span class="text-xs text-slate-400" id="renovProjectCountLabel">Menampilkan 0 proyek</span>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr class="bg-slate-100 text-slate-700 font-extrabold text-[11px] uppercase tracking-wider">
+                    <th class="px-4 py-3 text-center w-24">KODE PROYEK</th>
+                    <th class="px-4 py-3">UNIT & LOKASI PEKERJAAN</th>
+                    <th class="px-4 py-3">JENIS & BAHAN MATERIAL</th>
+                    <th class="px-4 py-3 text-right">TOTAL BIAYA</th>
+                    <th class="px-4 py-3 text-center">PROGRES FISIK</th>
+                    <th class="px-4 py-3 text-center">TARGET WAKTU</th>
+                    <th class="px-4 py-3 text-center">STATUS</th>
+                    <th class="px-4 py-3 text-center w-36">AKSI CEPAT</th>
+                  </tr>
+                </thead>
+                <tbody id="renovProjectsTableBody" class="divide-y divide-slate-100 font-medium text-slate-800">
+                  <!-- Rendered dynamically by app.renderRenovProjectsTable() -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= SUB-TAB 3: REKAP BIAYA & RAPBS MULTI-UNIT ================= -->
+        <div id="renovSubTab-analytics" class="space-y-6 hidden">
+          
+          <!-- Unit Budget Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4" id="renovUnitBudgetCardsContainer">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <!-- Material & Labor Expense Log Table -->
+          <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
+            <div class="p-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50">
+              <div>
+                <h4 class="font-black text-sm text-slate-800 font-heading flex items-center space-x-2">
+                  <i class="fa-solid fa-file-invoice text-amber-600"></i>
+                  <span>Log Riwayat Pembelian Material & Upah Jasa Tukang</span>
+                </h4>
+                <p class="text-xs text-slate-400 mt-0.5">Catatan seluruh transaksi pembelanjaan material toko bangunan dan upah kerja sipil.</p>
+              </div>
+
+              <div class="flex items-center space-x-2">
+                <button onclick="app.printRenovReport()" class="px-3.5 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs rounded-xl transition flex items-center space-x-1.5">
+                  <i class="fa-solid fa-print"></i>
+                  <span>Cetak Laporan</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr class="bg-slate-100 text-slate-700 font-extrabold text-[11px] uppercase tracking-wider">
+                    <th class="px-4 py-3 text-center w-28">ID TRANSAKSI</th>
+                    <th class="px-4 py-3">UNIT & LOKASI</th>
+                    <th class="px-4 py-3">RINCIAN BAHAN / PEKERJAAN</th>
+                    <th class="px-4 py-3 text-right">BIAYA MATERIAL</th>
+                    <th class="px-4 py-3 text-right">UPAH TUKANG</th>
+                    <th class="px-4 py-3 text-right">TOTAL</th>
+                    <th class="px-4 py-3 text-center">TANGGAL</th>
+                    <th class="px-4 py-3 text-center">STATUS</th>
+                    <th class="px-4 py-3 text-center w-28">AKSI</th>
+                  </tr>
+                </thead>
+                <tbody id="renovRequestsLogTableBody" class="divide-y divide-slate-100 font-medium text-slate-800">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= SUB-TAB 4: MITRA TOKO BANGUNAN & MANDOR ================= -->
+        <div id="renovSubTab-vendors" class="hidden space-y-6">
+          
+          <div class="border-b border-slate-100 pb-4">
+            <h3 class="font-black text-base text-slate-800 font-heading">Direktori Toko Bangunan & Mandor Tukang Rekanan</h3>
+            <p class="text-xs text-slate-400">Kerjasama resmi penyediaan bahan material bangunan, cat resmi pabrik, dan tenaga kerja tukang bersertifikat.</p>
+          </div>
+
+          <div id="renovVendorsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <!-- Dynamically Rendered -->
+          </div>
+
+        </div>
+
+      </section>
+
     </main>
 
   </div>
@@ -1823,6 +2717,450 @@
 
       <div class="pt-2 border-t border-slate-100 flex justify-end">
         <button onclick="app.saveSettings()" class="px-5 py-2 bg-brand-primary text-white font-bold text-xs rounded-xl shadow-md transition">Simpan Pengaturan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: RINCIAN SUMBER DANA RAPBS POS D.1 SARPRAS ================= -->
+  <div id="rapbsBreakdownModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-100 overflow-hidden my-auto animate-fadeIn">
+      
+      <!-- Modal Header -->
+      <div class="p-4 sm:p-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-lg shadow-md shadow-amber-500/20 shrink-0">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <h3 id="rapbsBreakdownTitle" class="font-black text-base text-slate-800 font-heading">Pos D.1 SARPRAS RINGAN</h3>
+              <span id="rapbsBreakdownUnitBadge" class="px-2.5 py-0.5 bg-blue-100 text-blue-800 text-[10px] font-bold rounded-full">SD Islam Al-Imam</span>
+            </div>
+            <p id="rapbsBreakdownDescription" class="text-xs text-slate-500 mt-0.5">Rincian Sumber Dana & Pos Anggaran Pengadaan Operasional Sekolah</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- Unit Switcher Tabs inside Modal -->
+          <div class="flex items-center bg-slate-200/70 p-1 rounded-2xl">
+            <button type="button" id="rapbsModalTabSd" onclick="app.switchBreakdownUnit('unit_sd')" class="px-3 py-1 text-xs font-bold rounded-xl transition bg-brand-primary text-white shadow-sm">
+              SD (Pos D.1)
+            </button>
+            <button type="button" id="rapbsModalTabSmp" onclick="app.switchBreakdownUnit('unit_smp')" class="px-3 py-1 text-xs font-semibold text-slate-700 hover:text-slate-900 rounded-xl transition">
+              SMP (Pos D)
+            </button>
+          </div>
+
+          <button onclick="app.printRapbsBreakdown()" class="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold rounded-xl transition flex items-center space-x-1.5">
+            <i class="fa-solid fa-print"></i>
+            <span class="hidden sm:inline">Cetak Dokumen</span>
+          </button>
+          <button onclick="app.closeRapbsBreakdownModal()" class="w-8 h-8 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center text-xs transition">
+            <i class="fa-solid fa-xmark text-sm"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Financial Summary Cards inside Modal -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 bg-slate-100/60 border-b border-slate-100 text-xs">
+        <div class="bg-white p-3 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+          <div>
+            <span class="text-[10px] font-bold text-slate-400 uppercase">Total Plafon Anggaran</span>
+            <p id="rapbsBreakdownTotalPlafond" class="text-base font-black text-slate-900 font-heading">Rp 35.884.000</p>
+          </div>
+          <div class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+            <i class="fa-solid fa-landmark"></i>
+          </div>
+        </div>
+        <div class="bg-white p-3 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+          <div>
+            <span class="text-[10px] font-bold text-slate-400 uppercase">Realisasi / Terpakai</span>
+            <p id="rapbsBreakdownTerpakai" class="text-base font-black text-amber-600 font-heading">Rp 0</p>
+          </div>
+          <div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+            <i class="fa-solid fa-receipt"></i>
+          </div>
+        </div>
+        <div class="bg-white p-3 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+          <div>
+            <span class="text-[10px] font-bold text-slate-400 uppercase">Sisa Kuota Tersedia</span>
+            <p id="rapbsBreakdownSaldo" class="text-base font-black text-emerald-600 font-heading">Rp 35.884.000</p>
+          </div>
+          <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+            <i class="fa-solid fa-coins"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table container matching Excel screenshot -->
+      <div class="flex-1 overflow-auto p-4">
+        <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-amber-400 text-slate-950 font-extrabold text-[11px] uppercase tracking-wider">
+                <th class="px-3.5 py-3 text-center w-12">NO</th>
+                <th class="px-4 py-3">NAMA BARANG</th>
+                <th class="px-4 py-3 text-right">HARGA SATUAN</th>
+                <th class="px-4 py-3 text-center">KEBUTUHAN KELAS/HARI</th>
+                <th class="px-4 py-3 text-center">JUMLAH ORANG</th>
+                <th class="px-4 py-3 text-right">TOTAL</th>
+                <th class="px-3.5 py-3 text-center w-24">AKSI</th>
+              </tr>
+            </thead>
+            <tbody id="rapbsBreakdownTableBody" class="divide-y divide-slate-100 font-medium text-slate-800">
+            </tbody>
+            <tfoot>
+              <tr class="bg-amber-50 font-black text-slate-900 border-t-2 border-amber-300">
+                <td colspan="5" class="px-4 py-3 text-right text-xs uppercase tracking-wider">Total Anggaran Pos D.1 SARPRAS RINGAN:</td>
+                <td id="rapbsBreakdownGrandTotal" class="px-4 py-3 text-right text-sm text-brand-primary">Rp 35.884.000</td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <p class="text-[11px] text-slate-400 mt-2 italic flex items-center space-x-1">
+          <i class="fa-solid fa-circle-info text-blue-500"></i>
+          <span>Klik tombol <b>Pesan</b> pada item untuk memasukkan barang langsung ke keranjang pengadaan internal.</span>
+        </p>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 border-t border-slate-100 flex items-center justify-between bg-slate-50">
+        <span class="text-xs text-slate-500 font-medium">Pos Anggaran Terintegrasi dengan Sistem E-Commerce SARPRAS</span>
+        <button onclick="app.closeRapbsBreakdownModal()" class="px-5 py-2 bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs rounded-xl shadow-sm transition">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 1: TAMBAH / EDIT UNIT AC MASTER ================= -->
+  <div id="acAddUnitModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-slate-100 overflow-hidden my-auto animate-fadeIn">
+      <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-xl bg-sky-500 text-white flex items-center justify-center text-sm">
+            <i class="fa-solid fa-wind"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm text-slate-800 font-heading" id="acAddUnitModalTitle">Daftarkan Unit AC Baru</h3>
+            <p class="text-[11px] text-slate-400">Master Data Aset Tata Udara Sekolah</p>
+          </div>
+        </div>
+        <button onclick="app.closeAddAcUnitModal()" class="w-8 h-8 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-slate-600 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="acAddUnitForm" onsubmit="app.saveAcUnit(event)" class="p-5 sm:p-6 space-y-4 text-xs">
+        <input type="hidden" id="acEditUnitId" value="">
+
+        <div>
+          <label class="block font-bold text-slate-700 uppercase mb-1">Unit Sekolah *</label>
+          <select id="acUnitModalSchool" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold focus:bg-white focus:outline-none focus:border-sky-500" required>
+            <option value="unit_tk">PG-TK Islam Al-Imam</option>
+            <option value="unit_sd" selected>SD Islam Al-Imam</option>
+            <option value="unit_smp">SMP Islam Al-Imam</option>
+            <option value="unit_sma">SMA Islam Al-Imam</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 uppercase mb-1">Nama Ruangan / Lokasi Kelas *</label>
+          <input type="text" id="acUnitModalRoom" placeholder="Contoh: Kelas 2B Ali bin Abi Thalib" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold focus:bg-white focus:outline-none focus:border-sky-500" required>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">Merk & Tipe AC *</label>
+            <input type="text" id="acUnitModalBrand" placeholder="Contoh: Daikin FTKC25" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold focus:bg-white focus:outline-none focus:border-sky-500" required>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">Kapasitas (PK) *</label>
+            <select id="acUnitModalCapacity" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold focus:bg-white focus:outline-none focus:border-sky-500" required>
+              <option value="0.5 PK">0.5 PK (1/2 PK)</option>
+              <option value="0.75 PK">0.75 PK (3/4 PK)</option>
+              <option value="1 PK" selected>1 PK</option>
+              <option value="1.5 PK">1.5 PK</option>
+              <option value="2 PK">2 PK</option>
+              <option value="2.5 PK">2.5 PK</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">Kondisi Saat Ini</label>
+            <select id="acUnitModalCondition" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold focus:bg-white focus:outline-none focus:border-sky-500">
+              <option value="Baik / Normal">Baik / Normal Dingin</option>
+              <option value="Perlu Cuci Rutin">Perlu Cuci Rutin</option>
+              <option value="Kurang Dingin / Menetes">Kurang Dingin / Menetes</option>
+              <option value="Rusak / Perlu Servis">Rusak / Perlu Servis</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">Tanggal Terakhir Cuci</label>
+            <input type="date" id="acUnitModalLastService" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold focus:bg-white focus:outline-none focus:border-sky-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 uppercase mb-1">Catatan Tambahan (Posisi Outdoor / No. Seri)</label>
+          <input type="text" id="acUnitModalNotes" placeholder="Contoh: Outdoor di balkon lantai 2 dekat tangga" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:outline-none focus:border-sky-500">
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-end space-x-2">
+          <button type="button" onclick="app.closeAddAcUnitModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition">
+            Batal
+          </button>
+          <button type="submit" class="px-5 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-xl shadow-md transition">
+            Simpan Unit AC
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 2: DETAIL RIWAYAT SERVIS UNIT AC ================= -->
+  <div id="acUnitHistoryModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-100 overflow-hidden my-auto animate-fadeIn">
+      <div class="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-2xl bg-sky-500 text-white flex items-center justify-center text-base">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+          </div>
+          <div>
+            <h3 id="acHistoryModalTitle" class="font-extrabold text-sm text-slate-800 font-heading">Riwayat Pemeliharaan AC</h3>
+            <p id="acHistoryModalSubtitle" class="text-xs text-slate-400">Log lengkap cuci & perbaikan unit</p>
+          </div>
+        </div>
+        <button onclick="app.closeAcUnitHistoryModal()" class="w-8 h-8 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center text-xs transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-4 bg-sky-50/50 border-b border-sky-100 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+        <div>
+          <span class="text-[10px] text-slate-400 block uppercase font-bold">Kode Aset</span>
+          <span id="acHistoryAssetCode" class="font-bold text-sky-800">-</span>
+        </div>
+        <div>
+          <span class="text-[10px] text-slate-400 block uppercase font-bold">Merk / Kapasitas</span>
+          <span id="acHistoryBrand" class="font-bold text-slate-800">-</span>
+        </div>
+        <div>
+          <span class="text-[10px] text-slate-400 block uppercase font-bold">Jadwal Cuci</span>
+          <span id="acHistoryNextDate" class="font-bold text-amber-700">-</span>
+        </div>
+        <div>
+          <span class="text-[10px] text-slate-400 block uppercase font-bold">Total Pengeluaran</span>
+          <span id="acHistoryTotalSpent" class="font-extrabold text-emerald-700">-</span>
+        </div>
+      </div>
+
+      <div class="p-4 flex-1 overflow-y-auto space-y-3" id="acHistoryItemsContainer">
+        <!-- History Items List rendered dynamically -->
+      </div>
+
+      <div class="p-4 border-t border-slate-100 flex items-center justify-between bg-slate-50">
+        <button id="acHistoryQuickOrderBtn" class="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center space-x-1.5">
+          <i class="fa-solid fa-plus-circle"></i>
+          <span>Ajukan Cuci / Servis Unit Ini</span>
+        </button>
+        <button onclick="app.closeAcUnitHistoryModal()" class="px-5 py-2 bg-slate-800 text-white font-bold text-xs rounded-xl transition">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 3: CETAK / EXPORT REKAP LAPORAN AC ================= -->
+  <div id="acPrintReportModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-6 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[95vh] flex flex-col shadow-2xl border border-slate-100 overflow-hidden my-auto animate-fadeIn">
+      <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50 no-print">
+        <div class="flex items-center space-x-2">
+          <i class="fa-solid fa-print text-sky-600"></i>
+          <h3 class="font-extrabold text-sm text-slate-800 font-heading">Pratinjau Laporan Perawatan & Pengadaan AC</h3>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="window.print()" class="px-4 py-1.5 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs rounded-xl transition flex items-center space-x-1.5 shadow-sm">
+            <i class="fa-solid fa-print"></i>
+            <span>Cetak Dokumen (PDF)</span>
+          </button>
+          <button onclick="app.closeAcPrintModal()" class="w-8 h-8 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center text-xs transition">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex-1 overflow-y-auto p-6 sm:p-8 bg-white" id="acPrintReportContent">
+        <!-- Printable dynamic template inserted by app.printAcReport() -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 1: TAMBAH / EDIT TITIK PROYEK RENOVASI ================= -->
+  <div id="renovAddProjectModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-slate-100 overflow-hidden my-auto animate-fadeIn">
+      <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center text-sm">
+            <i class="fa-solid fa-helmet-safety"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm text-slate-800 font-heading" id="renovAddProjectModalTitle">Daftarkan Titik Renovasi Baru</h3>
+            <p class="text-[11px] text-slate-400">Master Data Pemeliharaan Fisik & Gedung</p>
+          </div>
+        </div>
+        <button onclick="app.closeAddRenovProjectModal()" class="w-8 h-8 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-slate-600 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="renovAddProjectForm" onsubmit="app.saveRenovProject(event)" class="p-5 sm:p-6 space-y-4 text-xs">
+        <input type="hidden" id="renovEditProjectId" value="">
+
+        <div>
+          <label class="block font-bold text-slate-700 uppercase mb-1">Unit Sekolah *</label>
+          <select id="renovProjectModalSchool" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold focus:bg-white focus:outline-none focus:border-amber-500" required>
+            <option value="unit_tk">PG-TK Islam Al-Imam</option>
+            <option value="unit_sd" selected>SD Islam Al-Imam</option>
+            <option value="unit_smp">SMP Islam Al-Imam</option>
+            <option value="unit_sma">SMA Islam Al-Imam</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 uppercase mb-1">Lokasi / Titik Pekerjaan *</label>
+          <input type="text" id="renovProjectModalLocation" placeholder="Contoh: Pengecatan Pagar Depan & Area Bermain TK" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold focus:bg-white focus:outline-none focus:border-amber-500" required>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">Kategori Pekerjaan *</label>
+            <select id="renovProjectModalCategory" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold focus:bg-white focus:outline-none focus:border-amber-500" required>
+              <option value="Pengecatan Gedung / Kelas">Pengecatan Gedung / Kelas</option>
+              <option value="Perbaikan Plafon & Atap">Perbaikan Plafon & Atap</option>
+              <option value="Renovasi Toilet & Sanitasi">Renovasi Toilet & Sanitasi</option>
+              <option value="Pemasangan Keramik">Pemasangan Keramik</option>
+              <option value="Perbaikan Pintu & Kusen Kayu">Perbaikan Pintu & Kusen Kayu</option>
+              <option value="Pekerjaan Sipil Lainnya">Pekerjaan Sipil Lainnya</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">Estimasi Total Biaya (Rp) *</label>
+            <input type="number" id="renovProjectModalBudget" value="2500000" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold focus:bg-white focus:outline-none focus:border-amber-500" required>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">Progres Fisik (%)</label>
+            <select id="renovProjectModalProgress" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold focus:bg-white focus:outline-none focus:border-amber-500">
+              <option value="0">0% (Perencanaan)</option>
+              <option value="25">25% (Persiapan Material)</option>
+              <option value="50">50% (Sedang Pengerjaan)</option>
+              <option value="75">75% (Tahap Finishing)</option>
+              <option value="100">100% (Selesai Tuntas)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">Target Selesai</label>
+            <input type="date" id="renovProjectModalTargetDate" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold focus:bg-white focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 uppercase mb-1">Kebutuhan Material & Keterangan</label>
+          <input type="text" id="renovProjectModalNotes" placeholder="Contoh: 3 Pail Dulux Catylac, 2 Sak Semen, 2 Tukang selama 3 hari" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-end space-x-2">
+          <button type="button" onclick="app.closeAddRenovProjectModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition">
+            Batal
+          </button>
+          <button type="submit" class="px-5 py-2 bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-xl shadow-md transition">
+            Simpan Proyek
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 2: DETAIL RIWAYAT MATERIAL & TUKANG ================= -->
+  <div id="renovDetailModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-100 overflow-hidden my-auto animate-fadeIn">
+      <div class="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-base">
+            <i class="fa-solid fa-trowel-bricks"></i>
+          </div>
+          <div>
+            <h3 id="renovDetailModalTitle" class="font-extrabold text-sm text-slate-800 font-heading">Detail Proyek Renovasi</h3>
+            <p id="renovDetailModalSubtitle" class="text-xs text-slate-400">Rincian belanja material & upah tukang</p>
+          </div>
+        </div>
+        <button onclick="app.closeRenovDetailModal()" class="w-8 h-8 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center text-xs transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-4 bg-amber-50/50 border-b border-amber-100 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+        <div>
+          <span class="text-[10px] text-slate-400 block uppercase font-bold">Kode Proyek</span>
+          <span id="renovDetailProjectCode" class="font-bold text-amber-900">-</span>
+        </div>
+        <div>
+          <span class="text-[10px] text-slate-400 block uppercase font-bold">Kategori</span>
+          <span id="renovDetailCategory" class="font-bold text-slate-800">-</span>
+        </div>
+        <div>
+          <span class="text-[10px] text-slate-400 block uppercase font-bold">Progres Fisik</span>
+          <span id="renovDetailProgress" class="font-bold text-emerald-700">-</span>
+        </div>
+        <div>
+          <span class="text-[10px] text-slate-400 block uppercase font-bold">Total Pengeluaran</span>
+          <span id="renovDetailTotalSpent" class="font-extrabold text-slate-900">-</span>
+        </div>
+      </div>
+
+      <div class="p-4 flex-1 overflow-y-auto space-y-3" id="renovDetailItemsContainer">
+        <!-- Transactions & logs rendered dynamically -->
+      </div>
+
+      <div class="p-4 border-t border-slate-100 flex items-center justify-between bg-slate-50">
+        <button id="renovDetailQuickAddMaterialBtn" class="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center space-x-1.5">
+          <i class="fa-solid fa-plus-circle"></i>
+          <span>Tambah Material / Tukang ke Proyek Ini</span>
+        </button>
+        <button onclick="app.closeRenovDetailModal()" class="px-5 py-2 bg-slate-800 text-white font-bold text-xs rounded-xl transition">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 3: CETAK / EXPORT REKAP LAPORAN RENOVASI & MATERIAL ================= -->
+  <div id="renovPrintReportModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-6 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[95vh] flex flex-col shadow-2xl border border-slate-100 overflow-hidden my-auto animate-fadeIn">
+      <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50 no-print">
+        <div class="flex items-center space-x-2">
+          <i class="fa-solid fa-print text-amber-600"></i>
+          <h3 class="font-extrabold text-sm text-slate-800 font-heading">Pratinjau Laporan Pengadaan Material & Jasa Tukang</h3>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="window.print()" class="px-4 py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl transition flex items-center space-x-1.5 shadow-sm">
+            <i class="fa-solid fa-print"></i>
+            <span>Cetak Dokumen (PDF)</span>
+          </button>
+          <button onclick="app.closeRenovPrintModal()" class="w-8 h-8 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center text-xs transition">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex-1 overflow-y-auto p-6 sm:p-8 bg-white" id="renovPrintReportContent">
+        <!-- Printable dynamic template inserted by app.printRenovReport() -->
       </div>
     </div>
   </div>

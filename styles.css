@@ -6,17 +6,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
 
 :root {
-  /* Dynamic Primary Color Palette (Default: Emerald Green) */
-  --primary-50: #ecfdf5;
-  --primary-100: #d1fae5;
-  --primary-200: #a7f3d0;
+  /* Mint-Emerald Modern Palette (Exact match to Reference Image) */
+  --primary-50: #eefbf6;
+  --primary-100: #d5f5e8;
+  --primary-200: #abebd1;
   --primary-500: #10b981;
-  --primary-600: #059669;
-  --primary-700: #047857;
-  --primary-800: #065f46;
-  --primary-900: #064e3b;
+  --primary-600: #00a86b;
+  --primary-700: #00965e;
+  --primary-800: #007a4d;
+  --primary-900: #004d30;
   
-  /* Dynamic Accent / Gold Palette */
+  /* Dynamic Accent / Warm Gold Palette */
   --accent-50: #fffbeb;
   --accent-100: #fef3c7;
   --accent-400: #fbbf24;
@@ -24,9 +24,10 @@
   --accent-600: #d97706;
   --accent-700: #b45309;
 
-  /* Dynamic Gradients */
-  --primary-gradient: linear-gradient(135deg, var(--primary-800) 0%, var(--primary-700) 50%, var(--primary-600) 100%);
+  /* Theme Mint Gradients */
+  --primary-gradient: linear-gradient(135deg, #00a86b 0%, #00965e 60%, #007a4d 100%);
   --accent-gradient: linear-gradient(135deg, var(--accent-600) 0%, var(--accent-500) 50%, var(--accent-700) 100%);
+  --canvas-gradient: linear-gradient(135deg, #edf9f4 0%, #e2f6ee 50%, #d8f2e7 100%);
 
   /* Dynamic Font & Radius */
   --font-base: 'Plus Jakarta Sans', sans-serif;
@@ -39,9 +40,11 @@
 
 body {
   font-family: var(--font-base);
-  background-color: #f8fafc;
+  background: var(--canvas-gradient) fixed;
+  background-color: #eaf8f2;
   color: #1e293b;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 h1, h2, h3, h4, .font-heading {
@@ -54,21 +57,21 @@ h1, h2, h3, h4, .font-heading {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #e6f6ee;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #a7dfc6;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #00a86b;
 }
 
-/* Glassmorphism & UI Accents */
+/* Glassmorphism & Modern Card Accents */
 .glass-nav {
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(214, 242, 230, 0.9);
 }
 
 .card-hover {
@@ -76,7 +79,7 @@ h1, h2, h3, h4, .font-heading {
 }
 .card-hover:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 24px -6px rgba(4, 120, 87, 0.12), 0 4px 8px -4px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 14px 28px -6px rgba(0, 168, 107, 0.14), 0 4px 10px -4px rgba(0, 0, 0, 0.04);
 }
 
 .theme-gradient-text {
@@ -95,38 +98,51 @@ h1, h2, h3, h4, .font-heading {
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+    box-shadow: 0 0 0 0 rgba(0, 168, 107, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 8px rgba(0, 168, 107, 0);
   }
 }
 
-/* Dynamic Active Nav Indicator */
+/* Reference Style: Solid Vibrant Green Active Nav Pill */
 .nav-tab-active {
-  background: var(--primary-50) !important;
-  color: var(--primary-700) !important;
+  background: #00a86b !important;
+  color: #ffffff !important;
   font-weight: 700 !important;
-  border-left: 4px solid var(--primary-700) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 4px 14px rgba(0, 168, 107, 0.32) !important;
+}
+
+.nav-tab-active i, 
+.nav-tab-active span {
+  color: #ffffff !important;
 }
 
 /* Dynamic Primary Background & Text Utilities */
 .bg-brand-primary {
-  background-color: var(--primary-700) !important;
+  background-color: #00a86b !important;
   color: #ffffff !important;
 }
 .bg-brand-primary:hover {
-  background-color: var(--primary-800) !important;
+  background-color: #00965e !important;
 }
 .text-brand-primary {
-  color: var(--primary-700) !important;
+  color: #00a86b !important;
 }
 .border-brand-primary {
-  border-color: var(--primary-700) !important;
+  border-color: #00a86b !important;
 }
 .bg-brand-light {
   background-color: var(--primary-50) !important;
   color: var(--primary-800) !important;
+}
+
+/* Reference Card Styling */
+.modern-white-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(214, 242, 230, 0.9);
+  box-shadow: 0 8px 24px -4px rgba(0, 168, 107, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
 }
 
 .bg-brand-accent {
@@ -299,3 +315,29 @@ h1, h2, h3, h4, .font-heading {
     print-color-adjust: exact !important;
   }
 }
+
+/* AC Management Module Custom Accents */
+.ac-gradient-bg {
+  background: linear-gradient(135deg, #0369a1 0%, #0284c7 50%, #0ea5e9 100%) !important;
+}
+
+.ac-subtle-glow {
+  box-shadow: 0 4px 20px -2px rgba(14, 165, 233, 0.25);
+}
+
+.ac-frost-card {
+  background: linear-gradient(135deg, rgba(240, 249, 255, 0.9) 0%, rgba(224, 242, 254, 0.6) 100%);
+  border: 1px solid rgba(186, 230, 253, 0.8);
+}
+
+/* Renovation & Material Module Custom Accents */
+.renov-gradient-bg {
+  background: linear-gradient(135deg, #78350f 0%, #b45309 50%, #d97706 100%) !important;
+}
+
+.renov-frost-card {
+  background: linear-gradient(135deg, rgba(254, 243, 199, 0.7) 0%, rgba(253, 230, 138, 0.4) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.7);
+}
+
+

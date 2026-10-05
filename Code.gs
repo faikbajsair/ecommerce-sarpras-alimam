@@ -859,9 +859,9 @@ function initDatabase() {
   if (!rapbsSheet) {
     rapbsSheet = ss.insertSheet(CONFIG.SHEETS.RAPBS);
     rapbsSheet.appendRow(['Unit_ID', 'Total_Plafond', 'Terpakai', 'Saldo_Tersedia', 'Updated_At']);
-    rapbsSheet.appendRow(['unit_tk', 15000000, 0, 15000000, '2026-07-01 08:00']);
-    rapbsSheet.appendRow(['unit_sd', 35884000, 0, 35884000, '2026-07-01 08:00']);
-    rapbsSheet.appendRow(['unit_smp', 24506000, 0, 24506000, '2026-07-01 08:00']);
+    rapbsSheet.appendRow(['unit_tk', 15000000, 510000, 14490000, '2026-07-10 10:45']);
+    rapbsSheet.appendRow(['unit_sd', 35884000, 965329, 34918671, '2026-09-28 10:00']);
+    rapbsSheet.appendRow(['unit_smp', 24506000, 1730387, 22775613, '2026-09-04 13:30']);
   }
 
   // 3. Stock_Inventory Sheet
@@ -898,6 +898,16 @@ function initDatabase() {
   if (!ordersSheet) {
     ordersSheet = ss.insertSheet(CONFIG.SHEETS.ORDERS);
     ordersSheet.appendRow(['Order_ID', 'Unit_ID', 'Order_Type', 'Items_JSON', 'Total_Amount', 'Status', 'Created_At', 'Approved_At', 'Notes', 'Attachments_JSON', 'Invoice_Number']);
+    ordersSheet.appendRow(['ORD-AC-20260710-01', 'unit_smp', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] Cuci AC Rutin 2 Unit SMP', qty: 2, unit_price: 85163, subtotal: 170326 }]), 170326, 'Approved', '2026-07-10 08:30', '2026-07-10 09:00', '2 unit cuci SMP (Pos D Item 16)', '', 'INV/AC/2026/0701']);
+    ordersSheet.appendRow(['ORD-AC-20260710-02', 'unit_tk', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] Cuci AC Rutin 6 Unit PG-TK', qty: 6, unit_price: 85000, subtotal: 510000 }]), 510000, 'Approved', '2026-07-10 10:15', '2026-07-10 10:45', '6 unit cuci TK', '', 'INV/AC/2026/0702']);
+    ordersSheet.appendRow(['ORD-AC-20260716-01', 'unit_smp', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] Kabel AC Ruang Yayasan', qty: 1, unit_price: 110061, subtotal: 110061 }]), 110061, 'Approved', '2026-07-16 11:00', '2026-07-16 11:30', 'Kabel AC ruang yys', '', 'INV/AC/2026/0703']);
+    ordersSheet.appendRow(['ORD-AC-20260717-01', 'unit_smp', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] 4 unit cuci, 1 unit isi freon, 1 unit Service SMP', qty: 1, unit_price: 700000, subtotal: 700000 }]), 700000, 'Approved', '2026-07-17 08:30', '2026-07-17 09:00', '4 unit cuci, 1 freon, 1 service SMP (Pos D Item 16)', '', 'INV/AC/2026/0704']);
+    ordersSheet.appendRow(['ORD-AC-20260731-01', 'unit_sd', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] 1 unit service SD', qty: 1, unit_price: 175000, subtotal: 175000 }]), 175000, 'Approved', '2026-07-31 09:00', '2026-07-31 09:30', '1 unit service SD', '', 'INV/AC/2026/0705']);
+    ordersSheet.appendRow(['ORD-AC-20260731-02', 'unit_smp', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] 2 unit cuci SMP', qty: 2, unit_price: 75000, subtotal: 150000 }]), 150000, 'Approved', '2026-07-31 13:00', '2026-07-31 13:30', '2 unit cuci SMP (Pos D Item 16)', '', 'INV/AC/2026/0706']);
+    ordersSheet.appendRow(['ORD-AC-20260829-01', 'unit_sd', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] 1 unit service SD', qty: 1, unit_price: 90329, subtotal: 90329 }]), 90329, 'Approved', '2026-08-29 10:00', '2026-08-29 10:30', '1 unit service SD', '', 'INV/AC/2026/0801']);
+    ordersSheet.appendRow(['ORD-AC-20260904-01', 'unit_smp', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] 4 unit cuci SMP (Batch 1)', qty: 4, unit_price: 75000, subtotal: 300000 }]), 300000, 'Approved', '2026-09-04 08:30', '2026-09-04 09:00', '4 unit cuci SMP (Pos D Item 16)', '', 'INV/AC/2026/0901']);
+    ordersSheet.appendRow(['ORD-AC-20260904-02', 'unit_smp', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] 4 unit cuci 4 SMP (Batch 2)', qty: 4, unit_price: 75000, subtotal: 300000 }]), 300000, 'Approved', '2026-09-04 13:00', '2026-09-04 13:30', '4 unit cuci 4 SMP (Pos D Item 16)', '', 'INV/AC/2026/0902']);
+    ordersSheet.appendRow(['ORD-AC-20260928-01', 'unit_sd', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] 4 Unit Cleaning Kelas 1, Tambah Freon Guru Kls 4, Bocor Perpus', qty: 1, unit_price: 700000, subtotal: 700000 }]), 700000, 'Approved', '2026-09-28 09:30', '2026-09-28 10:00', 'Cleaning Kls 1, Freon Kls 4, Bocor Perpus', '', 'INV/AC/2026/0903']);
   }
 
   // 5. Transactions_Log Sheet
@@ -905,6 +915,16 @@ function initDatabase() {
   if (!logSheet) {
     logSheet = ss.insertSheet(CONFIG.SHEETS.LOGS);
     logSheet.appendRow(['Log_ID', 'Order_ID', 'Unit_ID', 'Amount_Deducted', 'Remaining_Balance', 'Timestamp', 'Invoice_Number']);
+    logSheet.appendRow(['LOG-AC-20260710-01', 'ORD-AC-20260710-01', 'unit_smp', 170326, 24335674, '2026-07-10 09:00', 'INV/AC/2026/0701']);
+    logSheet.appendRow(['LOG-AC-20260710-02', 'ORD-AC-20260710-02', 'unit_tk', 510000, 14490000, '2026-07-10 10:45', 'INV/AC/2026/0702']);
+    logSheet.appendRow(['LOG-AC-20260716-01', 'ORD-AC-20260716-01', 'unit_smp', 110061, 24225613, '2026-07-16 11:30', 'INV/AC/2026/0703']);
+    logSheet.appendRow(['LOG-AC-20260717-01', 'ORD-AC-20260717-01', 'unit_smp', 700000, 23525613, '2026-07-17 09:00', 'INV/AC/2026/0704']);
+    logSheet.appendRow(['LOG-AC-20260731-01', 'ORD-AC-20260731-01', 'unit_sd', 175000, 35709000, '2026-07-31 09:30', 'INV/AC/2026/0705']);
+    logSheet.appendRow(['LOG-AC-20260731-02', 'ORD-AC-20260731-02', 'unit_smp', 150000, 23375613, '2026-07-31 13:30', 'INV/AC/2026/0706']);
+    logSheet.appendRow(['LOG-AC-20260829-01', 'ORD-AC-20260829-01', 'unit_sd', 90329, 35618671, '2026-08-29 10:30', 'INV/AC/2026/0801']);
+    logSheet.appendRow(['LOG-AC-20260904-01', 'ORD-AC-20260904-01', 'unit_smp', 300000, 23075613, '2026-09-04 09:00', 'INV/AC/2026/0901']);
+    logSheet.appendRow(['LOG-AC-20260904-02', 'ORD-AC-20260904-02', 'unit_smp', 300000, 22775613, '2026-09-04 13:30', 'INV/AC/2026/0902']);
+    logSheet.appendRow(['LOG-AC-20260928-01', 'ORD-AC-20260928-01', 'unit_sd', 700000, 34918671, '2026-09-28 10:00', 'INV/AC/2026/0903']);
   }
 
   // 6. Settings Sheet (White-Label Config)
@@ -914,24 +934,72 @@ function initDatabase() {
     settingsSheet.appendRow(['Key', 'Value', 'Updated_At']);
   }
 
-  // 7. AC_Inventory Sheet
+  // 7. AC_Inventory Sheet (41 Units SD, SMP & PG-TK)
   let acInventorySheet = ss.getSheetByName(CONFIG.SHEETS.AC_INVENTORY);
   if (!acInventorySheet) {
     acInventorySheet = ss.insertSheet(CONFIG.SHEETS.AC_INVENTORY);
     acInventorySheet.appendRow(['AC_ID', 'Unit_ID', 'Room_Name', 'Brand', 'Capacity_PK', 'Condition', 'Last_Service_Date', 'Next_Service_Date', 'Install_Year', 'Total_Service_Count', 'Notes']);
-    acInventorySheet.appendRow(['AC-TK-01', 'unit_tk', 'Kelas TK A (Sentra Balok)', 'Daikin FTKC25 (Inverter)', '1 PK', 'Baik / Normal', '2026-07-10', '2026-10-10', 2024, 3, 'Outdoor di balkon lantai 1']);
-    acInventorySheet.appendRow(['AC-SD-01', 'unit_sd', 'Ruang Kelas 1A Abu Bakar', 'Daikin FTKC25 (Inverter)', '1 PK', 'Baik / Normal', '2026-08-01', '2026-11-01', 2024, 4, 'Outdoor di selasar lt. 1']);
-    acInventorySheet.appendRow(['AC-SMP-01', 'unit_smp', 'Ruang Kelas 7A Ibnu Sina', 'Daikin FTKC25 (Inverter)', '1 PK', 'Baik / Normal', '2026-07-18', '2026-10-18', 2024, 3, 'Pos D SMP Item 16']);
-    acInventorySheet.appendRow(['AC-SMP-14', 'unit_smp', 'Ruang Server & IT Al-Imam', 'Daikin Premium Inverter 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-08-20', '2026-11-20', 2025, 3, '24/7 suhu 18-20 C']);
+    // TK
+    acInventorySheet.appendRow(['AC-TK-01', 'unit_tk', 'Kelas TK A (Sentra Balok)', 'Daikin FTKC25 (Inverter)', '1 PK', 'Baik / Normal', '2026-07-10', '2026-10-10', 2024, 1, 'Outdoor di balkon lantai 1']);
+    acInventorySheet.appendRow(['AC-TK-02', 'unit_tk', 'Kelas TK B (Sentra Imtaq)', 'Sharp AH-A9UCY', '1 PK', 'Baik / Normal', '2026-07-10', '2026-10-10', 2024, 1, 'Outdoor samping lorong bermain']);
+    acInventorySheet.appendRow(['AC-TK-03', 'unit_tk', 'Kelas Playgroup (Sentra Main Peran)', 'Panasonic CS-YN9WKJ', '1 PK', 'Baik / Normal', '2026-07-10', '2026-10-10', 2025, 1, 'Indoor bersih']);
+    acInventorySheet.appendRow(['AC-TK-04', 'unit_tk', 'Kantor Kepala & Guru PG-TK', 'Daikin Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-07-10', '2026-10-10', 2023, 1, 'Outdoor aman beratap']);
+    acInventorySheet.appendRow(['AC-TK-05', 'unit_tk', 'Ruang UKS & Konseling PG-TK', 'Gree Eco King GWC-05MOO', '0.5 PK', 'Baik / Normal', '2026-07-10', '2026-10-10', 2025, 1, 'Unit baru dipasang awal tahun']);
+    acInventorySheet.appendRow(['AC-TK-06', 'unit_tk', 'Ruang Makan / Daycare Balita', 'Panasonic Low Watt 1 PK', '1 PK', 'Baik / Normal', '2026-07-10', '2026-10-10', 2023, 1, 'Sering dipakai full day']);
+    acInventorySheet.appendRow(['AC-TK-07', 'unit_tk', 'Ruang Sentra Bahan Alam', 'Sharp Standard 1 PK', '1 PK', 'Baik / Normal', '2026-08-01', '2026-11-01', 2024, 1, 'Outdoor di taman belakang']);
+    acInventorySheet.appendRow(['AC-TK-08', 'unit_tk', 'Lobby & Ruang Tunggu Orang Tua TK', 'Daikin Inverter 2 PK', '2 PK', 'Baik / Normal', '2026-08-01', '2026-11-01', 2025, 1, 'Heavy duty lobby']);
+    // SD (18 Units)
+    acInventorySheet.appendRow(['AC-SD-01', 'unit_sd', 'Kantor Kepala SD', 'Gree Eco 1/2 PK', '0.5 PK', 'Baik / Normal', '2026-07-31', '2026-10-31', 2024, 1, 'Kantor Kepala Sekolah SD']);
+    acInventorySheet.appendRow(['AC-SD-02', 'unit_sd', 'Kantor Guru Ikhwan', 'Gree Eco 1/2 PK', '0.5 PK', 'Baik / Normal', '2026-07-31', '2026-10-31', 2024, 1, 'Ruang Kerja Guru Ikhwan']);
+    acInventorySheet.appendRow(['AC-SD-03', 'unit_sd', "Kantor Kabid Al-Qur'an", 'Gree Eco 1/2 PK', '0.5 PK', 'Baik / Normal', '2026-07-16', '2026-10-16', 2024, 1, "Gedung Pusat Al-Qur'an Al-Imam"]);
+    acInventorySheet.appendRow(['AC-SD-04', 'unit_sd', 'Ruang Guru SD', 'Daikin Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-09-28', '2026-12-28', 2024, 1, 'Ruang Guru SD']);
+    acInventorySheet.appendRow(['AC-SD-05', 'unit_sd', 'Kelas 1 Abdullah (Unit 1)', 'Daikin Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-09-28', '2026-12-28', 2024, 1, 'Cleaning AC Kelas 1 (28/9/2026)']);
+    acInventorySheet.appendRow(['AC-SD-06', 'unit_sd', 'Kelas 1 Abdullah (Unit 2)', 'Gree Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-09-28', '2026-12-28', 2024, 1, 'Cleaning AC Kelas 1 (28/9/2026)']);
+    acInventorySheet.appendRow(['AC-SD-07', 'unit_sd', 'Kelas 2 Saad (Unit 1)', 'Daikin Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-09-28', '2026-12-28', 2024, 1, 'Cleaning AC Kelas 2 (28/9/2026)']);
+    acInventorySheet.appendRow(['AC-SD-08', 'unit_sd', 'Kelas 2 Saad (Unit 2)', 'Daikin Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-09-28', '2026-12-28', 2024, 1, 'Cleaning AC Kelas 2 (28/9/2026)']);
+    acInventorySheet.appendRow(['AC-SD-09', 'unit_sd', "Kelas 3 Ka'ab (Unit 1)", 'Daikin Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-07-31', '2026-10-31', 2024, 1, 'Servis rutin 31/7/2026']);
+    acInventorySheet.appendRow(['AC-SD-10', 'unit_sd', "Kelas 3 Ka'ab (Unit 2)", 'Gree Heavy Duty 2 PK', '2 PK', 'Baik / Normal', '2026-07-31', '2026-10-31', 2024, 1, 'Servis rutin 31/7/2026']);
+    acInventorySheet.appendRow(['AC-SD-11', 'unit_sd', 'Kelas 4 Ali', 'Daikin Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-08-29', '2026-11-29', 2024, 1, 'Servis & pengecekan (29/8/2026)']);
+    acInventorySheet.appendRow(['AC-SD-12', 'unit_sd', 'Kelas 4 Sumayyah / Guru Kls 4', 'Daikin Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-09-28', '2026-12-28', 2024, 1, 'Tambah freon 1.5-2 PK (28/9/2026)']);
+    acInventorySheet.appendRow(['AC-SD-13', 'unit_sd', 'Kelas 5 Utsman', 'Daikin Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-08-15', '2026-11-15', 2024, 1, 'Lantai 2 Gedung SD']);
+    acInventorySheet.appendRow(['AC-SD-14', 'unit_sd', 'Kelas 5 Rumaysha', 'Daikin Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-08-15', '2026-11-15', 2024, 1, 'Lantai 2 Gedung SD']);
+    acInventorySheet.appendRow(['AC-SD-15', 'unit_sd', 'Kelas 6 Umar', 'Daikin Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-08-10', '2026-11-10', 2024, 1, 'Lantai 2 Gedung SD']);
+    acInventorySheet.appendRow(['AC-SD-16', 'unit_sd', 'Kelas 6 Hafsah', 'Daikin Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-08-10', '2026-11-10', 2024, 1, 'Lantai 2 Gedung SD']);
+    acInventorySheet.appendRow(['AC-SD-17', 'unit_sd', 'Lab Komputer SD', 'Daikin Heavy Duty 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-08-01', '2026-11-01', 2025, 1, 'Ruang Laboratorium Komputer']);
+    acInventorySheet.appendRow(['AC-SD-18', 'unit_sd', 'Lab IPA SD', 'Daikin Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-08-01', '2026-11-01', 2024, 1, 'Ruang Praktikum Sains & IPA']);
+    // SMP (15 Units)
+    acInventorySheet.appendRow(['AC-SMP-01', 'unit_smp', 'Kantor TU SD SMP (Unit 1)', 'Daikin Inverter 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-07-10', '2026-10-10', 2024, 1, 'Kantor Tata Usaha Bersama SD-SMP']);
+    acInventorySheet.appendRow(['AC-SMP-02', 'unit_smp', 'Kantor TU SD SMP (Unit 2)', 'Gree Standard 2 PK', '2 PK', 'Baik / Normal', '2026-07-10', '2026-10-10', 2024, 1, 'Kantor Tata Usaha Bersama SD-SMP']);
+    acInventorySheet.appendRow(['AC-SMP-03', 'unit_smp', 'Kantor Kepala Sekolah SMP', 'Gree Eco 1/2 PK', '0.5 PK', 'Baik / Normal', '2026-07-17', '2026-10-17', 2024, 1, 'Kantor Kepala Sekolah SMP']);
+    acInventorySheet.appendRow(['AC-SMP-04', 'unit_smp', 'Perpustakaan Al-Imam (SD/SMP)', 'Gree Low Watt 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-09-28', '2026-12-28', 2024, 1, 'Penanganan bocor air tuntas 28/9/2026']);
+    acInventorySheet.appendRow(['AC-SMP-05', 'unit_smp', 'Kelas 7 Utsman', 'Gree Heavy Duty 2 PK', '2 PK', 'Baik / Normal', '2026-07-10', '2026-10-10', 2024, 1, 'Cuci rutin 10/7/2026 (Pos D Item 16)']);
+    acInventorySheet.appendRow(['AC-SMP-06', 'unit_smp', 'Kelas 7 Aisyah', 'Daikin Inverter 2 PK', '2 PK', 'Baik / Normal', '2026-07-10', '2026-10-10', 2024, 1, 'Cuci rutin 10/7/2026 (Pos D Item 16)']);
+    acInventorySheet.appendRow(['AC-SMP-07', 'unit_smp', 'Kantor Guru Akhwat SMP', 'Daikin Inverter 2 PK', '2 PK', 'Baik / Normal', '2026-09-04', '2026-12-04', 2024, 1, 'Cuci rutin 4/9/2026 (Pos D Item 16)']);
+    acInventorySheet.appendRow(['AC-SMP-08', 'unit_smp', 'Kelas 9 Ummu (Unit 1)', 'Gree Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-09-04', '2026-12-04', 2024, 1, 'Cuci rutin 4/9/2026 (Pos D Item 16)']);
+    acInventorySheet.appendRow(['AC-SMP-09', 'unit_smp', 'Kelas 9 Ummu (Unit 2)', 'Gree Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-09-04', '2026-12-04', 2024, 1, 'Cuci rutin 4/9/2026 (Pos D Item 16)']);
+    acInventorySheet.appendRow(['AC-SMP-10', 'unit_smp', 'Kelas 8 Khodijah (Unit 1)', 'Daikin Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-07-31', '2026-10-31', 2024, 1, 'Cuci rutin 31/7/2026 (Pos D Item 16)']);
+    acInventorySheet.appendRow(['AC-SMP-11', 'unit_smp', 'Kelas 8 Khodijah (Unit 2)', 'Gree Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-07-31', '2026-10-31', 2024, 1, 'Cuci rutin 31/7/2026 (Pos D Item 16)']);
+    acInventorySheet.appendRow(['AC-SMP-12', 'unit_smp', 'Kelas 8 Umar bin Khattab (Unit 1)', 'Gree Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-09-04', '2026-12-04', 2024, 1, 'Cuci rutin 4/9/2026 (Pos D Item 16)']);
+    acInventorySheet.appendRow(['AC-SMP-13', 'unit_smp', 'Kelas 8 Umar bin Khattab (Unit 2)', 'Gree Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-09-04', '2026-12-04', 2024, 1, 'Cuci rutin 4/9/2026 (Pos D Item 16)']);
+    acInventorySheet.appendRow(['AC-SMP-14', 'unit_smp', 'Kelas 9 Abu Bakar (Unit 1)', 'Daikin Inverter 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-09-04', '2026-12-04', 2024, 1, 'Cuci rutin 4/9/2026 (Pos D Item 16)']);
+    acInventorySheet.appendRow(['AC-SMP-15', 'unit_smp', 'Kelas 9 Abu Bakar (Unit 2)', 'Gree Standard 1.5 PK', '1.5 PK', 'Baik / Normal', '2026-09-04', '2026-12-04', 2024, 1, 'Cuci rutin 4/9/2026 (Pos D Item 16)']);
   }
 
-  // 8. AC_Services Sheet
+  // 8. AC_Services Sheet (10 Real Service Records)
   let acServicesSheet = ss.getSheetByName(CONFIG.SHEETS.AC_SERVICES);
   if (!acServicesSheet) {
     acServicesSheet = ss.insertSheet(CONFIG.SHEETS.AC_SERVICES);
     acServicesSheet.appendRow(['Request_ID', 'Unit_ID', 'Room_Name', 'AC_ID', 'Service_Name', 'Qty', 'Unit_Price', 'Total_Amount', 'Funding_Source', 'Scheduled_Date', 'Vendor_Name', 'Status', 'Created_At']);
-    acServicesSheet.appendRow(['AC-REQ-202609-01', 'unit_sd', 'Ruang Kelas 2B Ali bin Abi Thalib', 'AC-SD-04', 'Cuci Besar / Overhaul', 1, 150000, 150000, 'RAPBS_POIN', '2026-09-30', 'CV Sarana Sejuk Al-Imam', 'Dalam Pengerjaan', '2026-09-26 14:10']);
-    acServicesSheet.appendRow(['AC-REQ-202609-02', 'unit_smp', 'Ruang Kelas 7A & 7B (2 Unit)', 'AC-SMP-01', 'Cuci AC Rutin (Pos D SMP)', 2, 75000, 150000, 'RAPBS_POIN', '2026-09-25', 'CV Sarana Sejuk Al-Imam', 'Selesai', '2026-09-22 09:30']);
+    acServicesSheet.appendRow(['AC-REQ-202607-01', 'unit_smp', 'Kelas 7 Utsman & 7 Aisyah SMP', 'AC-SMP-05', 'Cuci AC Rutin SMP (2 Unit)', 2, 85163, 170326, 'RAPBS_POIN', '2026-07-10', 'CV Sarana Sejuk Al-Imam', 'Selesai', '2026-07-10 08:30']);
+    acServicesSheet.appendRow(['AC-REQ-202607-02', 'unit_tk', 'Area PG-TK (6 Unit)', 'AC-TK-01', 'Cuci AC Rutin PG-TK (6 Unit)', 6, 85000, 510000, 'RAPBS_POIN', '2026-07-10', 'CV Sarana Sejuk Al-Imam', 'Selesai', '2026-07-10 10:15']);
+    acServicesSheet.appendRow(['AC-REQ-202607-03', 'unit_smp', "Ruang Yayasan / Kantor Kabid Al-Qur'an", 'AC-SD-03', 'Instalasi & Kabel AC Ruang Yayasan', 1, 110061, 110061, 'RAPBS_POIN', '2026-07-16', 'CV Sarana Sejuk Al-Imam', 'Selesai', '2026-07-16 11:00']);
+    acServicesSheet.appendRow(['AC-REQ-202607-04', 'unit_smp', 'Kelas 8 & 9 SMP (4 Ruang Kelas)', 'AC-SMP-08', 'Paket Service SMP: 4 Cuci, 1 Freon, 1 Service', 6, 116666, 700000, 'RAPBS_POIN', '2026-07-17', 'CV Sarana Sejuk Al-Imam', 'Selesai', '2026-07-17 08:30']);
+    acServicesSheet.appendRow(['AC-REQ-202607-05', 'unit_sd', "Ruang Kelas 3 Ka'ab SD", 'AC-SD-09', 'Perbaikan & Service AC SD (1 Unit)', 1, 175000, 175000, 'RAPBS_POIN', '2026-07-31', 'CV Sarana Sejuk Al-Imam', 'Selesai', '2026-07-31 09:00']);
+    acServicesSheet.appendRow(['AC-REQ-202607-06', 'unit_smp', 'Kelas 8 Khodijah SMP (2 Unit)', 'AC-SMP-10', 'Cuci AC Rutin SMP (2 Unit)', 2, 75000, 150000, 'RAPBS_POIN', '2026-07-31', 'CV Sarana Sejuk Al-Imam', 'Selesai', '2026-07-31 13:00']);
+    acServicesSheet.appendRow(['AC-REQ-202608-01', 'unit_sd', 'Ruang Kelas 4 Ali SD', 'AC-SD-11', 'Service & Pengecekan AC SD (1 Unit)', 1, 90329, 90329, 'RAPBS_POIN', '2026-08-29', 'CV Sarana Sejuk Al-Imam', 'Selesai', '2026-08-29 10:00']);
+    acServicesSheet.appendRow(['AC-REQ-202609-01', 'unit_smp', 'Kelas 8 Umar & 9 Abu Bakar (Batch 1)', 'AC-SMP-12', 'Cuci AC Rutin SMP (4 Unit)', 4, 75000, 300000, 'RAPBS_POIN', '2026-09-04', 'CV Sarana Sejuk Al-Imam', 'Selesai', '2026-09-04 08:30']);
+    acServicesSheet.appendRow(['AC-REQ-202609-02', 'unit_smp', 'Kelas 9 Ummu & Kantor Guru (Batch 2)', 'AC-SMP-08', 'Cuci AC Rutin 4 SMP (Batch 2)', 4, 75000, 300000, 'RAPBS_POIN', '2026-09-04', 'CV Sarana Sejuk Al-Imam', 'Selesai', '2026-09-04 13:00']);
+    acServicesSheet.appendRow(['AC-REQ-202609-03', 'unit_sd', 'Kelas 1, Guru Kls 4 & Perpus SD/SMP', 'AC-SD-05', 'Paket Cleaning AC Kls 1, Freon & Bocor Perpus', 6, 116666, 700000, 'RAPBS_POIN', '2026-09-28', 'CV Sarana Sejuk Al-Imam', 'Selesai', '2026-09-28 09:30']);
   }
 
   // 9. Renov_Projects Sheet

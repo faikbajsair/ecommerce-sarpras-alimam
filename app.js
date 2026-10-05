@@ -285,9 +285,9 @@ const INITIAL_DB = {
   ],
   
   rapbs_poin: [
-    { unit_id: 'unit_tk', total_plafond: 15000000, terpakai: 0, saldo_tersedia: 15000000, updated_at: '2026-07-01 08:00' },
-    { unit_id: 'unit_sd', total_plafond: 35884000, terpakai: 0, saldo_tersedia: 35884000, updated_at: '2026-07-01 08:00' },
-    { unit_id: 'unit_smp', total_plafond: 24506000, terpakai: 0, saldo_tersedia: 24506000, updated_at: '2026-07-01 08:00' }
+    { unit_id: 'unit_tk', total_plafond: 15000000, terpakai: 510000, saldo_tersedia: 14490000, updated_at: '2026-07-10 10:45' },
+    { unit_id: 'unit_sd', total_plafond: 35884000, terpakai: 965329, saldo_tersedia: 34918671, updated_at: '2026-09-28 10:00' },
+    { unit_id: 'unit_smp', total_plafond: 24506000, terpakai: 1730387, saldo_tersedia: 22775613, updated_at: '2026-09-04 13:30' }
   ],
 
   // Rincian Pos Sumber Dana RAPBS SARPRAS (D.1 SD & D SMP)
@@ -378,9 +378,161 @@ const INITIAL_DB = {
     { batch_id: 'BATCH-202607-02', product_name: 'Baterai Mic Wireless Alkaline AA (Pack 4)', category: 'Elektronik & IT', stock_qty: 0, unit_price: 32000, date_in: '2026-07-15', method: 'FIFO', status: 'Empty', image_url: 'https://images.unsplash.com/photo-1619725002198-6a689b72f41d?w=600&auto=format&fit=crop&q=80' }
   ],
 
-  orders: [],
+  orders: [
+    {
+      order_id: 'ORD-AC-20260710-01',
+      unit_id: 'unit_smp',
+      order_type: 'AC_Service',
+      items_json: JSON.stringify([
+        { product_name: '[Maintenance AC] Cuci AC Rutin 2 Unit SMP (Kelas 7 Utsman & 7 Aisyah)', qty: 2, unit_price: 85163, subtotal: 170326 }
+      ]),
+      total_amount: 170326,
+      status: 'Approved',
+      created_at: '2026-07-10 08:30',
+      approved_at: '2026-07-10 09:00',
+      notes: 'Pengeluaran Maintenance AC: 2 unit cuci SMP (Pos D Item 16)',
+      invoice_number: 'INV/AC/2026/0701'
+    },
+    {
+      order_id: 'ORD-AC-20260710-02',
+      unit_id: 'unit_tk',
+      order_type: 'AC_Service',
+      items_json: JSON.stringify([
+        { product_name: '[Maintenance AC] Cuci AC Rutin 6 Unit PG-TK (Kelas TK A, B, Playgroup, Kantor, UKS, R. Makan)', qty: 6, unit_price: 85000, subtotal: 510000 }
+      ]),
+      total_amount: 510000,
+      status: 'Approved',
+      created_at: '2026-07-10 10:15',
+      approved_at: '2026-07-10 10:45',
+      notes: 'Pengeluaran Maintenance AC: 6 unit cuci TK',
+      invoice_number: 'INV/AC/2026/0702'
+    },
+    {
+      order_id: 'ORD-AC-20260716-01',
+      unit_id: 'unit_smp',
+      order_type: 'AC_Service',
+      items_json: JSON.stringify([
+        { product_name: '[Maintenance AC] Instalasi & Penggantian Kabel AC Ruang Yayasan', qty: 1, unit_price: 110061, subtotal: 110061 }
+      ]),
+      total_amount: 110061,
+      status: 'Approved',
+      created_at: '2026-07-16 11:00',
+      approved_at: '2026-07-16 11:30',
+      notes: 'Pengeluaran Maintenance AC: Kabel AC ruang yys',
+      invoice_number: 'INV/AC/2026/0703'
+    },
+    {
+      order_id: 'ORD-AC-20260717-01',
+      unit_id: 'unit_smp',
+      order_type: 'AC_Service',
+      items_json: JSON.stringify([
+        { product_name: '[Maintenance AC] Paket Service SMP: 4 Unit Cuci, 1 Unit Isi Freon, 1 Unit Service/Perbaikan', qty: 1, unit_price: 700000, subtotal: 700000 }
+      ]),
+      total_amount: 700000,
+      status: 'Approved',
+      created_at: '2026-07-17 08:30',
+      approved_at: '2026-07-17 09:00',
+      notes: 'Pengeluaran Maintenance AC: 4 unit cuci, 1 unit isi freon, 1 unit Service SMP (Pos D Item 16)',
+      invoice_number: 'INV/AC/2026/0704'
+    },
+    {
+      order_id: 'ORD-AC-20260731-01',
+      unit_id: 'unit_sd',
+      order_type: 'AC_Service',
+      items_json: JSON.stringify([
+        { product_name: '[Maintenance AC] Perbaikan & Service AC SD (1 Unit Kelas SD)', qty: 1, unit_price: 175000, subtotal: 175000 }
+      ]),
+      total_amount: 175000,
+      status: 'Approved',
+      created_at: '2026-07-31 09:00',
+      approved_at: '2026-07-31 09:30',
+      notes: 'Pengeluaran Maintenance AC: 1 unit service SD',
+      invoice_number: 'INV/AC/2026/0705'
+    },
+    {
+      order_id: 'ORD-AC-20260731-02',
+      unit_id: 'unit_smp',
+      order_type: 'AC_Service',
+      items_json: JSON.stringify([
+        { product_name: '[Maintenance AC] Cuci AC Rutin 2 Unit SMP (Kelas 8 Khodijah)', qty: 2, unit_price: 75000, subtotal: 150000 }
+      ]),
+      total_amount: 150000,
+      status: 'Approved',
+      created_at: '2026-07-31 13:00',
+      approved_at: '2026-07-31 13:30',
+      notes: 'Pengeluaran Maintenance AC: 2 unit cuci SMP (Pos D Item 16)',
+      invoice_number: 'INV/AC/2026/0706'
+    },
+    {
+      order_id: 'ORD-AC-20260829-01',
+      unit_id: 'unit_sd',
+      order_type: 'AC_Service',
+      items_json: JSON.stringify([
+        { product_name: '[Maintenance AC] Service & Pengecekan 1 Unit AC SD (Kelas 4 Ali)', qty: 1, unit_price: 90329, subtotal: 90329 }
+      ]),
+      total_amount: 90329,
+      status: 'Approved',
+      created_at: '2026-08-29 10:00',
+      approved_at: '2026-08-29 10:30',
+      notes: 'Pengeluaran Maintenance AC: 1 unit service SD',
+      invoice_number: 'INV/AC/2026/0801'
+    },
+    {
+      order_id: 'ORD-AC-20260904-01',
+      unit_id: 'unit_smp',
+      order_type: 'AC_Service',
+      items_json: JSON.stringify([
+        { product_name: '[Maintenance AC] Cuci AC Rutin 4 Unit SMP (Batch 1 - Kelas 8 Umar & 9 Abu Bakar)', qty: 4, unit_price: 75000, subtotal: 300000 }
+      ]),
+      total_amount: 300000,
+      status: 'Approved',
+      created_at: '2026-09-04 08:30',
+      approved_at: '2026-09-04 09:00',
+      notes: 'Pengeluaran Maintenance AC: 4 unit cuci SMP (Pos D Item 16)',
+      invoice_number: 'INV/AC/2026/0901'
+    },
+    {
+      order_id: 'ORD-AC-20260904-02',
+      unit_id: 'unit_smp',
+      order_type: 'AC_Service',
+      items_json: JSON.stringify([
+        { product_name: '[Maintenance AC] Cuci AC Rutin 4 Unit SMP (Batch 2 - Kelas 9 Ummu & Kantor Guru)', qty: 4, unit_price: 75000, subtotal: 300000 }
+      ]),
+      total_amount: 300000,
+      status: 'Approved',
+      created_at: '2026-09-04 13:00',
+      approved_at: '2026-09-04 13:30',
+      notes: 'Pengeluaran Maintenance AC: 4 unit cuci 4 SMP (Pos D Item 16)',
+      invoice_number: 'INV/AC/2026/0902'
+    },
+    {
+      order_id: 'ORD-AC-20260928-01',
+      unit_id: 'unit_sd',
+      order_type: 'AC_Service',
+      items_json: JSON.stringify([
+        { product_name: '[Maintenance AC] Paket 4 Unit Cleaning AC Kelas 1 (2 Ruang), Tambah Freon 1.5-2 PK Guru Kls 4, & Bocor Air Perpus', qty: 1, unit_price: 700000, subtotal: 700000 }
+      ]),
+      total_amount: 700000,
+      status: 'Approved',
+      created_at: '2026-09-28 09:30',
+      approved_at: '2026-09-28 10:00',
+      notes: 'Pengeluaran Maintenance AC: 4 Unit Cleaning AC Kelas 1 (2 Ruang), Guru Kelas 4 Tambah Freon 1,5-2pk 1 Unit, Penanganan Bocor Air Ruang Perpus',
+      invoice_number: 'INV/AC/2026/0903'
+    }
+  ],
 
-  transactions_log: [],
+  transactions_log: [
+    { log_id: 'LOG-AC-20260710-01', order_id: 'ORD-AC-20260710-01', unit_id: 'unit_smp', keterangan: 'Pembayaran Layanan Maintenance AC: 2 unit cuci SMP', amount_deducted: 170326, debet: 0, kredit: 170326, remaining_balance: 24335674, timestamp: '2026-07-10 09:00', invoice_number: 'INV/AC/2026/0701' },
+    { log_id: 'LOG-AC-20260710-02', order_id: 'ORD-AC-20260710-02', unit_id: 'unit_tk', keterangan: 'Pembayaran Layanan Maintenance AC: 6 unit cuci TK', amount_deducted: 510000, debet: 0, kredit: 510000, remaining_balance: 14490000, timestamp: '2026-07-10 10:45', invoice_number: 'INV/AC/2026/0702' },
+    { log_id: 'LOG-AC-20260716-01', order_id: 'ORD-AC-20260716-01', unit_id: 'unit_smp', keterangan: 'Pembayaran Layanan Maintenance AC: Kabel AC ruang yys', amount_deducted: 110061, debet: 0, kredit: 110061, remaining_balance: 24225613, timestamp: '2026-07-16 11:30', invoice_number: 'INV/AC/2026/0703' },
+    { log_id: 'LOG-AC-20260717-01', order_id: 'ORD-AC-20260717-01', unit_id: 'unit_smp', keterangan: 'Pembayaran Layanan Maintenance AC: 4 unit cuci, 1 unit isi freon, 1 unit Service SMP', amount_deducted: 700000, debet: 0, kredit: 700000, remaining_balance: 23525613, timestamp: '2026-07-17 09:00', invoice_number: 'INV/AC/2026/0704' },
+    { log_id: 'LOG-AC-20260731-01', order_id: 'ORD-AC-20260731-01', unit_id: 'unit_sd', keterangan: 'Pembayaran Layanan Maintenance AC: 1 unit service SD', amount_deducted: 175000, debet: 0, kredit: 175000, remaining_balance: 35709000, timestamp: '2026-07-31 09:30', invoice_number: 'INV/AC/2026/0705' },
+    { log_id: 'LOG-AC-20260731-02', order_id: 'ORD-AC-20260731-02', unit_id: 'unit_smp', keterangan: 'Pembayaran Layanan Maintenance AC: 2 unit cuci SMP', amount_deducted: 150000, debet: 0, kredit: 150000, remaining_balance: 23375613, timestamp: '2026-07-31 13:30', invoice_number: 'INV/AC/2026/0706' },
+    { log_id: 'LOG-AC-20260829-01', order_id: 'ORD-AC-20260829-01', unit_id: 'unit_sd', keterangan: 'Pembayaran Layanan Maintenance AC: 1 unit service SD', amount_deducted: 90329, debet: 0, kredit: 90329, remaining_balance: 35618671, timestamp: '2026-08-29 10:30', invoice_number: 'INV/AC/2026/0801' },
+    { log_id: 'LOG-AC-20260904-01', order_id: 'ORD-AC-20260904-01', unit_id: 'unit_smp', keterangan: 'Pembayaran Layanan Maintenance AC: 4 unit cuci SMP (Batch 1)', amount_deducted: 300000, debet: 0, kredit: 300000, remaining_balance: 23075613, timestamp: '2026-09-04 09:00', invoice_number: 'INV/AC/2026/0901' },
+    { log_id: 'LOG-AC-20260904-02', order_id: 'ORD-AC-20260904-02', unit_id: 'unit_smp', keterangan: 'Pembayaran Layanan Maintenance AC: 4 unit cuci 4 SMP (Batch 2)', amount_deducted: 300000, debet: 0, kredit: 300000, remaining_balance: 22775613, timestamp: '2026-09-04 13:30', invoice_number: 'INV/AC/2026/0902' },
+    { log_id: 'LOG-AC-20260928-01', order_id: 'ORD-AC-20260928-01', unit_id: 'unit_sd', keterangan: 'Pembayaran Layanan Maintenance AC: 4 Unit Cleaning AC Kelas 1, Tambah Freon Guru Kls 4 & Bocor Air Perpus', amount_deducted: 700000, debet: 0, kredit: 700000, remaining_balance: 34918671, timestamp: '2026-09-28 10:00', invoice_number: 'INV/AC/2026/0903' }
+  ],
 
   // ==========================================
   // AC MANAGEMENT SPECIAL MODULE DATA
@@ -478,45 +630,235 @@ const INITIAL_DB = {
 
   ac_inventory: [
     // PG-TK AC Assets (8 units)
-    { ac_id: 'AC-TK-01', unit_id: 'unit_tk', room_name: 'Kelas TK A (Sentra Balok)', brand: 'Daikin FTKC25 (Inverter)', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2024, total_service_count: 3, notes: 'Outdoor di balkon lantai 1' },
-    { ac_id: 'AC-TK-02', unit_id: 'unit_tk', room_name: 'Kelas TK B (Sentra Imtaq)', brand: 'Sharp AH-A9UCY', capacity_pk: '1 PK', condition: 'Perlu Cuci Rutin', last_service_date: '2026-06-25', next_service_date: '2026-09-25', install_year: 2024, total_service_count: 4, notes: 'Outdoor samping lorong bermain' },
-    { ac_id: 'AC-TK-03', unit_id: 'unit_tk', room_name: 'Kelas Playgroup (Sentra Main Peran)', brand: 'Panasonic CS-YN9WKJ', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-08-05', next_service_date: '2026-11-05', install_year: 2025, total_service_count: 2, notes: 'Indoor bersih' },
-    { ac_id: 'AC-TK-04', unit_id: 'unit_tk', room_name: 'Kantor Kepala & Guru PG-TK', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-20', next_service_date: '2026-10-20', install_year: 2023, total_service_count: 5, notes: 'Outdoor aman beratap' },
-    { ac_id: 'AC-TK-05', unit_id: 'unit_tk', room_name: 'Ruang UKS & Konseling PG-TK', brand: 'Gree Eco King GWC-05MOO', capacity_pk: '0.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-12', next_service_date: '2026-11-12', install_year: 2025, total_service_count: 1, notes: 'Unit baru dipasang awal tahun' },
-    { ac_id: 'AC-TK-06', unit_id: 'unit_tk', room_name: 'Ruang Makan / Daycare Balita', brand: 'Panasonic Low Watt 1 PK', capacity_pk: '1 PK', condition: 'Perlu Cuci Rutin', last_service_date: '2026-06-15', next_service_date: '2026-09-15', install_year: 2023, total_service_count: 6, notes: 'Sering dipakai full day' },
-    { ac_id: 'AC-TK-07', unit_id: 'unit_tk', room_name: 'Ruang Sentra Bahan Alam', brand: 'Sharp Standard 1 PK', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-07-30', next_service_date: '2026-10-30', install_year: 2024, total_service_count: 3, notes: 'Outdoor di taman belakang' },
-    { ac_id: 'AC-TK-08', unit_id: 'unit_tk', room_name: 'Lobby & Ruang Tunggu Orang Tua TK', brand: 'Daikin Inverter 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-08-18', next_service_date: '2026-11-18', install_year: 2025, total_service_count: 2, notes: 'Heavy duty lobby' },
+    { ac_id: 'AC-TK-01', unit_id: 'unit_tk', room_name: 'Kelas TK A (Sentra Balok)', brand: 'Daikin FTKC25 (Inverter)', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2024, total_service_count: 1, notes: 'Outdoor di balkon lantai 1' },
+    { ac_id: 'AC-TK-02', unit_id: 'unit_tk', room_name: 'Kelas TK B (Sentra Imtaq)', brand: 'Sharp AH-A9UCY', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2024, total_service_count: 1, notes: 'Outdoor samping lorong bermain' },
+    { ac_id: 'AC-TK-03', unit_id: 'unit_tk', room_name: 'Kelas Playgroup (Sentra Main Peran)', brand: 'Panasonic CS-YN9WKJ', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2025, total_service_count: 1, notes: 'Indoor bersih' },
+    { ac_id: 'AC-TK-04', unit_id: 'unit_tk', room_name: 'Kantor Kepala & Guru PG-TK', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2023, total_service_count: 1, notes: 'Outdoor aman beratap' },
+    { ac_id: 'AC-TK-05', unit_id: 'unit_tk', room_name: 'Ruang UKS & Konseling PG-TK', brand: 'Gree Eco King GWC-05MOO', capacity_pk: '0.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2025, total_service_count: 1, notes: 'Unit baru dipasang awal tahun' },
+    { ac_id: 'AC-TK-06', unit_id: 'unit_tk', room_name: 'Ruang Makan / Daycare Balita', brand: 'Panasonic Low Watt 1 PK', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2023, total_service_count: 1, notes: 'Sering dipakai full day' },
+    { ac_id: 'AC-TK-07', unit_id: 'unit_tk', room_name: 'Ruang Sentra Bahan Alam', brand: 'Sharp Standard 1 PK', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-08-01', next_service_date: '2026-11-01', install_year: 2024, total_service_count: 1, notes: 'Outdoor di taman belakang' },
+    { ac_id: 'AC-TK-08', unit_id: 'unit_tk', room_name: 'Lobby & Ruang Tunggu Orang Tua TK', brand: 'Daikin Inverter 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-08-01', next_service_date: '2026-11-01', install_year: 2025, total_service_count: 1, notes: 'Heavy duty lobby' },
 
-    // SD AC Assets (12 units)
-    { ac_id: 'AC-SD-01', unit_id: 'unit_sd', room_name: 'Ruang Kelas 1A Abu Bakar', brand: 'Daikin FTKC25 (Inverter)', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-08-01', next_service_date: '2026-11-01', install_year: 2024, total_service_count: 4, notes: 'Outdoor di selasar lt. 1' },
-    { ac_id: 'AC-SD-02', unit_id: 'unit_sd', room_name: 'Ruang Kelas 1B Umar bin Khattab', brand: 'Daikin FTKC25 (Inverter)', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-08-01', next_service_date: '2026-11-01', install_year: 2024, total_service_count: 4, notes: 'Outdoor di selasar lt. 1' },
-    { ac_id: 'AC-SD-03', unit_id: 'unit_sd', room_name: 'Ruang Kelas 2A Utsman bin Affan', brand: 'Panasonic CS-YN9WKJ', capacity_pk: '1 PK', condition: 'Perlu Cuci Rutin', last_service_date: '2026-06-20', next_service_date: '2026-09-20', install_year: 2023, total_service_count: 5, notes: 'Filter mulai berdebu' },
-    { ac_id: 'AC-SD-04', unit_id: 'unit_sd', room_name: 'Ruang Kelas 2B Ali bin Abi Thalib', brand: 'Sharp AH-A9UCY', capacity_pk: '1 PK', condition: 'Kurang Dingin / Menetes', last_service_date: '2026-05-10', next_service_date: '2026-08-10', install_year: 2023, total_service_count: 6, notes: 'Talang air mampet perlu cuci overhaul' },
-    { ac_id: 'AC-SD-05', unit_id: 'unit_sd', room_name: 'Ruang Kelas 3A Bilal bin Rabah', brand: 'Daikin Standard 1 PK', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-07-15', next_service_date: '2026-10-15', install_year: 2024, total_service_count: 3, notes: 'Outdoor lt. 2' },
-    { ac_id: 'AC-SD-06', unit_id: 'unit_sd', room_name: 'Ruang Kelas 3B Khalid bin Walid', brand: 'Daikin Standard 1 PK', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-07-15', next_service_date: '2026-10-15', install_year: 2024, total_service_count: 3, notes: 'Outdoor lt. 2' },
-    { ac_id: 'AC-SD-07', unit_id: 'unit_sd', room_name: 'Lab Komputer SD', brand: 'Daikin Heavy Duty 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-08-10', next_service_date: '2026-11-10', install_year: 2025, total_service_count: 2, notes: 'Unit dingin stabil untuk 30 PC' },
-    { ac_id: 'AC-SD-08', unit_id: 'unit_sd', room_name: 'Kantor Guru & Kepala Sekolah SD', brand: 'Panasonic Inverter 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-28', next_service_date: '2026-10-28', install_year: 2024, total_service_count: 4, notes: 'Outdoor di taman samping' },
-    { ac_id: 'AC-SD-09', unit_id: 'unit_sd', room_name: 'Perpustakaan SD', brand: 'Sharp Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-05', next_service_date: '2026-11-05', install_year: 2024, total_service_count: 3, notes: 'Suhu stabil buku' },
-    { ac_id: 'AC-SD-10', unit_id: 'unit_sd', room_name: 'Ruang UKS & Dokter Cilik SD', brand: 'Gree 0.75 PK', capacity_pk: '0.75 PK', condition: 'Baik / Normal', last_service_date: '2026-07-12', next_service_date: '2026-10-12', install_year: 2025, total_service_count: 2, notes: 'Kondisi senyap' },
+    // SD AC Assets (18 units)
+    { ac_id: 'AC-SD-01', unit_id: 'unit_sd', room_name: 'Kantor Kepala SD', brand: 'Gree Eco 1/2 PK', capacity_pk: '0.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-31', next_service_date: '2026-10-31', install_year: 2024, total_service_count: 1, notes: 'Kantor Kepala Sekolah SD' },
+    { ac_id: 'AC-SD-02', unit_id: 'unit_sd', room_name: 'Kantor Guru Ikhwan', brand: 'Gree Eco 1/2 PK', capacity_pk: '0.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-31', next_service_date: '2026-10-31', install_year: 2024, total_service_count: 1, notes: 'Ruang Kerja Guru Ikhwan' },
+    { ac_id: 'AC-SD-03', unit_id: 'unit_sd', room_name: "Kantor Kabid Al-Qur'an", brand: 'Gree Eco 1/2 PK', capacity_pk: '0.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-16', next_service_date: '2026-10-16', install_year: 2024, total_service_count: 1, notes: "Gedung Pusat Al-Qur'an Al-Imam (Kabel AC baru diganti)" },
+    { ac_id: 'AC-SD-04', unit_id: 'unit_sd', room_name: 'Ruang Guru SD', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-28', next_service_date: '2026-12-28', install_year: 2024, total_service_count: 1, notes: 'Ruang Guru SD' },
+    { ac_id: 'AC-SD-05', unit_id: 'unit_sd', room_name: 'Kelas 1 Abdullah (Unit 1)', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-28', next_service_date: '2026-12-28', install_year: 2024, total_service_count: 1, notes: 'Cleaning AC Kelas 1 (28/9/2026)' },
+    { ac_id: 'AC-SD-06', unit_id: 'unit_sd', room_name: 'Kelas 1 Abdullah (Unit 2)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-28', next_service_date: '2026-12-28', install_year: 2024, total_service_count: 1, notes: 'Cleaning AC Kelas 1 (28/9/2026)' },
+    { ac_id: 'AC-SD-07', unit_id: 'unit_sd', room_name: 'Kelas 2 Saad (Unit 1)', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-28', next_service_date: '2026-12-28', install_year: 2024, total_service_count: 1, notes: 'Cleaning AC Kelas 2 (28/9/2026)' },
+    { ac_id: 'AC-SD-08', unit_id: 'unit_sd', room_name: 'Kelas 2 Saad (Unit 2)', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-28', next_service_date: '2026-12-28', install_year: 2024, total_service_count: 1, notes: 'Cleaning AC Kelas 2 (28/9/2026)' },
+    { ac_id: 'AC-SD-09', unit_id: 'unit_sd', room_name: "Kelas 3 Ka'ab (Unit 1)", brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-31', next_service_date: '2026-10-31', install_year: 2024, total_service_count: 1, notes: 'Servis rutin 31/7/2026' },
+    { ac_id: 'AC-SD-10', unit_id: 'unit_sd', room_name: "Kelas 3 Ka'ab (Unit 2)", brand: 'Gree Heavy Duty 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-07-31', next_service_date: '2026-10-31', install_year: 2024, total_service_count: 1, notes: 'Servis rutin 31/7/2026' },
+    { ac_id: 'AC-SD-11', unit_id: 'unit_sd', room_name: 'Kelas 4 Ali', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-29', next_service_date: '2026-11-29', install_year: 2024, total_service_count: 1, notes: 'Servis & pengecekan (29/8/2026)' },
+    { ac_id: 'AC-SD-12', unit_id: 'unit_sd', room_name: 'Kelas 4 Sumayyah / Ruang Guru Kls 4', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-28', next_service_date: '2026-12-28', install_year: 2024, total_service_count: 1, notes: 'Tambah freon 1.5-2 PK (28/9/2026)' },
+    { ac_id: 'AC-SD-13', unit_id: 'unit_sd', room_name: 'Kelas 5 Utsman', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-15', next_service_date: '2026-11-15', install_year: 2024, total_service_count: 1, notes: 'Lantai 2 Gedung SD' },
+    { ac_id: 'AC-SD-14', unit_id: 'unit_sd', room_name: 'Kelas 5 Rumaysha', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-15', next_service_date: '2026-11-15', install_year: 2024, total_service_count: 1, notes: 'Lantai 2 Gedung SD' },
+    { ac_id: 'AC-SD-15', unit_id: 'unit_sd', room_name: 'Kelas 6 Umar', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-10', next_service_date: '2026-11-10', install_year: 2024, total_service_count: 1, notes: 'Lantai 2 Gedung SD' },
+    { ac_id: 'AC-SD-16', unit_id: 'unit_sd', room_name: 'Kelas 6 Hafsah', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-10', next_service_date: '2026-11-10', install_year: 2024, total_service_count: 1, notes: 'Lantai 2 Gedung SD' },
+    { ac_id: 'AC-SD-17', unit_id: 'unit_sd', room_name: 'Lab Komputer SD', brand: 'Daikin Heavy Duty 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-01', next_service_date: '2026-11-01', install_year: 2025, total_service_count: 1, notes: 'Ruang Laboratorium Komputer' },
+    { ac_id: 'AC-SD-18', unit_id: 'unit_sd', room_name: 'Lab IPA SD', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-01', next_service_date: '2026-11-01', install_year: 2024, total_service_count: 1, notes: 'Ruang Praktikum Sains & IPA' },
 
-    // SMP AC Assets (14 units matching SMP Pos D Maintenance AC budget)
-    { ac_id: 'AC-SMP-01', unit_id: 'unit_smp', room_name: 'Ruang Kelas 7A Ibnu Sina', brand: 'Daikin FTKC25 (Inverter)', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-07-18', next_service_date: '2026-10-18', install_year: 2024, total_service_count: 3, notes: 'Pos D SMP Item 16' },
-    { ac_id: 'AC-SMP-02', unit_id: 'unit_smp', room_name: 'Ruang Kelas 7B Al-Farabi', brand: 'Daikin FTKC25 (Inverter)', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-07-18', next_service_date: '2026-10-18', install_year: 2024, total_service_count: 3, notes: 'Pos D SMP Item 16' },
-    { ac_id: 'AC-SMP-03', unit_id: 'unit_smp', room_name: 'Ruang Kelas 8A Al-Khawarizmi', brand: 'Panasonic CS-YN9WKJ', capacity_pk: '1 PK', condition: 'Perlu Cuci Rutin', last_service_date: '2026-06-22', next_service_date: '2026-09-22', install_year: 2023, total_service_count: 5, notes: 'Jadwal triwulan' },
-    { ac_id: 'AC-SMP-04', unit_id: 'unit_smp', room_name: 'Ruang Kelas 8B Ibnu Khaldun', brand: 'Panasonic CS-YN9WKJ', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-07-25', next_service_date: '2026-10-25', install_year: 2023, total_service_count: 4, notes: 'Pos D SMP Item 16' },
-    { ac_id: 'AC-SMP-05', unit_id: 'unit_smp', room_name: 'Ruang Kelas 9A Thariq bin Ziyad', brand: 'Sharp AH-A9UCY', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-08-02', next_service_date: '2026-11-02', install_year: 2024, total_service_count: 3, notes: 'Pos D SMP Item 16' },
-    { ac_id: 'AC-SMP-06', unit_id: 'unit_smp', room_name: 'Ruang Kelas 9B Salahuddin Al-Ayyubi', brand: 'Sharp AH-A9UCY', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-08-02', next_service_date: '2026-11-02', install_year: 2024, total_service_count: 3, notes: 'Pos D SMP Item 16' },
-    { ac_id: 'AC-SMP-07', unit_id: 'unit_smp', room_name: 'Lab Komputer & CBT Center SMP (Unit 1)', brand: 'Daikin Inverter 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-08-15', next_service_date: '2026-11-15', install_year: 2025, total_service_count: 2, notes: 'Ruang ujian CBT' },
-    { ac_id: 'AC-SMP-08', unit_id: 'unit_smp', room_name: 'Lab Komputer & CBT Center SMP (Unit 2)', brand: 'Daikin Inverter 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-08-15', next_service_date: '2026-11-15', install_year: 2025, total_service_count: 2, notes: 'Ruang ujian CBT' },
-    { ac_id: 'AC-SMP-09', unit_id: 'unit_smp', room_name: 'Lab IPA & Sains Terpadu SMP', brand: 'Panasonic 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2024, total_service_count: 4, notes: 'Pos D SMP Item 16' },
-    { ac_id: 'AC-SMP-10', unit_id: 'unit_smp', room_name: 'Kantor Guru & Tata Usaha SMP', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-01', next_service_date: '2026-11-01', install_year: 2024, total_service_count: 3, notes: 'Pos D SMP Item 16' },
-    { ac_id: 'AC-SMP-11', unit_id: 'unit_smp', room_name: 'Ruang Kepala Sekolah SMP', brand: 'Sharp Inverter 1 PK', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-08-01', next_service_date: '2026-11-01', install_year: 2025, total_service_count: 2, notes: 'Pos D SMP Item 16' },
-    { ac_id: 'AC-SMP-12', unit_id: 'unit_smp', room_name: 'Studio Podcast & Tahfidz SMP', brand: 'Gree Inverter 1 PK (Silent)', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-08-10', next_service_date: '2026-11-10', install_year: 2025, total_service_count: 2, notes: 'Akustik kedap suara' },
-    { ac_id: 'AC-SMP-13', unit_id: 'unit_smp', room_name: 'Ruang BK & Konseling SMP', brand: 'Sharp Standard 0.75 PK', capacity_pk: '0.75 PK', condition: 'Baik / Normal', last_service_date: '2026-07-20', next_service_date: '2026-10-20', install_year: 2024, total_service_count: 3, notes: 'Pos D SMP Item 16' },
-    { ac_id: 'AC-SMP-14', unit_id: 'unit_smp', room_name: 'Ruang Server & IT Al-Imam', brand: 'Daikin Premium Inverter 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-20', next_service_date: '2026-11-20', install_year: 2025, total_service_count: 3, notes: 'Beroperasi 24/7 suhu 18-20 C' }
+    // SMP AC Assets (15 units)
+    { ac_id: 'AC-SMP-01', unit_id: 'unit_smp', room_name: 'Kantor TU SD SMP (Unit 1)', brand: 'Daikin Inverter 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2024, total_service_count: 1, notes: 'Kantor Tata Usaha Bersama SD-SMP' },
+    { ac_id: 'AC-SMP-02', unit_id: 'unit_smp', room_name: 'Kantor TU SD SMP (Unit 2)', brand: 'Gree Standard 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2024, total_service_count: 1, notes: 'Kantor Tata Usaha Bersama SD-SMP' },
+    { ac_id: 'AC-SMP-03', unit_id: 'unit_smp', room_name: 'Kantor Kepala Sekolah SMP', brand: 'Gree Eco 1/2 PK', capacity_pk: '0.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-17', next_service_date: '2026-10-17', install_year: 2024, total_service_count: 1, notes: 'Kantor Kepala Sekolah SMP' },
+    { ac_id: 'AC-SMP-04', unit_id: 'unit_smp', room_name: 'Perpustakaan Al-Imam (SD/SMP)', brand: 'Gree Low Watt 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-28', next_service_date: '2026-12-28', install_year: 2024, total_service_count: 1, notes: 'Penanganan bocor air tuntas 28/9/2026' },
+    { ac_id: 'AC-SMP-05', unit_id: 'unit_smp', room_name: 'Kelas 7 Utsman', brand: 'Gree Heavy Duty 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 10/7/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-06', unit_id: 'unit_smp', room_name: 'Kelas 7 Aisyah', brand: 'Daikin Inverter 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 10/7/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-07', unit_id: 'unit_smp', room_name: 'Kantor Guru Akhwat SMP', brand: 'Daikin Inverter 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-09-04', next_service_date: '2026-12-04', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-08', unit_id: 'unit_smp', room_name: 'Kelas 9 Ummu (Unit 1)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-04', next_service_date: '2026-12-04', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-09', unit_id: 'unit_smp', room_name: 'Kelas 9 Ummu (Unit 2)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-04', next_service_date: '2026-12-04', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-10', unit_id: 'unit_smp', room_name: 'Kelas 8 Khodijah (Unit 1)', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-31', next_service_date: '2026-10-31', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 31/7/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-11', unit_id: 'unit_smp', room_name: 'Kelas 8 Khodijah (Unit 2)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-31', next_service_date: '2026-10-31', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 31/7/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-12', unit_id: 'unit_smp', room_name: 'Kelas 8 Umar bin Khattab (Unit 1)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-04', next_service_date: '2026-12-04', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-13', unit_id: 'unit_smp', room_name: 'Kelas 8 Umar bin Khattab (Unit 2)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-04', next_service_date: '2026-12-04', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-14', unit_id: 'unit_smp', room_name: 'Kelas 9 Abu Bakar (Unit 1)', brand: 'Daikin Inverter 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-04', next_service_date: '2026-12-04', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-15', unit_id: 'unit_smp', room_name: 'Kelas 9 Abu Bakar (Unit 2)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-04', next_service_date: '2026-12-04', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' }
   ],
 
-  ac_service_requests: [],
+  ac_service_requests: [
+    {
+      request_id: 'AC-REQ-202607-01',
+      unit_id: 'unit_smp',
+      room_name: 'Kelas 7 Utsman & 7 Aisyah SMP',
+      ac_id: 'AC-SMP-05',
+      service_name: 'Cuci AC Rutin SMP (2 Unit)',
+      service_id: 'AC-SRV-CUCI-RUTIN',
+      qty: 2,
+      unit_price: 85163,
+      total_amount: 170326,
+      funding_source: 'RAPBS_POIN',
+      scheduled_date: '2026-07-10',
+      vendor_name: 'CV Sarana Sejuk Al-Imam',
+      status: 'Selesai',
+      created_at: '2026-07-10 08:30',
+      approved_at: '2026-07-10 09:00',
+      notes: '2 unit cuci SMP - Realisasi biaya Rp 170.326 (Pos D Item 16 Maintenance AC)'
+    },
+    {
+      request_id: 'AC-REQ-202607-02',
+      unit_id: 'unit_tk',
+      room_name: 'Area PG-TK (Kelas TK A, TK B, Playgroup, Kantor, UKS, Ruang Makan)',
+      ac_id: 'AC-TK-01',
+      service_name: 'Cuci AC Rutin PG-TK (6 Unit)',
+      service_id: 'AC-SRV-CUCI-RUTIN',
+      qty: 6,
+      unit_price: 85000,
+      total_amount: 510000,
+      funding_source: 'RAPBS_POIN',
+      scheduled_date: '2026-07-10',
+      vendor_name: 'CV Sarana Sejuk Al-Imam',
+      status: 'Selesai',
+      created_at: '2026-07-10 10:15',
+      approved_at: '2026-07-10 10:45',
+      notes: '6 unit cuci TK - Realisasi biaya Rp 510.000'
+    },
+    {
+      request_id: 'AC-REQ-202607-03',
+      unit_id: 'unit_smp',
+      room_name: "Ruang Yayasan / Kantor Kabid Al-Qur'an",
+      ac_id: 'AC-SD-03',
+      service_name: 'Instalasi & Penggantian Kabel AC Ruang Yayasan',
+      service_id: 'AC-SRV-PERBAIKAN-KAPASITOR',
+      qty: 1,
+      unit_price: 110061,
+      total_amount: 110061,
+      funding_source: 'RAPBS_POIN',
+      scheduled_date: '2026-07-16',
+      vendor_name: 'CV Sarana Sejuk Al-Imam',
+      status: 'Selesai',
+      created_at: '2026-07-16 11:00',
+      approved_at: '2026-07-16 11:30',
+      notes: 'Kabel AC ruang yys - Realisasi biaya Rp 110.061'
+    },
+    {
+      request_id: 'AC-REQ-202607-04',
+      unit_id: 'unit_smp',
+      room_name: 'Kelas 8 & 9 SMP (4 Ruang Kelas)',
+      ac_id: 'AC-SMP-08',
+      service_name: 'Paket Service Komplit SMP (4 Unit Cuci, 1 Unit Isi Freon, 1 Unit Service)',
+      service_id: 'AC-SRV-FREON-ISI-TOTAL',
+      qty: 6,
+      unit_price: 116666,
+      total_amount: 700000,
+      funding_source: 'RAPBS_POIN',
+      scheduled_date: '2026-07-17',
+      vendor_name: 'CV Sarana Sejuk Al-Imam',
+      status: 'Selesai',
+      created_at: '2026-07-17 08:30',
+      approved_at: '2026-07-17 09:00',
+      notes: '4 unit cuci, 1 unit isi freon, 1 unit Service SMP - Realisasi biaya Rp 700.000 (Pos D Item 16)'
+    },
+    {
+      request_id: 'AC-REQ-202607-05',
+      unit_id: 'unit_sd',
+      room_name: "Ruang Kelas 3 Ka'ab SD",
+      ac_id: 'AC-SD-09',
+      service_name: 'Perbaikan & Service AC SD (1 Unit)',
+      service_id: 'AC-SRV-PERBAIKAN-KAPASITOR',
+      qty: 1,
+      unit_price: 175000,
+      total_amount: 175000,
+      funding_source: 'RAPBS_POIN',
+      scheduled_date: '2026-07-31',
+      vendor_name: 'CV Sarana Sejuk Al-Imam',
+      status: 'Selesai',
+      created_at: '2026-07-31 09:00',
+      approved_at: '2026-07-31 09:30',
+      notes: '1 unit service SD - Realisasi biaya Rp 175.000'
+    },
+    {
+      request_id: 'AC-REQ-202607-06',
+      unit_id: 'unit_smp',
+      room_name: 'Kelas 8 Khodijah SMP (2 Unit)',
+      ac_id: 'AC-SMP-10',
+      service_name: 'Cuci AC Rutin SMP (2 Unit)',
+      service_id: 'AC-SRV-CUCI-RUTIN',
+      qty: 2,
+      unit_price: 75000,
+      total_amount: 150000,
+      funding_source: 'RAPBS_POIN',
+      scheduled_date: '2026-07-31',
+      vendor_name: 'CV Sarana Sejuk Al-Imam',
+      status: 'Selesai',
+      created_at: '2026-07-31 13:00',
+      approved_at: '2026-07-31 13:30',
+      notes: '2 unit cuci SMP - Realisasi biaya Rp 150.000 (Pos D Item 16)'
+    },
+    {
+      request_id: 'AC-REQ-202608-01',
+      unit_id: 'unit_sd',
+      room_name: 'Ruang Kelas 4 Ali SD',
+      ac_id: 'AC-SD-11',
+      service_name: 'Service & Pengecekan AC SD (1 Unit)',
+      service_id: 'AC-SRV-PERBAIKAN-KAPASITOR',
+      qty: 1,
+      unit_price: 90329,
+      total_amount: 90329,
+      funding_source: 'RAPBS_POIN',
+      scheduled_date: '2026-08-29',
+      vendor_name: 'CV Sarana Sejuk Al-Imam',
+      status: 'Selesai',
+      created_at: '2026-08-29 10:00',
+      approved_at: '2026-08-29 10:30',
+      notes: '1 unit service SD - Realisasi biaya Rp 90.329'
+    },
+    {
+      request_id: 'AC-REQ-202609-01',
+      unit_id: 'unit_smp',
+      room_name: 'Kelas 8 Umar & 9 Abu Bakar (Batch 1 - 4 Unit)',
+      ac_id: 'AC-SMP-12',
+      service_name: 'Cuci AC Rutin SMP (4 Unit)',
+      service_id: 'AC-SRV-CUCI-RUTIN',
+      qty: 4,
+      unit_price: 75000,
+      total_amount: 300000,
+      funding_source: 'RAPBS_POIN',
+      scheduled_date: '2026-09-04',
+      vendor_name: 'CV Sarana Sejuk Al-Imam',
+      status: 'Selesai',
+      created_at: '2026-09-04 08:30',
+      approved_at: '2026-09-04 09:00',
+      notes: '4 unit cuci SMP - Realisasi biaya Rp 300.000 (Pos D Item 16)'
+    },
+    {
+      request_id: 'AC-REQ-202609-02',
+      unit_id: 'unit_smp',
+      room_name: 'Kelas 9 Ummu & Kantor Guru Akhwat (Batch 2 - 4 Unit)',
+      ac_id: 'AC-SMP-08',
+      service_name: 'Cuci AC Rutin SMP (4 Unit)',
+      service_id: 'AC-SRV-CUCI-RUTIN',
+      qty: 4,
+      unit_price: 75000,
+      total_amount: 300000,
+      funding_source: 'RAPBS_POIN',
+      scheduled_date: '2026-09-04',
+      vendor_name: 'CV Sarana Sejuk Al-Imam',
+      status: 'Selesai',
+      created_at: '2026-09-04 13:00',
+      approved_at: '2026-09-04 13:30',
+      notes: '4 unit cuci 4 SMP - Realisasi biaya Rp 300.000 (Pos D Item 16)'
+    },
+    {
+      request_id: 'AC-REQ-202609-03',
+      unit_id: 'unit_sd',
+      room_name: 'Kelas 1 Abdullah (2 Unit), Guru Kelas 4 & Perpus SD/SMP',
+      ac_id: 'AC-SD-05',
+      service_name: 'Paket Cleaning AC Kelas 1 (2 Ruang), Tambah Freon 1.5-2 PK Guru Kls 4, & Bocor Air Perpus',
+      service_id: 'AC-SRV-FREON-TAMBAH',
+      qty: 6,
+      unit_price: 116666,
+      total_amount: 700000,
+      funding_source: 'RAPBS_POIN',
+      scheduled_date: '2026-09-28',
+      vendor_name: 'CV Sarana Sejuk Al-Imam',
+      status: 'Selesai',
+      created_at: '2026-09-28 09:30',
+      approved_at: '2026-09-28 10:00',
+      notes: '4 Unit Cleaning AC Kelas 1 (2 Ruang), Guru Kelas 4 Tambah Freon 1,5-2pk 1 Unit Kelas 4, Penanganan Bocor Air Ruang Perpus - Realisasi Rp 700.000'
+    }
+  ],
 
   ac_vendors: [
     {
@@ -860,8 +1202,8 @@ const app = {
   bulkProductActiveTab: 'grid',
   
   // Storage keys
-  STORAGE_KEY: 'ECOMMERCE_ALIMAM_DATA_V3',
-  AUTH_KEY: 'ECOMMERCE_ALIMAM_AUTH_USER_V3',
+  STORAGE_KEY: 'ECOMMERCE_ALIMAM_DATA_V4',
+  AUTH_KEY: 'ECOMMERCE_ALIMAM_AUTH_USER_V4',
 
   // Initialize Application
   init() {
@@ -895,7 +1237,7 @@ const app = {
     // Filter out legacy dummy orders, logs, and mock requests
     const dummyOrderIds = ['ORD-202609-001', 'ORD-202609-002', 'ORD-202609-003'];
     const dummyLogIds = ['LOG-202609-001'];
-    const dummyAcReqIds = ['AC-REQ-202609-01', 'AC-REQ-202609-02', 'AC-REQ-202609-03'];
+    const dummyAcReqIds = ['AC-REQ-202609-01-MOCK', 'AC-REQ-202609-02-MOCK', 'AC-REQ-202609-03-MOCK'];
     const dummyRnvReqIds = ['RNV-REQ-202609-01', 'RNV-REQ-202609-02', 'RNV-REQ-202609-03', 'RNV-REQ-202609-04'];
 
     if (this.db) {
@@ -921,6 +1263,24 @@ const app = {
       }
     }
 
+    // Sync seed real AC service requests if empty
+    if (!this.db.ac_service_requests || this.db.ac_service_requests.length === 0) {
+      this.db.ac_service_requests = JSON.parse(JSON.stringify(INITIAL_DB.ac_service_requests));
+    }
+
+    // Sync real AC asset inventory
+    if (!this.db.ac_inventory || this.db.ac_inventory.length < INITIAL_DB.ac_inventory.length) {
+      this.db.ac_inventory = JSON.parse(JSON.stringify(INITIAL_DB.ac_inventory));
+    }
+
+    // Sync seed orders and logs if empty
+    if (!this.db.orders || this.db.orders.length === 0) {
+      this.db.orders = JSON.parse(JSON.stringify(INITIAL_DB.orders));
+    }
+    if (!this.db.transactions_log || this.db.transactions_log.length === 0) {
+      this.db.transactions_log = JSON.parse(JSON.stringify(INITIAL_DB.transactions_log));
+    }
+
     // Ensure rapbs_breakdowns is present in db
     if (!this.db.rapbs_breakdowns) {
       this.db.rapbs_breakdowns = JSON.parse(JSON.stringify(INITIAL_DB.rapbs_breakdowns));
@@ -932,9 +1292,6 @@ const app = {
     // Ensure AC Management data structures exist in db
     if (!this.db.ac_pricing_catalogue || this.db.ac_pricing_catalogue.length === 0) {
       this.db.ac_pricing_catalogue = JSON.parse(JSON.stringify(INITIAL_DB.ac_pricing_catalogue));
-    }
-    if (!this.db.ac_inventory || this.db.ac_inventory.length === 0) {
-      this.db.ac_inventory = JSON.parse(JSON.stringify(INITIAL_DB.ac_inventory));
     }
     if (!this.db.ac_vendors || this.db.ac_vendors.length === 0) {
       this.db.ac_vendors = JSON.parse(JSON.stringify(INITIAL_DB.ac_vendors));

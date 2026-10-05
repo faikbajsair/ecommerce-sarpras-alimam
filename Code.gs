@@ -109,6 +109,12 @@ function doPost(e) {
       case 'saveProduct':
         return createJsonResponse(handleSaveProduct(ss, payload));
 
+      case 'bulkSaveProducts':
+        return createJsonResponse(handleBulkSaveProducts(ss, payload));
+
+      case 'updateOrder':
+        return createJsonResponse(handleUpdateOrder(ss, payload));
+
       case 'deleteProduct':
         return createJsonResponse(handleDeleteProduct(ss, payload));
 
@@ -488,6 +494,59 @@ function handleSaveProduct(ss, payload) {
   }
 }
 
+function handleBulkSaveProducts(ss, payload) {
+  const sheet = ss.getSheetByName(CONFIG.SHEETS.STOCK);
+  const products = payload.products || [];
+  if (!products || products.length === 0) {
+    return { status: 'error', message: 'Tidak ada data produk untuk diinput.' };
+  }
+
+  const dateInStr = Utilities.formatDate(new Date(), 'Asia/Jakarta', 'yyyy-MM-dd');
+  const newRows = products.map(p => {
+    const batchId = p.batch_id || `BATCH-${dateInStr.replace(/-/g, '').slice(0,6)}-${Math.floor(Math.random() * 900 + 100)}`;
+    const prodName = p.product_name || p.name || 'Produk Tanpa Nama';
+    const category = p.category || 'ATK & Kertas';
+    const stockQty = Number(p.stock_qty !== undefined ? p.stock_qty : (p.initial_stock !== undefined ? p.initial_stock : 10)) || 0;
+    const unitPrice = Number(p.unit_price !== undefined ? p.unit_price : p.price) || 0;
+    const dateIn = p.date_in || dateInStr;
+    const method = p.method || 'FIFO';
+    const status = stockQty > 0 ? 'Active' : 'Empty';
+    const imageUrl = p.image_url || '';
+
+    return [batchId, prodName, category, stockQty, unitPrice, dateIn, method, status, imageUrl];
+  });
+
+  const lastRow = sheet.getLastRow();
+  sheet.getRange(lastRow + 1, 1, newRows.length, 9).setValues(newRows);
+
+  return {
+    status: 'success',
+    message: `${newRows.length} master produk berhasil ditambahkan secara massal!`,
+    inserted_count: newRows.length
+  };
+}
+
+function handleUpdateOrder(ss, payload) {
+  const orderId = payload.order_id;
+  const sheet = ss.getSheetByName(CONFIG.SHEETS.ORDERS);
+  const rows = sheet.getDataRange().getValues();
+  let rowIdx = -1;
+  for (let i = 1; i < rows.length; i++) {
+    if (rows[i][0] === orderId) {
+      rowIdx = i + 1;
+      break;
+    }
+  }
+  if (rowIdx === -1) return { status: 'error', message: 'Order tidak ditemukan.' };
+
+  if (payload.items_json) sheet.getRange(rowIdx, 4).setValue(payload.items_json);
+  if (payload.total_amount !== undefined) sheet.getRange(rowIdx, 5).setValue(Number(payload.total_amount));
+  if (payload.notes !== undefined) sheet.getRange(rowIdx, 9).setValue(payload.notes);
+  if (payload.attachments_json) sheet.getRange(rowIdx, 10).setValue(payload.attachments_json);
+
+  return { status: 'success', message: `Order ${orderId} berhasil diperbarui.` };
+}
+
 function handleDeleteProduct(ss, payload) {
   const sheet = ss.getSheetByName(CONFIG.SHEETS.STOCK);
   const productName = payload.product_name;
@@ -800,9 +859,9 @@ function initDatabase() {
   if (!rapbsSheet) {
     rapbsSheet = ss.insertSheet(CONFIG.SHEETS.RAPBS);
     rapbsSheet.appendRow(['Unit_ID', 'Total_Plafond', 'Terpakai', 'Saldo_Tersedia', 'Updated_At']);
-    rapbsSheet.appendRow(['unit_tk', 15000000, 2750000, 12250000, '2026-09-15 08:30']);
-    rapbsSheet.appendRow(['unit_sd', 35884000, 8400000, 27484000, '2026-09-28 10:15']);
-    rapbsSheet.appendRow(['unit_smp', 24506000, 6200000, 18306000, '2026-09-28 10:30']);
+    rapbsSheet.appendRow(['unit_tk', 15000000, 0, 15000000, '2026-07-01 08:00']);
+    rapbsSheet.appendRow(['unit_sd', 35884000, 0, 35884000, '2026-07-01 08:00']);
+    rapbsSheet.appendRow(['unit_smp', 24506000, 0, 24506000, '2026-07-01 08:00']);
   }
 
   // 3. Stock_Inventory Sheet
@@ -839,7 +898,6 @@ function initDatabase() {
   if (!ordersSheet) {
     ordersSheet = ss.insertSheet(CONFIG.SHEETS.ORDERS);
     ordersSheet.appendRow(['Order_ID', 'Unit_ID', 'Order_Type', 'Items_JSON', 'Total_Amount', 'Status', 'Created_At', 'Approved_At', 'Notes', 'Attachments_JSON', 'Invoice_Number']);
-    ordersSheet.appendRow(['ORD-202609-001', 'unit_sd', 'E-Commerce', '[{"product_name":"Spidol Whiteboard Snowman Hitam","qty":10,"unit_price":9000,"subtotal":90000}]', 90000, 'Approved', '2026-09-16 09:30', '2026-09-16 10:15', 'Kebutuhan Ujian Siswa', '{}', 'INV/SARPRAS/2026/09/001']);
   }
 
   // 5. Transactions_Log Sheet
@@ -847,7 +905,6 @@ function initDatabase() {
   if (!logSheet) {
     logSheet = ss.insertSheet(CONFIG.SHEETS.LOGS);
     logSheet.appendRow(['Log_ID', 'Order_ID', 'Unit_ID', 'Amount_Deducted', 'Remaining_Balance', 'Timestamp', 'Invoice_Number']);
-    logSheet.appendRow(['LOG-202609-001', 'ORD-202609-001', 'unit_sd', 90000, 26600000, '2026-09-16 10:15:22', 'INV/SARPRAS/2026/09/001']);
   }
 
   // 6. Settings Sheet (White-Label Config)

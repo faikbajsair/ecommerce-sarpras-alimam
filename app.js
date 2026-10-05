@@ -285,9 +285,9 @@ const INITIAL_DB = {
   ],
   
   rapbs_poin: [
-    { unit_id: 'unit_tk', total_plafond: 15000000, terpakai: 2750000, saldo_tersedia: 12250000, updated_at: '2026-09-15 08:30' },
-    { unit_id: 'unit_sd', total_plafond: 35884000, terpakai: 8400000, saldo_tersedia: 27484000, updated_at: '2026-09-28 10:15' },
-    { unit_id: 'unit_smp', total_plafond: 24506000, terpakai: 6200000, saldo_tersedia: 18306000, updated_at: '2026-09-28 10:30' }
+    { unit_id: 'unit_tk', total_plafond: 15000000, terpakai: 0, saldo_tersedia: 15000000, updated_at: '2026-07-01 08:00' },
+    { unit_id: 'unit_sd', total_plafond: 35884000, terpakai: 0, saldo_tersedia: 35884000, updated_at: '2026-07-01 08:00' },
+    { unit_id: 'unit_smp', total_plafond: 24506000, terpakai: 0, saldo_tersedia: 24506000, updated_at: '2026-07-01 08:00' }
   ],
 
   // Rincian Pos Sumber Dana RAPBS SARPRAS (D.1 SD & D SMP)
@@ -378,74 +378,9 @@ const INITIAL_DB = {
     { batch_id: 'BATCH-202607-02', product_name: 'Baterai Mic Wireless Alkaline AA (Pack 4)', category: 'Elektronik & IT', stock_qty: 0, unit_price: 32000, date_in: '2026-07-15', method: 'FIFO', status: 'Empty', image_url: 'https://images.unsplash.com/photo-1619725002198-6a689b72f41d?w=600&auto=format&fit=crop&q=80' }
   ],
 
-  orders: [
-    {
-      order_id: 'ORD-202609-001',
-      unit_id: 'unit_sd',
-      order_type: 'E-Commerce',
-      items_json: JSON.stringify([
-        { product_name: 'Spidol Whiteboard Snowman Hitam', qty: 10, unit_price: 9000, subtotal: 90000 },
-        { product_name: 'Kertas HVS A4 80gr PaperOne (Rim)', qty: 5, unit_price: 52000, subtotal: 260000 }
-      ]),
-      total_amount: 350000,
-      status: 'Approved',
-      created_at: '2026-09-16 09:30',
-      approved_at: '2026-09-16 10:15',
-      notes: 'Kebutuhan Ujian Siswa Semester Ganjil',
-      invoice_number: 'INV/AL-IMAM/2026/09/001'
-    },
-    {
-      order_id: 'ORD-202609-002',
-      unit_id: 'unit_sd',
-      order_type: 'Reimburse',
-      items_json: JSON.stringify([
-        { item_name: 'Servis Printer Ruang Guru SD & Ganti Head', qty: 1, unit_price: 450000, subtotal: 450000 }
-      ]),
-      total_amount: 450000,
-      status: 'Pending_Verification',
-      created_at: '2026-09-17 11:20',
-      approved_at: '',
-      notes: 'Servis mendesak di Mega Komputer. Pembayaran ditalangi Ust. Faik.',
-      recipient_name: 'Ahmad Faik Bajsair',
-      bank_account: 'BSI 7123998811',
-      payment_date: '2026-09-17',
-      pj_name: 'Ust. Faik Bajsair',
-      attachments: {
-        receipt: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&auto=format&fit=crop&q=80',
-        transfer: '',
-        photo: ''
-      },
-      invoice_number: ''
-    },
-    {
-      order_id: 'ORD-202609-003',
-      unit_id: 'unit_smp',
-      order_type: 'Request_Barang_Baru',
-      items_json: JSON.stringify([
-        { item_name: 'Microphone Clip On Wireless Boya WM4', qty: 2, unit_price: 650000, subtotal: 1300000 }
-      ]),
-      total_amount: 1300000,
-      status: 'Pending_Verification',
-      created_at: '2026-09-17 13:45',
-      approved_at: '',
-      notes: 'Pengadaan mic rekaman podcast dan tahfidz studio SMP.',
-      marketplace_url: 'https://www.tokopedia.com/boyaofficial/boya-by-wm4-pro-k2',
-      pj_name: 'Ust. Ridwan SPd',
-      invoice_number: ''
-    }
-  ],
+  orders: [],
 
-  transactions_log: [
-    {
-      log_id: 'LOG-202609-001',
-      order_id: 'ORD-202609-001',
-      unit_id: 'unit_sd',
-      amount_deducted: 350000,
-      remaining_balance: 26600000,
-      timestamp: '2026-09-16 10:15:22',
-      invoice_number: 'INV/AL-IMAM/2026/09/001'
-    }
-  ],
+  transactions_log: [],
 
   // ==========================================
   // AC MANAGEMENT SPECIAL MODULE DATA
@@ -581,63 +516,7 @@ const INITIAL_DB = {
     { ac_id: 'AC-SMP-14', unit_id: 'unit_smp', room_name: 'Ruang Server & IT Al-Imam', brand: 'Daikin Premium Inverter 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-20', next_service_date: '2026-11-20', install_year: 2025, total_service_count: 3, notes: 'Beroperasi 24/7 suhu 18-20 C' }
   ],
 
-  ac_service_requests: [
-    {
-      request_id: 'AC-REQ-202609-01',
-      unit_id: 'unit_sd',
-      room_name: 'Ruang Kelas 2B Ali bin Abi Thalib',
-      ac_id: 'AC-SD-04',
-      service_type_name: 'Cuci Besar / Overhaul + Anti-Jamur',
-      service_id: 'AC-SRV-CUCI-OVERHAUL',
-      qty: 1,
-      unit_price: 150000,
-      total_amount: 150000,
-      funding_source: 'RAPBS_POIN',
-      scheduled_date: '2026-09-30',
-      vendor_name: 'CV Sarana Sejuk Al-Imam (Teknisi Utama)',
-      status: 'Dalam Pengerjaan',
-      created_at: '2026-09-26 14:10',
-      approved_at: '2026-09-26 15:00',
-      notes: 'Keluhan air menetes di dekat meja guru dan kurang dingin saat siang hari.'
-    },
-    {
-      request_id: 'AC-REQ-202609-02',
-      unit_id: 'unit_smp',
-      room_name: 'Ruang Kelas 7A & 7B (2 Unit)',
-      ac_id: 'AC-SMP-01',
-      service_type_name: 'Cuci AC Rutin (Berkala Pos D SMP)',
-      service_id: 'AC-SRV-CUCI-RUTIN',
-      qty: 2,
-      unit_price: 75000,
-      total_amount: 150000,
-      funding_source: 'RAPBS_POIN',
-      scheduled_date: '2026-09-25',
-      vendor_name: 'CV Sarana Sejuk Al-Imam (Teknisi Utama)',
-      status: 'Selesai',
-      created_at: '2026-09-22 09:30',
-      approved_at: '2026-09-22 10:15',
-      completed_at: '2026-09-25 14:00',
-      notes: 'Cuci berkala triwulan 14 unit AC SMP Pos D. Pengerjaan selesai, angin kencang dan dingin 21 C.'
-    },
-    {
-      request_id: 'AC-REQ-202609-03',
-      unit_id: 'unit_tk',
-      room_name: 'Kelas TK B (Sentra Imtaq)',
-      ac_id: 'AC-TK-02',
-      service_type_name: 'Cuci AC Rutin + Tambah Freon R32',
-      service_id: 'AC-SRV-FREON-TAMBAH',
-      qty: 1,
-      unit_price: 200000,
-      total_amount: 200000,
-      funding_source: 'RAPBS_POIN',
-      scheduled_date: '2026-09-29',
-      vendor_name: 'CV Sarana Sejuk Al-Imam (Teknisi Utama)',
-      status: 'Menunggu Teknisi',
-      created_at: '2026-09-27 10:45',
-      approved_at: '2026-09-27 11:30',
-      notes: 'Persiapan sebelum kegiatan field trip indoor anak TK.'
-    }
-  ],
+  ac_service_requests: [],
 
   ac_vendors: [
     {
@@ -884,104 +763,7 @@ const INITIAL_DB = {
     }
   ],
 
-  renov_requests: [
-    {
-      request_id: 'RNV-REQ-202609-01',
-      project_id: 'PRJ-SD-01',
-      unit_id: 'unit_sd',
-      location_name: 'Dinding Kelas 1A & 1B',
-      category: 'Pengecatan Gedung / Kelas',
-      material_name: 'Cat Tembok Interior Dulux / Catylac 20kg (Pail)',
-      material_id: 'RNV-MAT-CAT-INT-20KG',
-      qty: 4,
-      unit_price: 650000,
-      material_subtotal: 2600000,
-      labor_count: 2,
-      labor_days: 4,
-      labor_rate: 175000,
-      labor_subtotal: 1400000,
-      total_amount: 4000000,
-      funding_source: 'RAPBS_POIN',
-      scheduled_date: '2026-09-28',
-      vendor_name: 'TB. Al-Imam Jaya Material (Toko Rekanan Utama)',
-      status: 'Dalam Pengerjaan',
-      created_at: '2026-09-24 10:00',
-      approved_at: '2026-09-24 11:30',
-      notes: 'Warna Putih Salju & Hijau Pastel kelas.'
-    },
-    {
-      request_id: 'RNV-REQ-202609-02',
-      project_id: 'PRJ-SMP-01',
-      unit_id: 'unit_smp',
-      location_name: 'Koridor Kelas 7 & 8 SMP',
-      category: 'Pengecatan Gedung / Kelas',
-      material_name: 'Paket Cat 1 Ruang Kelas Lengkap (Bahan + Borongan)',
-      material_id: 'RNV-PKG-CAT-1KELAS',
-      qty: 2,
-      unit_price: 1850000,
-      material_subtotal: 3700000,
-      labor_count: 0,
-      labor_days: 0,
-      labor_rate: 0,
-      labor_subtotal: 0,
-      total_amount: 3700000,
-      funding_source: 'RAPBS_POIN',
-      scheduled_date: '2026-09-26',
-      vendor_name: 'CV Mandor Berkah Bangunan & Sipil',
-      status: 'Selesai',
-      created_at: '2026-09-21 08:30',
-      approved_at: '2026-09-21 09:15',
-      completed_at: '2026-09-26 16:00',
-      notes: 'Pengecatan selesai rapi, warna Abu-abu Modern.'
-    },
-    {
-      request_id: 'RNV-REQ-202609-03',
-      project_id: 'PRJ-TK-01',
-      unit_id: 'unit_tk',
-      location_name: 'Pagar Depan TK & Area Bermain',
-      category: 'Pengecatan Gedung / Kelas',
-      material_name: 'Cat Exterior Weathershield 20kg (Pail)',
-      material_id: 'RNV-MAT-CAT-EXT-20KG',
-      qty: 2,
-      unit_price: 1150000,
-      material_subtotal: 2300000,
-      labor_count: 2,
-      labor_days: 2,
-      labor_rate: 175000,
-      labor_subtotal: 700000,
-      total_amount: 3000000,
-      funding_source: 'RAPBS_POIN',
-      scheduled_date: '2026-09-30',
-      vendor_name: 'TB. Al-Imam Jaya Material (Toko Rekanan Utama)',
-      status: 'Dalam Pengerjaan',
-      created_at: '2026-09-27 11:20',
-      approved_at: '2026-09-27 13:00',
-      notes: 'Pengecatan tahan cuaca luar untuk pagar gerbang dan gazebo TK.'
-    },
-    {
-      request_id: 'RNV-REQ-202609-04',
-      project_id: 'PRJ-SD-02',
-      unit_id: 'unit_sd',
-      location_name: 'Toilet Siswa SD Lantai 1',
-      category: 'Renovasi Toilet & Sanitasi',
-      material_name: 'Keramik Lantai 40x40 Dus (Mulia / Roman)',
-      material_id: 'RNV-MAT-KERAMIK-40X40',
-      qty: 15,
-      unit_price: 85000,
-      material_subtotal: 1275000,
-      labor_count: 2,
-      labor_days: 3,
-      labor_rate: 150000,
-      labor_subtotal: 900000,
-      total_amount: 2175000,
-      funding_source: 'RAPBS_POIN',
-      scheduled_date: '2026-10-02',
-      vendor_name: 'TB. Mitra Bangunan Sejahtera (Sanitasi & Keramik)',
-      status: 'Menunggu Persetujuan',
-      created_at: '2026-09-28 09:15',
-      notes: 'Penggantian keramik anti licin toilet putra dan putri.'
-    }
-  ],
+  renov_requests: [],
 
   renov_vendors: [
     {
@@ -1028,6 +810,16 @@ const INITIAL_DB = {
   gas_api_url: 'https://script.google.com/macros/s/AKfycby5TTN97b6AXyo5YpwCE4jpJVCzq59pIqXQ968nAn8byIL7xRzWy6uyYWHBDuVS5svr/exec'
 };
 
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 // ==========================================
 // 3. MAIN APP MVC OBJECT & CONTROLLER
 // ==========================================
@@ -1058,11 +850,18 @@ const app = {
   careUnitSplitSdPercent: 50,
   careUnitSplitSmpPercent: 50,
   orderItemApprovals: {}, // orderId -> [true, true, ...]
+  orderItemRevisions: {}, // orderId -> [{ unit_price, qty, original_unit_price, original_qty, is_revised, revision_reason }]
   pendingTransferProofs: {}, // orderId -> base64/url
+  currentRevisionTarget: { orderId: null, itemIdx: null },
+  editingOrderId: null,
+
+  // Bulk Product Input State
+  bulkProductRows: [],
+  bulkProductActiveTab: 'grid',
   
   // Storage keys
-  STORAGE_KEY: 'ECOMMERCE_ALIMAM_DATA_V2',
-  AUTH_KEY: 'ECOMMERCE_ALIMAM_AUTH_USER_V2',
+  STORAGE_KEY: 'ECOMMERCE_ALIMAM_DATA_V3',
+  AUTH_KEY: 'ECOMMERCE_ALIMAM_AUTH_USER_V3',
 
   // Initialize Application
   init() {
@@ -1093,6 +892,35 @@ const app = {
       this.saveState();
     }
 
+    // Filter out legacy dummy orders, logs, and mock requests
+    const dummyOrderIds = ['ORD-202609-001', 'ORD-202609-002', 'ORD-202609-003'];
+    const dummyLogIds = ['LOG-202609-001'];
+    const dummyAcReqIds = ['AC-REQ-202609-01', 'AC-REQ-202609-02', 'AC-REQ-202609-03'];
+    const dummyRnvReqIds = ['RNV-REQ-202609-01', 'RNV-REQ-202609-02', 'RNV-REQ-202609-03', 'RNV-REQ-202609-04'];
+
+    if (this.db) {
+      if (this.db.orders) {
+        this.db.orders = this.db.orders.filter(o => !dummyOrderIds.includes(o.order_id));
+      } else {
+        this.db.orders = [];
+      }
+      if (this.db.transactions_log) {
+        this.db.transactions_log = this.db.transactions_log.filter(l => !dummyLogIds.includes(l.log_id));
+      } else {
+        this.db.transactions_log = [];
+      }
+      if (this.db.ac_service_requests) {
+        this.db.ac_service_requests = this.db.ac_service_requests.filter(r => !dummyAcReqIds.includes(r.request_id));
+      } else {
+        this.db.ac_service_requests = [];
+      }
+      if (this.db.renov_requests) {
+        this.db.renov_requests = this.db.renov_requests.filter(r => !dummyRnvReqIds.includes(r.request_id));
+      } else {
+        this.db.renov_requests = [];
+      }
+    }
+
     // Ensure rapbs_breakdowns is present in db
     if (!this.db.rapbs_breakdowns) {
       this.db.rapbs_breakdowns = JSON.parse(JSON.stringify(INITIAL_DB.rapbs_breakdowns));
@@ -1108,9 +936,6 @@ const app = {
     if (!this.db.ac_inventory || this.db.ac_inventory.length === 0) {
       this.db.ac_inventory = JSON.parse(JSON.stringify(INITIAL_DB.ac_inventory));
     }
-    if (!this.db.ac_service_requests || this.db.ac_service_requests.length === 0) {
-      this.db.ac_service_requests = JSON.parse(JSON.stringify(INITIAL_DB.ac_service_requests));
-    }
     if (!this.db.ac_vendors || this.db.ac_vendors.length === 0) {
       this.db.ac_vendors = JSON.parse(JSON.stringify(INITIAL_DB.ac_vendors));
     }
@@ -1122,26 +947,21 @@ const app = {
     if (!this.db.renov_projects || this.db.renov_projects.length === 0) {
       this.db.renov_projects = JSON.parse(JSON.stringify(INITIAL_DB.renov_projects));
     }
-    if (!this.db.renov_requests || this.db.renov_requests.length === 0) {
-      this.db.renov_requests = JSON.parse(JSON.stringify(INITIAL_DB.renov_requests));
-    }
     if (!this.db.renov_vendors || this.db.renov_vendors.length === 0) {
       this.db.renov_vendors = JSON.parse(JSON.stringify(INITIAL_DB.renov_vendors));
     }
 
-    // Auto-update unit_sd and unit_smp plafonds if they were old placeholders
+    // Recalculate real RAPBS balance and realisasi from approved orders
     if (this.db && this.db.rapbs_poin) {
-      const sdRapbs = this.db.rapbs_poin.find(r => r.unit_id === 'unit_sd');
-      if (sdRapbs && (sdRapbs.total_plafond === 35000000 || !sdRapbs.total_plafond)) {
-        sdRapbs.total_plafond = 35884000;
-        sdRapbs.saldo_tersedia = 35884000 - (sdRapbs.terpakai || 0);
-      }
+      this.db.rapbs_poin.forEach(r => {
+        if (r.unit_id === 'unit_sd') r.total_plafond = 35884000;
+        if (r.unit_id === 'unit_smp') r.total_plafond = 24506000;
+        if (r.unit_id === 'unit_tk') r.total_plafond = 15000000;
 
-      const smpRapbs = this.db.rapbs_poin.find(r => r.unit_id === 'unit_smp');
-      if (smpRapbs && (smpRapbs.total_plafond === 30000000 || !smpRapbs.total_plafond)) {
-        smpRapbs.total_plafond = 24506000;
-        smpRapbs.saldo_tersedia = 24506000 - (smpRapbs.terpakai || 0);
-      }
+        const approvedOrders = (this.db.orders || []).filter(o => o.unit_id === r.unit_id && o.status === 'Approved');
+        r.terpakai = approvedOrders.reduce((acc, o) => acc + (Number(o.total_amount) || 0), 0);
+        r.saldo_tersedia = r.total_plafond - r.terpakai;
+      });
       this.saveState();
     }
 
@@ -2307,14 +2127,25 @@ const app = {
       }
 
       let itemsSummary = '';
+      let hasItemRevision = Boolean(ord.is_price_revised);
       try {
         const items = JSON.parse(ord.items_json);
-        itemsSummary = items.map(i => `${i.product_name || i.item_name} <span class="text-slate-400 font-normal">x${i.qty}</span>`).join('<br/>');
+        itemsSummary = items.map(i => {
+          if (i.is_price_revised || i.is_revised) hasItemRevision = true;
+          return `${i.product_name || i.item_name} <span class="text-slate-400 font-normal">x${i.qty}</span>`;
+        }).join('<br/>');
       } catch (e) {
         itemsSummary = ord.notes || '-';
       }
 
-      const invoiceCode = ord.invoice_number ? `<span class="font-mono text-brand-primary font-bold block">${ord.invoice_number}</span>` : '';
+      const invoiceCode = ord.invoice_number 
+        ? `<button type="button" onclick="app.openInvoiceDetailModal('${ord.order_id}', '', '${escapeQuotes(ord.invoice_number)}')" class="group inline-flex items-center space-x-1 font-mono text-brand-primary hover:text-emerald-700 font-bold hover:underline decoration-emerald-300 block text-left" title="Klik untuk melihat rincian nota & transaksi">
+            <i class="fa-solid fa-file-invoice text-[10px] text-emerald-600"></i>
+            <span>${ord.invoice_number}</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[8px] opacity-70 group-hover:opacity-100"></i>
+          </button>` 
+        : '';
+      const revisedBadge = hasItemRevision ? '<span class="px-1.5 py-0.5 bg-amber-100 text-amber-800 border border-amber-300 text-[9px] font-extrabold rounded-md ml-1"><i class="fa-solid fa-pen-to-square mr-0.5"></i>Revisi Harga</span>' : '';
 
       return `
         <tr class="hover:bg-slate-50/80 transition">
@@ -2323,15 +2154,26 @@ const app = {
             <span class="text-[10px] text-slate-400 font-normal">${ord.order_id}</span>
           </td>
           <td class="px-4 py-3">${typeBadge}</td>
-          <td class="px-4 py-3 text-slate-700 leading-relaxed">${itemsSummary}</td>
+          <td class="px-4 py-3 text-slate-700 leading-relaxed">
+            ${itemsSummary}
+            ${revisedBadge}
+          </td>
           <td class="px-4 py-3 font-extrabold text-slate-900 font-heading">Rp ${this.formatNumber(ord.total_amount)}</td>
           <td class="px-4 py-3">${statusBadge}</td>
           <td class="px-4 py-3 text-[11px] text-slate-500">${ord.created_at}</td>
           <td class="px-4 py-3 text-center">
-            <button onclick="app.openPrintModal('${ord.order_id}')" class="px-2.5 py-1 bg-slate-100 hover:bg-brand-light text-slate-700 hover:text-brand-primary rounded-lg text-xs font-bold transition flex items-center space-x-1 mx-auto" title="Cetak Dokumen Resmi">
-              <i class="fa-solid fa-print"></i>
-              <span>Cetak</span>
-            </button>
+            <div class="flex items-center justify-center space-x-1.5">
+              ${ord.status === 'Pending_Verification' ? `
+                <button onclick="app.openEditPendingOrderModal('${ord.order_id}')" class="px-2 py-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 rounded-lg text-xs font-bold transition flex items-center space-x-1" title="Edit / Revisi Pengajuan">
+                  <i class="fa-solid fa-pen-to-square text-[11px]"></i>
+                  <span>Edit</span>
+                </button>
+              ` : ''}
+              <button onclick="app.openPrintModal('${ord.order_id}')" class="px-2.5 py-1 bg-slate-100 hover:bg-brand-light text-slate-700 hover:text-brand-primary rounded-lg text-xs font-bold transition flex items-center space-x-1" title="Cetak Dokumen Resmi">
+                <i class="fa-solid fa-print text-[11px]"></i>
+                <span>Cetak</span>
+              </button>
+            </div>
           </td>
         </tr>
       `;
@@ -2370,10 +2212,64 @@ const app = {
         this.orderItemApprovals[ord.order_id] = items.map(it => it.status !== 'Rejected');
       }
 
-      // Calculate dynamically approved amount
+      // Initialize item-level price & qty revisions state if not yet defined
+      if (!this.orderItemRevisions[ord.order_id]) {
+        this.orderItemRevisions[ord.order_id] = items.map(it => ({
+          product_name: it.product_name || it.item_name || '',
+          unit_price: Number(it.unit_price) || 0,
+          qty: Number(it.qty) || 1,
+          original_unit_price: Number(it.original_unit_price !== undefined ? it.original_unit_price : it.unit_price) || 0,
+          original_qty: Number(it.original_qty !== undefined ? it.original_qty : it.qty) || 1,
+          is_revised: Boolean(it.is_price_revised || it.is_revised || (it.original_unit_price !== undefined && it.original_unit_price !== it.unit_price)),
+          revision_reason: it.revision_reason || ''
+        }));
+      }
+
       const approvals = this.orderItemApprovals[ord.order_id] || [];
-      const approvedItems = items.filter((_, idx) => approvals[idx] !== false);
-      const approvedTotalAmount = approvedItems.reduce((acc, it) => acc + (Number(it.subtotal) || 0), 0);
+      const revisions = this.orderItemRevisions[ord.order_id] || [];
+
+      // Calculate dynamically approved amount & initial amounts
+      const calculatedItems = items.map((item, idx) => {
+        const rev = revisions[idx] || {
+          unit_price: Number(item.unit_price) || 0,
+          qty: Number(item.qty) || 1,
+          original_unit_price: Number(item.unit_price) || 0,
+          original_qty: Number(item.qty) || 1,
+          is_revised: false,
+          revision_reason: ''
+        };
+        const effPrice = Number(rev.unit_price !== undefined ? rev.unit_price : item.unit_price) || 0;
+        const effQty = Number(rev.qty !== undefined ? rev.qty : item.qty) || 1;
+        const origPrice = Number(rev.original_unit_price !== undefined ? rev.original_unit_price : item.unit_price) || 0;
+        const origQty = Number(rev.original_qty !== undefined ? rev.original_qty : item.qty) || 1;
+        const isApproved = approvals[idx] !== false;
+        const effSubtotal = effPrice * effQty;
+        const origSubtotal = origPrice * origQty;
+        const priceDiff = effPrice - origPrice;
+        const subtotalDiff = effSubtotal - origSubtotal;
+
+        return {
+          ...item,
+          idx,
+          effPrice,
+          effQty,
+          origPrice,
+          origQty,
+          effSubtotal,
+          origSubtotal,
+          priceDiff,
+          subtotalDiff,
+          is_revised: rev.is_revised,
+          revision_reason: rev.revision_reason || '',
+          is_approved: isApproved
+        };
+      });
+
+      const approvedItems = calculatedItems.filter(it => it.is_approved);
+      const approvedTotalAmount = approvedItems.reduce((acc, it) => acc + it.effSubtotal, 0);
+      const originalTotalAmount = calculatedItems.reduce((acc, it) => acc + it.origSubtotal, 0);
+      const hasAnyRevision = revisions.some(r => r && r.is_revised);
+      const totalVariance = approvedTotalAmount - originalTotalAmount;
       const hasEnoughQuota = rapbsObj.saldo_tersedia >= approvedTotalAmount;
 
       let typeTag = '';
@@ -2398,6 +2294,7 @@ const app = {
               ${typeTag}
               <span class="text-xs font-mono font-bold text-slate-700">${ord.order_id}</span>
               <span class="text-xs text-slate-400">• ${ord.created_at}</span>
+              ${hasAnyRevision ? '<span class="px-2 py-0.5 bg-amber-100 text-amber-800 text-[10px] font-extrabold rounded-full border border-amber-300"><i class="fa-solid fa-pen-to-square mr-1"></i>Ada Revisi Harga</span>' : ''}
             </div>
             
             <div class="text-left sm:text-right">
@@ -2406,56 +2303,96 @@ const app = {
             </div>
           </div>
 
-          <!-- Item Table with Per-Item Approval Toggle -->
+          <!-- Item Table with Per-Item Approval & Price Revision -->
           <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-100 space-y-2">
-            <div class="flex items-center justify-between">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
               <span class="text-[11px] font-bold text-slate-700 uppercase flex items-center">
-                <i class="fa-solid fa-list-check text-brand-primary mr-1.5"></i>Persetujuan Per-Item / Produk:
+                <i class="fa-solid fa-list-check text-brand-primary mr-1.5"></i>Persetujuan & Revisi Harga Per-Item:
               </span>
-              <span class="text-[10px] text-slate-400">Klik toggle untuk setujui / tolak item spesifik</span>
+              <span class="text-[10px] text-slate-400">Gunakan tombol <b>"Revisi Harga"</b> jika harga beli di nota fisik berbeda dengan pengajuan.</span>
             </div>
 
             <div class="overflow-x-auto">
               <table class="w-full text-xs text-left">
                 <thead class="text-[10px] text-slate-400 uppercase font-bold border-b border-slate-200/60 pb-1">
                   <tr>
-                    <th class="pb-1.5 w-28 text-center">Status Item</th>
-                    <th class="pb-1.5">Rincian Barang / Jasa</th>
-                    <th class="pb-1.5 text-center">Jumlah</th>
-                    <th class="pb-1.5 text-right">Harga Satuan</th>
-                    <th class="pb-1.5 text-right">Subtotal</th>
+                    <th class="pb-1.5 w-24 text-center">Status Item</th>
+                    <th class="pb-1.5 min-w-[200px]">Rincian Barang / Jasa</th>
+                    <th class="pb-1.5 text-center w-16">Jumlah</th>
+                    <th class="pb-1.5 text-right min-w-[120px]">Harga Satuan (Beli)</th>
+                    <th class="pb-1.5 text-right min-w-[110px]">Subtotal</th>
+                    <th class="pb-1.5 text-center w-28">Aksi Revisi</th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-200/50">
-                  ${items.map((item, idx) => {
-                    const isApproved = approvals[idx] !== false;
-                    const itemSubtotal = Number(item.subtotal) || (Number(item.qty) * Number(item.unit_price)) || 0;
+                  ${calculatedItems.map((item) => {
                     const isCustomReq = item.item_type === 'custom_request' || ord.order_type === 'Request_Barang_Baru';
                     const isReimb = item.item_type === 'reimbursement' || ord.order_type === 'Reimburse';
+                    const isRev = item.is_revised;
 
                     return `
-                      <tr class="${isApproved ? 'bg-white/80' : 'bg-red-50/50 text-slate-400'} transition">
+                      <tr class="${item.is_approved ? (isRev ? 'bg-amber-50/40' : 'bg-white/80') : 'bg-red-50/50 text-slate-400'} transition">
                         <td class="py-2 text-center">
-                          <button type="button" onclick="app.toggleItemApproval('${ord.order_id}', ${idx})" class="px-2.5 py-1 rounded-lg text-[10px] font-bold transition flex items-center space-x-1 mx-auto shadow-sm ${isApproved ? 'bg-emerald-100 hover:bg-emerald-200 text-emerald-800' : 'bg-red-100 hover:bg-red-200 text-red-800'}">
-                            <i class="fa-solid ${isApproved ? 'fa-check' : 'fa-xmark'}"></i>
-                            <span>${isApproved ? 'Disetujui' : 'Ditolak'}</span>
+                          <button type="button" onclick="app.toggleItemApproval('${ord.order_id}', ${item.idx})" class="px-2.5 py-1 rounded-lg text-[10px] font-bold transition flex items-center space-x-1 mx-auto shadow-xs ${item.is_approved ? 'bg-emerald-100 hover:bg-emerald-200 text-emerald-800' : 'bg-red-100 hover:bg-red-200 text-red-800'}">
+                            <i class="fa-solid ${item.is_approved ? 'fa-check' : 'fa-xmark'}"></i>
+                            <span>${item.is_approved ? 'Disetujui' : 'Ditolak'}</span>
                           </button>
                         </td>
-                        <td class="py-2 font-semibold ${isApproved ? 'text-slate-800' : 'line-through text-slate-400'}">
-                          <div class="flex items-center space-x-2">
+                        <td class="py-2 font-semibold ${item.is_approved ? 'text-slate-800' : 'line-through text-slate-400'}">
+                          <div class="flex flex-wrap items-center gap-1">
                             ${isCustomReq ? '<span class="px-1.5 py-0.5 bg-indigo-100 text-indigo-800 text-[9px] font-bold rounded">Barang Baru</span>' : ''}
                             ${isReimb ? '<span class="px-1.5 py-0.5 bg-amber-100 text-amber-800 text-[9px] font-bold rounded">Reimburse</span>' : ''}
                             <span>${item.product_name || item.item_name}</span>
+                            ${isRev ? '<span class="px-1.5 py-0.5 bg-amber-100 text-amber-900 border border-amber-300 text-[9px] font-extrabold rounded"><i class="fa-solid fa-pen-to-square mr-0.5 text-amber-600"></i>Revisi</span>' : ''}
                           </div>
+                          ${item.revision_reason ? `
+                            <div class="text-[10px] text-amber-800 bg-amber-100/60 px-2 py-0.5 rounded-md border border-amber-200/60 mt-1 flex items-start space-x-1">
+                              <i class="fa-solid fa-circle-info text-amber-600 mt-0.5 shrink-0"></i>
+                              <span><b>Alasan:</b> ${item.revision_reason}</span>
+                            </div>
+                          ` : ''}
                           ${item.marketplace_url ? `
                             <a href="${item.marketplace_url}" target="_blank" class="text-[10px] text-indigo-600 font-semibold hover:underline inline-flex items-center mt-0.5">
                               <i class="fa-solid fa-arrow-up-right-from-square mr-1 text-[9px]"></i>Link Toko
                             </a>
                           ` : ''}
                         </td>
-                        <td class="py-2 text-center font-bold ${isApproved ? 'text-slate-700' : 'line-through text-slate-400'}">${item.qty}</td>
-                        <td class="py-2 text-right ${isApproved ? 'text-slate-600' : 'line-through text-slate-400'}">Rp ${this.formatNumber(item.unit_price)}</td>
-                        <td class="py-2 text-right font-bold ${isApproved ? 'text-slate-900 font-heading' : 'line-through text-red-400'}">Rp ${this.formatNumber(itemSubtotal)}</td>
+                        <td class="py-2 text-center font-bold ${item.is_approved ? 'text-slate-700' : 'line-through text-slate-400'}">
+                          ${item.origQty !== item.effQty ? `<span class="line-through text-slate-400 text-[10px] mr-1">${item.origQty}</span>` : ''}
+                          <span>${item.effQty}</span>
+                        </td>
+                        <td class="py-2 text-right ${item.is_approved ? 'text-slate-600' : 'line-through text-slate-400'}">
+                          ${isRev ? `
+                            <span class="text-[10px] text-slate-400 line-through block">Pengajuan: Rp ${this.formatNumber(item.origPrice)}</span>
+                            <span class="font-black text-amber-800 text-xs block">Rp ${this.formatNumber(item.effPrice)}</span>
+                            <span class="text-[9px] font-bold ${item.priceDiff >= 0 ? 'text-amber-700 bg-amber-100' : 'text-emerald-700 bg-emerald-100'} px-1 py-0.2 rounded inline-block">
+                              ${item.priceDiff >= 0 ? '+' : ''}Rp ${this.formatNumber(item.priceDiff)}/pcs
+                            </span>
+                          ` : `
+                            <span>Rp ${this.formatNumber(item.effPrice)}</span>
+                          `}
+                        </td>
+                        <td class="py-2 text-right font-bold ${item.is_approved ? 'text-slate-900 font-heading' : 'line-through text-red-400'}">
+                          ${isRev ? `
+                            <span class="text-[10px] text-slate-400 line-through block font-normal">Rp ${this.formatNumber(item.origSubtotal)}</span>
+                            <span class="font-extrabold text-slate-900 text-xs block font-heading">Rp ${this.formatNumber(item.effSubtotal)}</span>
+                          ` : `
+                            <span>Rp ${this.formatNumber(item.effSubtotal)}</span>
+                          `}
+                        </td>
+                        <td class="py-2 text-center">
+                          <div class="flex items-center justify-center space-x-1">
+                            <button type="button" onclick="app.openPriceRevisionModal('${ord.order_id}', ${item.idx})" class="px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 rounded-lg text-[10px] font-bold transition flex items-center space-x-1 shadow-2xs whitespace-nowrap">
+                              <i class="fa-solid fa-pen-to-square text-amber-600"></i>
+                              <span>${isRev ? 'Ubah' : 'Revisi'}</span>
+                            </button>
+                            ${isRev ? `
+                              <button type="button" onclick="app.resetItemPriceRevision('${ord.order_id}', ${item.idx})" title="Reset ke harga pengajuan awal" class="p-1 text-slate-400 hover:text-red-600 rounded-lg transition">
+                                <i class="fa-solid fa-rotate-left"></i>
+                              </button>
+                            ` : ''}
+                          </div>
+                        </td>
                       </tr>
                     `;
                   }).join('')}
@@ -2532,12 +2469,20 @@ const app = {
               <div class="space-y-2">
                 <div class="flex justify-between text-slate-500">
                   <span>Total Pengajuan Awal:</span>
-                  <span class="font-bold text-slate-700">Rp ${this.formatNumber(ord.total_amount)}</span>
+                  <span class="font-bold text-slate-700">Rp ${this.formatNumber(originalTotalAmount)}</span>
                 </div>
                 <div class="flex justify-between text-slate-700 font-bold border-t border-slate-200/60 pt-1.5">
                   <span class="text-brand-primary">Total Disetujui (${approvedItems.length} Item):</span>
                   <span class="font-black text-brand-primary text-sm font-heading">Rp ${this.formatNumber(approvedTotalAmount)}</span>
                 </div>
+                ${hasAnyRevision ? `
+                  <div class="flex justify-between text-[11px] pt-0.5">
+                    <span class="text-slate-500">Selisih Realisasi Harga:</span>
+                    <span class="${totalVariance >= 0 ? 'text-amber-700 font-bold' : 'text-emerald-700 font-bold'}">
+                      ${totalVariance >= 0 ? '+' : ''}Rp ${this.formatNumber(totalVariance)} (${totalVariance >= 0 ? 'Penyesuaian Biaya' : 'Hemat Anggaran'})
+                    </span>
+                  </div>
+                ` : ''}
                 <div class="flex justify-between text-slate-500">
                   <span>Saldo Poin Unit Saat Ini:</span>
                   <span class="font-bold text-slate-800">Rp ${this.formatNumber(rapbsObj.saldo_tersedia)}</span>
@@ -2546,12 +2491,18 @@ const app = {
                   <span>Sisa Saldo Setelah Approval:</span>
                   <span class="font-heading">Rp ${this.formatNumber(rapbsObj.saldo_tersedia - approvedTotalAmount)}</span>
                 </div>
+                ${!hasEnoughQuota ? `
+                  <div class="p-2 bg-red-100 text-red-800 rounded-xl text-[10px] font-bold flex items-center space-x-1">
+                    <i class="fa-solid fa-triangle-exclamation text-red-600"></i>
+                    <span>Peringatan: Total nominal melebihi sisa saldo RAPBS unit!</span>
+                  </div>
+                ` : ''}
               </div>
 
               <div class="p-2.5 bg-white rounded-xl border border-slate-200/80 text-[10px] text-slate-500 space-y-0.5">
                 <p><i class="fa-solid fa-shield-check text-brand-primary mr-1"></i><b>Otomatisasi Sistem:</b></p>
-                <p>• Item yang ditolak tidak akan memotong saldo RAPBS unit maupun stok gudang.</p>
-                <p>• Jika terdapat Request Barang Baru yang disetujui, master produk otomatis terdaftar di katalog.</p>
+                <p>• Harga beli revisi akan menjadi patokan pemotongan RAPBS & Master Produk baru.</p>
+                <p>• Item yang ditolak tidak memotong saldo RAPBS unit maupun stok gudang.</p>
               </div>
             </div>
           </div>
@@ -2561,7 +2512,7 @@ const app = {
             <button type="button" onclick="app.rejectOrder('${ord.order_id}')" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold rounded-xl transition">
               <i class="fa-solid fa-xmark mr-1"></i>Tolak Seluruh Pengajuan
             </button>
-            <button type="button" onclick="app.approveOrderWithItemStates('${ord.order_id}')" class="px-5 py-2.5 bg-brand-primary hover:opacity-90 text-white text-xs font-bold rounded-xl shadow-md transition flex items-center space-x-1.5">
+            <button type="button" onclick="app.approveOrderWithItemStates('${ord.order_id}')" ${!hasEnoughQuota ? 'disabled' : ''} class="px-5 py-2.5 bg-brand-primary hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold rounded-xl shadow-md transition flex items-center space-x-1.5">
               <i class="fa-solid fa-check-double"></i>
               <span>Setujui & Potong RAPBS (${approvedItems.length} Item Disetujui)</span>
             </button>
@@ -2720,11 +2671,23 @@ const app = {
 
     tbody.innerHTML = logs.slice().reverse().map(l => {
       const unitObj = this.db.users.find(u => u.unit_id === l.unit_id) || { unit_name: l.unit_id };
+      const invNumSafe = escapeQuotes(l.invoice_number || '');
 
       return `
         <tr class="hover:bg-slate-50 transition">
           <td class="px-4 py-3 font-mono text-[11px] text-slate-500">${l.log_id}</td>
-          <td class="px-4 py-3 font-mono font-bold text-brand-primary">${l.invoice_number || '-'}</td>
+          <td class="px-4 py-3">
+            ${l.invoice_number ? `
+              <button type="button" 
+                onclick="app.openInvoiceDetailModal('${l.order_id || ''}', '${l.log_id}', '${invNumSafe}')" 
+                class="invoice-link-badge group inline-flex items-center space-x-1.5 font-mono font-extrabold text-brand-primary hover:text-emerald-700 bg-emerald-50/90 hover:bg-emerald-100/90 px-2.5 py-1 rounded-lg border border-emerald-200/80 transition shadow-2xs hover:shadow-xs text-left cursor-pointer"
+                title="Klik untuk melihat rincian nota & invoice lengkap">
+                <i class="fa-solid fa-file-invoice text-[11px] text-emerald-600 group-hover:scale-110 transition-transform"></i>
+                <span class="underline decoration-emerald-300 underline-offset-2">${l.invoice_number}</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[9px] opacity-70 group-hover:opacity-100 ml-0.5"></i>
+              </button>
+            ` : `<span class="text-slate-400 font-mono text-xs">-</span>`}
+          </td>
           <td class="px-4 py-3 font-semibold text-slate-800">${unitObj.unit_name}</td>
           <td class="px-4 py-3 font-extrabold text-red-600 font-heading">- Rp ${this.formatNumber(l.amount_deducted)}</td>
           <td class="px-4 py-3 font-extrabold text-brand-primary font-heading">Rp ${this.formatNumber(l.remaining_balance)}</td>
@@ -3546,7 +3509,34 @@ const app = {
     try { items = JSON.parse(order.items_json); } catch(e) {}
 
     const approvals = this.orderItemApprovals[orderId] || items.map(() => true);
-    const approvedItems = items.filter((_, idx) => approvals[idx] !== false);
+    const revisions = this.orderItemRevisions[orderId] || [];
+
+    // Map each item with effective revised prices and quantities
+    const updatedItems = items.map((it, idx) => {
+      const rev = revisions[idx] || {};
+      const effPrice = Number(rev.unit_price !== undefined ? rev.unit_price : it.unit_price) || 0;
+      const effQty = Number(rev.qty !== undefined ? rev.qty : it.qty) || 1;
+      const origPrice = Number(rev.original_unit_price !== undefined ? rev.original_unit_price : it.unit_price) || 0;
+      const origQty = Number(rev.original_qty !== undefined ? rev.original_qty : it.qty) || 1;
+      const isRev = Boolean(rev.is_revised || (origPrice !== effPrice) || (origQty !== effQty));
+      const revReason = rev.revision_reason || it.revision_reason || '';
+      const isApproved = approvals[idx] !== false;
+
+      return {
+        ...it,
+        unit_price: effPrice,
+        qty: effQty,
+        original_unit_price: origPrice,
+        original_qty: origQty,
+        subtotal: effPrice * effQty,
+        is_price_revised: isRev,
+        is_revised: isRev,
+        revision_reason: revReason,
+        status: isApproved ? 'Approved' : 'Rejected'
+      };
+    });
+
+    const approvedItems = updatedItems.filter(it => it.status === 'Approved');
 
     if (approvedItems.length === 0) {
       this.showToast('Semua item ditolak. Silakan gunakan tombol Tolak Seluruh Pengajuan.', 'warning');
@@ -3568,7 +3558,7 @@ const app = {
       }
     });
 
-    // Auto-create Master Products for approved custom requests
+    // Auto-create Master Products for approved custom requests with REVISED actual purchase price
     approvedItems.forEach(item => {
       if (item.item_type === 'custom_request' || order.order_type === 'Request_Barang_Baru') {
         this.autoCreateMasterProductFromRequest({
@@ -3592,15 +3582,13 @@ const app = {
     const schoolSlug = (this.db.cms_settings.app_name || 'AL-IMAM').toUpperCase().replace(/\s+/g, '-');
     const invNum = `INV/${schoolSlug}/2026/09/${String(invCount).padStart(3, '0')}`;
 
-    // Update each item's status in items_json
-    const updatedItems = items.map((it, idx) => ({
-      ...it,
-      status: approvals[idx] !== false ? 'Approved' : 'Rejected'
-    }));
+    const hasAnyRevision = updatedItems.some(it => it.is_price_revised);
 
     order.items_json = JSON.stringify(updatedItems);
     order.total_amount = approvedAmount;
-    order.status = approvedItems.length === items.length ? 'Approved' : 'Approved';
+    order.original_total_amount = order.original_total_amount || order.total_amount;
+    order.is_price_revised = hasAnyRevision;
+    order.status = 'Approved';
     order.approved_at = this.formatCurrentDateTime();
     order.invoice_number = invNum;
 
@@ -3628,7 +3616,7 @@ const app = {
     this.renderVerificationView();
 
     if (this.db.gas_api_url) {
-      this.syncGasApproval(order.order_id, 'Approved', invNum);
+      this.syncGasApproval(order.order_id, 'Approved', invNum, updatedItems, approvedAmount, order.transfer_proof || '');
     }
   },
 
@@ -3649,7 +3637,657 @@ const app = {
     this.renderVerificationView();
 
     if (this.db.gas_api_url) {
-      this.syncGasApproval(order.order_id, 'Rejected', '');
+      this.syncGasApproval(order.order_id, 'Rejected', '', [], 0, '');
+    }
+  },
+
+  // ==========================================
+  // PRICE REVISION CONTROLLER (Verifikasi Pengajuan)
+  // ==========================================
+  openPriceRevisionModal(orderId, itemIdx) {
+    const order = this.db.orders.find(o => o.order_id === orderId);
+    if (!order) return;
+
+    let items = [];
+    try { items = JSON.parse(order.items_json); } catch(e) {}
+    const item = items[itemIdx];
+    if (!item) return;
+
+    if (!this.orderItemRevisions[orderId]) {
+      this.orderItemRevisions[orderId] = items.map(it => ({
+        product_name: it.product_name || it.item_name || '',
+        unit_price: Number(it.unit_price) || 0,
+        qty: Number(it.qty) || 1,
+        original_unit_price: Number(it.original_unit_price !== undefined ? it.original_unit_price : it.unit_price) || 0,
+        original_qty: Number(it.original_qty !== undefined ? it.original_qty : it.qty) || 1,
+        is_revised: Boolean(it.is_price_revised || it.is_revised || (it.original_unit_price !== undefined && it.original_unit_price !== it.unit_price)),
+        revision_reason: it.revision_reason || ''
+      }));
+    }
+
+    const currentRev = this.orderItemRevisions[orderId][itemIdx] || {
+      unit_price: item.unit_price,
+      qty: item.qty,
+      original_unit_price: item.unit_price,
+      original_qty: item.qty,
+      is_revised: false,
+      revision_reason: ''
+    };
+    this.currentRevisionTarget = { orderId, itemIdx };
+
+    const unitObj = this.db.users.find(u => u.unit_id === order.unit_id) || { unit_name: order.unit_id };
+
+    const elRevOrderId = document.getElementById('revOrderId');
+    const elRevItemIdx = document.getElementById('revItemIdx');
+    const elRevOrigPrice = document.getElementById('revOriginalUnitPrice');
+    const elRevOrigQty = document.getElementById('revOriginalQty');
+
+    if (elRevOrderId) elRevOrderId.value = orderId;
+    if (elRevItemIdx) elRevItemIdx.value = itemIdx;
+    if (elRevOrigPrice) elRevOrigPrice.value = currentRev.original_unit_price;
+    if (elRevOrigQty) elRevOrigQty.value = currentRev.original_qty;
+
+    const elBadge = document.getElementById('revOrderIdBadge');
+    const elUnit = document.getElementById('revUnitNameBadge');
+    const elName = document.getElementById('revItemNameDisplay');
+
+    if (elBadge) elBadge.textContent = orderId;
+    if (elUnit) elUnit.textContent = unitObj.unit_name;
+    if (elName) elName.textContent = item.product_name || item.item_name || 'Barang / Jasa';
+
+    const elDispPrice = document.getElementById('revDisplayOrigPrice');
+    const elDispQty = document.getElementById('revDisplayOrigQty');
+    const elDispSub = document.getElementById('revDisplayOrigSubtotal');
+
+    if (elDispPrice) elDispPrice.textContent = `Rp ${this.formatNumber(currentRev.original_unit_price)}`;
+    if (elDispQty) elDispQty.textContent = `${currentRev.original_qty} pcs`;
+    if (elDispSub) elDispSub.textContent = `Rp ${this.formatNumber(currentRev.original_unit_price * currentRev.original_qty)}`;
+
+    const elInputPrice = document.getElementById('revInputPrice');
+    const elInputQty = document.getElementById('revInputQty');
+    const elInputReason = document.getElementById('revInputReason');
+
+    if (elInputPrice) elInputPrice.value = currentRev.unit_price;
+    if (elInputQty) elInputQty.value = currentRev.qty;
+    if (elInputReason) elInputReason.value = currentRev.revision_reason || '';
+
+    this.onPriceRevisionInput();
+
+    const modal = document.getElementById('priceRevisionModal');
+    if (modal) modal.classList.remove('hidden');
+  },
+
+  closePriceRevisionModal() {
+    const modal = document.getElementById('priceRevisionModal');
+    if (modal) modal.classList.add('hidden');
+    this.currentRevisionTarget = { orderId: null, itemIdx: null };
+  },
+
+  onPriceRevisionInput() {
+    const origPrice = Number(document.getElementById('revOriginalUnitPrice')?.value) || 0;
+    const origQty = Number(document.getElementById('revOriginalQty')?.value) || 1;
+    const newPrice = Number(document.getElementById('revInputPrice')?.value) || 0;
+    const newQty = Number(document.getElementById('revInputQty')?.value) || 1;
+
+    const unitDiff = newPrice - origPrice;
+    const origSubtotal = origPrice * origQty;
+    const newSubtotal = newPrice * newQty;
+    const totalDiff = newSubtotal - origSubtotal;
+
+    const badge = document.getElementById('revVarianceBadge');
+    const unitDiffEl = document.getElementById('revUnitDiffDisplay');
+    const totalDiffEl = document.getElementById('revTotalDiffDisplay');
+
+    if (unitDiff === 0 && newQty === origQty) {
+      if (badge) {
+        badge.className = 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-200 text-slate-700';
+        badge.textContent = 'Sama dengan Pengajuan Awal';
+      }
+      if (unitDiffEl) unitDiffEl.textContent = 'Rp 0';
+      if (totalDiffEl) totalDiffEl.textContent = 'Rp 0';
+    } else if (totalDiff > 0) {
+      if (badge) {
+        badge.className = 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300';
+        badge.textContent = `+Rp ${this.formatNumber(totalDiff)} (Biaya Lebih Tinggi)`;
+      }
+      if (unitDiffEl) unitDiffEl.innerHTML = `<span class="text-amber-700 font-bold">+Rp ${this.formatNumber(unitDiff)}/pcs</span>`;
+      if (totalDiffEl) totalDiffEl.innerHTML = `<span class="text-amber-700 font-bold font-heading">+Rp ${this.formatNumber(totalDiff)}</span>`;
+    } else {
+      if (badge) {
+        badge.className = 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300';
+        badge.textContent = `-Rp ${this.formatNumber(Math.abs(totalDiff))} (Penghematan Biaya)`;
+      }
+      if (unitDiffEl) unitDiffEl.innerHTML = `<span class="text-emerald-700 font-bold">-Rp ${this.formatNumber(Math.abs(unitDiff))}/pcs</span>`;
+      if (totalDiffEl) totalDiffEl.innerHTML = `<span class="text-emerald-700 font-bold font-heading">-Rp ${this.formatNumber(Math.abs(totalDiff))}</span>`;
+    }
+  },
+
+  setRevisionPresetReason(text) {
+    const input = document.getElementById('revInputReason');
+    if (input) input.value = text;
+  },
+
+  applyPriceRevision(event) {
+    if (event) event.preventDefault();
+
+    const orderId = document.getElementById('revOrderId').value;
+    const itemIdx = Number(document.getElementById('revItemIdx').value);
+    const origPrice = Number(document.getElementById('revOriginalUnitPrice').value) || 0;
+    const origQty = Number(document.getElementById('revOriginalQty').value) || 1;
+    const newPrice = Number(document.getElementById('revInputPrice').value);
+    const newQty = Number(document.getElementById('revInputQty').value);
+    const reason = document.getElementById('revInputReason').value.trim();
+
+    if (isNaN(newPrice) || newPrice < 0) {
+      this.showToast('Harga satuan harus valid (minimal 0)!', 'warning');
+      return;
+    }
+    if (isNaN(newQty) || newQty <= 0) {
+      this.showToast('Jumlah qty harus minimal 1!', 'warning');
+      return;
+    }
+
+    if (!this.orderItemRevisions[orderId]) {
+      this.orderItemRevisions[orderId] = [];
+    }
+
+    const isChanged = (newPrice !== origPrice) || (newQty !== origQty);
+
+    this.orderItemRevisions[orderId][itemIdx] = {
+      unit_price: newPrice,
+      qty: newQty,
+      original_unit_price: origPrice,
+      original_qty: origQty,
+      is_revised: isChanged,
+      revision_reason: reason
+    };
+
+    this.closePriceRevisionModal();
+    this.renderVerificationView();
+    this.showToast(isChanged ? `Revisi harga item berhasil diterapkan (Rp ${this.formatNumber(newPrice)})` : 'Harga item disimpan sesuai pengajuan.', 'success');
+  },
+
+  resetItemPriceRevision(orderId, itemIdx) {
+    if (!this.orderItemRevisions[orderId] || !this.orderItemRevisions[orderId][itemIdx]) return;
+    const rev = this.orderItemRevisions[orderId][itemIdx];
+    rev.unit_price = rev.original_unit_price;
+    rev.qty = rev.original_qty;
+    rev.is_revised = false;
+    rev.revision_reason = '';
+
+    this.renderVerificationView();
+    this.showToast('Harga item direset ke estimasi pengajuan awal.', 'info');
+  },
+
+  resetCurrentItemRevisionModal() {
+    const origPrice = Number(document.getElementById('revOriginalUnitPrice').value) || 0;
+    const origQty = Number(document.getElementById('revOriginalQty').value) || 1;
+    const elInputPrice = document.getElementById('revInputPrice');
+    const elInputQty = document.getElementById('revInputQty');
+    const elInputReason = document.getElementById('revInputReason');
+
+    if (elInputPrice) elInputPrice.value = origPrice;
+    if (elInputQty) elInputQty.value = origQty;
+    if (elInputReason) elInputReason.value = '';
+    this.onPriceRevisionInput();
+  },
+
+  // ==========================================
+  // EDIT PENDING ORDER CONTROLLER (Riwayat & Dokumen)
+  // ==========================================
+  openEditPendingOrderModal(orderId) {
+    const order = this.db.orders.find(o => o.order_id === orderId);
+    if (!order) return;
+
+    this.editingOrderId = orderId;
+    document.getElementById('editOrderId').value = orderId;
+    document.getElementById('editOrderIdDisplay').textContent = orderId;
+    document.getElementById('editOrderNotes').value = order.notes || '';
+    document.getElementById('editOrderRecipient').value = order.recipient_name || '';
+    document.getElementById('editOrderBank').value = order.bank_account || '';
+
+    let items = [];
+    try { items = JSON.parse(order.items_json); } catch(e) {}
+
+    const container = document.getElementById('editOrderItemsList');
+    if (container) {
+      container.innerHTML = items.map((it, idx) => `
+        <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+          <div class="font-bold text-slate-800 text-[11px]">${it.product_name || it.item_name}</div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block text-[10px] text-slate-400 font-semibold mb-0.5">Jumlah (Qty):</label>
+              <input type="number" min="1" id="editItemQty_${idx}" value="${it.qty}" oninput="app.onEditOrderQtyOrPriceChange()" class="w-full px-2.5 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold focus:outline-none focus:border-brand-primary">
+            </div>
+            <div>
+              <label class="block text-[10px] text-slate-400 font-semibold mb-0.5">Harga Satuan (Rp):</label>
+              <input type="number" min="0" id="editItemPrice_${idx}" value="${it.unit_price}" oninput="app.onEditOrderQtyOrPriceChange()" class="w-full px-2.5 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold focus:outline-none focus:border-brand-primary">
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    this.onEditOrderQtyOrPriceChange();
+
+    const modal = document.getElementById('editOrderModal');
+    if (modal) modal.classList.remove('hidden');
+  },
+
+  closeEditOrderModal() {
+    const modal = document.getElementById('editOrderModal');
+    if (modal) modal.classList.add('hidden');
+    this.editingOrderId = null;
+  },
+
+  onEditOrderQtyOrPriceChange() {
+    const orderId = this.editingOrderId;
+    if (!orderId) return;
+    const order = this.db.orders.find(o => o.order_id === orderId);
+    if (!order) return;
+
+    let items = [];
+    try { items = JSON.parse(order.items_json); } catch(e) {}
+
+    let total = 0;
+    items.forEach((_, idx) => {
+      const qtyEl = document.getElementById(`editItemQty_${idx}`);
+      const priceEl = document.getElementById(`editItemPrice_${idx}`);
+      const qty = qtyEl ? Number(qtyEl.value) || 0 : 0;
+      const price = priceEl ? Number(priceEl.value) || 0 : 0;
+      total += (qty * price);
+    });
+
+    const display = document.getElementById('editOrderTotalDisplay');
+    if (display) display.textContent = `Rp ${this.formatNumber(total)}`;
+  },
+
+  handleSaveEditPendingOrder(event) {
+    if (event) event.preventDefault();
+    const orderId = this.editingOrderId;
+    if (!orderId) return;
+    const order = this.db.orders.find(o => o.order_id === orderId);
+    if (!order) return;
+
+    let items = [];
+    try { items = JSON.parse(order.items_json); } catch(e) {}
+
+    let total = 0;
+    const updatedItems = items.map((it, idx) => {
+      const qtyEl = document.getElementById(`editItemQty_${idx}`);
+      const priceEl = document.getElementById(`editItemPrice_${idx}`);
+      const qty = qtyEl ? Math.max(1, Number(qtyEl.value) || 1) : it.qty;
+      const price = priceEl ? Math.max(0, Number(priceEl.value) || 0) : it.unit_price;
+      const sub = qty * price;
+      total += sub;
+      return {
+        ...it,
+        qty: qty,
+        unit_price: price,
+        subtotal: sub
+      };
+    });
+
+    order.notes = document.getElementById('editOrderNotes').value.trim();
+    order.recipient_name = document.getElementById('editOrderRecipient').value.trim();
+    order.bank_account = document.getElementById('editOrderBank').value.trim();
+    order.items_json = JSON.stringify(updatedItems);
+    order.total_amount = total;
+
+    // Reset staged revisions if order was edited
+    delete this.orderItemRevisions[orderId];
+
+    this.saveState();
+    this.updateUI();
+    this.closeEditOrderModal();
+    this.showToast(`Pengajuan ${orderId} berhasil diperbarui!`, 'success');
+
+    if (this.db.gas_api_url) {
+      this.syncGasUpdateOrder(orderId, {
+        notes: order.notes,
+        items_json: order.items_json,
+        total_amount: order.total_amount
+      });
+    }
+  },
+
+  // ==========================================
+  // BULK PRODUCT INPUT CONTROLLER (Massal)
+  // ==========================================
+  openBulkProductModal() {
+    const modal = document.getElementById('bulkProductModal');
+    if (!modal) return;
+
+    if (!this.bulkProductRows || this.bulkProductRows.length === 0) {
+      const today = new Date().toISOString().split('T')[0];
+      this.bulkProductRows = [
+        { product_name: '', category: 'ATK & Kertas', unit_price: '', stock_qty: 10, date_in: today, image_url: '' },
+        { product_name: '', category: 'ATK & Kertas', unit_price: '', stock_qty: 10, date_in: today, image_url: '' },
+        { product_name: '', category: 'Kebersihan & Sanitasi', unit_price: '', stock_qty: 10, date_in: today, image_url: '' }
+      ];
+    }
+
+    this.switchBulkTab('grid');
+    this.renderBulkGrid();
+    modal.classList.remove('hidden');
+  },
+
+  closeBulkProductModal() {
+    const modal = document.getElementById('bulkProductModal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  switchBulkTab(tabName) {
+    this.bulkProductActiveTab = tabName;
+    ['grid', 'paste', 'upload'].forEach(t => {
+      const sec = document.getElementById(`bulkSection-${t}`);
+      const btn = document.getElementById(`bulkTabBtn-${t}`);
+      if (sec) sec.classList.toggle('hidden', t !== tabName);
+      if (btn) {
+        if (t === tabName) {
+          btn.className = 'px-3.5 py-1.5 rounded-xl font-bold transition bg-brand-primary text-white shadow-xs flex items-center space-x-1.5';
+        } else {
+          btn.className = 'px-3.5 py-1.5 rounded-xl font-semibold text-slate-600 hover:text-slate-900 transition flex items-center space-x-1.5';
+        }
+      }
+    });
+
+    if (tabName === 'grid') {
+      this.renderBulkGrid();
+    }
+  },
+
+  addBulkRow(count = 1) {
+    const today = new Date().toISOString().split('T')[0];
+    for (let i = 0; i < count; i++) {
+      this.bulkProductRows.push({
+        product_name: '',
+        category: 'ATK & Kertas',
+        unit_price: '',
+        stock_qty: 10,
+        date_in: today,
+        image_url: ''
+      });
+    }
+    this.renderBulkGrid();
+  },
+
+  removeBulkRow(index) {
+    if (this.bulkProductRows.length <= 1) {
+      this.bulkProductRows = [{
+        product_name: '',
+        category: 'ATK & Kertas',
+        unit_price: '',
+        stock_qty: 10,
+        date_in: new Date().toISOString().split('T')[0],
+        image_url: ''
+      }];
+    } else {
+      this.bulkProductRows.splice(index, 1);
+    }
+    this.renderBulkGrid();
+  },
+
+  clearBulkRows() {
+    const today = new Date().toISOString().split('T')[0];
+    this.bulkProductRows = [
+      { product_name: '', category: 'ATK & Kertas', unit_price: '', stock_qty: 10, date_in: today, image_url: '' }
+    ];
+    this.renderBulkGrid();
+    this.showToast('Tabel baris produk dibersihkan.', 'info');
+  },
+
+  onBulkRowChange(index, field, value) {
+    if (!this.bulkProductRows[index]) return;
+    this.bulkProductRows[index][field] = value;
+
+    if (field === 'product_name') {
+      const name = String(value).trim();
+      if (name.length >= 3 && !this.bulkProductRows[index].image_url) {
+        const match = CURATED_PRODUCT_PHOTOS.find(item => {
+          const qTokens = name.toLowerCase().split(/\s+/);
+          return qTokens.some(tok => item.keywords.some(k => k.includes(tok) || tok.includes(k)));
+        });
+        if (match) {
+          this.bulkProductRows[index].image_url = match.image;
+          const imgInput = document.getElementById(`bulkImg_${index}`);
+          if (imgInput) imgInput.value = match.image;
+          const thumbEl = document.getElementById(`bulkThumb_${index}`);
+          if (thumbEl) {
+            thumbEl.src = match.image;
+            thumbEl.classList.remove('hidden');
+          }
+        }
+      }
+    }
+
+    this.updateBulkSummary();
+  },
+
+  renderBulkGrid() {
+    const tbody = document.getElementById('bulkProductTableBody');
+    if (!tbody) return;
+
+    const categories = [
+      'ATK & Kertas',
+      'Kebersihan & Sanitasi',
+      'Elektronik & IT',
+      'Perlengkapan Kelas',
+      'Buku & Modul',
+      'Sarana Olahraga & Ekstra',
+      'Lain-lain'
+    ];
+
+    tbody.innerHTML = this.bulkProductRows.map((row, idx) => `
+      <tr class="hover:bg-slate-50/60 transition">
+        <td class="py-2 px-3 text-center text-slate-400 font-mono text-[11px]">${idx + 1}</td>
+        <td class="py-2 px-3">
+          <input type="text" value="${escapeHtml(row.product_name)}" placeholder="Nama barang / spidol / kertas..." oninput="app.onBulkRowChange(${idx}, 'product_name', this.value)" class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-brand-primary">
+        </td>
+        <td class="py-2 px-3">
+          <select onchange="app.onBulkRowChange(${idx}, 'category', this.value)" class="w-full px-2 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary">
+            ${categories.map(c => `<option value="${c}" ${row.category === c ? 'selected' : ''}>${c}</option>`).join('')}
+          </select>
+        </td>
+        <td class="py-2 px-3">
+          <div class="relative">
+            <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px] font-bold">Rp</span>
+            <input type="number" min="0" placeholder="0" value="${row.unit_price !== '' ? row.unit_price : ''}" oninput="app.onBulkRowChange(${idx}, 'unit_price', Number(this.value))" class="w-full pl-8 pr-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 text-right focus:bg-white focus:outline-none focus:border-brand-primary">
+          </div>
+        </td>
+        <td class="py-2 px-3">
+          <input type="number" min="0" value="${row.stock_qty !== undefined ? row.stock_qty : 10}" oninput="app.onBulkRowChange(${idx}, 'stock_qty', Number(this.value))" class="w-full px-2 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-center focus:bg-white focus:outline-none focus:border-brand-primary">
+        </td>
+        <td class="py-2 px-3">
+          <input type="date" value="${row.date_in || new Date().toISOString().split('T')[0]}" onchange="app.onBulkRowChange(${idx}, 'date_in', this.value)" class="w-full px-2 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary">
+        </td>
+        <td class="py-2 px-3">
+          <div class="flex items-center space-x-1.5">
+            <img id="bulkThumb_${idx}" src="${row.image_url || ''}" class="${row.image_url ? '' : 'hidden'} w-7 h-7 object-cover rounded-lg border border-slate-200 shrink-0">
+            <input type="text" id="bulkImg_${idx}" value="${escapeHtml(row.image_url || '')}" placeholder="URL Gambar..." oninput="app.onBulkRowChange(${idx}, 'image_url', this.value)" class="w-full px-2 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-[11px] font-mono focus:bg-white focus:outline-none focus:border-brand-primary">
+          </div>
+        </td>
+        <td class="py-2 px-2 text-center">
+          <button type="button" onclick="app.removeBulkRow(${idx})" class="w-7 h-7 text-slate-300 hover:text-red-600 hover:bg-red-50 rounded-lg transition" title="Hapus baris ini">
+            <i class="fa-solid fa-trash-can text-xs"></i>
+          </button>
+        </td>
+      </tr>
+    `).join('');
+
+    this.updateBulkSummary();
+  },
+
+  updateBulkSummary() {
+    const validRows = this.bulkProductRows.filter(r => r && r.product_name && r.product_name.trim() !== '');
+    const totalItems = validRows.length;
+    const totalQty = validRows.reduce((acc, r) => acc + (Number(r.stock_qty) || 0), 0);
+    const totalValuation = validRows.reduce((acc, r) => acc + ((Number(r.stock_qty) || 0) * (Number(r.unit_price) || 0)), 0);
+
+    const elItems = document.getElementById('bulkSummaryTotalItems');
+    const elQty = document.getElementById('bulkSummaryTotalQty');
+    const elVal = document.getElementById('bulkSummaryTotalValuation');
+
+    if (elItems) elItems.textContent = `${totalItems} item siap simpan`;
+    if (elQty) elQty.textContent = `${totalQty} pcs`;
+    if (elVal) elVal.textContent = `Rp ${this.formatNumber(totalValuation)}`;
+  },
+
+  parsePastedSpreadsheet() {
+    const textarea = document.getElementById('bulkPasteTextarea');
+    const text = textarea ? textarea.value.trim() : '';
+    if (!text) {
+      this.showToast('Silakan tempelkan teks dari Excel terlebih dahulu!', 'warning');
+      return;
+    }
+
+    const lines = text.split(/\r?\n/).filter(line => line.trim() !== '');
+    if (lines.length === 0) {
+      this.showToast('Tidak ada baris data yang terdeteksi!', 'warning');
+      return;
+    }
+
+    const today = new Date().toISOString().split('T')[0];
+    const newRows = [];
+
+    lines.forEach((line) => {
+      let cols = line.split('\t');
+      if (cols.length < 2) cols = line.split(';');
+      if (cols.length < 2) cols = line.split(',');
+
+      const name = cols[0] ? cols[0].trim().replace(/^["']|["']$/g, '') : '';
+      if (!name || name.toLowerCase().includes('nama produk') || name.toLowerCase().includes('product_name')) {
+        return;
+      }
+
+      const cat = cols[1] ? cols[1].trim().replace(/^["']|["']$/g, '') : 'ATK & Kertas';
+      const rawPrice = cols[2] ? cols[2].replace(/[^0-9]/g, '') : '0';
+      const price = Number(rawPrice) || 0;
+      const rawQty = cols[3] ? cols[3].replace(/[^0-9]/g, '') : '10';
+      const qty = Number(rawQty) || 10;
+      const dateIn = (cols[4] && cols[4].match(/^\d{4}-\d{2}-\d{2}$/)) ? cols[4].trim() : today;
+      let img = cols[5] ? cols[5].trim().replace(/^["']|["']$/g, '') : '';
+
+      if (!img && name.length >= 3) {
+        const match = CURATED_PRODUCT_PHOTOS.find(item => {
+          const qTokens = name.toLowerCase().split(/\s+/);
+          return qTokens.some(tok => item.keywords.some(k => k.includes(tok) || tok.includes(k)));
+        });
+        if (match) img = match.image;
+      }
+
+      newRows.push({
+        product_name: name,
+        category: cat || 'ATK & Kertas',
+        unit_price: price,
+        stock_qty: qty,
+        date_in: dateIn,
+        image_url: img
+      });
+    });
+
+    if (newRows.length === 0) {
+      this.showToast('Gagal mem-parse data. Pastikan format kolom sesuai panduan!', 'error');
+      return;
+    }
+
+    this.bulkProductRows = newRows;
+    this.switchBulkTab('grid');
+    this.showToast(`Berhasil mem-parse ${newRows.length} baris dari Excel!`, 'success');
+  },
+
+  copyBulkSampleTemplate() {
+    const template = "Nama Produk\tKategori\tHarga Satuan\tStok Awal\tTanggal Masuk\tURL Foto\nSpidol Whiteboard Snowman Hitam\tATK & Kertas\t9000\t50\t2026-10-03\t\nKertas HVS PaperOne A4 80gr\tATK & Kertas\t52000\t20\t2026-10-03\t\nSapu Lantai Ijuk Dragon\tKebersihan & Sanitasi\t28000\t15\t2026-10-03\t\nStop Kontak Uticon 4 Lubang 3M\tElektronik & IT\t65000\t8\t2026-10-03\t";
+    navigator.clipboard.writeText(template).then(() => {
+      this.showToast('Format template Excel disalin ke clipboard! Silakan paste di Excel.', 'success');
+    }).catch(() => {
+      this.showToast('Gagal menyalin, silakan gunakan tombol Unduh Template CSV.', 'warning');
+    });
+  },
+
+  downloadBulkTemplateCSV() {
+    const csv = "Nama Produk,Kategori,Harga Satuan,Stok Awal,Tanggal Masuk,URL Foto\n" +
+      "Spidol Whiteboard Snowman Hitam,ATK & Kertas,9000,50,2026-10-03,\n" +
+      "Kertas HVS PaperOne A4 80gr,ATK & Kertas,52000,20,2026-10-03,\n" +
+      "Sapu Lantai Ijuk Dragon,Kebersihan & Sanitasi,28000,15,2026-10-03,\n" +
+      "Stop Kontak Uticon 4 Lubang 3M,Elektronik & IT,65000,8,2026-10-03,";
+
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Template_Bulk_Input_Produk_SARPRAS.csv';
+    link.click();
+    this.showToast('File template CSV berhasil diunduh.', 'success');
+  },
+
+  handleBulkCsvUpload(event) {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const content = e.target.result;
+      const textarea = document.getElementById('bulkPasteTextarea');
+      if (textarea) textarea.value = content;
+      this.parsePastedSpreadsheet();
+    };
+    reader.readAsText(file);
+  },
+
+  handleSaveBulkProducts() {
+    const validRows = this.bulkProductRows.filter(r => r && r.product_name && r.product_name.trim() !== '');
+    if (validRows.length === 0) {
+      this.showToast('Silakan isi minimal 1 nama produk pada tabel!', 'warning');
+      return;
+    }
+
+    const dateStr = new Date().toISOString().split('T')[0];
+    const newBatches = validRows.map((r) => {
+      const batchId = `BATCH-${dateStr.replace(/-/g, '').slice(0, 6)}-${Math.floor(Math.random() * 900 + 100)}`;
+      const qty = Number(r.stock_qty) || 0;
+      const price = Number(r.unit_price) || 0;
+
+      let photo = r.image_url || '';
+      if (!photo) {
+        const match = CURATED_PRODUCT_PHOTOS.find(item => {
+          const qTokens = r.product_name.toLowerCase().split(/\s+/);
+          return qTokens.some(tok => item.keywords.some(k => k.includes(tok) || tok.includes(k)));
+        });
+        if (match) photo = match.image;
+        else photo = 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80';
+      }
+
+      return {
+        batch_id: batchId,
+        product_name: r.product_name.trim(),
+        category: r.category || 'ATK & Kertas',
+        stock_qty: qty,
+        unit_price: price,
+        date_in: r.date_in || dateStr,
+        method: 'FIFO',
+        status: qty > 0 ? 'Active' : 'Empty',
+        image_url: photo
+      };
+    });
+
+    this.db.stock_inventory.push(...newBatches);
+    this.saveState();
+
+    this.clearBulkRows();
+    this.closeBulkProductModal();
+    this.updateUI();
+    this.checkStockAlerts();
+
+    if (this.activeView === 'inventory') {
+      this.renderInventoryTable();
+      this.renderMasterProductsTable();
+    }
+    if (this.activeView === 'catalog') this.renderCatalog();
+
+    this.showToast(`🎉 Berhasil menambahkan ${newBatches.length} master produk baru secara massal!`, 'success');
+
+    if (this.db.gas_api_url) {
+      this.syncGasBulkProducts(newBatches);
     }
   },
 
@@ -4192,6 +4830,233 @@ const app = {
   },
 
   // ==========================================
+  // 12B. INVOICE & TRANSACTION DETAIL MODAL
+  // ==========================================
+  currentInvoiceDetailTarget: null,
+
+  openInvoiceDetailModal(orderIdOrInvNum, logId, invNumFallback) {
+    // 1. Find log if logId provided, or by order_id or invoice_number
+    let log = null;
+    if (logId) {
+      log = this.db.transactions_log.find(l => l.log_id === logId);
+    }
+    if (!log && orderIdOrInvNum) {
+      log = this.db.transactions_log.find(l => l.order_id === orderIdOrInvNum || l.invoice_number === orderIdOrInvNum);
+    }
+
+    // 2. Find order
+    let order = null;
+    if (orderIdOrInvNum) {
+      order = this.db.orders.find(o => o.order_id === orderIdOrInvNum || o.invoice_number === orderIdOrInvNum);
+    }
+    if (!order && log && log.order_id) {
+      order = this.db.orders.find(o => o.order_id === log.order_id);
+    }
+
+    // Determine values with graceful fallbacks
+    const invoiceNumber = (order && order.invoice_number) || (log && log.invoice_number) || invNumFallback || (order ? order.order_id : '-');
+    const unitId = (order && order.unit_id) || (log && log.unit_id) || 'unit_sd';
+    const unitObj = this.db.users.find(u => u.unit_id === unitId) || { unit_name: unitId === 'unit_sd' ? 'SD Islam Al-Imam' : (unitId === 'unit_smp' ? 'SMP Islam Al-Imam' : unitId) };
+    const amountDeducted = (log && log.amount_deducted !== undefined) ? log.amount_deducted : (order ? order.total_amount : 0);
+    const remainingBalance = (log && log.remaining_balance !== undefined) ? log.remaining_balance : (this.db.rapbs.find(r => r.unit_id === unitId)?.saldo_tersedia || 0);
+    const timestamp = (log && log.timestamp) || (order && (order.approved_at || order.created_at)) || this.formatCurrentDateTime();
+    const orderId = (order && order.order_id) || (log && log.order_id) || '-';
+    const orderType = (order && order.order_type) ? order.order_type.replace(/_/g, ' ') : 'Pengadaan SARPRAS';
+    const status = (order && order.status) || 'Approved';
+
+    this.currentInvoiceDetailTarget = { order, log, orderId, invoiceNumber };
+
+    // Fill UI elements
+    const elInvNum = document.getElementById('invDetailInvoiceNumber');
+    if (elInvNum) elInvNum.textContent = invoiceNumber;
+
+    const elStatus = document.getElementById('invDetailStatusBadge');
+    if (elStatus) {
+      if (status === 'Approved') {
+        elStatus.className = 'px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-300';
+        elStatus.textContent = 'LUNAS / APPROVED';
+      } else if (status === 'Pending_Verification') {
+        elStatus.className = 'px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-800 border border-amber-300';
+        elStatus.textContent = 'MENUNGGU VERIFIKASI';
+      } else {
+        elStatus.className = 'px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-red-100 text-red-800 border border-red-300';
+        elStatus.textContent = 'DITOLAK';
+      }
+    }
+
+    const elUnitName = document.getElementById('invDetailUnitName');
+    if (elUnitName) elUnitName.textContent = unitObj.unit_name;
+
+    const elAmtDeducted = document.getElementById('invDetailAmountDeducted');
+    if (elAmtDeducted) elAmtDeducted.textContent = `- Rp ${this.formatNumber(amountDeducted)}`;
+
+    const elOrderType = document.getElementById('invDetailOrderType');
+    if (elOrderType) elOrderType.textContent = orderType;
+
+    const elRemaining = document.getElementById('invDetailRemainingBalance');
+    if (elRemaining) elRemaining.textContent = `Rp ${this.formatNumber(remainingBalance)}`;
+
+    const elTimestamp = document.getElementById('invDetailTimestamp');
+    if (elTimestamp) elTimestamp.textContent = timestamp;
+
+    const elOrderId = document.getElementById('invDetailOrderId');
+    if (elOrderId) elOrderId.textContent = `Ref: ${orderId}`;
+
+    // Parse Items
+    let items = [];
+    if (order && order.items_json) {
+      try {
+        items = typeof order.items_json === 'string' ? JSON.parse(order.items_json) : order.items_json;
+      } catch (e) {
+        items = [];
+      }
+    }
+
+    const tbody = document.getElementById('invDetailItemsTableBody');
+    const elCountBadge = document.getElementById('invDetailItemCountBadge');
+    const elTotalFooter = document.getElementById('invDetailTotalAmountFooter');
+
+    if (tbody) {
+      if (items.length > 0) {
+        if (elCountBadge) elCountBadge.textContent = `${items.length} Item`;
+        let totalSum = 0;
+        tbody.innerHTML = items.map((it, idx) => {
+          const isItemApproved = it.status !== 'Rejected';
+          const isRevised = it.is_price_revised || (it.original_unit_price && it.original_unit_price !== it.unit_price);
+          const sub = Number(it.subtotal) || (Number(it.qty) * Number(it.unit_price)) || 0;
+          if (isItemApproved) totalSum += sub;
+
+          return `
+            <tr class="hover:bg-slate-50/80 transition ${isItemApproved ? '' : 'text-slate-400 bg-red-50/20'}">
+              <td class="py-2.5 px-3 text-center text-slate-400 font-mono text-[11px]">${idx + 1}</td>
+              <td class="py-2.5 px-3">
+                <span class="${isItemApproved ? 'font-bold text-slate-800' : 'line-through text-slate-400'} block">
+                  ${escapeHtml(it.product_name || it.item_name)}
+                </span>
+                ${isRevised ? `
+                  <div class="text-[10px] text-amber-700 font-normal mt-0.5 flex items-center space-x-1 flex-wrap">
+                    <span class="px-1.5 py-0.2 bg-amber-100 border border-amber-300 rounded font-semibold text-[9px]">Revisi Nota</span>
+                    <span>Semula Rp ${this.formatNumber(it.original_unit_price || 0)}</span>
+                    ${it.revision_reason ? `<span class="italic text-slate-600">(${escapeHtml(it.revision_reason)})</span>` : ''}
+                  </div>
+                ` : ''}
+              </td>
+              <td class="py-2.5 px-3 text-center font-bold text-slate-700">${it.qty}</td>
+              <td class="py-2.5 px-3 text-right">
+                ${isRevised ? `<span class="text-[10px] line-through text-slate-400 block">Rp ${this.formatNumber(it.original_unit_price)}</span>` : ''}
+                <span class="font-semibold text-slate-800">Rp ${this.formatNumber(it.unit_price)}</span>
+              </td>
+              <td class="py-2.5 px-3 text-right font-black font-heading ${isItemApproved ? 'text-slate-900' : 'line-through text-red-500'}">
+                Rp ${this.formatNumber(sub)}
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+        if (elTotalFooter) elTotalFooter.textContent = `Rp ${this.formatNumber(totalSum || amountDeducted)}`;
+      } else {
+        if (elCountBadge) elCountBadge.textContent = `1 Transaksi`;
+        tbody.innerHTML = `
+          <tr>
+            <td class="py-3 px-3 text-center text-slate-400">1</td>
+            <td class="py-3 px-3 font-semibold text-slate-800">${(order && order.notes) ? escapeHtml(order.notes) : 'Pengadaan Sarana Operasional'}</td>
+            <td class="py-3 px-3 text-center font-bold">1</td>
+            <td class="py-3 px-3 text-right font-semibold">Rp ${this.formatNumber(amountDeducted)}</td>
+            <td class="py-3 px-3 text-right font-black text-slate-900 font-heading">Rp ${this.formatNumber(amountDeducted)}</td>
+          </tr>
+        `;
+        if (elTotalFooter) elTotalFooter.textContent = `Rp ${this.formatNumber(amountDeducted)}`;
+      }
+    }
+
+    // Notes & PJ
+    const elNotes = document.getElementById('invDetailNotes');
+    if (elNotes) elNotes.textContent = (order && order.notes) || '-';
+
+    const elPjName = document.getElementById('invDetailPjName');
+    if (elPjName) elPjName.textContent = (order && order.pj_name) || unitObj.unit_name;
+
+    // Reimbursement Details
+    const elReimb = document.getElementById('invDetailReimburseDetails');
+    if (elReimb) {
+      if (order && (order.recipient_name || order.bank_account)) {
+        elReimb.classList.remove('hidden');
+        const rName = document.getElementById('invDetailRecipient');
+        const bAcc = document.getElementById('invDetailBankAccount');
+        if (rName) rName.textContent = order.recipient_name || '-';
+        if (bAcc) bAcc.textContent = order.bank_account || '-';
+      } else {
+        elReimb.classList.add('hidden');
+      }
+    }
+
+    // Attachments
+    const attachContainer = document.getElementById('invDetailAttachmentsContainer');
+    const attachList = document.getElementById('invDetailAttachmentsList');
+    if (attachContainer && attachList) {
+      const attachments = order ? (order.attachments || (order.transfer_proof ? { transfer: order.transfer_proof } : null)) : null;
+      let attachHTML = '';
+
+      if (attachments) {
+        if (attachments.receipt) {
+          attachHTML += `
+            <div class="flex items-center space-x-3 p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-emerald-500 hover:shadow-sm transition group" onclick="app.viewReceiptImage('${attachments.receipt}', 'Bukti Kwitansi / Nota', 'Invoice: ${invoiceNumber}')">
+              <img src="${attachments.receipt}" class="w-12 h-12 object-cover rounded-lg border border-slate-200 group-hover:opacity-90">
+              <div>
+                <span class="text-xs font-bold text-slate-800 block group-hover:text-brand-primary">1. Nota Kwitansi Fisik</span>
+                <span class="text-[10px] text-slate-400 block"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i>Klik perbesar</span>
+              </div>
+            </div>
+          `;
+        }
+        if (attachments.transfer) {
+          attachHTML += `
+            <div class="flex items-center space-x-3 p-2.5 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-emerald-500 hover:shadow-sm transition group" onclick="app.viewReceiptImage('${attachments.transfer}', 'Bukti Transfer Bank', 'Invoice: ${invoiceNumber}')">
+              <img src="${attachments.transfer}" class="w-12 h-12 object-cover rounded-lg border border-slate-200 group-hover:opacity-90">
+              <div>
+                <span class="text-xs font-bold text-slate-800 block group-hover:text-brand-primary">2. Bukti Transfer Bank</span>
+                <span class="text-[10px] text-slate-400 block"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i>Klik perbesar</span>
+              </div>
+            </div>
+          `;
+        }
+      }
+
+      if (attachHTML) {
+        attachList.innerHTML = attachHTML;
+        attachContainer.classList.remove('hidden');
+      } else {
+        attachContainer.classList.add('hidden');
+      }
+    }
+
+    // Toggle Print Document Button
+    const btnPrint = document.getElementById('btnInvDetailPrintDoc');
+    if (btnPrint) {
+      if (order) {
+        btnPrint.classList.remove('hidden');
+      } else {
+        btnPrint.classList.add('hidden');
+      }
+    }
+
+    const modal = document.getElementById('invoiceDetailModal');
+    if (modal) modal.classList.remove('hidden');
+  },
+
+  closeInvoiceDetailModal() {
+    const modal = document.getElementById('invoiceDetailModal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  openPrintModalFromDetail() {
+    if (this.currentInvoiceDetailTarget && this.currentInvoiceDetailTarget.order) {
+      this.closeInvoiceDetailModal();
+      this.openPrintModal(this.currentInvoiceDetailTarget.order.order_id);
+    }
+  },
+
+  // ==========================================
   // 13. PRINT ENGINE & TEMPLATE GENERATORS
   // ==========================================
 
@@ -4298,12 +5163,24 @@ const app = {
             <tbody>
               ${items.map((it, idx) => {
                 const isItemApproved = it.status !== 'Rejected';
+                const isRevised = it.is_price_revised || (it.original_unit_price && it.original_unit_price !== it.unit_price);
                 return `
                   <tr class="${isItemApproved ? '' : 'text-slate-400 bg-red-50/20'}">
                     <td class="text-center">${idx + 1}</td>
-                    <td class="${isItemApproved ? 'font-semibold' : 'line-through'}">${it.product_name || it.item_name}</td>
+                    <td class="${isItemApproved ? 'font-semibold' : 'line-through'}">
+                      ${it.product_name || it.item_name}
+                      ${isRevised ? `
+                        <div class="text-[10px] text-amber-700 font-normal mt-0.5">
+                          *Harga Realisasi Nota (Pengajuan Awal: Rp ${this.formatNumber(it.original_unit_price || 0)})
+                          ${it.revision_reason ? ` • <i>Ket: ${it.revision_reason}</i>` : ''}
+                        </div>
+                      ` : ''}
+                    </td>
                     <td class="text-center">${it.qty}</td>
-                    <td class="text-right">Rp ${this.formatNumber(it.unit_price)}</td>
+                    <td class="text-right">
+                      ${isRevised ? `<span class="line-through text-slate-400 text-[10px] block">Rp ${this.formatNumber(it.original_unit_price)}</span>` : ''}
+                      <span>Rp ${this.formatNumber(it.unit_price)}</span>
+                    </td>
                     <td class="text-right font-bold ${isItemApproved ? '' : 'line-through text-red-500'}">Rp ${this.formatNumber(it.subtotal)}</td>
                     <td class="text-center text-[10px] font-bold ${isItemApproved ? 'text-emerald-700' : 'text-red-600'}">${isItemApproved ? 'Disetujui' : 'Ditolak'}</td>
                   </tr>
@@ -4467,15 +5344,29 @@ const app = {
                 </tr>
               </thead>
               <tbody>
-                ${items.map((it, idx) => `
-                  <tr>
-                    <td class="text-center">${idx + 1}</td>
-                    <td>${it.product_name || it.item_name}</td>
-                    <td class="text-center">${it.qty}</td>
-                    <td class="text-right">Rp ${this.formatNumber(it.unit_price)}</td>
-                    <td class="text-right font-bold">Rp ${this.formatNumber(it.subtotal)}</td>
-                  </tr>
-                `).join('')}
+                ${items.map((it, idx) => {
+                  const isRevised = it.is_price_revised || (it.original_unit_price && it.original_unit_price !== it.unit_price);
+                  return `
+                    <tr>
+                      <td class="text-center">${idx + 1}</td>
+                      <td>
+                        <b>${it.product_name || it.item_name}</b>
+                        ${isRevised ? `
+                          <div class="text-[10px] text-amber-700 font-normal mt-0.5">
+                            *Revisi Realisasi Nota (Pengajuan: Rp ${this.formatNumber(it.original_unit_price || 0)})
+                            ${it.revision_reason ? ` - ${it.revision_reason}` : ''}
+                          </div>
+                        ` : ''}
+                      </td>
+                      <td class="text-center">${it.qty}</td>
+                      <td class="text-right">
+                        ${isRevised ? `<span class="line-through text-slate-400 text-[10px] block">Rp ${this.formatNumber(it.original_unit_price)}</span>` : ''}
+                        Rp ${this.formatNumber(it.unit_price)}
+                      </td>
+                      <td class="text-right font-bold">Rp ${this.formatNumber(it.subtotal)}</td>
+                    </tr>
+                  `;
+                }).join('')}
                 <tr class="font-bold bg-slate-50">
                   <td colspan="4" class="text-right">TOTAL LAPORAN:</td>
                   <td class="text-right">Rp ${this.formatNumber(ord.total_amount)}</td>
@@ -4600,13 +5491,21 @@ const app = {
     }
   },
 
-  async syncGasApproval(orderId, status, invoiceNumber) {
+  async syncGasApproval(orderId, status, invoiceNumber, items = [], approvedAmount = 0, transferProof = '') {
     if (!this.db.gas_api_url) return;
     try {
       await fetch(this.db.gas_api_url, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ action: 'approveOrder', order_id: orderId, status: status, invoice_number: invoiceNumber })
+        body: JSON.stringify({
+          action: 'approveOrder',
+          order_id: orderId,
+          status: status,
+          invoice_number: invoiceNumber,
+          items: items,
+          approved_amount: approvedAmount,
+          transfer_proof: transferProof
+        })
       });
     } catch (e) {
       console.warn('Sync approval error:', e);
@@ -6926,6 +7825,16 @@ const app = {
     const now = new Date();
     const pad = n => String(n).padStart(2, '0');
     return `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}-${pad(Math.floor(Math.random() * 900 + 100))}`;
+  },
+
+  escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
   },
 
   escapeQuotes(str) {

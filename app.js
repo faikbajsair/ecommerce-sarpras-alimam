@@ -290,8 +290,24 @@ const INITIAL_DB = {
     { unit_id: 'unit_smp', total_plafond: 24506000, terpakai: 1730387, saldo_tersedia: 22775613, updated_at: '2026-09-04 13:30' }
   ],
 
-  // Rincian Pos Sumber Dana RAPBS SARPRAS (D.1 SD & D SMP)
+  // Rincian Pos Sumber Dana RAPBS SARPRAS (TK, SD & SMP)
   rapbs_breakdowns: {
+    unit_tk: {
+      code: 'D.1',
+      title: 'OPERASIONAL & SARPRAS PG-TK',
+      unit_name: 'TK Islam Al-Imam',
+      total_plafond: 15000000,
+      academic_year: '2026/2027',
+      description: 'Rincian alokasi belanja operasional sentra, mainan edukatif APE, dan pemeliharaan sarpras TK Islam Al-Imam Tahun Ajaran 2026/2027.',
+      items: [
+        { no: 1, name: 'Maintenance AC (Cuci 6 Unit)', unit_price: 85000, qty_req: 6, qty_people: 1, total: 510000, category: 'Jasa & Operasional', image_url: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&auto=format&fit=crop&q=80' },
+        { no: 2, name: 'Kertas HVS & ATK Sentra / Kelas PG-TK', unit_price: 50000, qty_req: 10, qty_people: 7, total: 3500000, category: 'ATK & Kertas', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
+        { no: 3, name: 'Kebutuhan Alat Kebersihan & Sanitasi Anak', unit_price: 250000, qty_req: 10, qty_people: 1, total: 2500000, category: 'Kebersihan & Sanitasi', image_url: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80' },
+        { no: 4, name: 'Mainan Edukatif & Alat Peraga Edukasi (APE)', unit_price: 1000000, qty_req: 4, qty_people: 1, total: 4000000, category: 'Perlengkapan Kelas', image_url: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80' },
+        { no: 5, name: 'Perlengkapan Kelas & P3K Anak', unit_price: 500000, qty_req: 4, qty_people: 1, total: 2000000, category: 'Perlengkapan Kelas', image_url: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80' },
+        { no: 6, name: 'Tinta Printer & Administrasi TK', unit_price: 249000, qty_req: 10, qty_people: 1, total: 2490000, category: 'Elektronik & IT', image_url: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=80' }
+      ]
+    },
     unit_sd: {
       code: 'D.1',
       title: 'SARPRAS RINGAN',
@@ -1286,11 +1302,17 @@ const app = {
       this.db.transactions_log = JSON.parse(JSON.stringify(INITIAL_DB.transactions_log));
     }
 
-    // Ensure rapbs_breakdowns is present in db
+    // Ensure rapbs_breakdowns is present in db with all units
     if (!this.db.rapbs_breakdowns) {
       this.db.rapbs_breakdowns = JSON.parse(JSON.stringify(INITIAL_DB.rapbs_breakdowns));
     }
-    if (!this.db.rapbs_breakdowns.unit_smp) {
+    if (!this.db.rapbs_breakdowns.unit_tk && INITIAL_DB.rapbs_breakdowns.unit_tk) {
+      this.db.rapbs_breakdowns.unit_tk = JSON.parse(JSON.stringify(INITIAL_DB.rapbs_breakdowns.unit_tk));
+    }
+    if (!this.db.rapbs_breakdowns.unit_sd && INITIAL_DB.rapbs_breakdowns.unit_sd) {
+      this.db.rapbs_breakdowns.unit_sd = JSON.parse(JSON.stringify(INITIAL_DB.rapbs_breakdowns.unit_sd));
+    }
+    if (!this.db.rapbs_breakdowns.unit_smp && INITIAL_DB.rapbs_breakdowns.unit_smp) {
       this.db.rapbs_breakdowns.unit_smp = JSON.parse(JSON.stringify(INITIAL_DB.rapbs_breakdowns.unit_smp));
     }
 
@@ -5988,12 +6010,26 @@ const app = {
   // ==========================================
 
   openRapbsBreakdownModal(unitId) {
-    const targetUnit = unitId || (this.currentUser && this.currentUser.unit_id === 'unit_smp' ? 'unit_smp' : 'unit_sd');
-    this.currentBreakdownUnitId = targetUnit;
-    const modal = document.getElementById('rapbsBreakdownModal');
-    if (!modal) return;
-    this.renderRapbsBreakdown(targetUnit);
-    modal.classList.remove('hidden');
+    try {
+      let targetUnit = unitId;
+      if (!targetUnit || targetUnit === 'admin' || targetUnit === 'bendahara') {
+        if (this.currentUser && this.currentUser.unit_id && (this.currentUser.unit_id === 'unit_tk' || this.currentUser.unit_id === 'unit_sd' || this.currentUser.unit_id === 'unit_smp')) {
+          targetUnit = this.currentUser.unit_id;
+        } else {
+          targetUnit = this.currentBreakdownUnitId || 'unit_sd';
+        }
+      }
+      this.currentBreakdownUnitId = targetUnit;
+      const modal = document.getElementById('rapbsBreakdownModal');
+      if (!modal) {
+        console.error('Modal #rapbsBreakdownModal not found in DOM');
+        return;
+      }
+      this.renderRapbsBreakdown(targetUnit);
+      modal.classList.remove('hidden');
+    } catch (err) {
+      console.error('Error opening RAPBS breakdown modal:', err);
+    }
   },
 
   closeRapbsBreakdownModal() {
@@ -6007,109 +6043,138 @@ const app = {
   },
 
   renderRapbsBreakdown(unitId = 'unit_sd') {
-    this.currentBreakdownUnitId = unitId;
-    const defaultData = INITIAL_DB.rapbs_breakdowns[unitId] || INITIAL_DB.rapbs_breakdowns.unit_sd;
-    const unitRapbs = (this.db.rapbs_poin && this.db.rapbs_poin.find(r => r.unit_id === unitId)) || { total_plafond: defaultData.total_plafond, terpakai: 0, saldo_tersedia: defaultData.total_plafond };
-    const unitUser = (this.db.users && this.db.users.find(u => u.unit_id === unitId)) || { unit_name: defaultData.unit_name };
-    
-    // Get breakdown from DB or seed
-    const breakdown = (this.db.rapbs_breakdowns && this.db.rapbs_breakdowns[unitId]) || defaultData;
+    try {
+      this.currentBreakdownUnitId = unitId;
+      const defaultData = (INITIAL_DB.rapbs_breakdowns && (INITIAL_DB.rapbs_breakdowns[unitId] || INITIAL_DB.rapbs_breakdowns.unit_sd)) || {
+        code: 'D.1',
+        title: 'SARPRAS',
+        unit_name: 'Sekolah Islam Al-Imam',
+        total_plafond: 35884000,
+        description: 'Rincian alokasi belanja RAPBS.',
+        items: []
+      };
 
-    const titleEl = document.getElementById('rapbsBreakdownTitle');
-    const unitBadgeEl = document.getElementById('rapbsBreakdownUnitBadge');
-    const descEl = document.getElementById('rapbsBreakdownDescription');
-    const totalPlafondEl = document.getElementById('rapbsBreakdownTotalPlafond');
-    const terpakaiEl = document.getElementById('rapbsBreakdownTerpakai');
-    const saldoEl = document.getElementById('rapbsBreakdownSaldo');
-    const tableBody = document.getElementById('rapbsBreakdownTableBody');
-    const grandTotalEl = document.getElementById('rapbsBreakdownGrandTotal');
+      const unitRapbs = (this.db && this.db.rapbs_poin && this.db.rapbs_poin.find(r => r.unit_id === unitId)) || { 
+        total_plafond: defaultData.total_plafond, 
+        terpakai: 0, 
+        saldo_tersedia: defaultData.total_plafond 
+      };
+      
+      const unitUser = (this.db && this.db.users && this.db.users.find(u => u.unit_id === unitId)) || { 
+        unit_name: defaultData.unit_name || (unitId === 'unit_smp' ? 'SMP Islam Al-Imam' : (unitId === 'unit_tk' ? 'TK Islam Al-Imam' : 'SD Islam Al-Imam')) 
+      };
+      
+      // Get breakdown from DB or seed
+      const breakdown = (this.db && this.db.rapbs_breakdowns && this.db.rapbs_breakdowns[unitId]) || defaultData;
 
-    // Unit Tab Buttons inside Modal
-    const tabSd = document.getElementById('rapbsModalTabSd');
-    const tabSmp = document.getElementById('rapbsModalTabSmp');
-    if (tabSd && tabSmp) {
-      if (unitId === 'unit_smp') {
-        tabSmp.className = 'px-3 py-1.5 bg-brand-primary text-white text-xs font-bold rounded-xl shadow-sm transition';
-        tabSd.className = 'px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition';
-      } else {
-        tabSd.className = 'px-3 py-1.5 bg-brand-primary text-white text-xs font-bold rounded-xl shadow-sm transition';
-        tabSmp.className = 'px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition';
+      const titleEl = document.getElementById('rapbsBreakdownTitle');
+      const unitBadgeEl = document.getElementById('rapbsBreakdownUnitBadge');
+      const descEl = document.getElementById('rapbsBreakdownDescription');
+      const totalPlafondEl = document.getElementById('rapbsBreakdownTotalPlafond');
+      const terpakaiEl = document.getElementById('rapbsBreakdownTerpakai');
+      const saldoEl = document.getElementById('rapbsBreakdownSaldo');
+      const tableBody = document.getElementById('rapbsBreakdownTableBody');
+      const grandTotalEl = document.getElementById('rapbsBreakdownGrandTotal');
+
+      // Unit Tab Buttons inside Modal
+      const tabTk = document.getElementById('rapbsModalTabTk');
+      const tabSd = document.getElementById('rapbsModalTabSd');
+      const tabSmp = document.getElementById('rapbsModalTabSmp');
+      const activeClass = 'px-3 py-1 bg-brand-primary text-white text-xs font-bold rounded-xl shadow-sm transition';
+      const inactiveClass = 'px-3 py-1 bg-transparent hover:bg-slate-300/50 text-slate-700 text-xs font-semibold rounded-xl transition';
+
+      if (tabTk) tabTk.className = unitId === 'unit_tk' ? activeClass : inactiveClass;
+      if (tabSd) tabSd.className = unitId === 'unit_sd' ? activeClass : inactiveClass;
+      if (tabSmp) tabSmp.className = unitId === 'unit_smp' ? activeClass : inactiveClass;
+
+      if (titleEl) titleEl.textContent = `Pos ${breakdown.code || 'D.1'} ${breakdown.title || 'SARPRAS'}`;
+      if (unitBadgeEl) unitBadgeEl.textContent = unitUser.unit_name || defaultData.unit_name;
+      if (descEl) descEl.textContent = breakdown.description || 'Rincian alokasi belanja operasional dan sarana prasarana sekolah.';
+      if (totalPlafondEl) totalPlafondEl.textContent = 'Rp ' + this.formatNumber(breakdown.total_plafond || unitRapbs.total_plafond);
+      if (terpakaiEl) terpakaiEl.textContent = 'Rp ' + this.formatNumber(unitRapbs.terpakai);
+      if (saldoEl) saldoEl.textContent = 'Rp ' + this.formatNumber(unitRapbs.saldo_tersedia);
+      if (grandTotalEl) grandTotalEl.textContent = 'Rp ' + this.formatNumber(breakdown.total_plafond || unitRapbs.total_plafond);
+
+      if (tableBody) {
+        if (breakdown.items && breakdown.items.length > 0) {
+          tableBody.innerHTML = breakdown.items.map((item, idx) => {
+            const itemImg = item.image_url || '';
+            const itemNameEsc = this.escapeHtml(item.name || '');
+            const itemCatEsc = this.escapeHtml(item.category || 'SARPRAS');
+            return `
+              <tr class="hover:bg-amber-50/50 transition border-b border-slate-100">
+                <td class="px-3.5 py-3 text-center font-bold text-slate-600">${item.no || (idx + 1)}</td>
+                <td class="px-4 py-3 font-bold text-slate-800">
+                  <div class="flex items-center space-x-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-slate-100 overflow-hidden shrink-0 flex items-center justify-center border border-slate-200">
+                      ${itemImg ? `<img src="${itemImg}" class="w-full h-full object-cover" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">` : ''}
+                      <i class="fa-solid fa-box text-slate-400 text-xs ${itemImg ? 'hidden' : ''}"></i>
+                    </div>
+                    <div>
+                      <span class="block">${itemNameEsc}</span>
+                      <span class="text-[10px] text-slate-400 font-medium">${itemCatEsc}</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-right font-medium text-slate-700">Rp ${this.formatNumber(item.unit_price)}</td>
+                <td class="px-4 py-3 text-center font-semibold text-slate-700">${item.qty_req || '-'}</td>
+                <td class="px-4 py-3 text-center font-semibold text-slate-700">${item.qty_people || '-'}</td>
+                <td class="px-4 py-3 text-right font-black text-slate-900 bg-amber-50/30">Rp ${this.formatNumber(item.total)}</td>
+                <td class="px-3.5 py-3 text-center">
+                  <button type="button" onclick="app.quickAddBreakdownToCart(${idx}, '${unitId}')" class="px-2.5 py-1.5 bg-brand-primary hover:bg-brand-primary/90 text-white font-bold text-[11px] rounded-lg shadow-sm transition inline-flex items-center space-x-1" title="Tambah ke Keranjang Belanja">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    <span class="hidden sm:inline">Pesan</span>
+                  </button>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        } else {
+          tableBody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-slate-400 text-xs">Belum ada rincian item pos untuk unit ini.</td></tr>`;
+        }
       }
-    }
-
-    if (titleEl) titleEl.textContent = `Pos ${breakdown.code || 'D'} ${breakdown.title || 'ATK & KEBUTUHAN KELAS'}`;
-    if (unitBadgeEl) unitBadgeEl.textContent = unitUser.unit_name || (unitId === 'unit_smp' ? 'SMP Islam Al-Imam' : 'SD Islam Al-Imam');
-    if (descEl) descEl.textContent = breakdown.description || 'Rincian alokasi belanja operasional dan sarana prasarana sekolah.';
-    if (totalPlafondEl) totalPlafondEl.textContent = 'Rp ' + this.formatNumber(breakdown.total_plafond || unitRapbs.total_plafond);
-    if (terpakaiEl) terpakaiEl.textContent = 'Rp ' + this.formatNumber(unitRapbs.terpakai);
-    if (saldoEl) saldoEl.textContent = 'Rp ' + this.formatNumber(unitRapbs.saldo_tersedia);
-    if (grandTotalEl) grandTotalEl.textContent = 'Rp ' + this.formatNumber(breakdown.total_plafond);
-
-    if (tableBody && breakdown.items) {
-      tableBody.innerHTML = breakdown.items.map((item, idx) => {
-        return `
-          <tr class="hover:bg-amber-50/50 transition border-b border-slate-100">
-            <td class="px-3.5 py-3 text-center font-bold text-slate-600">${item.no || (idx + 1)}</td>
-            <td class="px-4 py-3 font-bold text-slate-800">
-              <div class="flex items-center space-x-2.5">
-                <div class="w-8 h-8 rounded-lg bg-slate-100 overflow-hidden shrink-0 flex items-center justify-center border border-slate-200">
-                  ${item.image_url ? `<img src="${item.image_url}" class="w-full h-full object-cover" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">` : ''}
-                  <i class="fa-solid fa-box text-slate-400 text-xs ${item.image_url ? 'hidden' : ''}"></i>
-                </div>
-                <div>
-                  <span class="block">${item.name}</span>
-                  <span class="text-[10px] text-slate-400 font-medium">${item.category || 'SARPRAS'}</span>
-                </div>
-              </div>
-            </td>
-            <td class="px-4 py-3 text-right font-medium text-slate-700">Rp ${this.formatNumber(item.unit_price)}</td>
-            <td class="px-4 py-3 text-center font-semibold text-slate-700">${item.qty_req || '-'}</td>
-            <td class="px-4 py-3 text-center font-semibold text-slate-700">${item.qty_people || '-'}</td>
-            <td class="px-4 py-3 text-right font-black text-slate-900 bg-amber-50/30">Rp ${this.formatNumber(item.total)}</td>
-            <td class="px-3.5 py-3 text-center">
-              <button onclick="app.quickAddBreakdownToCart(${idx}, '${unitId}')" class="px-2.5 py-1.5 bg-brand-primary hover:bg-brand-primary/90 text-white font-bold text-[11px] rounded-lg shadow-sm transition inline-flex items-center space-x-1" title="Tambah ke Keranjang Belanja">
-                <i class="fa-solid fa-cart-plus"></i>
-                <span class="hidden sm:inline">Pesan</span>
-              </button>
-            </td>
-          </tr>
-        `;
-      }).join('');
+    } catch (err) {
+      console.error('Error rendering RAPBS breakdown:', err);
     }
   },
 
   quickAddBreakdownToCart(itemIdx, unitId = 'unit_sd') {
-    const breakdown = (this.db.rapbs_breakdowns && this.db.rapbs_breakdowns[unitId]) || INITIAL_DB.rapbs_breakdowns[unitId] || INITIAL_DB.rapbs_breakdowns.unit_sd;
-    if (!breakdown || !breakdown.items || !breakdown.items[itemIdx]) return;
+    try {
+      const breakdown = (this.db && this.db.rapbs_breakdowns && this.db.rapbs_breakdowns[unitId]) || INITIAL_DB.rapbs_breakdowns[unitId] || INITIAL_DB.rapbs_breakdowns.unit_sd;
+      if (!breakdown || !breakdown.items || !breakdown.items[itemIdx]) return;
 
-    const item = breakdown.items[itemIdx];
-    this.addToCart(item.name, item.unit_price, 999);
-    this.showToast(`"${item.name}" berhasil ditambahkan ke keranjang!`, 'success');
+      const item = breakdown.items[itemIdx];
+      this.addToCart(item.name, item.unit_price, 999);
+      this.showToast(`"${item.name}" berhasil ditambahkan ke keranjang!`, 'success');
+    } catch (err) {
+      console.error('Error quick adding to cart:', err);
+    }
   },
 
   printRapbsBreakdown(targetUnitId) {
-    const unitId = targetUnitId || this.currentBreakdownUnitId || 'unit_sd';
-    const breakdown = (this.db.rapbs_breakdowns && this.db.rapbs_breakdowns[unitId]) || INITIAL_DB.rapbs_breakdowns[unitId] || INITIAL_DB.rapbs_breakdowns.unit_sd;
-    const unitRapbs = (this.db.rapbs_poin && this.db.rapbs_poin.find(r => r.unit_id === unitId)) || { total_plafond: breakdown.total_plafond, terpakai: 0, saldo_tersedia: breakdown.total_plafond };
-    const unitUser = (this.db.users && this.db.users.find(u => u.unit_id === unitId)) || { unit_name: breakdown.unit_name || 'Sekolah Islam Al-Imam' };
-    const cms = this.db.cms_settings;
+    try {
+      const unitId = targetUnitId || this.currentBreakdownUnitId || 'unit_sd';
+      const breakdown = (this.db && this.db.rapbs_breakdowns && this.db.rapbs_breakdowns[unitId]) || INITIAL_DB.rapbs_breakdowns[unitId] || INITIAL_DB.rapbs_breakdowns.unit_sd;
+      const unitRapbs = (this.db && this.db.rapbs_poin && this.db.rapbs_poin.find(r => r.unit_id === unitId)) || { total_plafond: breakdown.total_plafond, terpakai: 0, saldo_tersedia: breakdown.total_plafond };
+      const unitUser = (this.db && this.db.users && this.db.users.find(u => u.unit_id === unitId)) || { unit_name: breakdown.unit_name || 'Sekolah Islam Al-Imam' };
+      const cms = (this.db && this.db.cms_settings) || DEFAULT_CMS_SETTINGS;
 
-    const printWin = window.open('', '_blank');
-    if (!printWin) {
-      alert('Mohon izinkan pop-up window pada browser untuk mencetak dokumen.');
-      return;
-    }
+      const printWin = window.open('', '_blank');
+      if (!printWin) {
+        alert('Mohon izinkan pop-up window pada browser untuk mencetak dokumen.');
+        return;
+      }
 
-    const itemsHTML = breakdown.items.map((it, idx) => `
-      <tr>
-        <td style="text-align:center; padding: 6px; border: 1px solid #333;">${it.no || (idx + 1)}</td>
-        <td style="padding: 6px; border: 1px solid #333; font-weight: 600;">${it.name}</td>
-        <td style="text-align:right; padding: 6px; border: 1px solid #333;">Rp ${this.formatNumber(it.unit_price)}</td>
-        <td style="text-align:center; padding: 6px; border: 1px solid #333;">${it.qty_req}</td>
-        <td style="text-align:center; padding: 6px; border: 1px solid #333;">${it.qty_people}</td>
-        <td style="text-align:right; padding: 6px; border: 1px solid #333; font-weight: bold;">Rp ${this.formatNumber(it.total)}</td>
-      </tr>
-    `).join('');
+      const itemsHTML = (breakdown.items || []).map((it, idx) => `
+        <tr>
+          <td style="text-align:center; padding: 6px; border: 1px solid #333;">${it.no || (idx + 1)}</td>
+          <td style="padding: 6px; border: 1px solid #333; font-weight: 600;">${it.name}</td>
+          <td style="text-align:right; padding: 6px; border: 1px solid #333;">Rp ${this.formatNumber(it.unit_price)}</td>
+          <td style="text-align:center; padding: 6px; border: 1px solid #333;">${it.qty_req || '-'}</td>
+          <td style="text-align:center; padding: 6px; border: 1px solid #333;">${it.qty_people || '-'}</td>
+          <td style="text-align:right; padding: 6px; border: 1px solid #333; font-weight: bold;">Rp ${this.formatNumber(it.total)}</td>
+        </tr>
+      `).join('');
 
     printWin.document.write(`
       <!DOCTYPE html>
@@ -6188,6 +6253,9 @@ const app = {
       </html>
     `);
     printWin.document.close();
+    } catch (err) {
+      console.error('Error printing RAPBS breakdown:', err);
+    }
   },
 
   // ==========================================
@@ -8231,6 +8299,11 @@ const app = {
     }, 3500);
   }
 };
+
+// Explicitly bind to global window for inline HTML onclick handlers
+if (typeof window !== 'undefined') {
+  window.app = app;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   app.init();

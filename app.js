@@ -1162,6 +1162,11 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
+function escapeQuotes(str) {
+  if (str === null || str === undefined) return '';
+  return String(str).replace(/'/g, "\\'").replace(/"/g, '&quot;');
+}
+
 // ==========================================
 // 3. MAIN APP MVC OBJECT & CONTROLLER
 // ==========================================
@@ -5215,7 +5220,7 @@ const app = {
     const unitId = (order && order.unit_id) || (log && log.unit_id) || 'unit_sd';
     const unitObj = this.db.users.find(u => u.unit_id === unitId) || { unit_name: unitId === 'unit_sd' ? 'SD Islam Al-Imam' : (unitId === 'unit_smp' ? 'SMP Islam Al-Imam' : unitId) };
     const amountDeducted = (log && log.amount_deducted !== undefined) ? log.amount_deducted : (order ? order.total_amount : 0);
-    const remainingBalance = (log && log.remaining_balance !== undefined) ? log.remaining_balance : (this.db.rapbs.find(r => r.unit_id === unitId)?.saldo_tersedia || 0);
+    const remainingBalance = (log && log.remaining_balance !== undefined) ? log.remaining_balance : ((this.db.rapbs_poin && this.db.rapbs_poin.find(r => r.unit_id === unitId)?.saldo_tersedia) || 0);
     const timestamp = (log && log.timestamp) || (order && (order.approved_at || order.created_at)) || this.formatCurrentDateTime();
     const orderId = (order && order.order_id) || (log && log.order_id) || '-';
     const orderType = (order && order.order_type) ? order.order_type.replace(/_/g, ' ') : 'Pengadaan SARPRAS';

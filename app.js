@@ -267,6 +267,176 @@ const CURATED_PRODUCT_PHOTOS = [
     keywords: ['alat', 'peraga', 'olah raga', 'olahraga', 'bola', 'matras', 'futsal', 'basket'],
     title: 'Alat Peraga Olah Raga & Edukasi',
     image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['concord', 'kertas concord', 'piagam', 'sertifikat', 'ijazah'],
+    title: 'Kertas Concord A4 Tebal',
+    image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['lem', 'fox', 'pvac', 'kayu', 'kertas'],
+    title: 'Lem Fox Putih PVAc',
+    image: 'https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['lem', 'stik', 'glue stick', 'joyko', 'kenko'],
+    title: 'Lem Kertas Stik',
+    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['lakban', 'bening', 'opp', 'tape', 'packing'],
+    title: 'Lakban Bening 2 Inch',
+    image: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['lakban', 'hitam', 'kain', 'cloth tape', 'jilid'],
+    title: 'Lakban Hitam Kain Jilid',
+    image: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['double tape', 'perekat 2 sisi', 'foam tape'],
+    title: 'Double Tape Perekat 2 Sisi',
+    image: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['sticky note', 'memo', 'tempel', 'post it'],
+    title: 'Sticky Note / Memo Tempel',
+    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['box', 'penyimpanan', 'container', 'box besar', 'storage'],
+    title: 'Box Besar Penyimpanan Barang',
+    image: 'https://images.unsplash.com/photo-1595079672139-5470805086ae?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['penggaris', 'besi', 'stainless', 'mistar', '30 cm'],
+    title: 'Penggaris Besi Stainless 30cm',
+    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['timbangan', 'berat badan', 'digital', 'uks', 'scale'],
+    title: 'Timbangan Berat Badan Digital UKS',
+    image: 'https://images.unsplash.com/photo-1590736969955-71cc94801759?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['gunting', 'scissors', 'stainless', 'joyko'],
+    title: 'Gunting Besar Stainless Steel',
+    image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['staples', 'stapler', 'joyko hd-50', 'isi staples', 'hekter'],
+    title: 'Staples Besar + Isi Set',
+    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['konektor', 'type c', 'hdmi', 'adapter', 'converter'],
+    title: 'Konektor Proyektor HDMI to Type C',
+    image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['futsal', 'bola', 'ortus', 'ortuseight', 'sepak bola'],
+    title: 'Bola Futsal Ortuseight Standar Match',
+    image: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['voli', 'volleyball', 'net voli', 'jaring'],
+    title: 'Net Bola Voli Standar Turnamen',
+    image: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['cone', 'cons', 'kerucut', 'marker', 'agility', 'kelincahan'],
+    title: 'Cons Kerucut Marker Latihan Olahraga',
+    image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['prakarya', 'gantungan kunci', 'rantai pelor', 'kerajinan'],
+    title: 'Bahan Prakarya Siswa (Gantungan & Rantai)',
+    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['pembolong', 'punch', 'perforator', 'lubang'],
+    title: 'Pembolong Kertas 2 Lubang Joyko',
+    image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['cutter', 'pisau', 'joyko a-300'],
+    title: 'Cutter Kecil Joyko',
+    image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['timeboard', 'whiteboard kecil', 'papan tulis mini'],
+    title: 'Whiteboard Mini Timeboard 30x45cm',
+    image: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['tissue', 'tisu', 'facial', 'tissue box', 'kotak meja'],
+    title: 'Tissue Box Kotak Meja Ruangan',
+    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['jam', 'jam dinding', 'quartz', 'clock'],
+    title: 'Jam Dinding Quartz Minimalis Kelas',
+    image: 'https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['playmat', 'matras', 'karpet', 'lantai', 'busa'],
+    title: 'Playmat Matras Lantai Anak & Kelas',
+    image: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['bingkai', 'pigura', 'frame', 'presiden', 'wapres', 'foto'],
+    title: 'Bingkai Foto Kayu Kaca A4 / Resmi',
+    image: 'https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['banner', 'panahan', 'target', 'spanduk', 'cetak'],
+    title: 'Cetak Banner Target Panahan PJOK',
+    image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['stella', 'pengharum', 'jeruk', 'pocket', 'fresh'],
+    title: 'Stella Pocket Pengharum Jeruk Fresh',
+    image: 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['cable ties', 'kabel tis', 'pengikat'],
+    title: 'Cable Ties Pengikat Kabel (Pack 100)',
+    image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['minyak kayu putih', 'cap lang', 'cajuput', 'p3k', 'uks'],
+    title: 'Minyak Kayu Putih Cap Lang 120ml (P3K)',
+    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['promag', 'obat maag', 'lambung', 'p3k'],
+    title: 'Promag Tablet Obat Lambung Box',
+    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['selempang', 'upacara', 'petugas', 'bendera', 'satin'],
+    title: 'Selempang Petugas Upacara Bendera',
+    image: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['sarung tangan', 'paskibra', 'putih', 'upacara'],
+    title: 'Sarung Tangan Putih Upacara (Lusin)',
+    image: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['benedict', 'iodine', 'praktikum', 'ipa', 'kimia', 'sains'],
+    title: 'Bahan Praktikum Uji Karbohidrat & Reagen IPA',
+    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['tirai', 'jendela', 'blackout', 'gorden', '68x125'],
+    title: 'Tirai Jendela Blackout Hitam Minimalis',
+    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['kemoceng', 'sulak', 'debu', 'bulu'],
+    title: 'Kemoceng Bulu Pembersih Debu Meja',
+    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80'
   }
 ];
 
@@ -287,7 +457,7 @@ const INITIAL_DB = {
   rapbs_poin: [
     { unit_id: 'unit_tk', total_plafond: 15000000, terpakai: 510000, saldo_tersedia: 14490000, updated_at: '2026-07-10 10:45' },
     { unit_id: 'unit_sd', total_plafond: 35884000, terpakai: 965329, saldo_tersedia: 34918671, updated_at: '2026-09-28 10:00' },
-    { unit_id: 'unit_smp', total_plafond: 24506000, terpakai: 1730387, saldo_tersedia: 22775613, updated_at: '2026-09-04 13:30' }
+    { unit_id: 'unit_smp', total_plafond: 24506000, terpakai: 3756629, saldo_tersedia: 20749371, updated_at: '2026-08-28 16:00' }
   ],
 
   // Rincian Pos Sumber Dana RAPBS SARPRAS (TK, SD & SMP)
@@ -391,10 +561,153 @@ const INITIAL_DB = {
     { batch_id: 'BATCH-202608-11', product_name: 'Sapu Lantai Ijuk Dragon & Pengki Set', category: 'Kebersihan & Sanitasi', stock_qty: 15, unit_price: 38000, date_in: '2026-08-12', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-15', product_name: 'Kabel HDMI 10 Meter Vention Braided', category: 'Elektronik & IT', stock_qty: 4, unit_price: 135000, date_in: '2026-08-25', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-20', product_name: 'Stopmap Folio Kertas Sinar Dunia (Pack 50 pcs)', category: 'ATK & Kertas', stock_qty: 14, unit_price: 65000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202607-02', product_name: 'Baterai Mic Wireless Alkaline AA (Pack 4)', category: 'Elektronik & IT', stock_qty: 0, unit_price: 32000, date_in: '2026-07-15', method: 'FIFO', status: 'Empty', image_url: 'https://images.unsplash.com/photo-1619725002198-6a689b72f41d?w=600&auto=format&fit=crop&q=80' }
+    { batch_id: 'BATCH-202607-02', product_name: 'Baterai Mic Wireless Alkaline AA (Pack 4)', category: 'Elektronik & IT', stock_qty: 0, unit_price: 32000, date_in: '2026-07-15', method: 'FIFO', status: 'Empty', image_url: 'https://images.unsplash.com/photo-1619725002198-6a689b72f41d?w=600&auto=format&fit=crop&q=80' },
+    
+    // SMP July & August 2026 Procurement Catalog Additions
+    { batch_id: 'BATCH-202607-10', product_name: 'Kertas Concord A4', category: 'ATK & Kertas', stock_qty: 15, unit_price: 13000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-11', product_name: 'Lem Kertas Stik', category: 'ATK & Kertas', stock_qty: 20, unit_price: 26000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-12', product_name: 'Lem Fox Putih PVAc', category: 'ATK & Kertas', stock_qty: 24, unit_price: 5000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-13', product_name: 'Lakban Bening', category: 'ATK & Kertas', stock_qty: 30, unit_price: 8000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-14', product_name: 'Sticky Note Apple', category: 'ATK & Kertas', stock_qty: 36, unit_price: 5600, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-15', product_name: 'Box Besar (Penyimpanan Barang)', category: 'Perlengkapan Kelas', stock_qty: 8, unit_price: 128000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1595079672139-5470805086ae?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-16', product_name: 'Penggaris Besi 30 cm', category: 'ATK & Kertas', stock_qty: 25, unit_price: 3500, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-17', product_name: 'Pembalut Sanitasi UKS', category: 'Kebersihan & Sanitasi', stock_qty: 12, unit_price: 21000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-18', product_name: 'Double Tape', category: 'ATK & Kertas', stock_qty: 30, unit_price: 5000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-19', product_name: 'Lakban Hitam', category: 'ATK & Kertas', stock_qty: 20, unit_price: 8000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-20', product_name: 'Timbangan Berat Badan UKS', category: 'Perlengkapan Kelas', stock_qty: 4, unit_price: 73900, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1590736969955-71cc94801759?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-21', product_name: 'Gunting Besar', category: 'ATK & Kertas', stock_qty: 18, unit_price: 11500, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-22', product_name: 'Staples Besar + Isi (Set)', category: 'ATK & Kertas', stock_qty: 10, unit_price: 42000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-23', product_name: 'Konektor Proyektor HDMI to Type C', category: 'Elektronik & IT', stock_qty: 6, unit_price: 36000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-24', product_name: 'Bola Futsal Ortus', category: 'Perlengkapan Kelas', stock_qty: 4, unit_price: 178695, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-25', product_name: 'Net Bola Voli', category: 'Perlengkapan Kelas', stock_qty: 3, unit_price: 149847, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-26', product_name: 'Cons Kerucut (Set 20 pcs)', category: 'Perlengkapan Kelas', stock_qty: 6, unit_price: 45000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-27', product_name: 'Gantungan Kunci Prakarya', category: 'Perlengkapan Kelas', stock_qty: 10, unit_price: 11800, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-28', product_name: 'Rantai Pelor Biji Lada', category: 'Perlengkapan Kelas', stock_qty: 10, unit_price: 11500, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-29', product_name: 'Pembolong Kertas', category: 'ATK & Kertas', stock_qty: 12, unit_price: 29500, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-30', product_name: 'Cutter Kecil', category: 'ATK & Kertas', stock_qty: 24, unit_price: 4000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-31', product_name: 'Klem Penjepit Kaca Lemari', category: 'Perlengkapan Kelas', stock_qty: 10, unit_price: 12000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-32', product_name: 'Whiteboard Timeboard Kecil', category: 'Perlengkapan Kelas', stock_qty: 15, unit_price: 11000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-33', product_name: 'Tissue Box Kotak Meja', category: 'Kebersihan & Sanitasi', stock_qty: 20, unit_price: 20900, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-34', product_name: 'Jam Dinding Quartz', category: 'Perlengkapan Kelas', stock_qty: 8, unit_price: 64900, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-35', product_name: 'Playmat Matras Lantai', category: 'Perlengkapan Kelas', stock_qty: 6, unit_price: 90000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-36', product_name: 'Fiber Hitam 0,6 x 1m', category: 'Perlengkapan Kelas', stock_qty: 12, unit_price: 14000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-30', product_name: 'Bingkai Foto (Presiden/Wapres/Guru)', category: 'Perlengkapan Kelas', stock_qty: 22, unit_price: 22500, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-31', product_name: 'Lampu Mushala 12 Watt', category: 'Elektronik & IT', stock_qty: 16, unit_price: 25000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-32', product_name: 'Cetak Banner Target Panahan', category: 'Perlengkapan Kelas', stock_qty: 5, unit_price: 26000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-33', product_name: 'Stella Pocket Jeruk', category: 'Kebersihan & Sanitasi', stock_qty: 36, unit_price: 9700, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-34', product_name: 'Cable Ties', category: 'Elektronik & IT', stock_qty: 15, unit_price: 4725, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-35', product_name: 'Tape Cutter Pemotong Lakban', category: 'ATK & Kertas', stock_qty: 10, unit_price: 17000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-36', product_name: 'Minyak Kayu Putih 120 ML (P3K)', category: 'Kebersihan & Sanitasi', stock_qty: 12, unit_price: 40000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-37', product_name: 'Promag Tablet Obat Sakit Maag Box', category: 'Kebersihan & Sanitasi', stock_qty: 10, unit_price: 25000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-38', product_name: 'Tissue Soft Pack', category: 'Kebersihan & Sanitasi', stock_qty: 20, unit_price: 31000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-39', product_name: 'Selempang Upacara Bendera', category: 'Perlengkapan Kelas', stock_qty: 30, unit_price: 6500, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-40', product_name: 'Sarung Tangan Putih Upacara', category: 'Perlengkapan Kelas', stock_qty: 10, unit_price: 38000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-41', product_name: 'Isi Spidol Papan Tulis Warna Hitam', category: 'ATK & Kertas', stock_qty: 24, unit_price: 20500, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-42', product_name: 'Cone Pelangi Marker (Pack 20pcs)', category: 'Perlengkapan Kelas', stock_qty: 6, unit_price: 73200, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-43', product_name: 'Indikator Benedict Test Reducing IPA', category: 'Perlengkapan Kelas', stock_qty: 5, unit_price: 21000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-44', product_name: 'Larutan Iodine Uji Karbohidrat IPA', category: 'Perlengkapan Kelas', stock_qty: 5, unit_price: 45000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-45', product_name: 'Penutup Bawah Pintu', category: 'Perlengkapan Kelas', stock_qty: 12, unit_price: 25480, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-46', product_name: 'Gantungan Sapu & Pel Dinding', category: 'Perlengkapan Kelas', stock_qty: 15, unit_price: 22500, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-47', product_name: 'Kaca Cermin Dinding', category: 'Perlengkapan Kelas', stock_qty: 8, unit_price: 45600, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-48', product_name: 'Kemoceng Bulu Pembersih Debu', category: 'Kebersihan & Sanitasi', stock_qty: 20, unit_price: 8500, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-49', product_name: 'Wireless Mic Clip-on Kelas', category: 'Elektronik & IT', stock_qty: 5, unit_price: 231734, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-50', product_name: 'Sticker Dinding Emas Kaligrafi', category: 'Perlengkapan Kelas', stock_qty: 20, unit_price: 7372, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-51', product_name: 'Tirai Jendela Hitam 68x125 cm', category: 'Perlengkapan Kelas', stock_qty: 10, unit_price: 53000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80' }
   ],
 
   orders: [
+    {
+      order_id: 'ORD-SMP-20260729-01',
+      unit_id: 'unit_smp',
+      order_type: 'E-Commerce',
+      items_json: JSON.stringify([
+        { product_name: 'Cleaning AC Kantor Guru (Biaya 50% SMP)', qty: 4, unit_price: 37500, subtotal: 150000, category: 'Jasa & Operasional', room_target: 'Kantor Guru (Sharing SD & SMP 50%)', status: 'Approved' },
+        { product_name: 'Tambah Freon AC (Biaya 50% SMP)', qty: 1, unit_price: 125000, subtotal: 125000, category: 'Jasa & Operasional', room_target: 'Kantor Guru (Sharing SD & SMP 50%)', status: 'Approved' },
+        { product_name: 'Jasa Perbaikan AC (Biaya 50% SMP)', qty: 1, unit_price: 75000, subtotal: 75000, category: 'Jasa & Operasional', room_target: 'Kantor Guru (Sharing SD & SMP 50%)', status: 'Approved' },
+        { product_name: 'Kertas HVS A4', qty: 2, unit_price: 50000, subtotal: 100000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/2GF2dak', status: 'Approved' },
+        { product_name: 'Kertas Concord A4', qty: 5, unit_price: 13000, subtotal: 65000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/BSzWL5n', status: 'Approved' },
+        { product_name: 'Spidol Hitam Whiteboard', qty: 1, unit_price: 60000, subtotal: 60000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/TrD9k6Z', status: 'Approved' },
+        { product_name: 'Lem Kertas Stik', qty: 1, unit_price: 26000, subtotal: 26000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/mu4jAvN', status: 'Approved' },
+        { product_name: 'Lem Fox Putih PVAc', qty: 2, unit_price: 5000, subtotal: 10000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/4rCBP3F', status: 'Approved' },
+        { product_name: 'Lakban Bening', qty: 5, unit_price: 8000, subtotal: 40000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/W8v4jaf', status: 'Approved' },
+        { product_name: 'Sticky Note Apple', qty: 6, unit_price: 5600, subtotal: 33600, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/hi4hH9F', status: 'Approved' },
+        { product_name: 'Box Besar (Penyimpanan Barang)', qty: 1, unit_price: 128000, subtotal: 128000, category: 'Perlengkapan Kelas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/c5H67hFX', status: 'Approved' },
+        { product_name: 'Penggaris Besi 30 cm', qty: 6, unit_price: 3500, subtotal: 21000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/29cqa7Ur', status: 'Approved' },
+        { product_name: 'Pembalut Sanitasi UKS', qty: 1, unit_price: 21000, subtotal: 21000, category: 'Kebersihan & Sanitasi', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/4kF8VKC', status: 'Approved' },
+        { product_name: 'Double Tape', qty: 3, unit_price: 5000, subtotal: 15000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/2NcH7px', status: 'Approved' },
+        { product_name: 'Lakban Hitam', qty: 2, unit_price: 8000, subtotal: 16000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/5Mh3gvG', status: 'Approved' },
+        { product_name: 'Timbangan Berat Badan UKS', qty: 1, unit_price: 73900, subtotal: 73900, category: 'Perlengkapan Kelas', room_target: 'SARPRAS SMP AI IS (TF Yayasan)', marketplace_url: 'https://s.shopee.co.id/3B64bYsFtf', status: 'Approved' },
+        { product_name: 'Gunting Besar', qty: 3, unit_price: 11500, subtotal: 34500, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/g4ji2tpt', status: 'Approved' },
+        { product_name: 'Staples Besar + Isi (Set)', qty: 1, unit_price: 42000, subtotal: 42000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://s.shopee.co.id/AAFjQjoIf1', status: 'Approved' },
+        { product_name: 'Konektor Proyektor HDMI to Type C', qty: 2, unit_price: 36000, subtotal: 72000, category: 'Elektronik & IT', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/awvgwdap?smtt=0.0.3', status: 'Approved' },
+        { product_name: 'Bola Futsal Ortus', qty: 1, unit_price: 178695, subtotal: 178695, category: 'Perlengkapan Kelas', room_target: 'Mapel PJOK (Pa Guntur)', marketplace_url: 'https://id.shp.ee/wqgDZHwv', status: 'Approved' },
+        { product_name: 'Net Bola Voli', qty: 1, unit_price: 149847, subtotal: 149847, category: 'Perlengkapan Kelas', room_target: 'Mapel PJOK (Pa Guntur)', marketplace_url: 'https://id.shp.ee/7zGjQUyN', status: 'Approved' },
+        { product_name: 'Cons Kerucut (Set 20 pcs)', qty: 1, unit_price: 45000, subtotal: 45000, category: 'Perlengkapan Kelas', room_target: 'Mapel PJOK (Pa Guntur)', marketplace_url: 'https://id.shp.ee/1pdanbg8?smtt=0.0.9', status: 'Approved' },
+        { product_name: 'Gantungan Kunci Prakarya', qty: 1, unit_price: 11800, subtotal: 11800, category: 'Perlengkapan Kelas', room_target: 'Mapel Prakarya (Bu Aning)', marketplace_url: 'https://id.shp.ee/eAK97C2H', status: 'Approved' },
+        { product_name: 'Rantai Pelor Biji Lada', qty: 1, unit_price: 11500, subtotal: 11500, category: 'Perlengkapan Kelas', room_target: 'Mapel Prakarya (Bu Aning)', marketplace_url: 'https://id.shp.ee/Q7uJXAaU', status: 'Approved' },
+        { product_name: 'Pembolong Kertas', qty: 1, unit_price: 29500, subtotal: 29500, category: 'ATK & Kertas', room_target: 'Kelas 9 Abu Bakar', marketplace_url: 'https://s.shopee.co.id/7FyOPIctLn', status: 'Approved' },
+        { product_name: 'Cutter Kecil', qty: 1, unit_price: 4000, subtotal: 4000, category: 'ATK & Kertas', room_target: 'Kelas 8 Umar bin Khattab', marketplace_url: 'https://id.shp.ee/GYBklTLs', status: 'Approved' },
+        { product_name: 'Klem Penjepit Kaca Lemari', qty: 1, unit_price: 12000, subtotal: 12000, category: 'Perlengkapan Kelas', room_target: 'Kelas 8 Umar (TF Yayasan)', marketplace_url: 'https://id.shp.ee/2njl64nxS', status: 'Approved' },
+        { product_name: 'Whiteboard Timeboard Kecil', qty: 1, unit_price: 11000, subtotal: 11000, category: 'Perlengkapan Kelas', room_target: 'Kelas 8 Umar bin Khattab', marketplace_url: 'https://id.shp.ee/yt3tNX4M', status: 'Approved' },
+        { product_name: 'Tissue Box Kotak Meja', qty: 1, unit_price: 20900, subtotal: 20900, category: 'Kebersihan & Sanitasi', room_target: 'Kelas 8 Khodijah', marketplace_url: 'https://s.shopee.co.id/7OIiXcjnMg', status: 'Approved' },
+        { product_name: 'Jam Dinding Quartz', qty: 1, unit_price: 64900, subtotal: 64900, category: 'Perlengkapan Kelas', room_target: 'Kelas 8 Khodijah (TF Yayasan)', marketplace_url: 'https://s.shopee.co.id/6L36KyleDI', status: 'Approved' },
+        { product_name: 'Playmat Matras Lantai', qty: 1, unit_price: 93528, subtotal: 93528, category: 'Perlengkapan Kelas', room_target: 'Kelas 7 Utsman', marketplace_url: 'https://s.shopee.co.id/1BL08JLFwu', status: 'Approved' },
+        { product_name: 'Whiteboard Timeboard Kecil', qty: 1, unit_price: 11000, subtotal: 11000, category: 'Perlengkapan Kelas', room_target: 'Kelas 7 Utsman', marketplace_url: 'https://id.shp.ee/yt3tNX4M', status: 'Approved' },
+        { product_name: 'Playmat Matras Lantai', qty: 1, unit_price: 93528, subtotal: 93528, category: 'Perlengkapan Kelas', room_target: 'Kelas 7 Aisyah', marketplace_url: 'https://s.shopee.co.id/1BL08JLFwu', status: 'Approved' },
+        { product_name: 'Fiber Hitam 0,6 x 1m', qty: 1, unit_price: 14000, subtotal: 14000, category: 'Perlengkapan Kelas', room_target: 'Kelas 7 Aisyah', marketplace_url: 'https://id.shp.ee/tDQhymV5', status: 'Approved' }
+      ]),
+      total_amount: 1859198,
+      status: 'Approved',
+      created_at: '2026-07-29 10:00',
+      approved_at: '2026-07-29 14:00',
+      notes: 'LPJ Pengadaan SARPRAS Administrasi Kelas SMP Bulan Juli 2026 (No: 01/PS/Int/SMP-AIIS/VII/2026). Meliputi Sarpras SMP, Mapel PJOK, Prakarya, Kelas 9 Abu Bakar, Kelas 8 Umar, Kelas 8 Khodijah, Kelas 7 Utsman & 7 Aisyah.',
+      pj_name: 'Aning Nurhayati, S.T, Gr',
+      invoice_number: 'LPJ/SMP/2026/0701'
+    },
+    {
+      order_id: 'ORD-SMP-20260828-01',
+      unit_id: 'unit_smp',
+      order_type: 'E-Commerce',
+      items_json: JSON.stringify([
+        { product_name: 'Bingkai Foto (Presiden/Wapres/Guru)', qty: 11, unit_price: 22500, subtotal: 247500, category: 'Perlengkapan Kelas', room_target: 'SARPRAS SMP AI IS (Ditalangi KS Arif Rohman)', receipt_type: 'Nota TF & QRIS Harfinafh', status: 'Approved' },
+        { product_name: 'Lampu Mushala 12 Watt', qty: 2, unit_price: 25000, subtotal: 50000, category: 'Elektronik & IT', room_target: 'SARPRAS SMP AI IS', receipt_type: 'Nota Caha', status: 'Approved' },
+        { product_name: 'Cetak Banner Target Panahan', qty: 1, unit_price: 26000, subtotal: 26000, category: 'Perlengkapan Kelas', room_target: 'SARPRAS SMP AI IS', receipt_type: 'Nota TF BSI KS Arif Rohman', status: 'Approved' },
+        { product_name: 'Stella Pocket Jeruk', qty: 12, unit_price: 9700, subtotal: 116400, category: 'Kebersihan & Sanitasi', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/zkw7tKQ', status: 'Approved' },
+        { product_name: 'Cable Ties', qty: 1, unit_price: 4725, subtotal: 4725, category: 'Elektronik & IT', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://shopee.co.id/5LA2AIPUH', status: 'Approved' },
+        { product_name: 'Tape Cutter Pemotong Lakban', qty: 1, unit_price: 17000, subtotal: 17000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/W5HnYNXh7', status: 'Approved' },
+        { product_name: 'Fiber Hitam 0,6 x 1m', qty: 2, unit_price: 14000, subtotal: 28000, category: 'Perlengkapan Kelas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/tDQhymV5', status: 'Approved' },
+        { product_name: 'Kertas Concord A4', qty: 5, unit_price: 13000, subtotal: 65000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/BSzWL5n', status: 'Approved' },
+        { product_name: 'Minyak Kayu Putih 120 ML (P3K)', qty: 1, unit_price: 40000, subtotal: 40000, category: 'Kebersihan & Sanitasi', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/fNGrMwZaz', status: 'Approved' },
+        { product_name: 'Promag Tablet Obat Sakit Maag Box', qty: 1, unit_price: 25000, subtotal: 25000, category: 'Kebersihan & Sanitasi', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/zaZmDego', status: 'Approved' },
+        { product_name: 'Kertas HVS A4', qty: 2, unit_price: 50000, subtotal: 100000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/2GF2dak', status: 'Approved' },
+        { product_name: 'Tissue Soft Pack', qty: 2, unit_price: 31000, subtotal: 62000, category: 'Kebersihan & Sanitasi', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/fXevk14r', status: 'Approved' },
+        { product_name: 'Selempang Upacara Bendera', qty: 24, unit_price: 6500, subtotal: 156000, category: 'Perlengkapan Kelas', room_target: 'SARPRAS SMP AI IS (TF Yayasan)', marketplace_url: 'https://id.shp.ee/AHKBiuxq', status: 'Approved' },
+        { product_name: 'Sarung Tangan Putih Upacara', qty: 2, unit_price: 38000, subtotal: 76000, category: 'Perlengkapan Kelas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/GZWCFJxb', status: 'Approved' },
+        { product_name: 'Isi Spidol Papan Tulis Warna Hitam', qty: 6, unit_price: 20500, subtotal: 123000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/anV2UhnT', status: 'Approved' },
+        { product_name: 'Baterai Alkaline AA (Pack)', qty: 2, unit_price: 26524, subtotal: 53048, category: 'Elektronik & IT', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/jBW6XU23t', status: 'Approved' },
+        { product_name: 'Cone Pelangi Marker (Pack 20pcs)', qty: 1, unit_price: 73200, subtotal: 73200, category: 'Perlengkapan Kelas', room_target: 'Mapel PJOK (Pa Guntur)', marketplace_url: 'https://id.shp.ee/bNcbUUMpE', status: 'Approved' },
+        { product_name: 'Indikator Benedict Test Reducing IPA', qty: 1, unit_price: 21000, subtotal: 21000, category: 'Perlengkapan Kelas', room_target: 'Mapel IPA', marketplace_url: 'https://id.shp.ee/qsGVeK5K', status: 'Approved' },
+        { product_name: 'Larutan Iodine Uji Karbohidrat IPA', qty: 1, unit_price: 45000, subtotal: 45000, category: 'Perlengkapan Kelas', room_target: 'Mapel IPA', marketplace_url: 'https://id.shp.ee/PnCpyUCS', status: 'Approved' },
+        { product_name: 'Penutup Bawah Pintu', qty: 1, unit_price: 25480, subtotal: 25480, category: 'Perlengkapan Kelas', room_target: 'Kelas 9 Abu Bakar', marketplace_url: 'https://id.shp.ee/3ruyfrxz', status: 'Approved' },
+        { product_name: 'Gantungan Sapu & Pel Dinding', qty: 1, unit_price: 22500, subtotal: 22500, category: 'Perlengkapan Kelas', room_target: 'Kelas 9 Abu Bakar (TF Yayasan)', marketplace_url: 'https://id.shp.ee/gBkomtG', status: 'Approved' },
+        { product_name: 'Playmat Matras Lantai', qty: 1, unit_price: 90000, subtotal: 90000, category: 'Perlengkapan Kelas', room_target: 'Kelas 9 Abu Bakar', marketplace_url: 'https://s.shopee.co.id/1BL08JLFwu', status: 'Approved' },
+        { product_name: 'Kaca Cermin Dinding', qty: 1, unit_price: 45600, subtotal: 45600, category: 'Perlengkapan Kelas', room_target: 'Kelas 9 Ummu', marketplace_url: 'https://id.shp.ee/2MzuUbyE', status: 'Approved' },
+        { product_name: 'Playmat Matras Lantai', qty: 1, unit_price: 90000, subtotal: 90000, category: 'Perlengkapan Kelas', room_target: 'Kelas 8 Umar', marketplace_url: 'https://s.shopee.co.id/1BL08JLFwu', status: 'Approved' },
+        { product_name: 'Kemoceng Bulu Pembersih Debu', qty: 1, unit_price: 8500, subtotal: 8500, category: 'Kebersihan & Sanitasi', room_target: 'Kelas 8 Umar', marketplace_url: 'https://id.shp.ee/Jp4wKpbH', status: 'Approved' },
+        { product_name: 'Wireless Mic Clip-on Kelas', qty: 1, unit_price: 231734, subtotal: 231734, category: 'Elektronik & IT', room_target: 'Kelas 8 Khodijah', marketplace_url: 'https://s.shopee.co.id/2qTdHetKmo', status: 'Approved' },
+        { product_name: 'Sticker Dinding Emas Kaligrafi', qty: 2, unit_price: 7372, subtotal: 14744, category: 'Perlengkapan Kelas', room_target: 'Kelas 8 Khodijah (TF Yayasan)', marketplace_url: 'https://s.shopee.co.id/7Az8fPWCt4', status: 'Approved' },
+        { product_name: 'Tirai Jendela Hitam 68x125 cm', qty: 1, unit_price: 53000, subtotal: 53000, category: 'Perlengkapan Kelas', room_target: 'Kelas 7 Utsman', marketplace_url: 'https://s.shopee.co.id/6tgmXfpbQ', status: 'Approved' },
+        { product_name: 'Tirai Jendela Hitam 68x125 cm', qty: 1, unit_price: 53000, subtotal: 53000, category: 'Perlengkapan Kelas', room_target: 'Kelas 7 Aisyah', marketplace_url: 'https://s.shopee.co.id/6tgmXfpbQ', status: 'Approved' }
+      ]),
+      total_amount: 1897431,
+      status: 'Approved',
+      created_at: '2026-08-28 10:00',
+      approved_at: '2026-08-28 16:00',
+      notes: 'LPJ Pengadaan SARPRAS Administrasi Kelas SMP Bulan Agustus 2026 (No: 02/PS/Int/SMP-AIIS/VIII/2026). Meliputi Sarpras SMP, Mapel PJOK, IPA, Kelas 9 Abu Bakar, 9 Ummu, 8 Umar, 8 Khodijah, 7 Utsman, 7 Aisyah. Ditalangi KS Arif Rohman (Rp 247.500 Bingkai Foto & Rp 26.000 Banner Panahan).',
+      pj_name: 'Aning Nurhayati, S.T, Gr',
+      recipient_name: 'Arif Rohman, M.Pd (BSI *******2769)',
+      invoice_number: 'LPJ/SMP/2026/0801'
+    },
     {
       order_id: 'ORD-AC-20260710-01',
       unit_id: 'unit_smp',
@@ -538,6 +851,8 @@ const INITIAL_DB = {
   ],
 
   transactions_log: [
+    { log_id: 'LOG-SMP-20260729-01', order_id: 'ORD-SMP-20260729-01', unit_id: 'unit_smp', keterangan: 'Pengadaan SARPRAS Administrasi Kelas SMP Bulan Juli 2026 (No: 01/PS/Int/SMP-AIIS/VII/2026)', amount_deducted: 1859198, debet: 0, kredit: 1859198, remaining_balance: 22646802, timestamp: '2026-07-29 14:00', invoice_number: 'LPJ/SMP/2026/0701' },
+    { log_id: 'LOG-SMP-20260828-01', order_id: 'ORD-SMP-20260828-01', unit_id: 'unit_smp', keterangan: 'Pengadaan SARPRAS Administrasi Kelas SMP Bulan Agustus 2026 (No: 02/PS/Int/SMP-AIIS/VIII/2026)', amount_deducted: 1897431, debet: 0, kredit: 1897431, remaining_balance: 20749371, timestamp: '2026-08-28 16:00', invoice_number: 'LPJ/SMP/2026/0801' },
     { log_id: 'LOG-AC-20260710-01', order_id: 'ORD-AC-20260710-01', unit_id: 'unit_smp', keterangan: 'Pembayaran Layanan Maintenance AC: 2 unit cuci SMP', amount_deducted: 170326, debet: 0, kredit: 170326, remaining_balance: 24335674, timestamp: '2026-07-10 09:00', invoice_number: 'INV/AC/2026/0701' },
     { log_id: 'LOG-AC-20260710-02', order_id: 'ORD-AC-20260710-02', unit_id: 'unit_tk', keterangan: 'Pembayaran Layanan Maintenance AC: 6 unit cuci TK', amount_deducted: 510000, debet: 0, kredit: 510000, remaining_balance: 14490000, timestamp: '2026-07-10 10:45', invoice_number: 'INV/AC/2026/0702' },
     { log_id: 'LOG-AC-20260716-01', order_id: 'ORD-AC-20260716-01', unit_id: 'unit_smp', keterangan: 'Pembayaran Layanan Maintenance AC: Kabel AC ruang yys', amount_deducted: 110061, debet: 0, kredit: 110061, remaining_balance: 24225613, timestamp: '2026-07-16 11:30', invoice_number: 'INV/AC/2026/0703' },
@@ -1294,12 +1609,26 @@ const app = {
       this.db.ac_inventory = JSON.parse(JSON.stringify(INITIAL_DB.ac_inventory));
     }
 
-    // Sync seed orders and logs if empty
+    // Sync seed orders and logs
     if (!this.db.orders || this.db.orders.length === 0) {
       this.db.orders = JSON.parse(JSON.stringify(INITIAL_DB.orders));
+    } else {
+      INITIAL_DB.orders.forEach(seedOrd => {
+        const exists = this.db.orders.some(o => o.order_id === seedOrd.order_id);
+        if (!exists) {
+          this.db.orders.push(JSON.parse(JSON.stringify(seedOrd)));
+        }
+      });
     }
     if (!this.db.transactions_log || this.db.transactions_log.length === 0) {
       this.db.transactions_log = JSON.parse(JSON.stringify(INITIAL_DB.transactions_log));
+    } else {
+      INITIAL_DB.transactions_log.forEach(seedLog => {
+        const exists = this.db.transactions_log.some(l => l.log_id === seedLog.log_id);
+        if (!exists) {
+          this.db.transactions_log.push(JSON.parse(JSON.stringify(seedLog)));
+        }
+      });
     }
 
     // Ensure rapbs_breakdowns is present in db with all units

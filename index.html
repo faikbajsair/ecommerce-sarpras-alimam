@@ -3595,17 +3595,6 @@ Sapu Lantai Ijuk Dragon	Kebersihan & Sanitasi	28000	15	2026-10-03" class="w-full
           <input type="text" id="renovProjectModalNotes" placeholder="Contoh: 3 Pail Dulux Catylac, 2 Sak Semen, 2 Tukang selama 3 hari" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:outline-none focus:border-amber-500">
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block font-bold text-slate-700 uppercase mb-1">Penanggung Jawab (PJ) / Koordinator</label>
-            <input type="text" id="renovProjectModalPj" placeholder="Contoh: Aning Nurhayati, S.T., Gr." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:outline-none focus:border-amber-500">
-          </div>
-          <div>
-            <label class="block font-bold text-slate-700 uppercase mb-1">Toko Rekanan / Mandor Pelaksana</label>
-            <input type="text" id="renovProjectModalVendor" placeholder="Contoh: TB. Al-Imam Jaya / Mandor Bpk. Mulyono" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:outline-none focus:border-amber-500">
-          </div>
-        </div>
-
         <div class="pt-4 border-t border-slate-100 flex items-center justify-end space-x-2">
           <button type="button" onclick="app.closeAddRenovProjectModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition">
             Batal
@@ -3618,192 +3607,257 @@ Sapu Lantai Ijuk Dragon	Kebersihan & Sanitasi	28000	15	2026-10-03" class="w-full
     </div>
   </div>
 
-  <!-- ================= MODAL 2: DETAIL PROYEK, DOKUMENTASI FOTO/SCREENSHOT & SPK/INVOICE ================= -->
+  <!-- ================= MODAL 2: DETAIL RIWAYAT, FOTO & DOKUMEN PROYEK ================= -->
   <div id="renovDetailModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-100 overflow-hidden my-auto animate-fadeIn">
+    <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-100 overflow-hidden my-auto animate-fadeIn">
       
       <!-- Modal Header -->
-      <div class="p-4 sm:p-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-gradient-to-r from-amber-50/80 via-slate-50 to-white">
+      <div class="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-gradient-to-r from-amber-500/10 via-amber-50 to-white">
         <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 text-white flex items-center justify-center text-base shadow-sm shadow-amber-500/20 shrink-0">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 text-white flex items-center justify-center text-base shadow-sm shadow-amber-500/20">
             <i class="fa-solid fa-trowel-bricks"></i>
           </div>
           <div>
             <div class="flex items-center space-x-2">
-              <h3 id="renovDetailModalTitle" class="font-extrabold text-base text-slate-800 font-heading">Detail Titik Proyek</h3>
-              <span id="renovDetailModalStatusBadge" class="px-2.5 py-0.5 bg-amber-100 text-amber-800 text-[10px] font-bold rounded-full">Dalam Pengerjaan</span>
+              <h3 id="renovDetailModalTitle" class="font-black text-sm sm:text-base text-slate-800 font-heading">Detail Proyek Renovasi</h3>
+              <span id="renovDetailStatusBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-800 border border-amber-300">Dalam Pengerjaan</span>
             </div>
-            <p id="renovDetailModalSubtitle" class="text-xs text-slate-500 mt-0.5">Rincian invoice masuk, laporan hasil pekerjaan, & dokumentasi foto</p>
+            <p id="renovDetailModalSubtitle" class="text-xs text-slate-500">Rincian belanja material, upah tukang, foto bukti & dokumen resmi</p>
           </div>
         </div>
-
-        <div class="flex flex-wrap items-center gap-2">
-          <!-- Button: Cetak Invoice & SPK Proyek -->
-          <button type="button" onclick="app.printProjectInvoice(app.currentDetailProjectId)" class="px-3.5 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-xl shadow-xs transition flex items-center space-x-1.5 cursor-pointer">
-            <i class="fa-solid fa-file-invoice-dollar"></i>
-            <span>Invoice & SPK Masuk</span>
-          </button>
-          
-          <!-- Button: Cetak Laporan Pekerjaan (BAST) -->
-          <button type="button" onclick="app.printProjectCompletionReport(app.currentDetailProjectId)" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center space-x-1.5 cursor-pointer">
-            <i class="fa-solid fa-file-circle-check"></i>
-            <span>Laporan Pekerjaan (BAST)</span>
-          </button>
-
-          <button type="button" onclick="app.closeRenovDetailModal()" class="w-8 h-8 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center text-xs transition">
-            <i class="fa-solid fa-xmark text-sm"></i>
-          </button>
-        </div>
+        <button onclick="app.closeRenovDetailModal()" class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-700 flex items-center justify-center text-xs transition">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
       </div>
 
       <!-- Quick Metrics Ribbon -->
-      <div class="p-4 bg-slate-100/70 border-b border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-        <div class="bg-white p-3 rounded-2xl border border-slate-200/80 shadow-2xs">
-          <span class="text-[10px] text-slate-400 block uppercase font-bold">Kode Proyek / Unit</span>
-          <span id="renovDetailProjectCode" class="font-extrabold text-amber-900 font-mono text-xs">-</span>
+      <div class="p-3.5 bg-slate-50 border-b border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
+        <div class="bg-white p-2.5 rounded-xl border border-slate-200/80">
+          <span class="text-[10px] text-slate-400 block uppercase font-bold">Kode Proyek</span>
+          <span id="renovDetailProjectCode" class="font-mono font-bold text-amber-900 text-xs">-</span>
         </div>
-        <div class="bg-white p-3 rounded-2xl border border-slate-200/80 shadow-2xs">
+        <div class="bg-white p-2.5 rounded-xl border border-slate-200/80">
           <span class="text-[10px] text-slate-400 block uppercase font-bold">Kategori Pekerjaan</span>
-          <span id="renovDetailCategory" class="font-bold text-slate-800 truncate block">-</span>
+          <span id="renovDetailCategory" class="font-bold text-slate-800 text-xs truncate block">-</span>
         </div>
-        <div class="bg-white p-3 rounded-2xl border border-slate-200/80 shadow-2xs">
+        <div class="bg-white p-2.5 rounded-xl border border-slate-200/80">
           <span class="text-[10px] text-slate-400 block uppercase font-bold">Progres Fisik</span>
-          <span id="renovDetailProgress" class="font-extrabold text-emerald-700 font-heading text-xs">-</span>
+          <span id="renovDetailProgress" class="font-black text-emerald-700 text-xs">-</span>
         </div>
-        <div class="bg-white p-3 rounded-2xl border border-slate-200/80 shadow-2xs">
-          <span class="text-[10px] text-slate-400 block uppercase font-bold">Total Pengeluaran Riil</span>
-          <span id="renovDetailTotalSpent" class="font-black text-slate-900 font-heading text-xs">-</span>
+        <div class="bg-white p-2.5 rounded-xl border border-slate-200/80">
+          <span class="text-[10px] text-slate-400 block uppercase font-bold">Realisasi Biaya</span>
+          <span id="renovDetailTotalSpent" class="font-black text-slate-900 text-xs font-heading">-</span>
         </div>
       </div>
 
-      <!-- Sub-Tabs Navigation inside Detail Modal -->
-      <div class="px-5 pt-3 border-b border-slate-200 bg-white flex items-center space-x-2">
-        <button type="button" id="renovDetailTabBtn-photos" onclick="app.switchRenovDetailTab('photos')" class="px-4 py-2 border-b-2 border-amber-500 text-amber-900 font-bold text-xs flex items-center space-x-1.5 transition">
+      <!-- Navigation Sub-Tabs inside Modal -->
+      <div class="px-4 pt-3 bg-white border-b border-slate-200 flex items-center space-x-2 text-xs">
+        <button type="button" onclick="app.switchRenovDetailTab('transactions')" id="renovDetailTabBtn-transactions" class="pb-2.5 px-3 font-bold border-b-2 border-amber-600 text-amber-900 transition flex items-center space-x-1.5">
+          <i class="fa-solid fa-clipboard-list"></i>
+          <span>1. Belanja & Tukang</span>
+        </button>
+        <button type="button" onclick="app.switchRenovDetailTab('gallery')" id="renovDetailTabBtn-gallery" class="pb-2.5 px-3 font-semibold text-slate-500 hover:text-slate-800 border-b-2 border-transparent transition flex items-center space-x-1.5">
           <i class="fa-solid fa-camera"></i>
-          <span id="renovDetailTabLabelPhotos">Dokumentasi Foto & Screenshot (0)</span>
+          <span>2. Foto & Screenshot (<span id="renovDetailPhotoCount">0</span>)</span>
         </button>
-        <button type="button" id="renovDetailTabBtn-items" onclick="app.switchRenovDetailTab('items')" class="px-4 py-2 border-b-2 border-transparent text-slate-500 hover:text-slate-800 font-semibold text-xs flex items-center space-x-1.5 transition">
-          <i class="fa-solid fa-boxes-stacked"></i>
-          <span id="renovDetailTabLabelItems">Rincian Material & Tukang</span>
+        <button type="button" onclick="app.switchRenovDetailTab('docs')" id="renovDetailTabBtn-docs" class="pb-2.5 px-3 font-semibold text-slate-500 hover:text-slate-800 border-b-2 border-transparent transition flex items-center space-x-1.5">
+          <i class="fa-solid fa-file-invoice-dollar"></i>
+          <span>3. Invoice & BAST</span>
         </button>
       </div>
 
-      <!-- Modal Body (Switchable Views) -->
-      <div class="p-4 sm:p-6 flex-1 overflow-y-auto space-y-5 bg-slate-50/50">
+      <!-- Modal Body Content Container -->
+      <div class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
         
-        <!-- ================= TAB 1: DOKUMENTASI FOTO & SCREENSHOT HASIL JADI ================= -->
-        <div id="renovDetailTab-photos" class="space-y-5">
+        <!-- TAB 1: Transactions & Labor Logs -->
+        <div id="renovDetailTab-transactions" class="space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs font-extrabold text-slate-700 uppercase tracking-wider flex items-center space-x-1.5">
+              <i class="fa-solid fa-boxes-stacked text-amber-600"></i>
+              <span>Riwayat Pengadaan Material & Jasa Tukang</span>
+            </h4>
+            <button type="button" id="renovDetailQuickAddMaterialBtn" class="px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 font-bold text-xs rounded-xl shadow-xs transition flex items-center space-x-1">
+              <i class="fa-solid fa-plus"></i>
+              <span>Tambah Belanja</span>
+            </button>
+          </div>
+
+          <div class="space-y-2.5" id="renovDetailItemsContainer">
+            <!-- Transactions & logs rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- TAB 2: Photo & Screenshot Documentation Gallery -->
+        <div id="renovDetailTab-gallery" class="hidden space-y-4">
           
-          <!-- Upload Box & Form -->
-          <div class="p-4 sm:p-5 bg-white border border-amber-200 rounded-3xl shadow-xs space-y-4">
+          <!-- Upload Photo / Screenshot Form Card -->
+          <div class="p-4 bg-amber-50/70 border border-amber-200/90 rounded-2xl space-y-3 text-xs">
             <div class="flex items-center justify-between">
-              <h4 class="font-extrabold text-xs text-slate-800 uppercase tracking-wide flex items-center space-x-2">
+              <h5 class="font-extrabold text-amber-950 flex items-center space-x-1.5">
                 <i class="fa-solid fa-cloud-arrow-up text-amber-600"></i>
-                <span>Unggah Foto / Screenshot Hasil Pekerjaan Proyek</span>
-              </h4>
-              <span class="text-[11px] text-slate-400">Mendukung Kamera HP, File JPG/PNG & Screenshot URL</span>
+                <span>Unggah Foto Bukti Fisik / Screenshot Aplikasi</span>
+              </h5>
+              <span class="text-[10px] text-amber-800 font-medium">Format: JPG, PNG, WebP</span>
             </div>
 
-            <form id="projectPhotoUploadForm" onsubmit="app.submitProjectPhoto(event)" class="space-y-3">
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                <!-- Tahap / Kategori Foto -->
+            <form id="renovUploadPhotoForm" onsubmit="app.submitProjectPhotoUpload(event)" class="space-y-3">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label class="block font-bold text-slate-700 mb-1">Tahap Dokumentasi *</label>
-                  <select id="projectPhotoStageSelect" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-semibold focus:bg-white focus:outline-none focus:border-amber-500" required>
-                    <option value="after" selected>✨ Hasil Jadi / Selesai (After)</option>
-                    <option value="screenshot">💻 Screenshot Aplikasi / Desain UI</option>
-                    <option value="progress">🔨 Proses Pengerjaan (In-Progress)</option>
+                  <label class="block font-bold text-slate-700 uppercase text-[10px] mb-1">Tahap Dokumentasi *</label>
+                  <select id="projectPhotoTypeInput" class="w-full px-3 py-2 bg-white border border-amber-200 rounded-xl font-semibold text-xs focus:ring-2 focus:ring-amber-500" required>
                     <option value="before">📷 Sebelum Pengerjaan (Before)</option>
+                    <option value="progress">🔨 Sedang Pengerjaan (In-Progress)</option>
+                    <option value="after" selected>🏆 Hasil Jadi Selesai (After)</option>
+                    <option value="screenshot">💻 Screenshot Aplikasi / Digital</option>
                   </select>
                 </div>
 
-                <!-- Input File Gambar / Foto -->
-                <div>
-                  <label class="block font-bold text-slate-700 mb-1">Pilih File Foto / Screenshot</label>
-                  <input type="file" id="projectPhotoFileInput" accept="image/*" onchange="app.onProjectPhotoFileSelected(event)" class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-[11px] file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:text-[10px] file:font-bold file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-400">
-                </div>
-
-                <!-- Input URL Screenshot Alternatif -->
-                <div>
-                  <label class="block font-bold text-slate-700 mb-1">Atau Masukkan URL Screenshot</label>
-                  <input type="url" id="projectPhotoUrlInput" placeholder="https://images.unsplash.com/... / link gambar" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:outline-none focus:border-amber-500 text-xs">
+                <div class="sm:col-span-2">
+                  <label class="block font-bold text-slate-700 uppercase text-[10px] mb-1">Pilih File Foto / Tangkapan Layar *</label>
+                  <div class="flex items-center space-x-2">
+                    <input type="file" id="projectPhotoFileInput" accept="image/*" onchange="app.onProjectPhotoFileSelected(event)" class="block w-full text-xs text-slate-500 file:mr-2.5 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-600 file:text-white hover:file:bg-amber-500 cursor-pointer bg-white border border-amber-200 rounded-xl p-1">
+                  </div>
                 </div>
               </div>
 
-              <!-- Caption & Quick Presets -->
-              <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
+              <div>
+                <label class="block font-bold text-slate-700 uppercase text-[10px] mb-1">Atau Masukkan URL Gambar / Link Screenshot</label>
+                <input type="url" id="projectPhotoUrlInput" placeholder="https://... (opsional jika memilih file lokal)" class="w-full px-3 py-2 bg-white border border-amber-200 rounded-xl text-xs font-mono focus:ring-2 focus:ring-amber-500">
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 items-end">
                 <div class="sm:col-span-3">
-                  <label class="block font-bold text-slate-700 mb-1">Keterangan / Deskripsi Foto</label>
-                  <input type="text" id="projectPhotoCaptionInput" placeholder="Contoh: Dinding kelas 1A selesai dicat warna hijau pastel, hasil halus dan bersih." class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:outline-none focus:border-amber-500">
+                  <label class="block font-bold text-slate-700 uppercase text-[10px] mb-1">Keterangan / Caption Foto *</label>
+                  <input type="text" id="projectPhotoCaptionInput" placeholder="Contoh: Dinding kelas selesai dicat warna hijau pastel & rapi" class="w-full px-3 py-2 bg-white border border-amber-200 rounded-xl text-xs font-medium focus:ring-2 focus:ring-amber-500" required>
                 </div>
-                <div class="flex items-end">
-                  <button type="submit" class="w-full py-2 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center justify-center space-x-1.5 cursor-pointer">
-                    <i class="fa-solid fa-plus"></i>
+                <div>
+                  <button type="submit" class="w-full py-2 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center justify-center space-x-1.5">
+                    <i class="fa-solid fa-upload"></i>
                     <span>Simpan Foto</span>
                   </button>
                 </div>
               </div>
 
-              <!-- Quick Presets Demo Helper -->
-              <div class="pt-2 border-t border-slate-100 flex flex-wrap items-center gap-1.5 text-[10px]">
-                <span class="text-slate-400 font-semibold">Sampel Cepat:</span>
-                <button type="button" onclick="app.applyProjectPhotoPreset('after_painting')" class="px-2 py-0.5 bg-amber-50 hover:bg-amber-100 text-amber-800 rounded-lg border border-amber-200">Cat Kelas Selesai</button>
-                <button type="button" onclick="app.applyProjectPhotoPreset('after_app')" class="px-2 py-0.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-800 rounded-lg border border-indigo-200">Screenshot Aplikasi Live</button>
-                <button type="button" onclick="app.applyProjectPhotoPreset('after_ceiling')" class="px-2 py-0.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-lg border border-emerald-200">Plafon Rapi</button>
-                <button type="button" onclick="app.applyProjectPhotoPreset('before_damaged')" class="px-2 py-0.5 bg-rose-50 hover:bg-rose-100 text-rose-800 rounded-lg border border-rose-200">Kondisi Rusak (Before)</button>
+              <!-- Live Preview Container -->
+              <div id="projectPhotoUploadPreviewContainer" class="hidden p-2 bg-white border border-amber-200 rounded-xl flex items-center space-x-3">
+                <img id="projectPhotoUploadPreviewImg" src="" class="w-14 h-14 object-cover rounded-lg border border-slate-200" alt="Preview">
+                <div class="text-xs">
+                  <span class="font-bold text-slate-800 block" id="projectPhotoUploadPreviewName">Preview Foto</span>
+                  <span class="text-[10px] text-emerald-600 font-semibold">Siap diunggah ke dokumentasi proyek</span>
+                </div>
               </div>
             </form>
           </div>
 
-          <!-- Photo Filter Buttons -->
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <div class="flex flex-wrap items-center gap-1.5 text-xs">
-              <span class="font-bold text-slate-400 mr-1 text-[11px]">Filter Foto:</span>
-              <button type="button" onclick="app.filterProjectPhotos('all')" id="photoFilterBtn-all" class="px-3 py-1 rounded-xl text-xs font-bold bg-amber-600 text-white shadow-xs">Semua</button>
-              <button type="button" onclick="app.filterProjectPhotos('after')" id="photoFilterBtn-after" class="px-3 py-1 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Hasil Jadi / After</button>
-              <button type="button" onclick="app.filterProjectPhotos('screenshot')" id="photoFilterBtn-screenshot" class="px-3 py-1 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Screenshot Aplikasi</button>
-              <button type="button" onclick="app.filterProjectPhotos('progress')" id="photoFilterBtn-progress" class="px-3 py-1 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Proses</button>
-              <button type="button" onclick="app.filterProjectPhotos('before')" id="photoFilterBtn-before" class="px-3 py-1 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Sebelum</button>
+          <!-- Gallery Filter & Grid -->
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h5 class="text-xs font-extrabold text-slate-700 uppercase tracking-wider flex items-center space-x-1.5">
+                <i class="fa-solid fa-images text-amber-600"></i>
+                <span>Galeri Dokumentasi Visual</span>
+              </h5>
+              
+              <div class="flex items-center space-x-1 text-[11px]">
+                <button type="button" onclick="app.filterProjectGallery('all')" id="btnGalleryFilter-all" class="px-2.5 py-1 rounded-lg font-bold bg-amber-600 text-white transition">Semua</button>
+                <button type="button" onclick="app.filterProjectGallery('before')" id="btnGalleryFilter-before" class="px-2.5 py-1 rounded-lg font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Before</button>
+                <button type="button" onclick="app.filterProjectGallery('progress')" id="btnGalleryFilter-progress" class="px-2.5 py-1 rounded-lg font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Proses</button>
+                <button type="button" onclick="app.filterProjectGallery('after')" id="btnGalleryFilter-after" class="px-2.5 py-1 rounded-lg font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Hasil Jadi</button>
+              </div>
             </div>
-          </div>
 
-          <!-- Dynamic Photos Grid -->
-          <div id="projectPhotosGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            <!-- Rendered dynamically by app.renderProjectPhotosGrid() -->
+            <div id="renovDetailGalleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <!-- Gallery cards dynamically populated -->
+            </div>
           </div>
 
         </div>
 
-        <!-- ================= TAB 2: RINCIAN MATERIAL & UPAH TUKANG ================= -->
-        <div id="renovDetailTab-items" class="hidden space-y-3">
-          <div class="flex items-center justify-between">
-            <h4 class="font-extrabold text-xs text-slate-800 uppercase tracking-wide flex items-center space-x-2">
-              <i class="fa-solid fa-list-check text-amber-600"></i>
-              <span>Riwayat Transaksi Pengadaan Material & Jasa Tukang</span>
-            </h4>
-            <button id="renovDetailQuickAddMaterialBtn" class="px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center space-x-1.5 cursor-pointer">
-              <i class="fa-solid fa-plus-circle"></i>
-              <span>Tambah Belanja</span>
-            </button>
+        <!-- TAB 3: Invoice & BAST Official Document Generator -->
+        <div id="renovDetailTab-docs" class="hidden space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            <!-- Document 1: Invoice & SPK Proyek Masuk -->
+            <div class="p-4 bg-blue-50/70 border border-blue-200 rounded-2xl flex flex-col justify-between space-y-3">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <div class="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xs shadow-sm">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                  </div>
+                  <span class="px-2.5 py-0.5 bg-blue-100 text-blue-800 text-[10px] font-extrabold rounded-full">Proyek Masuk / Aktif</span>
+                </div>
+                <div>
+                  <h5 class="font-extrabold text-sm text-slate-900">Invoice & Surat Perintah Kerja (SPK)</h5>
+                  <p class="text-[11px] text-slate-500 mt-0.5">Dokumen resmi pengajuan, rincian estimasi material & upah kerja serta pembebanan anggaran.</p>
+                </div>
+                <div class="text-[11px] font-mono text-blue-900 bg-white p-2 rounded-xl border border-blue-200">
+                  Ref: <span id="renovDocInvoiceNo" class="font-bold">INV-PRJ-202610-001</span>
+                </div>
+              </div>
+
+              <button type="button" onclick="app.openProjectInvoiceModalFromDetail()" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center justify-center space-x-1.5">
+                <i class="fa-solid fa-print"></i>
+                <span>Buka / Cetak Invoice & SPK</span>
+              </button>
+            </div>
+
+            <!-- Document 2: Laporan Pekerjaan & BAST Proyek Selesai -->
+            <div class="p-4 bg-emerald-50/70 border border-emerald-200 rounded-2xl flex flex-col justify-between space-y-3">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xs shadow-sm">
+                    <i class="fa-solid fa-clipboard-check"></i>
+                  </div>
+                  <span id="renovDocBastBadge" class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-extrabold rounded-full">Proyek Selesai (BAST)</span>
+                </div>
+                <div>
+                  <h5 class="font-extrabold text-sm text-slate-900">Laporan Pekerjaan & BAST</h5>
+                  <p class="text-[11px] text-slate-500 mt-0.5">Berita Acara Serah Terima pekerjaan selesai, realisasi anggaran tuntas & lampiran galeri foto bukti.</p>
+                </div>
+                <div class="text-[11px] font-mono text-emerald-900 bg-white p-2 rounded-xl border border-emerald-200">
+                  Ref: <span id="renovDocBastNo" class="font-bold">BAST-PRJ-202610-001</span>
+                </div>
+              </div>
+
+              <button type="button" onclick="app.openProjectCompletionModalFromDetail()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center justify-center space-x-1.5">
+                <i class="fa-solid fa-file-contract"></i>
+                <span>Buka / Cetak Laporan BAST</span>
+              </button>
+            </div>
+
           </div>
 
-          <div class="space-y-3" id="renovDetailItemsContainer">
-            <!-- Transactions & logs rendered dynamically -->
+          <!-- Fast Status Switch Action -->
+          <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <div>
+              <span class="font-bold text-slate-800 block">Penyelesaian Status Proyek</span>
+              <p class="text-slate-500 text-[11px]">Tandai proyek sebagai 100% selesai untuk mengesahkan dokumen BAST.</p>
+            </div>
+            <button type="button" id="renovDetailMarkCompleteBtn" onclick="app.markCurrentProjectAsCompleted()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-xs transition flex items-center space-x-1.5 shrink-0">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Tandai Selesai (100%)</span>
+            </button>
           </div>
         </div>
 
       </div>
 
       <!-- Modal Footer -->
-      <div class="p-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50">
-        <div class="flex items-center space-x-2 text-xs text-slate-500">
-          <i class="fa-solid fa-circle-check text-emerald-600"></i>
-          <span>Foto & dokumen tersimpan secara otomatis dan terintegrasi dalam laporan resmi.</span>
+      <div class="p-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 bg-slate-50">
+        <div class="flex items-center space-x-2">
+          <button type="button" onclick="app.openProjectInvoiceModalFromDetail()" class="px-3.5 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-800 font-bold text-xs rounded-xl border border-blue-200 transition flex items-center space-x-1">
+            <i class="fa-solid fa-file-invoice"></i>
+            <span>Invoice (SPK)</span>
+          </button>
+          <button type="button" onclick="app.openProjectCompletionModalFromDetail()" class="px-3.5 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-xs rounded-xl border border-emerald-200 transition flex items-center space-x-1">
+            <i class="fa-solid fa-file-contract"></i>
+            <span>Laporan BAST</span>
+          </button>
         </div>
-        <button type="button" onclick="app.closeRenovDetailModal()" class="px-5 py-2 bg-slate-800 text-white font-bold text-xs rounded-xl transition cursor-pointer">
+        <button onclick="app.closeRenovDetailModal()" class="px-5 py-2 bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs rounded-xl transition">
           Tutup
         </button>
       </div>
+
     </div>
   </div>
 
@@ -3813,56 +3867,87 @@ Sapu Lantai Ijuk Dragon	Kebersihan & Sanitasi	28000	15	2026-10-03" class="w-full
       <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50 no-print">
         <div class="flex items-center space-x-2">
           <i class="fa-solid fa-print text-amber-600"></i>
-          <h3 id="renovPrintReportModalTitle" class="font-extrabold text-sm text-slate-800 font-heading">Pratinjau Dokumen Proyek</h3>
+          <h3 class="font-extrabold text-sm text-slate-800 font-heading">Pratinjau Rekapitulasi Pengadaan Material & Jasa Tukang</h3>
         </div>
         <div class="flex items-center space-x-2">
-          <button onclick="window.print()" class="px-4 py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl transition flex items-center space-x-1.5 shadow-sm cursor-pointer">
+          <button onclick="window.print()" class="px-4 py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl transition flex items-center space-x-1.5 shadow-sm">
             <i class="fa-solid fa-print"></i>
             <span>Cetak Dokumen (PDF)</span>
           </button>
-          <button onclick="app.closeRenovPrintModal()" class="w-8 h-8 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center text-xs transition cursor-pointer">
+          <button onclick="app.closeRenovPrintModal()" class="w-8 h-8 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center text-xs transition">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
       </div>
 
       <div class="flex-1 overflow-y-auto p-6 sm:p-8 bg-white" id="renovPrintReportContent">
-        <!-- Printable dynamic template inserted by app.printRenovReport() / app.printProjectInvoice() / app.printProjectCompletionReport() -->
+        <!-- Printable dynamic template inserted by app.printRenovReport() -->
       </div>
     </div>
   </div>
 
-  <!-- ================= MODAL 4: FULLSCREEN LIGHTBOX PHOTO & SCREENSHOT VIEWER ================= -->
-  <div id="projectPhotoLightboxModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 transition-opacity">
-    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[95vh] flex flex-col shadow-2xl border border-slate-800 overflow-hidden my-auto animate-fadeIn">
-      <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+  <!-- ================= MODAL 4: INVOICE & SPK PROYEK BARU MASUK ================= -->
+  <div id="projectInvoiceModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-6 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[95vh] flex flex-col shadow-2xl border border-slate-100 overflow-hidden my-auto animate-fadeIn">
+      
+      <!-- Modal Header (Controls) -->
+      <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50 no-print">
         <div class="flex items-center space-x-2.5">
-          <div class="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center text-sm shadow-sm">
-            <i class="fa-solid fa-image"></i>
+          <div class="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xs shadow-sm">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
           </div>
           <div>
-            <h3 id="projectPhotoLightboxTitle" class="font-bold text-sm text-slate-800 font-heading">Foto Dokumentasi Proyek</h3>
-            <p id="projectPhotoLightboxSubtitle" class="text-[11px] text-slate-500">Bukti visual pengerjaan & screenshot aplikasi</p>
+            <h3 class="font-black text-sm text-slate-800 font-heading">Pratinjau Invoice & Surat Perintah Kerja (SPK) Proyek</h3>
+            <p class="text-[11px] text-slate-500">Dokumen resmi pengadaan sarpras & renovasi Al-Imam</p>
           </div>
         </div>
         <div class="flex items-center space-x-2">
-          <a id="projectPhotoLightboxDownloadBtn" href="#" download="dokumentasi-proyek.jpg" target="_blank" class="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold rounded-xl transition flex items-center space-x-1 cursor-pointer">
-            <i class="fa-solid fa-download"></i>
-            <span>Unduh</span>
-          </a>
-          <button onclick="app.closeProjectPhotoLightbox()" class="w-8 h-8 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center text-xs transition cursor-pointer">
-            <i class="fa-solid fa-xmark text-sm"></i>
+          <button onclick="window.print()" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition flex items-center space-x-1.5 shadow-sm">
+            <i class="fa-solid fa-print"></i>
+            <span>Cetak Invoice / SPK (PDF)</span>
+          </button>
+          <button onclick="app.closeProjectInvoiceModal()" class="w-8 h-8 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center text-xs transition">
+            <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
       </div>
 
-      <div class="flex-1 overflow-auto p-4 sm:p-6 bg-slate-950 flex items-center justify-center min-h-[400px]">
-        <img id="projectPhotoLightboxImage" src="" alt="Dokumentasi Proyek" class="max-h-[65vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl border border-slate-800">
+      <!-- Printable Invoice Content Container -->
+      <div class="flex-1 overflow-y-auto p-6 sm:p-8 bg-white" id="projectInvoiceContent">
+        <!-- Rendered dynamically by app.renderProjectInvoice() -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 5: LAPORAN PEKERJAAN & BAST PROYEK SELESAI ================= -->
+  <div id="projectCompletionModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-6 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[95vh] flex flex-col shadow-2xl border border-slate-100 overflow-hidden my-auto animate-fadeIn">
+      
+      <!-- Modal Header (Controls) -->
+      <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50 no-print">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xs shadow-sm">
+            <i class="fa-solid fa-clipboard-check"></i>
+          </div>
+          <div>
+            <h3 class="font-black text-sm text-slate-800 font-heading">Pratinjau Berita Acara Serah Terima (BAST) & Laporan Selesai</h3>
+            <p class="text-[11px] text-slate-500">Laporan pertanggungjawaban fisik tuntas beserta galeri foto bukti</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="window.print()" class="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition flex items-center space-x-1.5 shadow-sm">
+            <i class="fa-solid fa-print"></i>
+            <span>Cetak BAST & Laporan (PDF)</span>
+          </button>
+          <button onclick="app.closeProjectCompletionModal()" class="w-8 h-8 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center text-xs transition">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
       </div>
 
-      <div class="p-4 bg-slate-50 border-t border-slate-100 text-xs flex flex-wrap items-center justify-between gap-3 text-slate-700">
-        <div id="projectPhotoLightboxCaption" class="font-medium text-xs text-slate-800"></div>
-        <span id="projectPhotoLightboxStageBadge" class="px-2.5 py-0.5 bg-amber-100 text-amber-800 text-[10px] font-bold rounded-full">Hasil Jadi</span>
+      <!-- Printable Completion Report Content Container -->
+      <div class="flex-1 overflow-y-auto p-6 sm:p-8 bg-white" id="projectCompletionContent">
+        <!-- Rendered dynamically by app.renderProjectCompletionReport() -->
       </div>
     </div>
   </div>

@@ -258,7 +258,10 @@ h1, h2, h3, h4, .font-heading {
   }
 
   /* Unhide printable modal container */
-  #printableDocumentWrapper {
+  #printableDocumentWrapper,
+  #projectInvoiceModal:not(.hidden),
+  #projectCompletionModal:not(.hidden),
+  #renovPrintReportModal:not(.hidden) {
     display: block !important;
     position: static !important;
     width: 100% !important;

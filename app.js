@@ -1360,34 +1360,17 @@ const INITIAL_DB = {
       target_date: '2026-10-05',
       status: 'Dalam Pengerjaan',
       notes: 'Pengecatan pagar warna-warni ramah anak dan perbaikan ayunan.',
-      pj_name: 'Aning Nurhayati, S.T., Gr.',
-      vendor_name: 'TB. Al-Imam Jaya Material',
-      invoice_number: 'INV-PRJ-202609-001',
-      spk_number: 'SPK-PRJ-202609-001',
-      bast_number: 'BAST-PRJ-202610-001',
       created_at: '2026-09-20',
+      invoice_no: 'INV-PRJ-202609-01',
+      spk_no: 'SPK-PRJ-202609-01',
+      bast_no: 'BAST-PRJ-202610-01',
+      pj_name: 'Siti Rahmawati, S.Pd. (PJ Sarpras TK)',
+      contractor_name: 'CV Mandor Berkah Bangunan & Sipil',
+      funding_source: 'RAPBS Sarpras TK',
       photos: [
-        {
-          id: 'PHO-TK01-01',
-          stage: 'before',
-          url: 'https://images.unsplash.com/photo-1596464716127-f2a829822301?w=800&auto=format&fit=crop&q=80',
-          caption: 'Kondisi pagar awal cat terkelupas dan ayunan besi berkarat.',
-          created_at: '2026-09-20 09:30'
-        },
-        {
-          id: 'PHO-TK01-02',
-          stage: 'progress',
-          url: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&auto=format&fit=crop&q=80',
-          caption: 'Pengerjaan amplas karat besi dan plamir dasar cat anti-karat.',
-          created_at: '2026-09-24 14:15'
-        },
-        {
-          id: 'PHO-TK01-03',
-          stage: 'after',
-          url: 'https://images.unsplash.com/photo-1560421683-6856ea585c78?w=800&auto=format&fit=crop&q=80',
-          caption: 'Hasil cat warna-warni cerah ramah anak dan perbaikan ayunan selesai.',
-          created_at: '2026-10-02 11:00'
-        }
+        { id: 'PH-TK01-1', type: 'before', url: 'https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?w=600&auto=format&fit=crop&q=80', caption: 'Kondisi pagar & wahana sebelum peremajaan cat', uploaded_at: '2026-09-20' },
+        { id: 'PH-TK01-2', type: 'progress', url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&auto=format&fit=crop&q=80', caption: 'Pekerjaan pengamplasan besi & pengecatan dasar', uploaded_at: '2026-09-28' },
+        { id: 'PH-TK01-3', type: 'screenshot', url: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80', caption: 'Pratinjau visual layout warna area bermain anak', uploaded_at: '2026-10-01' }
       ]
     },
     {
@@ -1398,30 +1381,21 @@ const INITIAL_DB = {
       budget_estimate: 1800000,
       progress_pct: 100,
       target_date: '2026-09-20',
+      completed_at: '2026-09-20',
       status: 'Selesai',
       notes: 'Pemasangan paving block dan perapian selasar bermain.',
-      pj_name: 'Aning Nurhayati, S.T., Gr.',
-      vendor_name: 'CV Mandor Berkah Bangunan',
-      invoice_number: 'INV-PRJ-202609-002',
-      spk_number: 'SPK-PRJ-202609-002',
-      bast_number: 'BAST-PRJ-202609-002',
       created_at: '2026-09-10',
+      invoice_no: 'INV-PRJ-202609-02',
+      spk_no: 'SPK-PRJ-202609-02',
+      bast_no: 'BAST-PRJ-202609-02',
+      pj_name: 'Siti Rahmawati, S.Pd. (PJ Sarpras TK)',
+      contractor_name: 'Bpk. Mandor Wardi',
+      funding_source: 'RAPBS Sarpras TK',
       photos: [
-        {
-          id: 'PHO-TK02-01',
-          stage: 'before',
-          url: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=800&auto=format&fit=crop&q=80',
-          caption: 'Selasar tanah becek saat hujan dan paving rusak.',
-          created_at: '2026-09-10 08:45'
-        },
-        {
-          id: 'PHO-TK02-02',
-          stage: 'after',
-          url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&auto=format&fit=crop&q=80',
-          caption: 'Paving block terpasang rapi, bersih dan nyaman untuk anak.',
-          created_at: '2026-09-19 16:30'
-        }
-      ]
+        { id: 'PH-TK02-1', type: 'before', url: 'https://images.unsplash.com/photo-1541888946425-d0fbb180c5f2?w=600&auto=format&fit=crop&q=80', caption: 'Area tanah becek sebelum pemasangan paving block', uploaded_at: '2026-09-10' },
+        { id: 'PH-TK02-2', type: 'after', url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&auto=format&fit=crop&q=80', caption: 'Hasil jadi selasar paving block rapi dan aman untuk anak', uploaded_at: '2026-09-20' }
+      ],
+      evaluation_notes: 'Pekerjaan selesai 100% tepat waktu dengan kualitas paving rapi dan saluran pembuangan lancar.'
     },
     {
       project_id: 'PRJ-SD-01',
@@ -1433,41 +1407,16 @@ const INITIAL_DB = {
       target_date: '2026-10-10',
       status: 'Dalam Pengerjaan',
       notes: 'Pengecatan ulang Dulux Catylac interior dan perapian plamir retak rambut.',
-      pj_name: 'Dewi Fitria Nugraheni, S.Pd., Gr.',
-      vendor_name: 'TB. Al-Imam Jaya Material',
-      invoice_number: 'INV-PRJ-202609-003',
-      spk_number: 'SPK-PRJ-202609-003',
-      bast_number: 'BAST-PRJ-202610-003',
       created_at: '2026-09-22',
+      invoice_no: 'INV-PRJ-202609-03',
+      spk_no: 'SPK-PRJ-202609-03',
+      bast_no: 'BAST-PRJ-202610-03',
+      pj_name: 'Dewi Fitria Nugraheni, S.Pd., Gr. (PJ Sarpras SD)',
+      contractor_name: 'TB. Al-Imam Jaya Material & Mitra Tukang',
+      funding_source: 'RAPBS Sarpras SD',
       photos: [
-        {
-          id: 'PHO-SD01-01',
-          stage: 'before',
-          url: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=800&auto=format&fit=crop&q=80',
-          caption: 'Dinding kusam, banyak coretan dan retak rambut pada plester.',
-          created_at: '2026-09-22 10:00'
-        },
-        {
-          id: 'PHO-SD01-02',
-          stage: 'progress',
-          url: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&auto=format&fit=crop&q=80',
-          caption: 'Proses plamir tembok dan pengecatan lapis 1 warna hijau pastel.',
-          created_at: '2026-09-27 15:00'
-        },
-        {
-          id: 'PHO-SD01-03',
-          stage: 'after',
-          url: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&auto=format&fit=crop&q=80',
-          caption: 'Hasil cat kelas 1A selesai rapi, terang dan bersih.',
-          created_at: '2026-10-03 16:30'
-        },
-        {
-          id: 'PHO-SD01-04',
-          stage: 'screenshot',
-          url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80',
-          caption: 'Screenshot Dashboard Proyek & Log Realisasi Material SARPRAS SD.',
-          created_at: '2026-10-05 13:00'
-        }
+        { id: 'PH-SD01-1', type: 'before', url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80', caption: 'Dinding kusam dan retak rambut sebelum di-plamir', uploaded_at: '2026-09-22' },
+        { id: 'PH-SD01-2', type: 'progress', url: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80', caption: 'Proses pelapisan plamir dan cat dasar interior', uploaded_at: '2026-09-28' }
       ]
     },
     {
@@ -1480,20 +1429,15 @@ const INITIAL_DB = {
       target_date: '2026-10-15',
       status: 'Dalam Pengerjaan',
       notes: 'Penggantian keramik lantai anti slip, kran air dan perbaikan saluran pembuangan.',
-      pj_name: 'Dewi Fitria Nugraheni, S.Pd., Gr.',
-      vendor_name: 'TB. Mitra Bangunan Sejahtera',
-      invoice_number: 'INV-PRJ-202609-004',
-      spk_number: 'SPK-PRJ-202609-004',
-      bast_number: 'BAST-PRJ-202610-004',
       created_at: '2026-09-25',
+      invoice_no: 'INV-PRJ-202609-07',
+      spk_no: 'SPK-PRJ-202609-07',
+      bast_no: 'BAST-PRJ-202610-07',
+      pj_name: 'Dewi Fitria Nugraheni, S.Pd., Gr. (PJ Sarpras SD)',
+      contractor_name: 'CV Mandor Berkah Bangunan & Sipil',
+      funding_source: 'RAPBS Sarpras SD',
       photos: [
-        {
-          id: 'PHO-SD02-01',
-          stage: 'before',
-          url: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=800&auto=format&fit=crop&q=80',
-          caption: 'Kondisi keramik lantai licin dan kran air bocor merembes.',
-          created_at: '2026-09-25 11:20'
-        }
+        { id: 'PH-SD02-1', type: 'before', url: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80', caption: 'Kondisi keramik lantai licin dan kran rusak', uploaded_at: '2026-09-25' }
       ]
     },
     {
@@ -1504,37 +1448,21 @@ const INITIAL_DB = {
       budget_estimate: 2500000,
       progress_pct: 100,
       target_date: '2026-09-18',
+      completed_at: '2026-09-18',
       status: 'Selesai',
       notes: 'Penggantian gypsum jebol akibat bocor talang air hujan.',
-      pj_name: 'Dewi Fitria Nugraheni, S.Pd., Gr.',
-      vendor_name: 'CV Mandor Berkah Bangunan',
-      invoice_number: 'INV-PRJ-202609-005',
-      spk_number: 'SPK-PRJ-202609-005',
-      bast_number: 'BAST-PRJ-202609-005',
       created_at: '2026-09-12',
+      invoice_no: 'INV-PRJ-202609-04',
+      spk_no: 'SPK-PRJ-202609-04',
+      bast_no: 'BAST-PRJ-202609-04',
+      pj_name: 'Dewi Fitria Nugraheni, S.Pd., Gr. (PJ Sarpras SD)',
+      contractor_name: 'CV Mandor Berkah Bangunan & Sipil',
+      funding_source: 'RAPBS Sarpras SD',
       photos: [
-        {
-          id: 'PHO-SD03-01',
-          stage: 'before',
-          url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&auto=format&fit=crop&q=80',
-          caption: 'Plafon gypsum jebol dan bernoda coklat akibat bocor talang hujan.',
-          created_at: '2026-09-12 09:10'
-        },
-        {
-          id: 'PHO-SD03-02',
-          stage: 'progress',
-          url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&auto=format&fit=crop&q=80',
-          caption: 'Pemasangan rangka hollow galvanis dan papan gypsum Jayaboard baru.',
-          created_at: '2026-09-15 14:00'
-        },
-        {
-          id: 'PHO-SD03-03',
-          stage: 'after',
-          url: 'https://images.unsplash.com/photo-1562774053-701939374585?w=800&auto=format&fit=crop&q=80',
-          caption: 'Plafon lab komputer rapi sempurna dan lampu LED panel terpasang kokoh.',
-          created_at: '2026-09-18 17:00'
-        }
-      ]
+        { id: 'PH-SD03-1', type: 'before', url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&auto=format&fit=crop&q=80', caption: 'Plafon gypsum jebol terkena rembesan talang air', uploaded_at: '2026-09-12' },
+        { id: 'PH-SD03-2', type: 'after', url: 'https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=600&auto=format&fit=crop&q=80', caption: 'Plafon baru terpasang rata, di-compound dan dicat putih bersih', uploaded_at: '2026-09-18' }
+      ],
+      evaluation_notes: 'Penggantian rangka hollow dan papan gypsum 9mm tuntas, talang air sudah di-waterproofing dan diuji anti bocor.'
     },
     {
       project_id: 'PRJ-SMP-01',
@@ -1546,35 +1474,41 @@ const INITIAL_DB = {
       target_date: '2026-10-08',
       status: 'Dalam Pengerjaan',
       notes: 'Pengecatan dinding koridor utama dan pintu kelas SMP.',
-      pj_name: 'Arif Rohman, M.Pd.',
-      vendor_name: 'TB. Al-Imam Jaya Material',
-      invoice_number: 'INV-PRJ-202609-006',
-      spk_number: 'SPK-PRJ-202609-006',
-      bast_number: 'BAST-PRJ-202610-006',
       created_at: '2026-09-21',
+      invoice_no: 'INV-PRJ-202609-05',
+      spk_no: 'SPK-PRJ-202609-05',
+      bast_no: 'BAST-PRJ-202610-05',
+      pj_name: 'Aning Nurhayati, S.T., Gr. (PJ Sarpras SMP)',
+      contractor_name: 'TB. Al-Imam Jaya Material',
+      funding_source: 'RAPBS Sarpras SMP',
       photos: [
-        {
-          id: 'PHO-SMP01-01',
-          stage: 'before',
-          url: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&auto=format&fit=crop&q=80',
-          caption: 'Dinding koridor utama SMP kusam dan banyak noda tapak tangan.',
-          created_at: '2026-09-21 08:30'
-        },
-        {
-          id: 'PHO-SMP01-02',
-          stage: 'progress',
-          url: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&auto=format&fit=crop&q=80',
-          caption: 'Proses pelapisan cat dasar sealer dan catylac putih salju.',
-          created_at: '2026-09-26 13:45'
-        },
-        {
-          id: 'PHO-SMP01-03',
-          stage: 'after',
-          url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&auto=format&fit=crop&q=80',
-          caption: 'Koridor lantai 2 SMP rapi, estetik dan bersih.',
-          created_at: '2026-10-04 15:20'
-        }
+        { id: 'PH-SMP01-1', type: 'before', url: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80', caption: 'Kondisi koridor dan kusen pintu sebelum pengecatan', uploaded_at: '2026-09-21' },
+        { id: 'PH-SMP01-2', type: 'progress', url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&auto=format&fit=crop&q=80', caption: 'Pekerjaan pengecatan dinding lantai 2 SMP', uploaded_at: '2026-09-29' }
       ]
+    },
+    {
+      project_id: 'PRJ-SMP-03',
+      unit_id: 'unit_smp',
+      location_name: 'Digitalisasi Sarpras & Layar Display Multimedia SMP',
+      category: 'Pekerjaan Sipil Lainnya',
+      budget_estimate: 4800000,
+      progress_pct: 100,
+      target_date: '2026-10-01',
+      completed_at: '2026-10-01',
+      status: 'Selesai',
+      notes: 'Pemasangan bracket proyektor elektrik, kabel HDMI interaktif dan display informasi digital.',
+      created_at: '2026-09-24',
+      invoice_no: 'INV-PRJ-202609-06',
+      spk_no: 'SPK-PRJ-202609-06',
+      bast_no: 'BAST-PRJ-202610-06',
+      pj_name: 'Aning Nurhayati, S.T., Gr. (PJ Sarpras SMP)',
+      contractor_name: 'Divisi IT & Teknisi Sarpras Al-Imam',
+      funding_source: 'RAPBS Sarpras SMP',
+      photos: [
+        { id: 'PH-SMP03-1', type: 'screenshot', url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80', caption: 'Screenshot antarmuka sistem informasi sarpras digital yang siap dioperasikan', uploaded_at: '2026-10-01' },
+        { id: 'PH-SMP03-2', type: 'after', url: 'https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=600&auto=format&fit=crop&q=80', caption: 'Fasilitas multimedia dan bracket monitor terpasang sempurna', uploaded_at: '2026-10-01' }
+      ],
+      evaluation_notes: 'Seluruh instalasi hardware, wiring kabel, dan integrasi aplikasi berjalan lancar 100% dan telah lolos uji coba.'
     },
     {
       project_id: 'PRJ-SMP-02',
@@ -1586,17 +1520,128 @@ const INITIAL_DB = {
       target_date: '2026-10-25',
       status: 'Perencanaan',
       notes: 'Perbaikan bak cuci piring lab kimia dan keramik meja praktikum.',
-      pj_name: 'Arif Rohman, M.Pd.',
-      vendor_name: 'TB. Al-Imam Jaya Material',
-      invoice_number: 'INV-PRJ-202609-007',
-      spk_number: 'SPK-PRJ-202609-007',
-      bast_number: 'BAST-PRJ-202610-007',
       created_at: '2026-09-26',
+      invoice_no: 'INV-PRJ-202609-08',
+      spk_no: 'SPK-PRJ-202609-08',
+      pj_name: 'Aning Nurhayati, S.T., Gr. (PJ Sarpras SMP)',
+      contractor_name: 'TB. Al-Imam Jaya Material',
+      funding_source: 'RAPBS Sarpras SMP',
       photos: []
     }
   ],
 
-  renov_requests: [],
+  renov_requests: [
+    {
+      request_id: 'RNV-REQ-202609-01',
+      project_id: 'PRJ-SD-01',
+      unit_id: 'unit_sd',
+      location_name: 'Dinding Kelas 1A, 1B & Koridor Lantai 1',
+      category: 'Pengecatan Gedung / Kelas',
+      material_name: 'Cat Tembok Interior Dulux Catylac 20kg (Warna Hijau Pastel & Putih)',
+      qty: 4,
+      unit_price: 650000,
+      material_subtotal: 2600000,
+      labor_count: 2,
+      labor_days: 4,
+      labor_rate: 175000,
+      labor_subtotal: 1400000,
+      total_amount: 4000000,
+      scheduled_date: '2026-09-28',
+      vendor_name: 'TB. Al-Imam Jaya Material',
+      funding_source: 'RAPBS_POIN',
+      status: 'Dalam Pengerjaan',
+      notes: 'Pengamplasan dinding, plamir retak rambut dan pengecatan 2 lapis.',
+      created_at: '2026-09-24 10:00'
+    },
+    {
+      request_id: 'RNV-REQ-202609-02',
+      project_id: 'PRJ-TK-01',
+      unit_id: 'unit_tk',
+      location_name: 'Pagar Depan & Area Bermain TK',
+      category: 'Pengecatan Gedung / Kelas',
+      material_name: 'Cat Minyak Besi & Kayu Avian (Set Warna-Warni Ramah Anak)',
+      qty: 6,
+      unit_price: 185000,
+      material_subtotal: 1110000,
+      labor_count: 2,
+      labor_days: 3,
+      labor_rate: 175000,
+      labor_subtotal: 1050000,
+      total_amount: 2160000,
+      scheduled_date: '2026-09-25',
+      vendor_name: 'TB. Al-Imam Jaya Material',
+      funding_source: 'RAPBS_POIN',
+      status: 'Dalam Pengerjaan',
+      notes: 'Pengecatan pagar besi dan ayunan taman bermain.',
+      created_at: '2026-09-20 09:30'
+    },
+    {
+      request_id: 'RNV-REQ-202609-03',
+      project_id: 'PRJ-SD-03',
+      unit_id: 'unit_sd',
+      location_name: 'Perbaikan Plafon Lab Komputer & Perpustakaan SD',
+      category: 'Perbaikan Plafon & Atap',
+      material_name: 'Papan Gypsum Elephant 9mm & Rangka Hollow Galvalum',
+      qty: 8,
+      unit_price: 120000,
+      material_subtotal: 960000,
+      labor_count: 2,
+      labor_days: 3,
+      labor_rate: 180000,
+      labor_subtotal: 1080000,
+      total_amount: 2040000,
+      scheduled_date: '2026-09-15',
+      vendor_name: 'TB. Al-Imam Jaya Material',
+      funding_source: 'RAPBS_POIN',
+      status: 'Selesai',
+      notes: 'Pemasangan plafon baru dan compound sambungan rata.',
+      created_at: '2026-09-12 11:00'
+    },
+    {
+      request_id: 'RNV-REQ-202609-04',
+      project_id: 'PRJ-SMP-01',
+      unit_id: 'unit_smp',
+      location_name: 'Pengecatan Koridor & Kelas 7-9 SMP',
+      category: 'Pengecatan Gedung / Kelas',
+      material_name: 'Cat Tembok Weather Shield & Interior Mowilex 20kg',
+      qty: 5,
+      unit_price: 720000,
+      material_subtotal: 3600000,
+      labor_count: 2,
+      labor_days: 4,
+      labor_rate: 175000,
+      labor_subtotal: 1400000,
+      total_amount: 5000000,
+      scheduled_date: '2026-09-26',
+      vendor_name: 'TB. Al-Imam Jaya Material',
+      funding_source: 'RAPBS_POIN',
+      status: 'Dalam Pengerjaan',
+      notes: 'Pengecatan lorong koridor utama SMP.',
+      created_at: '2026-09-22 14:00'
+    },
+    {
+      request_id: 'RNV-REQ-202609-05',
+      project_id: 'PRJ-SMP-03',
+      unit_id: 'unit_smp',
+      location_name: 'Digitalisasi Sarpras & Layar Display Multimedia SMP',
+      category: 'Pekerjaan Sipil Lainnya',
+      material_name: 'Bracket TV/Monitor Heavy Duty, Kabel HDMI 15m & Trunking',
+      qty: 4,
+      unit_price: 350000,
+      material_subtotal: 1400000,
+      labor_count: 2,
+      labor_days: 2,
+      labor_rate: 200000,
+      labor_subtotal: 800000,
+      total_amount: 2200000,
+      scheduled_date: '2026-09-28',
+      vendor_name: 'Divisi IT & Teknisi Sarpras Al-Imam',
+      funding_source: 'RAPBS_POIN',
+      status: 'Selesai',
+      notes: 'Instalasi hardware display sarpras digital.',
+      created_at: '2026-09-25 09:00'
+    }
+  ],
 
   renov_vendors: [
     {
@@ -1820,21 +1865,30 @@ const app = {
     if (!this.db.renov_projects || this.db.renov_projects.length === 0) {
       this.db.renov_projects = JSON.parse(JSON.stringify(INITIAL_DB.renov_projects));
     } else {
-      // Sync photos and documentation fields to existing cached projects
-      this.db.renov_projects.forEach(p => {
-        const seed = INITIAL_DB.renov_projects.find(s => s.project_id === p.project_id);
-        if (seed) {
-          if (!p.photos || p.photos.length === 0) p.photos = JSON.parse(JSON.stringify(seed.photos || []));
-          if (!p.invoice_number) p.invoice_number = seed.invoice_number;
-          if (!p.spk_number) p.spk_number = seed.spk_number;
-          if (!p.bast_number) p.bast_number = seed.bast_number;
-          if (!p.pj_name) p.pj_name = seed.pj_name;
-          if (!p.vendor_name) p.vendor_name = seed.vendor_name;
+      INITIAL_DB.renov_projects.forEach(seedPrj => {
+        const existing = this.db.renov_projects.find(p => p.project_id === seedPrj.project_id);
+        if (!existing) {
+          this.db.renov_projects.push(JSON.parse(JSON.stringify(seedPrj)));
         } else {
-          if (!p.photos) p.photos = [];
-          if (!p.invoice_number) p.invoice_number = `INV-PRJ-${(p.created_at || '202610').replace(/[^0-9]/g, '').substring(0, 6)}-${p.project_id.replace(/[^0-9]/g, '') || '01'}`;
-          if (!p.spk_number) p.spk_number = `SPK-PRJ-${(p.created_at || '202610').replace(/[^0-9]/g, '').substring(0, 6)}-${p.project_id.replace(/[^0-9]/g, '') || '01'}`;
-          if (!p.bast_number) p.bast_number = `BAST-PRJ-${(p.created_at || '202610').replace(/[^0-9]/g, '').substring(0, 6)}-${p.project_id.replace(/[^0-9]/g, '') || '01'}`;
+          if (!existing.photos || existing.photos.length === 0) existing.photos = JSON.parse(JSON.stringify(seedPrj.photos || []));
+          if (!existing.invoice_no) existing.invoice_no = seedPrj.invoice_no;
+          if (!existing.spk_no) existing.spk_no = seedPrj.spk_no;
+          if (!existing.bast_no) existing.bast_no = seedPrj.bast_no;
+          if (!existing.pj_name) existing.pj_name = seedPrj.pj_name;
+          if (!existing.contractor_name) existing.contractor_name = seedPrj.contractor_name;
+          if (!existing.funding_source) existing.funding_source = seedPrj.funding_source;
+          if (seedPrj.completed_at && !existing.completed_at) existing.completed_at = seedPrj.completed_at;
+          if (seedPrj.evaluation_notes && !existing.evaluation_notes) existing.evaluation_notes = seedPrj.evaluation_notes;
+        }
+      });
+    }
+    if (!this.db.renov_requests || this.db.renov_requests.length === 0) {
+      this.db.renov_requests = JSON.parse(JSON.stringify(INITIAL_DB.renov_requests));
+    } else {
+      INITIAL_DB.renov_requests.forEach(seedReq => {
+        const exists = this.db.renov_requests.some(r => r.request_id === seedReq.request_id);
+        if (!exists) {
+          this.db.renov_requests.push(JSON.parse(JSON.stringify(seedReq)));
         }
       });
     }
@@ -8114,8 +8168,7 @@ const app = {
         (p.location_name && p.location_name.toLowerCase().includes(q)) ||
         (p.category && p.category.toLowerCase().includes(q)) ||
         (p.notes && p.notes.toLowerCase().includes(q)) ||
-        (p.invoice_number && p.invoice_number.toLowerCase().includes(q)) ||
-        (p.bast_number && p.bast_number.toLowerCase().includes(q))
+        (p.invoice_no && p.invoice_no.toLowerCase().includes(q))
       );
     }
 
@@ -8142,23 +8195,24 @@ const app = {
     tbody.innerHTML = list.map(p => {
       const u = unitMap[p.unit_id] || { name: p.unit_id, badge: 'bg-slate-100 text-slate-800' };
       const pct = Number(p.progress_pct) || 0;
-      const photoCount = (p.photos || []).length;
       let barColor = 'bg-amber-500';
       if (pct === 100) barColor = 'bg-emerald-500';
       else if (pct <= 25) barColor = 'bg-sky-500';
+
+      const photoCount = (p.photos && p.photos.length) || 0;
+      const isCompleted = p.status === 'Selesai' || pct === 100;
 
       return `
         <tr class="hover:bg-slate-50/80 transition">
           <td class="px-4 py-3.5 text-center font-bold font-mono text-slate-700">
             <span class="block">${p.project_id}</span>
-            <span class="text-[9px] text-amber-800 font-mono block">${p.invoice_number || ''}</span>
+            ${p.invoice_no ? `<span class="text-[9px] text-blue-600 font-mono block">${p.invoice_no}</span>` : ''}
           </td>
           <td class="px-4 py-3.5">
             <div class="flex items-center space-x-2 mb-0.5">
               <span class="px-2 py-0.5 ${u.badge} text-[10px] font-extrabold rounded-full">${u.name}</span>
             </div>
             <div class="font-extrabold text-slate-900">${p.location_name}</div>
-            <div class="text-[10px] text-slate-400 font-medium">PJ: ${p.pj_name || 'Tim Sarpras'} • ${p.vendor_name || 'TB. Al-Imam Jaya'}</div>
           </td>
           <td class="px-4 py-3.5">
             <span class="inline-block font-semibold text-slate-800">${p.category}</span>
@@ -8181,7 +8235,7 @@ const app = {
           </td>
           <td class="px-4 py-3.5 text-center">
             <span class="px-2.5 py-1 text-[10px] font-bold rounded-full ${
-              p.status === 'Selesai' ? 'bg-emerald-100 text-emerald-800' :
+              isCompleted ? 'bg-emerald-100 text-emerald-800' :
               p.status === 'Dalam Pengerjaan' ? 'bg-amber-100 text-amber-800' :
               'bg-slate-100 text-slate-700'
             }">
@@ -8189,30 +8243,37 @@ const app = {
             </span>
           </td>
           <td class="px-4 py-3.5 text-center">
-            <div class="flex items-center justify-center space-x-1">
-              <!-- View Detail & Photo Gallery -->
-              <button type="button" onclick="app.openRenovDetailModal('${p.project_id}', 'photos')" class="px-2 py-1 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 rounded-lg flex items-center space-x-1 text-xs font-bold transition shadow-2xs" title="Galeri & Upload Foto/Screenshot">
+            <div class="flex items-center justify-center space-x-1.5 flex-wrap gap-y-1">
+              <!-- Invoice Proyek Masuk Button -->
+              <button onclick="app.openProjectInvoiceModal('${p.project_id}')" class="px-2 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg text-[10px] font-bold transition flex items-center space-x-1" title="Cetak Invoice & SPK Proyek">
+                <i class="fa-solid fa-file-invoice"></i>
+                <span class="hidden xl:inline">Invoice</span>
+              </button>
+
+              <!-- Laporan BAST Selesai Button -->
+              <button onclick="app.openProjectCompletionModal('${p.project_id}')" class="px-2 py-1 ${isCompleted ? 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700' : 'bg-slate-100 hover:bg-slate-200 text-slate-600'} rounded-lg text-[10px] font-bold transition flex items-center space-x-1" title="${isCompleted ? 'Cetak BAST & Laporan Selesai' : 'Pratinjau BAST'}">
+                <i class="fa-solid fa-file-contract"></i>
+                <span class="hidden xl:inline">BAST</span>
+              </button>
+
+              <!-- Upload / View Photos Button -->
+              <button onclick="app.openRenovDetailModal('${p.project_id}', 'gallery')" class="px-2 py-1 bg-amber-50 hover:bg-amber-100 text-amber-700 rounded-lg text-[10px] font-bold transition flex items-center space-x-1" title="Galeri & Upload Foto / Screenshot">
                 <i class="fa-solid fa-camera"></i>
-                <span class="text-[10px]">${photoCount}</span>
+                <span>${photoCount}</span>
               </button>
 
-              <!-- Print Project Invoice & SPK -->
-              <button type="button" onclick="app.printProjectInvoice('${p.project_id}')" class="w-7 h-7 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-lg flex items-center justify-center text-xs transition shadow-2xs" title="Cetak Invoice & SPK Masuk">
-                <i class="fa-solid fa-file-invoice-dollar"></i>
-              </button>
-
-              <!-- Print BAST Completion Report -->
-              <button type="button" onclick="app.printProjectCompletionReport('${p.project_id}')" class="w-7 h-7 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg flex items-center justify-center text-xs transition shadow-2xs" title="Cetak Laporan Pekerjaan (BAST)">
-                <i class="fa-solid fa-file-circle-check"></i>
+              <!-- Full Detail Modal -->
+              <button onclick="app.openRenovDetailModal('${p.project_id}')" class="w-6 h-6 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg flex items-center justify-center text-xs transition" title="Lihat Detail Lengkap">
+                <i class="fa-solid fa-eye"></i>
               </button>
 
               <!-- Edit Project -->
-              <button type="button" onclick="app.openAddRenovProjectModal('${p.project_id}')" class="w-7 h-7 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg flex items-center justify-center text-xs transition" title="Edit Titik">
+              <button onclick="app.openAddRenovProjectModal('${p.project_id}')" class="w-6 h-6 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg flex items-center justify-center text-xs transition" title="Edit Titik">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
 
               <!-- Delete Project -->
-              <button type="button" onclick="app.deleteRenovProject('${p.project_id}')" class="w-7 h-7 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center text-xs transition" title="Hapus Titik">
+              <button onclick="app.deleteRenovProject('${p.project_id}')" class="w-6 h-6 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center text-xs transition" title="Hapus Titik">
                 <i class="fa-solid fa-trash"></i>
               </button>
             </div>
@@ -8258,8 +8319,6 @@ const app = {
     const progressSelect = document.getElementById('renovProjectModalProgress');
     const targetInput = document.getElementById('renovProjectModalTargetDate');
     const notesInput = document.getElementById('renovProjectModalNotes');
-    const pjInput = document.getElementById('renovProjectModalPj');
-    const vendorInput = document.getElementById('renovProjectModalVendor');
 
     if (projectId) {
       const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
@@ -8273,8 +8332,6 @@ const app = {
         if (progressSelect) progressSelect.value = String(project.progress_pct);
         if (targetInput) targetInput.value = project.target_date || '';
         if (notesInput) notesInput.value = project.notes || '';
-        if (pjInput) pjInput.value = project.pj_name || '';
-        if (vendorInput) vendorInput.value = project.vendor_name || '';
       }
     } else {
       if (title) title.textContent = 'Daftarkan Titik Renovasi Baru';
@@ -8288,8 +8345,6 @@ const app = {
         targetInput.value = nextMonth.toISOString().split('T')[0];
       }
       if (notesInput) notesInput.value = '';
-      if (pjInput) pjInput.value = 'Aning Nurhayati, S.T., Gr.';
-      if (vendorInput) vendorInput.value = 'TB. Al-Imam Jaya Material';
     }
 
     if (modal) modal.classList.remove('hidden');
@@ -8312,8 +8367,6 @@ const app = {
     const progressPct = Number(document.getElementById('renovProjectModalProgress').value) || 0;
     const targetDate = document.getElementById('renovProjectModalTargetDate').value;
     const notes = document.getElementById('renovProjectModalNotes').value.trim();
-    const pjName = (document.getElementById('renovProjectModalPj')?.value || '').trim() || 'Tim Sarpras Al-Imam';
-    const vendorName = (document.getElementById('renovProjectModalVendor')?.value || '').trim() || 'TB. Al-Imam Jaya Material';
 
     if (!locationName) {
       this.showToast('Lokasi pekerjaan wajib diisi!', 'warning');
@@ -8326,11 +8379,15 @@ const app = {
 
     if (!this.db.renov_projects) this.db.renov_projects = [];
 
+    const nowStr = new Date().toISOString().split('T')[0];
+    const yearMonth = nowStr.substring(0, 7).replace('-', '');
+
     if (editId) {
       const idx = this.db.renov_projects.findIndex(p => p.project_id === editId);
       if (idx !== -1) {
+        const existing = this.db.renov_projects[idx];
         this.db.renov_projects[idx] = {
-          ...this.db.renov_projects[idx],
+          ...existing,
           unit_id: unitId,
           location_name: locationName,
           category: category,
@@ -8339,16 +8396,14 @@ const app = {
           target_date: targetDate,
           status: status,
           notes: notes,
-          pj_name: pjName,
-          vendor_name: vendorName
+          completed_at: progressPct === 100 ? (existing.completed_at || nowStr) : existing.completed_at
         };
         this.showToast(`Proyek ${editId} berhasil diperbarui!`, 'success');
       }
     } else {
       const unitCode = unitId.replace('unit_', '').toUpperCase();
-      const numCode = Math.floor(Math.random() * 89 + 10);
-      const newId = `PRJ-${unitCode}-${numCode}`;
-      const nowYm = new Date().toISOString().replace(/[^0-9]/g, '').substring(0, 6);
+      const numRandom = Math.floor(Math.random() * 89 + 10);
+      const newId = `PRJ-${unitCode}-${numRandom}`;
       const newProject = {
         project_id: newId,
         unit_id: unitId,
@@ -8359,16 +8414,17 @@ const app = {
         target_date: targetDate,
         status: status,
         notes: notes,
-        pj_name: pjName,
-        vendor_name: vendorName,
-        invoice_number: `INV-PRJ-${nowYm}-${numCode}`,
-        spk_number: `SPK-PRJ-${nowYm}-${numCode}`,
-        bast_number: `BAST-PRJ-${nowYm}-${numCode}`,
-        created_at: new Date().toISOString().split('T')[0],
+        created_at: nowStr,
+        invoice_no: `INV-PRJ-${yearMonth}-${numRandom}`,
+        spk_no: `SPK-PRJ-${yearMonth}-${numRandom}`,
+        bast_no: `BAST-PRJ-${yearMonth}-${numRandom}`,
+        pj_name: unitId === 'unit_smp' ? 'Aning Nurhayati, S.T., Gr.' : (unitId === 'unit_sd' ? 'Dewi Fitria Nugraheni, S.Pd., Gr.' : 'Siti Rahmawati, S.Pd.'),
+        contractor_name: 'TB. Al-Imam Jaya Material & Mitra Tukang',
+        funding_source: 'RAPBS Sarpras ' + unitCode,
         photos: []
       };
       this.db.renov_projects.unshift(newProject);
-      this.showToast(`Titik proyek ${newId} berhasil didaftarkan!`, 'success');
+      this.showToast(`Titik proyek ${newId} dan Invoice ${newProject.invoice_no} berhasil dibuat!`, 'success');
     }
 
     this.saveState();
@@ -8390,52 +8446,81 @@ const app = {
   },
 
   // ==========================================
-  // DETAIL MODAL & PHOTO DOCUMENTATION
+  // 14.7. DETAIL MODAL, PHOTO GALLERY & INVOICING
   // ==========================================
 
-  currentDetailProjectId: null,
-  currentPhotoFilter: 'all',
-  selectedPhotoBase64: null,
-
-  openRenovDetailModal(projectId, defaultTab = 'photos') {
+  openRenovDetailModal(projectId, defaultTab = 'transactions') {
     const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
     if (!project) return;
 
     this.currentDetailProjectId = projectId;
-    this.currentPhotoFilter = 'all';
 
     const modal = document.getElementById('renovDetailModal');
     const title = document.getElementById('renovDetailModalTitle');
     const subtitle = document.getElementById('renovDetailModalSubtitle');
-    const badgeEl = document.getElementById('renovDetailModalStatusBadge');
+    const statusBadge = document.getElementById('renovDetailStatusBadge');
     const codeEl = document.getElementById('renovDetailProjectCode');
     const catEl = document.getElementById('renovDetailCategory');
     const progEl = document.getElementById('renovDetailProgress');
     const totalEl = document.getElementById('renovDetailTotalSpent');
-    const container = document.getElementById('renovDetailItemsContainer');
-    const quickAddBtn = document.getElementById('renovDetailQuickAddMaterialBtn');
-    const photoLabel = document.getElementById('renovDetailTabLabelPhotos');
+    const invNoEl = document.getElementById('renovDocInvoiceNo');
+    const bastNoEl = document.getElementById('renovDocBastNo');
+    const bastBadge = document.getElementById('renovDocBastBadge');
+    const markCompleteBtn = document.getElementById('renovDetailMarkCompleteBtn');
+    const photoCountEl = document.getElementById('renovDetailPhotoCount');
 
     const requests = (this.db.renov_requests || []).filter(r => r.project_id === projectId || (r.location_name && r.location_name.includes(project.location_name)));
     const spent = requests.reduce((sum, r) => sum + (Number(r.total_amount) || 0), 0);
-    const photoCount = (project.photos || []).length;
+
+    const isCompleted = project.status === 'Selesai' || project.progress_pct === 100;
 
     if (title) title.textContent = project.location_name;
-    if (subtitle) subtitle.textContent = `Master Data [${project.project_id}] • PJ: ${project.pj_name || 'Tim Sarpras'} • ${project.invoice_number || ''}`;
-    if (badgeEl) {
-      badgeEl.textContent = project.status;
-      badgeEl.className = `px-2.5 py-0.5 text-[10px] font-bold rounded-full ${
-        project.status === 'Selesai' ? 'bg-emerald-100 text-emerald-800' :
-        project.status === 'Dalam Pengerjaan' ? 'bg-amber-100 text-amber-800' :
-        'bg-slate-100 text-slate-700'
-      }`;
-    }
-    if (codeEl) codeEl.textContent = `${project.project_id} (${project.unit_id.toUpperCase()})`;
+    if (subtitle) subtitle.textContent = `Master Data Proyek [${project.project_id}] • Ref Invoice: ${project.invoice_no || '-'}`;
+    if (codeEl) codeEl.textContent = project.project_id;
     if (catEl) catEl.textContent = project.category;
     if (progEl) progEl.textContent = `${project.progress_pct}% (${project.status})`;
-    if (totalEl) totalEl.textContent = `Rp ${this.formatNumber(spent)}`;
-    if (photoLabel) photoLabel.textContent = `Dokumentasi Foto & Screenshot (${photoCount})`;
+    if (totalEl) totalEl.textContent = `Rp ${this.formatNumber(spent || project.budget_estimate)}`;
+    if (invNoEl) invNoEl.textContent = project.invoice_no || `INV-PRJ-${project.project_id}`;
+    if (bastNoEl) bastNoEl.textContent = project.bast_no || `BAST-PRJ-${project.project_id}`;
+    if (photoCountEl) photoCountEl.textContent = (project.photos && project.photos.length) || 0;
 
+    if (statusBadge) {
+      statusBadge.textContent = project.status;
+      statusBadge.className = `px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border ${
+        isCompleted ? 'bg-emerald-100 text-emerald-800 border-emerald-300' :
+        project.status === 'Dalam Pengerjaan' ? 'bg-amber-100 text-amber-800 border-amber-300' :
+        'bg-slate-100 text-slate-700 border-slate-300'
+      }`;
+    }
+
+    if (bastBadge) {
+      bastBadge.textContent = isCompleted ? 'Proyek Selesai 100% (BAST Siap)' : 'Progres ' + project.progress_pct + '% (Draft BAST)';
+      bastBadge.className = isCompleted ? 'px-2.5 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-extrabold rounded-full' : 'px-2.5 py-0.5 bg-amber-100 text-amber-800 text-[10px] font-extrabold rounded-full';
+    }
+
+    if (markCompleteBtn) {
+      if (isCompleted) {
+        markCompleteBtn.innerHTML = '<i class="fa-solid fa-check-double mr-1.5"></i><span>Telah Selesai (100%)</span>';
+        markCompleteBtn.className = 'px-4 py-2 bg-emerald-700 text-white font-bold rounded-xl shadow-xs transition flex items-center space-x-1.5 shrink-0 opacity-80 cursor-default';
+        markCompleteBtn.disabled = true;
+      } else {
+        markCompleteBtn.innerHTML = '<i class="fa-solid fa-circle-check mr-1.5"></i><span>Tandai Selesai (100%)</span>';
+        markCompleteBtn.className = 'px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-xs transition flex items-center space-x-1.5 shrink-0 cursor-pointer';
+        markCompleteBtn.disabled = false;
+      }
+    }
+
+    // Render Material & Labor Transactions in Tab 1
+    this.renderRenovDetailItems(project, requests);
+
+    // Render Photos in Tab 2
+    this.renderRenovDetailGallery(project, 'all');
+
+    // Switch to target subtab
+    this.switchRenovDetailTab(defaultTab);
+
+    // Quick add material button setup
+    const quickAddBtn = document.getElementById('renovDetailQuickAddMaterialBtn');
     if (quickAddBtn) {
       quickAddBtn.onclick = () => {
         this.closeRenovDetailModal();
@@ -8448,53 +8533,6 @@ const app = {
       };
     }
 
-    // Render Material / Tukang Items Log
-    if (container) {
-      if (requests.length === 0) {
-        container.innerHTML = `
-          <div class="text-center py-8 text-slate-400 bg-white rounded-2xl border border-slate-200/80">
-            <i class="fa-solid fa-clipboard-list text-3xl mb-2 block"></i>
-            <p>Belum ada riwayat transaksi belanja material atau upah tukang untuk proyek ini.</p>
-          </div>
-        `;
-      } else {
-        container.innerHTML = requests.map(r => `
-          <div class="p-3.5 bg-white border border-slate-200/80 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
-            <div class="space-y-1">
-              <div class="flex items-center space-x-2">
-                <span class="font-mono text-[10px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-md">${r.request_id}</span>
-                <span class="text-xs font-bold text-slate-900">${r.material_name} (x${r.qty})</span>
-              </div>
-              <p class="text-[11px] text-slate-500">
-                <i class="fa-solid fa-store mr-1 text-slate-400"></i>${r.vendor_name || 'Toko Material'} • 
-                <i class="fa-regular fa-calendar mr-1 text-slate-400"></i>${r.scheduled_date || r.created_at}
-              </p>
-              ${r.labor_count > 0 ? `
-                <div class="text-[10px] text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded inline-block font-semibold">
-                  <i class="fa-solid fa-users-gear mr-1"></i>${r.labor_count} Tukang x ${r.labor_days} Hari (@Rp ${this.formatNumber(r.labor_rate)}) = Rp ${this.formatNumber(r.labor_subtotal)}
-                </div>
-              ` : ''}
-              ${r.notes ? `<p class="text-[10px] text-slate-400 italic">"${r.notes}"</p>` : ''}
-            </div>
-
-            <div class="text-right shrink-0">
-              <span class="text-[10px] text-slate-400 block font-medium">Total Biaya</span>
-              <span class="text-sm font-black text-slate-900 font-heading">Rp ${this.formatNumber(r.total_amount)}</span>
-              <span class="inline-block mt-1 px-2 py-0.5 text-[9px] font-bold rounded-full ${
-                r.status === 'Selesai' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
-              }">${r.status}</span>
-            </div>
-          </div>
-        `).join('');
-      }
-    }
-
-    // Render Photos Grid
-    this.renderProjectPhotosGrid(projectId);
-
-    // Switch to specified tab
-    this.switchRenovDetailTab(defaultTab);
-
     if (modal) modal.classList.remove('hidden');
   },
 
@@ -8502,572 +8540,851 @@ const app = {
     const modal = document.getElementById('renovDetailModal');
     if (modal) modal.classList.add('hidden');
     this.currentDetailProjectId = null;
-    this.selectedPhotoBase64 = null;
   },
 
-  switchRenovDetailTab(tab) {
-    const tabPhotos = document.getElementById('renovDetailTab-photos');
-    const tabItems = document.getElementById('renovDetailTab-items');
-    const btnPhotos = document.getElementById('renovDetailTabBtn-photos');
-    const btnItems = document.getElementById('renovDetailTabBtn-items');
-
-    if (tab === 'photos') {
-      if (tabPhotos) tabPhotos.classList.remove('hidden');
-      if (tabItems) tabItems.classList.add('hidden');
-      if (btnPhotos) {
-        btnPhotos.className = 'px-4 py-2 border-b-2 border-amber-500 text-amber-900 font-bold text-xs flex items-center space-x-1.5 transition';
-      }
-      if (btnItems) {
-        btnItems.className = 'px-4 py-2 border-b-2 border-transparent text-slate-500 hover:text-slate-800 font-semibold text-xs flex items-center space-x-1.5 transition';
-      }
-    } else {
-      if (tabPhotos) tabPhotos.classList.add('hidden');
-      if (tabItems) tabItems.classList.remove('hidden');
-      if (btnPhotos) {
-        btnPhotos.className = 'px-4 py-2 border-b-2 border-transparent text-slate-500 hover:text-slate-800 font-semibold text-xs flex items-center space-x-1.5 transition';
-      }
-      if (btnItems) {
-        btnItems.className = 'px-4 py-2 border-b-2 border-amber-500 text-amber-900 font-bold text-xs flex items-center space-x-1.5 transition';
-      }
-    }
-  },
-
-  filterProjectPhotos(stage) {
-    this.currentPhotoFilter = stage;
-    const stages = ['all', 'after', 'screenshot', 'progress', 'before'];
-    stages.forEach(s => {
-      const btn = document.getElementById(`photoFilterBtn-${s}`);
+  switchRenovDetailTab(tabName) {
+    const tabs = ['transactions', 'gallery', 'docs'];
+    tabs.forEach(t => {
+      const btn = document.getElementById(`renovDetailTabBtn-${t}`);
+      const content = document.getElementById(`renovDetailTab-${t}`);
       if (btn) {
-        if (s === stage) {
-          btn.className = 'px-3 py-1 rounded-xl text-xs font-bold bg-amber-600 text-white shadow-xs';
+        if (t === tabName) {
+          btn.className = 'pb-2.5 px-3 font-bold border-b-2 border-amber-600 text-amber-900 transition flex items-center space-x-1.5';
         } else {
-          btn.className = 'px-3 py-1 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100';
+          btn.className = 'pb-2.5 px-3 font-semibold text-slate-500 hover:text-slate-800 border-b-2 border-transparent transition flex items-center space-x-1.5';
         }
       }
+      if (content) {
+        if (t === tabName) content.classList.remove('hidden');
+        else content.classList.add('hidden');
+      }
     });
+  },
 
-    if (this.currentDetailProjectId) {
-      this.renderProjectPhotosGrid(this.currentDetailProjectId);
+  renderRenovDetailItems(project, requests) {
+    const container = document.getElementById('renovDetailItemsContainer');
+    if (!container) return;
+
+    if (requests.length === 0) {
+      container.innerHTML = `
+        <div class="text-center py-8 text-slate-400 bg-slate-50 rounded-2xl border border-slate-200/80">
+          <i class="fa-solid fa-clipboard-list text-3xl mb-2 block text-slate-300"></i>
+          <p class="text-xs font-semibold text-slate-600">Belum ada rincian transaksi belanja material toko atau upah tukang.</p>
+          <p class="text-[11px] text-slate-400 mt-0.5">Klik tombol <b>Tambah Belanja</b> di atas untuk menambahkan kebutuhan material.</p>
+        </div>
+      `;
+    } else {
+      container.innerHTML = requests.map(r => `
+        <div class="p-3.5 bg-slate-50 border border-slate-200/80 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="space-y-1">
+            <div class="flex items-center space-x-2">
+              <span class="font-mono text-[10px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-md">${r.request_id}</span>
+              <span class="text-xs font-bold text-slate-900">${r.material_name} (x${r.qty})</span>
+            </div>
+            <p class="text-[11px] text-slate-500">
+              <i class="fa-solid fa-store mr-1 text-slate-400"></i>${r.vendor_name || 'TB. Al-Imam Jaya'} • 
+              <i class="fa-regular fa-calendar mr-1 text-slate-400"></i>${r.scheduled_date || r.created_at}
+            </p>
+            ${r.labor_count > 0 ? `
+              <div class="text-[10px] text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded inline-block font-semibold">
+                <i class="fa-solid fa-users-gear mr-1"></i>${r.labor_count} Tukang x ${r.labor_days} Hari (@Rp ${this.formatNumber(r.labor_rate)}) = Rp ${this.formatNumber(r.labor_subtotal)}
+              </div>
+            ` : ''}
+            ${r.notes ? `<p class="text-[10px] text-slate-400 italic">"${r.notes}"</p>` : ''}
+          </div>
+
+          <div class="text-right shrink-0">
+            <span class="text-[10px] text-slate-400 block font-medium">Total Biaya</span>
+            <span class="text-sm font-black text-slate-900 font-heading">Rp ${this.formatNumber(r.total_amount)}</span>
+            <span class="inline-block mt-1 px-2 py-0.5 text-[9px] font-bold rounded-full ${
+              r.status === 'Selesai' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+            }">${r.status}</span>
+          </div>
+        </div>
+      `).join('');
     }
   },
 
-  renderProjectPhotosGrid(projectId) {
-    const grid = document.getElementById('projectPhotosGrid');
-    if (!grid) return;
-
-    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
-    if (!project) return;
-
-    let photos = project.photos || [];
-
-    if (this.currentPhotoFilter && this.currentPhotoFilter !== 'all') {
-      photos = photos.filter(ph => ph.stage === this.currentPhotoFilter);
-    }
-
-    if (photos.length === 0) {
-      grid.innerHTML = `
-        <div class="col-span-full text-center py-10 bg-white rounded-3xl border border-dashed border-slate-200 text-slate-400">
-          <i class="fa-solid fa-camera-retro text-4xl mb-2 block text-amber-400/80"></i>
-          <p class="text-xs font-bold text-slate-600">Belum ada foto atau screenshot yang diunggah.</p>
-          <p class="text-[11px] text-slate-400 mt-0.5">Gunakan form di atas untuk mengunggah foto sebelum, proses pengerjaan, atau screenshot aplikasi yang sudah jadi.</p>
-        </div>
-      `;
-      return;
-    }
-
-    const stageMap = {
-      after: { label: 'Hasil Jadi (After)', badge: 'bg-emerald-100 text-emerald-800 border-emerald-300' },
-      screenshot: { label: 'Screenshot Aplikasi', badge: 'bg-indigo-100 text-indigo-800 border-indigo-300' },
-      progress: { label: 'Dalam Pengerjaan', badge: 'bg-amber-100 text-amber-800 border-amber-300' },
-      before: { label: 'Kondisi Awal (Before)', badge: 'bg-rose-100 text-rose-800 border-rose-300' }
-    };
-
-    grid.innerHTML = photos.map(ph => {
-      const stg = stageMap[ph.stage] || { label: ph.stage, badge: 'bg-slate-100 text-slate-700 border-slate-300' };
-      const escapedUrl = this.escapeQuotes(ph.url || '');
-      const escapedCaption = this.escapeQuotes(ph.caption || '');
-      const escapedTitle = this.escapeQuotes(project.location_name || 'Dokumentasi Proyek');
-
-      return `
-        <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-md transition group flex flex-col justify-between">
-          <div>
-            <!-- Photo Thumbnail & Overlay -->
-            <div class="relative aspect-video w-full bg-slate-900 overflow-hidden cursor-pointer" onclick="app.viewProjectPhoto('${escapedUrl}', '${escapedTitle}', '${escapedCaption}', '${ph.stage}')">
-              <img src="${ph.url}" alt="${this.escapeHtml(ph.caption || 'Foto Proyek')}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80'">
-              <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center space-x-2">
-                <span class="w-9 h-9 rounded-xl bg-white/90 text-slate-900 flex items-center justify-center text-sm shadow-md">
-                  <i class="fa-solid fa-magnifying-glass-plus"></i>
-                </span>
-              </div>
-              <div class="absolute top-2 left-2">
-                <span class="px-2 py-0.5 text-[10px] font-extrabold rounded-full border shadow-2xs ${stg.badge}">
-                  ${stg.label}
-                </span>
-              </div>
-            </div>
-
-            <!-- Caption Body -->
-            <div class="p-3.5 space-y-1">
-              <p class="text-xs font-bold text-slate-800 leading-snug">${this.escapeHtml(ph.caption || 'Dokumentasi visual pekerjaan.')}</p>
-              <div class="text-[10px] text-slate-400 flex items-center justify-between pt-1">
-                <span><i class="fa-regular fa-clock mr-1"></i>${ph.created_at || 'Baru diunggah'}</span>
-                <span class="font-mono">${ph.id}</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card Actions -->
-          <div class="px-3.5 py-2.5 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs">
-            <button type="button" onclick="app.viewProjectPhoto('${escapedUrl}', '${escapedTitle}', '${escapedCaption}', '${ph.stage}')" class="text-amber-800 hover:text-amber-950 font-bold flex items-center space-x-1 cursor-pointer">
-              <i class="fa-solid fa-expand text-[10px]"></i>
-              <span>Perbesar</span>
-            </button>
-            <button type="button" onclick="app.deleteProjectPhoto('${projectId}', '${ph.id}')" class="text-rose-600 hover:text-rose-800 font-semibold text-[11px] flex items-center space-x-1 cursor-pointer">
-              <i class="fa-solid fa-trash-can text-[10px]"></i>
-              <span>Hapus</span>
-            </button>
-          </div>
-        </div>
-      `;
-    }).join('');
-  },
+  // ==========================================
+  // PHOTO & SCREENSHOT UPLOAD HANDLERS
+  // ==========================================
 
   onProjectPhotoFileSelected(event) {
     const file = event.target.files && event.target.files[0];
-    if (!file) return;
+    const previewContainer = document.getElementById('projectPhotoUploadPreviewContainer');
+    const previewImg = document.getElementById('projectPhotoUploadPreviewImg');
+    const previewName = document.getElementById('projectPhotoUploadPreviewName');
+
+    if (!file) {
+      if (previewContainer) previewContainer.classList.add('hidden');
+      this.currentSelectedPhotoBase64 = null;
+      return;
+    }
 
     const reader = new FileReader();
     reader.onload = (e) => {
-      this.selectedPhotoBase64 = e.target.result;
-      const urlInput = document.getElementById('projectPhotoUrlInput');
-      if (urlInput) urlInput.value = '';
-      this.showToast(`Foto file "${file.name}" siap diunggah!`, 'info');
+      this.currentSelectedPhotoBase64 = e.target.result;
+      if (previewImg) previewImg.src = e.target.result;
+      if (previewName) previewName.textContent = `${file.name} (${Math.round(file.size / 1024)} KB)`;
+      if (previewContainer) previewContainer.classList.remove('hidden');
     };
     reader.readAsDataURL(file);
   },
 
-  applyProjectPhotoPreset(presetKey) {
-    const urlInput = document.getElementById('projectPhotoUrlInput');
-    const captionInput = document.getElementById('projectPhotoCaptionInput');
-    const stageSelect = document.getElementById('projectPhotoStageSelect');
-    const fileInput = document.getElementById('projectPhotoFileInput');
-    if (fileInput) fileInput.value = '';
-    this.selectedPhotoBase64 = null;
-
-    if (presetKey === 'after_painting') {
-      if (urlInput) urlInput.value = 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&auto=format&fit=crop&q=80';
-      if (captionInput) captionInput.value = 'Pengecatan interior kelas warna hijau pastel selesai rapi dan bersih.';
-      if (stageSelect) stageSelect.value = 'after';
-    } else if (presetKey === 'after_app') {
-      if (urlInput) urlInput.value = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80';
-      if (captionInput) captionInput.value = 'Screenshot Dashboard Aplikasi E-Commerce SARPRAS Al-Imam versi live.';
-      if (stageSelect) stageSelect.value = 'screenshot';
-    } else if (presetKey === 'after_ceiling') {
-      if (urlInput) urlInput.value = 'https://images.unsplash.com/photo-1562774053-701939374585?w=800&auto=format&fit=crop&q=80';
-      if (captionInput) captionInput.value = 'Plafon gypsum lab komputer dan lampu panel LED terpasang rapi.';
-      if (stageSelect) stageSelect.value = 'after';
-    } else if (presetKey === 'before_damaged') {
-      if (urlInput) urlInput.value = 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=800&auto=format&fit=crop&q=80';
-      if (captionInput) captionInput.value = 'Kondisi awal dinding retak rambut dan cat lama kusam sebelum perbaikan.';
-      if (stageSelect) stageSelect.value = 'before';
-    }
-  },
-
-  submitProjectPhoto(event) {
+  submitProjectPhotoUpload(event) {
     event.preventDefault();
-    if (!this.currentDetailProjectId) return;
+    const projectId = this.currentDetailProjectId;
+    if (!projectId) {
+      this.showToast('Pilih proyek terlebih dahulu!', 'warning');
+      return;
+    }
 
-    const project = (this.db.renov_projects || []).find(p => p.project_id === this.currentDetailProjectId);
+    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
     if (!project) return;
 
-    const stageSelect = document.getElementById('projectPhotoStageSelect');
+    const typeInput = document.getElementById('projectPhotoTypeInput');
     const urlInput = document.getElementById('projectPhotoUrlInput');
     const captionInput = document.getElementById('projectPhotoCaptionInput');
     const fileInput = document.getElementById('projectPhotoFileInput');
 
-    const stage = stageSelect ? stageSelect.value : 'after';
-    const caption = captionInput ? captionInput.value.trim() : '';
-    const photoUrl = this.selectedPhotoBase64 || (urlInput ? urlInput.value.trim() : '');
+    const photoType = typeInput ? typeInput.value : 'after';
+    const caption = captionInput ? captionInput.value.trim() : 'Dokumentasi Proyek';
+    const urlFromInput = urlInput ? urlInput.value.trim() : '';
+
+    const photoUrl = this.currentSelectedPhotoBase64 || urlFromInput;
 
     if (!photoUrl) {
-      this.showToast('Silakan pilih file foto dari perangkat atau masukkan URL screenshot!', 'warning');
+      this.showToast('Mohon pilih file gambar atau masukkan link screenshot foto!', 'warning');
       return;
     }
 
     if (!project.photos) project.photos = [];
 
     const newPhoto = {
-      id: `PHO-${project.project_id.replace(/[^0-9]/g, '') || '01'}-${Math.floor(Math.random() * 899 + 100)}`,
-      stage: stage,
+      id: `PH-${projectId}-${Date.now().toString().slice(-4)}`,
+      type: photoType,
       url: photoUrl,
-      caption: caption || `Dokumentasi tahap ${stage} proyek ${project.location_name}`,
-      created_at: this.formatCurrentDateTime()
+      caption: caption,
+      uploaded_at: new Date().toISOString().split('T')[0]
     };
 
     project.photos.unshift(newPhoto);
-
-    // Save and re-render
     this.saveState();
-    this.showToast('Foto dokumentasi / screenshot berhasil ditambahkan ke proyek!', 'success');
 
-    // Reset inputs
+    this.showToast(`Foto "${caption}" berhasil diunggah ke dokumentasi proyek!`, 'success');
+
+    // Reset Form
     if (captionInput) captionInput.value = '';
     if (urlInput) urlInput.value = '';
     if (fileInput) fileInput.value = '';
-    this.selectedPhotoBase64 = null;
+    const previewContainer = document.getElementById('projectPhotoUploadPreviewContainer');
+    if (previewContainer) previewContainer.classList.add('hidden');
+    this.currentSelectedPhotoBase64 = null;
 
     // Refresh UI
-    const photoLabel = document.getElementById('renovDetailTabLabelPhotos');
-    if (photoLabel) photoLabel.textContent = `Dokumentasi Foto & Screenshot (${project.photos.length})`;
-    this.renderProjectPhotosGrid(project.project_id);
+    const photoCountEl = document.getElementById('renovDetailPhotoCount');
+    if (photoCountEl) photoCountEl.textContent = project.photos.length;
+    this.renderRenovDetailGallery(project, 'all');
     this.renderRenovProjectsTable();
+  },
+
+  filterProjectGallery(filterType) {
+    this.currentGalleryFilter = filterType;
+    const btns = ['all', 'before', 'progress', 'after'];
+    btns.forEach(b => {
+      const el = document.getElementById(`btnGalleryFilter-${b}`);
+      if (el) {
+        if (b === filterType) {
+          el.className = 'px-2.5 py-1 rounded-lg font-bold bg-amber-600 text-white transition';
+        } else {
+          el.className = 'px-2.5 py-1 rounded-lg font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition';
+        }
+      }
+    });
+
+    const project = (this.db.renov_projects || []).find(p => p.project_id === this.currentDetailProjectId);
+    if (project) {
+      this.renderRenovDetailGallery(project, filterType);
+    }
+  },
+
+  renderRenovDetailGallery(project, filterType = 'all') {
+    const grid = document.getElementById('renovDetailGalleryGrid');
+    if (!grid) return;
+
+    let photos = project.photos || [];
+
+    if (filterType && filterType !== 'all') {
+      if (filterType === 'after') {
+        photos = photos.filter(p => p.type === 'after' || p.type === 'screenshot');
+      } else {
+        photos = photos.filter(p => p.type === filterType);
+      }
+    }
+
+    if (photos.length === 0) {
+      grid.innerHTML = `
+        <div class="col-span-full text-center py-8 text-slate-400 bg-slate-50 rounded-2xl border border-slate-200/80">
+          <i class="fa-solid fa-camera-retro text-3xl mb-2 block text-slate-300"></i>
+          <p class="text-xs font-semibold text-slate-600">Belum ada foto dalam kategori ini.</p>
+          <p class="text-[11px] text-slate-400 mt-0.5">Gunakan formulir unggah di atas untuk melampirkan foto hasil jadi / screenshot.</p>
+        </div>
+      `;
+      return;
+    }
+
+    const typeBadges = {
+      before: { label: 'Sebelum (Before)', cls: 'bg-rose-100 text-rose-800 border-rose-200', icon: 'fa-camera' },
+      progress: { label: 'Sedang Pengerjaan', cls: 'bg-amber-100 text-amber-800 border-amber-200', icon: 'fa-hammer' },
+      after: { label: 'Hasil Jadi Selesai', cls: 'bg-emerald-100 text-emerald-800 border-emerald-200', icon: 'fa-circle-check' },
+      screenshot: { label: 'Screenshot Aplikasi', cls: 'bg-indigo-100 text-indigo-800 border-indigo-200', icon: 'fa-display' }
+    };
+
+    grid.innerHTML = photos.map(photo => {
+      const b = typeBadges[photo.type] || typeBadges.after;
+      const captionEsc = this.escapeHtml(photo.caption || 'Foto Dokumentasi');
+      const photoUrlEsc = this.escapeQuotes(photo.url);
+
+      return `
+        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-2xs group hover:border-amber-400 transition flex flex-col justify-between">
+          <div class="relative aspect-video bg-slate-900 overflow-hidden cursor-pointer" onclick="app.viewReceiptImage('${photoUrlEsc}', 'Dokumentasi Proyek [${project.project_id}]', '${this.escapeQuotes(photo.caption || '')}')">
+            <img src="${photo.url}" alt="${captionEsc}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&auto=format&fit=crop&q=80'">
+            <div class="absolute top-2 left-2">
+              <span class="px-2 py-0.5 rounded-full text-[9px] font-black border ${b.cls} flex items-center space-x-1 shadow-xs backdrop-blur-sm">
+                <i class="fa-solid ${b.icon}"></i>
+                <span>${b.label}</span>
+              </span>
+            </div>
+            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-sm">
+              <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Perbesar
+            </div>
+          </div>
+
+          <div class="p-3 space-y-2 flex-1 flex flex-col justify-between">
+            <div>
+              <p class="text-xs font-bold text-slate-800 line-clamp-2">${captionEsc}</p>
+              <span class="text-[10px] text-slate-400 block mt-1">
+                <i class="fa-regular fa-calendar mr-1"></i>${photo.uploaded_at || '-'}
+              </span>
+            </div>
+
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
+              <button type="button" onclick="app.viewReceiptImage('${photoUrlEsc}', 'Dokumentasi [${project.project_id}]', '${this.escapeQuotes(photo.caption || '')}')" class="text-amber-700 hover:text-amber-900 font-bold flex items-center space-x-1">
+                <i class="fa-solid fa-expand text-[10px]"></i>
+                <span>Lihat Foto</span>
+              </button>
+              <button type="button" onclick="app.deleteProjectPhoto('${project.project_id}', '${photo.id}')" class="text-rose-500 hover:text-rose-700 font-semibold p-1" title="Hapus Foto">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
   },
 
   deleteProjectPhoto(projectId, photoId) {
-    if (!confirm('Apakah Anda yakin ingin menghapus foto dokumentasi ini?')) return;
-
     const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
     if (!project || !project.photos) return;
 
-    project.photos = project.photos.filter(ph => ph.id !== photoId);
+    if (!confirm('Apakah Anda yakin ingin menghapus foto dokumentasi ini?')) return;
+
+    project.photos = project.photos.filter(p => p.id !== photoId);
     this.saveState();
     this.showToast('Foto dokumentasi berhasil dihapus.', 'info');
 
-    const photoLabel = document.getElementById('renovDetailTabLabelPhotos');
-    if (photoLabel) photoLabel.textContent = `Dokumentasi Foto & Screenshot (${project.photos.length})`;
-    this.renderProjectPhotosGrid(projectId);
+    const photoCountEl = document.getElementById('renovDetailPhotoCount');
+    if (photoCountEl) photoCountEl.textContent = project.photos.length;
+
+    this.renderRenovDetailGallery(project, this.currentGalleryFilter || 'all');
     this.renderRenovProjectsTable();
   },
 
-  viewProjectPhoto(url, title, caption, stage) {
-    const modal = document.getElementById('projectPhotoLightboxModal');
-    const imgEl = document.getElementById('projectPhotoLightboxImage');
-    const titleEl = document.getElementById('projectPhotoLightboxTitle');
-    const captionEl = document.getElementById('projectPhotoLightboxCaption');
-    const stageBadgeEl = document.getElementById('projectPhotoLightboxStageBadge');
-    const downloadBtn = document.getElementById('projectPhotoLightboxDownloadBtn');
+  // ==========================================
+  // PROJECT INVOICE & SPK GENERATION (NEW ENTRY)
+  // ==========================================
 
-    if (!modal) return;
+  openProjectInvoiceModal(projectId) {
+    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
+    if (!project) return;
 
-    if (imgEl) imgEl.src = url || '';
-    if (titleEl) titleEl.textContent = title || 'Foto Dokumentasi Proyek';
-    if (captionEl) captionEl.textContent = caption || 'Bukti pengerjaan & screenshot aplikasi.';
-    if (downloadBtn) {
-      downloadBtn.href = url || '#';
-      downloadBtn.download = `dokumentasi-${(title || 'proyek').replace(/\s+/g, '-').toLowerCase()}.jpg`;
+    const modal = document.getElementById('projectInvoiceModal');
+    const container = document.getElementById('projectInvoiceContent');
+    const cms = this.db.cms_settings || DEFAULT_CMS_SETTINGS;
+
+    const requests = (this.db.renov_requests || []).filter(r => r.project_id === projectId || (r.location_name && r.location_name.includes(project.location_name)));
+
+    if (container) {
+      container.innerHTML = this.renderProjectInvoiceHtml(project, requests, cms);
     }
 
-    const stageMap = {
-      after: 'Hasil Jadi / Selesai',
-      screenshot: 'Screenshot Aplikasi',
-      progress: 'Dalam Pengerjaan',
-      before: 'Sebelum Pengerjaan'
-    };
-    if (stageBadgeEl) stageBadgeEl.textContent = stageMap[stage] || stage || 'Foto Proyek';
-
-    modal.classList.remove('hidden');
+    if (modal) modal.classList.remove('hidden');
   },
 
-  closeProjectPhotoLightbox() {
-    const modal = document.getElementById('projectPhotoLightboxModal');
+  openProjectInvoiceModalFromDetail() {
+    if (this.currentDetailProjectId) {
+      this.openProjectInvoiceModal(this.currentDetailProjectId);
+    }
+  },
+
+  closeProjectInvoiceModal() {
+    const modal = document.getElementById('projectInvoiceModal');
     if (modal) modal.classList.add('hidden');
   },
 
-  // ==========================================
-  // 14. INVOICE & BAST COMPLETION REPORT GENERATOR
-  // ==========================================
-
   printProjectInvoice(projectId) {
-    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
-    if (!project) return;
+    this.openProjectInvoiceModal(projectId);
+    setTimeout(() => window.print(), 300);
+  },
 
-    const cms = this.db.cms_settings || DEFAULT_CMS_SETTINGS;
-    const requests = (this.db.renov_requests || []).filter(r => r.project_id === projectId || (r.location_name && r.location_name.includes(project.location_name)));
-    const totalSpent = requests.reduce((sum, r) => sum + (Number(r.total_amount) || 0), 0);
-    const materialCost = requests.reduce((sum, r) => sum + (Number(r.material_subtotal) || 0), 0);
-    const laborCost = requests.reduce((sum, r) => sum + (Number(r.labor_subtotal) || 0), 0);
-
-    const modal = document.getElementById('renovPrintReportModal');
-    const modalTitle = document.getElementById('renovPrintReportModalTitle');
-    const container = document.getElementById('renovPrintReportContent');
-    if (!modal || !container) return;
-
-    if (modalTitle) modalTitle.textContent = `Invoice & SPK Masuk: ${project.project_id}`;
-
-    const unitMap = {
-      unit_tk: 'PG-TK Islam Al-Imam',
-      unit_sd: 'SD Islam Al-Imam',
-      unit_smp: 'SMP Islam Al-Imam'
+  renderProjectInvoiceHtml(project, requests, cms) {
+    const unitNames = {
+      unit_tk: 'PG-TK ISLAM AL-IMAM',
+      unit_sd: 'SD ISLAM AL-IMAM',
+      unit_smp: 'SMP ISLAM AL-IMAM'
     };
-    const unitName = unitMap[project.unit_id] || project.unit_id;
 
-    const itemsRows = requests.length > 0 ? requests.map((r, idx) => `
-      <tr>
-        <td style="text-align: center; padding: 7px; border: 1px solid #333;">${idx + 1}</td>
-        <td style="padding: 7px; border: 1px solid #333; font-weight: bold;">${r.material_name}</td>
-        <td style="text-align: center; padding: 7px; border: 1px solid #333;">${r.qty}</td>
-        <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(r.unit_price || (r.material_subtotal / r.qty))}</td>
-        <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(r.material_subtotal || 0)}</td>
-        <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(r.labor_subtotal || 0)}</td>
-        <td style="text-align: right; padding: 7px; border: 1px solid #333; font-weight: bold;">Rp ${this.formatNumber(r.total_amount)}</td>
-      </tr>
-    `).join('') : `
-      <tr>
-        <td style="text-align: center; padding: 7px; border: 1px solid #333;">1</td>
-        <td style="padding: 7px; border: 1px solid #333; font-weight: bold;">Paket Pengadaan Bahan & Jasa Sipil (${project.category})</td>
-        <td style="text-align: center; padding: 7px; border: 1px solid #333;">1 Paket</td>
-        <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(project.budget_estimate)}</td>
-        <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(project.budget_estimate * 0.65)}</td>
-        <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(project.budget_estimate * 0.35)}</td>
-        <td style="text-align: right; padding: 7px; border: 1px solid #333; font-weight: bold;">Rp ${this.formatNumber(project.budget_estimate)}</td>
-      </tr>
-    `;
+    const unitName = unitNames[project.unit_id] || project.unit_id.toUpperCase();
+    const invNo = project.invoice_no || `INV-PRJ-${project.project_id}`;
+    const spkNo = project.spk_no || `SPK-PRJ-${project.project_id}`;
+    const pjName = project.pj_name || (project.unit_id === 'unit_smp' ? 'Aning Nurhayati, S.T., Gr.' : (project.unit_id === 'unit_sd' ? 'Dewi Fitria Nugraheni, S.Pd., Gr.' : 'Siti Rahmawati, S.Pd.'));
 
-    const grandTotal = totalSpent > 0 ? totalSpent : project.budget_estimate;
+    const totalMat = requests.reduce((sum, r) => sum + (Number(r.material_subtotal) || (r.qty * r.unit_price) || 0), 0);
+    const totalLabor = requests.reduce((sum, r) => sum + (Number(r.labor_subtotal) || 0), 0);
+    const grandTotal = (totalMat + totalLabor) || project.budget_estimate || 0;
 
-    container.innerHTML = `
-      <div class="print-page text-slate-900" style="font-family: Arial, sans-serif; font-size: 10.5pt;">
-        <!-- Kop Surat Resmi -->
+    let itemsTable = '';
+    if (requests.length > 0) {
+      itemsTable = requests.map((r, idx) => `
+        <tr>
+          <td style="text-align: center; padding: 7px; border: 1px solid #333;">${idx + 1}</td>
+          <td style="padding: 7px; border: 1px solid #333; font-weight: bold;">
+            ${r.material_name}
+            ${r.notes ? `<div style="font-size: 8.5pt; color: #555; font-weight: normal;">Catatan: ${r.notes}</div>` : ''}
+          </td>
+          <td style="text-align: center; padding: 7px; border: 1px solid #333;">${r.qty}</td>
+          <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(r.unit_price)}</td>
+          <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(r.material_subtotal || (r.qty * r.unit_price))}</td>
+          <td style="text-align: right; padding: 7px; border: 1px solid #333;">
+            ${r.labor_count > 0 ? `${r.labor_count} org x ${r.labor_days} hr<br><span style="font-weight: bold;">Rp ${this.formatNumber(r.labor_subtotal)}</span>` : '-'}
+          </td>
+          <td style="text-align: right; padding: 7px; border: 1px solid #333; font-weight: bold;">Rp ${this.formatNumber(r.total_amount)}</td>
+        </tr>
+      `).join('');
+    } else {
+      itemsTable = `
+        <tr>
+          <td style="text-align: center; padding: 7px; border: 1px solid #333;">1</td>
+          <td style="padding: 7px; border: 1px solid #333; font-weight: bold;">
+            Pekerjaan ${project.category} (${project.location_name})
+            <div style="font-size: 8.5pt; color: #555; font-weight: normal;">${project.notes || 'Pengadaan material & pengerjaan tenaga ahli sipil.'}</div>
+          </td>
+          <td style="text-align: center; padding: 7px; border: 1px solid #333;">1 Paket</td>
+          <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(project.budget_estimate)}</td>
+          <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(project.budget_estimate * 0.65)}</td>
+          <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(project.budget_estimate * 0.35)}</td>
+          <td style="text-align: right; padding: 7px; border: 1px solid #333; font-weight: bold;">Rp ${this.formatNumber(project.budget_estimate)}</td>
+        </tr>
+      `;
+    }
+
+    return `
+      <div class="print-page text-slate-900" style="font-family: Arial, sans-serif; font-size: 10.5pt; color: #111;">
+        
+        <!-- Header Kop Surat Resmi -->
         <div style="text-align: center; border-bottom: 2.5px solid #000; padding-bottom: 12px; margin-bottom: 18px;">
           <h2 style="margin: 0 0 3px 0; font-size: 15pt; text-transform: uppercase; font-weight: bold;">${cms.foundation_name || 'YAYASAN PENDIDIKAN ISLAM AL-IMAM'}</h2>
-          <h3 style="margin: 0 0 3px 0; font-size: 12pt; font-weight: 600;">DIVISI SARANA PRASARANA & PEMELIHARAAN GEDUNG</h3>
-          <p style="margin: 0; font-size: 9.5pt; color: #444;">${cms.address || 'Jakarta'} • Telp: ${cms.phone || '(021) 8899-7711'}</p>
+          <h3 style="margin: 0 0 3px 0; font-size: 12pt; font-weight: bold; color: #0284c7;">DIVISI SARANA PRASARANA & PENGADAAN FISIK (${unitName})</h3>
+          <p style="margin: 0; font-size: 9.5pt; color: #444;">${cms.address || 'Jakarta'} • Telp: ${cms.phone || '(021) 8899-7711'} • Email: sarpras@al-imamschool.sch.id</p>
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
-          <div>
-            <h3 style="margin: 0 0 3px 0; font-size: 13pt; text-transform: uppercase; font-weight: bold; color: #78350f;">SURAT PERINTAH KERJA (SPK) & INVOICE MASUK</h3>
-            <p style="margin: 0; font-size: 10pt; color: #555;">Dokumen Pengadaan & Alokasi Anggaran Proyek Baru</p>
+        <!-- Title & Document Number -->
+        <div style="text-align: center; margin-bottom: 16px;">
+          <h3 style="margin: 0 0 4px 0; font-size: 13pt; text-transform: uppercase; text-decoration: underline; font-weight: bold;">INVOICE & SURAT PERINTAH KERJA (SPK) PROYEK</h3>
+          <p style="margin: 0; font-size: 10pt; font-weight: bold; font-family: monospace; color: #1e3a8a;">NO. INVOICE: ${invNo} / NO. SPK: ${spkNo}</p>
+        </div>
+
+        <!-- Info Box Grid 2 Kolom -->
+        <div style="display: flex; justify-content: space-between; gap: 20px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 9.5pt;">
+          <div style="flex: 1; line-height: 1.6;">
+            <div><span style="color: #64748b;">Unit Pemohon:</span> <b>${unitName}</b></div>
+            <div><span style="color: #64748b;">Titik / Lokasi:</span> <b>${project.location_name}</b></div>
+            <div><span style="color: #64748b;">Jenis Pekerjaan:</span> <b>${project.category}</b></div>
+            <div><span style="color: #64748b;">Pelaksana / Mitra:</span> <b>${project.contractor_name || 'TB. Al-Imam Jaya Material & Mitra Tukang'}</b></div>
           </div>
-          <div style="text-align: right; font-size: 10pt;">
-            <p style="margin: 0; font-weight: bold; font-family: monospace; font-size: 11pt; color: #b45309;">${project.invoice_number || 'INV-PRJ-202610-001'}</p>
-            <p style="margin: 2px 0 0 0; color: #666;">Tanggal: <b>${project.created_at || '2026-10-01'}</b></p>
+          <div style="flex: 1; line-height: 1.6;">
+            <div><span style="color: #64748b;">Tanggal Masuk / SPK:</span> <b>${project.created_at || '2026-09-20'}</b></div>
+            <div><span style="color: #64748b;">Target Selesai:</span> <b>${project.target_date || '-'}</b></div>
+            <div><span style="color: #64748b;">Sumber Anggaran:</span> <b style="color: #047857;">${project.funding_source || 'RAPBS Sarpras'}</b></div>
+            <div><span style="color: #64748b;">Status Proyek:</span> <b style="color: #b45309; text-transform: uppercase;">${project.status} (${project.progress_pct}%)</b></div>
           </div>
         </div>
 
-        <!-- Project Overview Box -->
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 10pt; background: #fdfaf6;">
-          <tr>
-            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; width: 22%; font-weight: bold;">Kode Titik Proyek</td>
-            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; width: 28%; font-family: monospace; font-weight: bold;">${project.project_id}</td>
-            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; width: 22%; font-weight: bold;">Unit Pemohon</td>
-            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; width: 28%;">${unitName}</td>
-          </tr>
-          <tr>
-            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; font-weight: bold;">Lokasi Pekerjaan</td>
-            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; font-weight: bold;">${project.location_name}</td>
-            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; font-weight: bold;">Kategori Proyek</td>
-            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">${project.category}</td>
-          </tr>
-          <tr>
-            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; font-weight: bold;">Target Selesai</td>
-            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">${project.target_date || '-'}</td>
-            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; font-weight: bold;">Toko / Mandor Rekanan</td>
-            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">${project.vendor_name || 'TB. Al-Imam Jaya Material'}</td>
-          </tr>
-          <tr>
-            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; font-weight: bold;">Penanggung Jawab (PJ)</td>
-            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">${project.pj_name || 'Tim Sarpras'}</td>
-            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; font-weight: bold;">Sumber Pembiayaan</td>
-            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; font-weight: bold; color: #047857;">RAPBS Poin Sarpras & Pemeliharaan</td>
-          </tr>
-        </table>
-
-        <!-- Breakdown Items Table -->
-        <h4 style="margin: 15px 0 6px 0; font-size: 10.5pt; text-transform: uppercase;">Rincian Kebutuhan Belanja Material & Estimasi Upah Tukang:</h4>
-        <table style="width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-bottom: 15px;">
+        <!-- Table Rincian Biaya -->
+        <h4 style="margin: 12px 0 6px 0; font-size: 10.5pt; text-transform: uppercase; font-weight: bold;">Rincian Estimasi Biaya Material & Jasa Tukang:</h4>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 9pt;">
           <thead>
-            <tr style="background: #f1f5f9;">
-              <th style="border: 1px solid #333; padding: 7px 5px; width: 30px; text-align: center;">No</th>
-              <th style="border: 1px solid #333; padding: 7px 8px; text-align: left;">Deskripsi Pekerjaan / Material</th>
-              <th style="border: 1px solid #333; padding: 7px 5px; width: 55px; text-align: center;">Qty</th>
-              <th style="border: 1px solid #333; padding: 7px 8px; text-align: right; width: 90px;">Harga Satuan</th>
-              <th style="border: 1px solid #333; padding: 7px 8px; text-align: right; width: 95px;">Subtotal Bahan</th>
-              <th style="border: 1px solid #333; padding: 7px 8px; text-align: right; width: 95px;">Upah Tukang</th>
-              <th style="border: 1px solid #333; padding: 7px 8px; text-align: right; width: 100px;">Total</th>
+            <tr style="background: #e2e8f0; font-weight: bold;">
+              <th style="border: 1px solid #333; padding: 6px; text-align: center; width: 25px;">NO</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: left;">DESKRIPSI MATERIAL / PEKERJAAN</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: center; width: 60px;">QTY</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 85px;">HARGA SATUAN</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 95px;">SUBTOTAL BAHAN</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 105px;">UPAH TUKANG</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 100px;">TOTAL (RP)</th>
             </tr>
           </thead>
           <tbody>
-            ${itemsRows}
-          </tbody>
-          <tfoot>
-            <tr style="background: #fef3c7; font-weight: bold;">
-              <td colspan="6" style="border: 1px solid #333; padding: 8px; text-align: right; font-size: 10pt;">TOTAL ESTIMASI ANGGARAN SPK:</td>
-              <td style="border: 1px solid #333; padding: 8px; text-align: right; font-size: 11pt; color: #92400e;">Rp ${this.formatNumber(grandTotal)}</td>
+            ${itemsTable}
+            <tr style="background: #f1f5f9; font-weight: bold;">
+              <td colspan="4" style="border: 1px solid #333; padding: 8px; text-align: right; text-transform: uppercase;">Total Pembebanan Anggaran Proyek:</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: right;">Rp ${this.formatNumber(totalMat || (grandTotal * 0.65))}</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: right;">Rp ${this.formatNumber(totalLabor || (grandTotal * 0.35))}</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: right; font-size: 11pt; color: #1e3a8a;">Rp ${this.formatNumber(grandTotal)}</td>
             </tr>
-          </tfoot>
+          </tbody>
         </table>
 
-        <!-- Catatan & Ketentuan -->
-        <div style="border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 6px; font-size: 9pt; color: #475569; margin-bottom: 25px; background: #fafafa;">
-          <p style="margin: 0 0 4px 0; font-weight: bold; color: #1e293b;">Ketentuan Pelaksanaan SPK Proyek:</p>
-          <ol style="margin: 0; padding-left: 18px; line-height: 1.5;">
-            <li>Pekerjaan wajib diselesaikan sesuai standar mutu sarpras dan target tanggal yang telah ditentukan.</li>
-            <li>Seluruh pembelian bahan material harus disertai nota faktur asli dan dicocokkan dengan spesifikasi.</li>
-            <li>Setelah pekerjaan selesai 100%, wajib dibuatkan <b>Berita Acara Serah Terima (BAST)</b> beserta lampiran foto dokumentasi fisik.</li>
+        <!-- Catatan & Ketentuan SPK -->
+        <div style="border: 1px dashed #94a3b8; border-radius: 6px; padding: 8px 12px; margin-bottom: 24px; font-size: 8.5pt; color: #334155; line-height: 1.5;">
+          <b>Ketentuan & Instruksi Pelaksanaan:</b>
+          <ol style="margin: 4px 0 0 16px; padding: 0;">
+            <li>Pekerjaan wajib diselesaikan sesuai spesifikasi teknis dan tenggat waktu yang telah ditetapkan dalam SPK ini.</li>
+            <li>Segala pembelian material menggunakan dana sekolah wajib menyertakan faktur/nota resmi dan didokumentasikan (foto before/after).</li>
+            <li>Setelah pekerjaan selesai 100%, pelaksana dan PJ unit wajib menandatangani <b>Berita Acara Serah Terima (BAST)</b>.</li>
           </ol>
         </div>
 
-        <!-- Tanda Tangan 3 Kolom -->
-        <div style="display: flex; justify-content: space-between; page-break-inside: avoid; text-align: center;">
-          <div style="width: 190px;">
-            <p style="margin: 0 0 50px 0; font-size: 9.5pt;">Pemohon / PJ Sarpras,<br><b>${unitName}</b></p>
-            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold; font-size: 9.5pt;">${project.pj_name || 'PJ Sarpras'}</p>
+        <!-- 3 Kolom Tanda Tangan -->
+        <div style="display: flex; justify-content: space-between; margin-top: 20px; page-break-inside: avoid; font-size: 9.5pt;">
+          <div style="text-align: center; width: 180px;">
+            <p style="margin: 0 0 50px 0;">Diajukan Oleh,<br><b>PJ Sarpras ${unitName}</b></p>
+            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${pjName}</p>
           </div>
-          <div style="width: 190px;">
-            <p style="margin: 0 0 50px 0; font-size: 9.5pt;">Pelaksana / Mandor,<br><b>${project.vendor_name || 'Mitra Rekanan'}</b></p>
-            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold; font-size: 9.5pt;">Mandor Pelaksana</p>
+          <div style="text-align: center; width: 180px;">
+            <p style="margin: 0 0 50px 0;">Diverifikasi & Disetujui,<br><b>Kaur Logistik & SARPRAS</b></p>
+            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${cms.signers?.kaur_name || 'Kaur SARPRAS Al-Imam'}</p>
           </div>
-          <div style="width: 190px;">
-            <p style="margin: 0 0 50px 0; font-size: 9.5pt;">Mengetahui & Menyetujui,<br><b>Bendahara Yayasan</b></p>
-            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold; font-size: 9.5pt;">${cms.signers.bendahara_name || 'Bendahara Yayasan'}</p>
+          <div style="text-align: center; width: 180px;">
+            <p style="margin: 0 0 50px 0;">Mengetahui,<br><b>Kepala Sekolah / Yayasan</b></p>
+            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${cms.signers?.headmaster_smp_name || cms.signers?.bendahara_name || 'Arif Rohman, M.Pd.'}</p>
           </div>
         </div>
+
       </div>
     `;
-
-    modal.classList.remove('hidden');
   },
 
-  printProjectCompletionReport(projectId) {
+  // ==========================================
+  // PROJECT COMPLETION REPORT & BAST (100% FINISHED)
+  // ==========================================
+
+  openProjectCompletionModal(projectId) {
     const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
     if (!project) return;
 
+    const modal = document.getElementById('projectCompletionModal');
+    const container = document.getElementById('projectCompletionContent');
     const cms = this.db.cms_settings || DEFAULT_CMS_SETTINGS;
+
     const requests = (this.db.renov_requests || []).filter(r => r.project_id === projectId || (r.location_name && r.location_name.includes(project.location_name)));
-    const totalSpent = requests.reduce((sum, r) => sum + (Number(r.total_amount) || 0), 0);
-    const materialCost = requests.reduce((sum, r) => sum + (Number(r.material_subtotal) || 0), 0);
-    const laborCost = requests.reduce((sum, r) => sum + (Number(r.labor_subtotal) || 0), 0);
 
-    const modal = document.getElementById('renovPrintReportModal');
-    const modalTitle = document.getElementById('renovPrintReportModalTitle');
-    const container = document.getElementById('renovPrintReportContent');
-    if (!modal || !container) return;
+    if (container) {
+      container.innerHTML = this.renderProjectCompletionHtml(project, requests, cms);
+    }
 
-    if (modalTitle) modalTitle.textContent = `Laporan Pekerjaan (BAST): ${project.project_id}`;
+    if (modal) modal.classList.remove('hidden');
+  },
 
-    const unitMap = {
-      unit_tk: 'PG-TK Islam Al-Imam',
-      unit_sd: 'SD Islam Al-Imam',
-      unit_smp: 'SMP Islam Al-Imam'
+  openProjectCompletionModalFromDetail() {
+    if (this.currentDetailProjectId) {
+      this.openProjectCompletionModal(this.currentDetailProjectId);
+    }
+  },
+
+  closeProjectCompletionModal() {
+    const modal = document.getElementById('projectCompletionModal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  printProjectCompletionReport(projectId) {
+    this.openProjectCompletionModal(projectId);
+    setTimeout(() => window.print(), 300);
+  },
+
+  markCurrentProjectAsCompleted() {
+    if (this.currentDetailProjectId) {
+      this.markProjectAsCompleted(this.currentDetailProjectId);
+    }
+  },
+
+  markProjectAsCompleted(projectId) {
+    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
+    if (!project) return;
+
+    const todayStr = new Date().toISOString().split('T')[0];
+    project.progress_pct = 100;
+    project.status = 'Selesai';
+    project.completed_at = todayStr;
+    if (!project.bast_no) project.bast_no = `BAST-PRJ-${todayStr.substring(0, 7).replace('-', '')}-${project.project_id.replace(/[^0-9]/g, '') || '01'}`;
+
+    // Mark associated requests as Selesai as well
+    const requests = (this.db.renov_requests || []).filter(r => r.project_id === projectId || (r.location_name && r.location_name.includes(project.location_name)));
+    requests.forEach(r => {
+      r.status = 'Selesai';
+      r.completed_at = todayStr;
+    });
+
+    this.saveState();
+    this.showToast(`Alhamdulillah! Proyek [${project.project_id}] ${project.location_name} ditandai 100% Selesai!`, 'success');
+
+    this.renderRenovProjectsTable();
+    this.renderRenovServiceView();
+
+    // Reopen detail modal to reflect completed state
+    this.openRenovDetailModal(projectId, 'docs');
+  },
+
+  renderProjectCompletionHtml(project, requests, cms) {
+    const unitNames = {
+      unit_tk: 'PG-TK ISLAM AL-IMAM',
+      unit_sd: 'SD ISLAM AL-IMAM',
+      unit_smp: 'SMP ISLAM AL-IMAM'
     };
-    const unitName = unitMap[project.unit_id] || project.unit_id;
-    const grandTotal = totalSpent > 0 ? totalSpent : project.budget_estimate;
 
-    // Build Photo Gallery Grid for Printout
+    const unitName = unitNames[project.unit_id] || project.unit_id.toUpperCase();
+    const bastNo = project.bast_no || `BAST/SARPRAS/${new Date().getFullYear()}/${project.project_id}`;
+    const spkNo = project.spk_no || `SPK-PRJ-${project.project_id}`;
+    const pjName = project.pj_name || (project.unit_id === 'unit_smp' ? 'Aning Nurhayati, S.T., Gr.' : (project.unit_id === 'unit_sd' ? 'Dewi Fitria Nugraheni, S.Pd., Gr.' : 'Siti Rahmawati, S.Pd.'));
+
+    const totalMat = requests.reduce((sum, r) => sum + (Number(r.material_subtotal) || (r.qty * r.unit_price) || 0), 0);
+    const totalLabor = requests.reduce((sum, r) => sum + (Number(r.labor_subtotal) || 0), 0);
+    const realCost = (totalMat + totalLabor) || project.budget_estimate || 0;
+    const initialBudget = project.budget_estimate || realCost;
+    const variance = initialBudget - realCost;
+
     const photos = project.photos || [];
-    let photosPrintHTML = '';
 
+    // Photo Gallery HTML for print & visual document
+    let photosHtml = '';
     if (photos.length > 0) {
-      const stageLabels = {
-        after: 'HASIL JADI / SELESAI',
-        screenshot: 'SCREENSHOT APLIKASI',
-        progress: 'DALAM PENGERJAAN',
-        before: 'KONDISI SEBELUM'
+      const typeLabels = {
+        before: 'FOTO SEBELUM (BEFORE)',
+        progress: 'FOTO PROSES PENGERJAAN',
+        after: 'FOTO HASIL JADI SELESAI (AFTER)',
+        screenshot: 'SCREENSHOT APLIKASI / DIGITAL'
       };
 
-      photosPrintHTML = `
-        <div style="margin-top: 20px; page-break-inside: avoid;">
-          <h4 style="margin: 0 0 10px 0; font-size: 11pt; text-transform: uppercase; border-bottom: 1.5px solid #000; padding-bottom: 4px;">
-            LAMPIRAN: DOKUMENTASI FOTO & SCREENSHOT HASIL PEKERJAAN PROYEK
-          </h4>
-          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-            ${photos.map(ph => `
-              <div style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px; background: #f8fafc; text-align: center;">
-                <div style="font-size: 8.5pt; font-weight: bold; margin-bottom: 4px; color: #1e293b; text-align: left; display: flex; justify-content: space-between;">
-                  <span style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px;">${stageLabels[ph.stage] || ph.stage}</span>
-                  <span style="color: #64748b;">${ph.created_at || ''}</span>
-                </div>
-                <img src="${ph.url}" style="width: 100%; height: 160px; object-fit: cover; border-radius: 4px; border: 1px solid #94a3b8; display: block;" onerror="this.src='https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80'">
-                <p style="margin: 6px 0 0 0; font-size: 8.5pt; color: #334155; font-style: italic; text-align: left; line-height: 1.3;">
-                  "${ph.caption || 'Dokumentasi visual hasil pengerjaan.'}"
-                </p>
+      photosHtml = `
+        <h4 style="margin: 18px 0 8px 0; font-size: 10.5pt; text-transform: uppercase; font-weight: bold; border-bottom: 1.5px solid #333; padding-bottom: 4px;">
+          LAMPIRAN BUKTI DOKUMENTASI HASIL PEKERJAAN & SCREENSHOT:
+        </h4>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 18px;">
+          ${photos.map(p => `
+            <div style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px; background: #f8fafc; break-inside: avoid;">
+              <div style="aspect-ratio: 16/9; max-height: 150px; overflow: hidden; border-radius: 4px; background: #000; text-align: center;">
+                <img src="${p.url}" style="width: 100%; height: 100%; object-fit: cover;" alt="${p.caption || 'Foto Bukti'}">
               </div>
-            `).join('')}
-          </div>
+              <div style="margin-top: 6px;">
+                <span style="display: inline-block; font-size: 7.5pt; font-weight: bold; padding: 2px 6px; background: #e0f2fe; color: #0369a1; border-radius: 4px;">
+                  ${typeLabels[p.type] || 'DOKUMENTASI'}
+                </span>
+                <p style="margin: 4px 0 0 0; font-size: 8.5pt; font-weight: 600; color: #1e293b; line-height: 1.3;">${p.caption || '-'}</p>
+                <span style="font-size: 7.5pt; color: #64748b;">Tanggal: ${p.uploaded_at || '-'}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    } else {
+      photosHtml = `
+        <div style="border: 1px dashed #94a3b8; border-radius: 6px; padding: 12px; margin: 16px 0; text-align: center; color: #64748b; font-size: 9pt;">
+          <p style="margin: 0;">(Dokumentasi foto fisik telah diverifikasi langsung di lokasi oleh Tim Sarpras & Pemohon)</p>
         </div>
       `;
     }
 
-    container.innerHTML = `
-      <div class="print-page text-slate-900" style="font-family: Arial, sans-serif; font-size: 10.5pt;">
-        <!-- Kop Surat Resmi -->
-        <div style="text-align: center; border-bottom: 2.5px solid #000; padding-bottom: 12px; margin-bottom: 18px;">
+    return `
+      <div class="print-page text-slate-900" style="font-family: Arial, sans-serif; font-size: 10pt; color: #111;">
+        
+        <!-- Header Kop Surat Resmi -->
+        <div style="text-align: center; border-bottom: 2.5px solid #000; padding-bottom: 12px; margin-bottom: 16px;">
           <h2 style="margin: 0 0 3px 0; font-size: 15pt; text-transform: uppercase; font-weight: bold;">${cms.foundation_name || 'YAYASAN PENDIDIKAN ISLAM AL-IMAM'}</h2>
-          <h3 style="margin: 0 0 3px 0; font-size: 12pt; font-weight: 600;">DIVISI SARANA PRASARANA & PEMELIHARAAN GEDUNG</h3>
-          <p style="margin: 0; font-size: 9.5pt; color: #444;">${cms.address || 'Jakarta'} • Telp: ${cms.phone || '(021) 8899-7711'}</p>
+          <h3 style="margin: 0 0 3px 0; font-size: 12pt; font-weight: bold; color: #047857;">BERITA ACARA SERAH TERIMA (BAST) & LAPORAN AKHIR PEKERJAAN</h3>
+          <p style="margin: 0; font-size: 9.5pt; color: #444;">${cms.address || 'Jakarta'} • Telp: ${cms.phone || '(021) 8899-7711'} • Divisi Logistik, Sarpras & Sipil Bangunan</p>
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
-          <div>
-            <h3 style="margin: 0 0 3px 0; font-size: 13pt; text-transform: uppercase; font-weight: bold; color: #047857;">BERITA ACARA SERAH TERIMA & LAPORAN HASIL PEKERJAAN (BAST)</h3>
-            <p style="margin: 0; font-size: 10pt; color: #555;">Pernyataan Penyelesaian dan Serah Terima Hasil Renovasi / Pekerjaan Fisik</p>
-          </div>
-          <div style="text-align: right; font-size: 10pt;">
-            <p style="margin: 0; font-weight: bold; font-family: monospace; font-size: 11pt; color: #047857;">${project.bast_number || 'BAST-PRJ-202610-001'}</p>
-            <p style="margin: 2px 0 0 0; color: #666;">Tanggal Selesai: <b>${project.target_date || '2026-10-05'}</b></p>
-          </div>
+        <!-- Document Number & Title -->
+        <div style="text-align: center; margin-bottom: 14px;">
+          <p style="margin: 0; font-size: 10pt; font-weight: bold; font-family: monospace; color: #065f46;">NOMOR DOKUMEN: ${bastNo}</p>
+          <p style="margin: 2px 0 0 0; font-size: 9pt; color: #475569;">Dasar Pelaksanaan: Surat Perintah Kerja No. <b>${spkNo}</b></p>
         </div>
 
-        <!-- Project Overview Box -->
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 10pt; background: #f0fdf4;">
+        <!-- Narrative Statement of Handover -->
+        <p style="margin: 0 0 10px 0; font-size: 9.5pt; line-height: 1.5; text-align: justify;">
+          Pada hari ini telah diselesaikan dan diserahterimakan dengan baik hasil pekerjaan fisik / pengadaan sarana prasarana sekolah untuk unit <b>${unitName}</b> dengan rincian teknis sebagai berikut:
+        </p>
+
+        <!-- Project Identification Box -->
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 9pt; background: #f8fafc;">
           <tr>
-            <td style="padding: 6px 10px; border: 1px solid #cbd5e1; width: 22%; font-weight: bold;">Kode Titik Proyek</td>
-            <td style="padding: 6px 10px; border: 1px solid #cbd5e1; width: 28%; font-family: monospace; font-weight: bold;">${project.project_id}</td>
-            <td style="padding: 6px 10px; border: 1px solid #cbd5e1; width: 22%; font-weight: bold;">Unit Pemohon</td>
-            <td style="padding: 6px 10px; border: 1px solid #cbd5e1; width: 28%; font-weight: bold;">${unitName}</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; width: 22%; color: #64748b;">Nama Titik / Lokasi:</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; width: 28%; font-weight: bold;">${project.location_name}</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; width: 22%; color: #64748b;">Kategori Pekerjaan:</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; width: 28%; font-weight: bold;">${project.category}</td>
           </tr>
           <tr>
-            <td style="padding: 6px 10px; border: 1px solid #cbd5e1; font-weight: bold;">Lokasi Pekerjaan</td>
-            <td style="padding: 6px 10px; border: 1px solid #cbd5e1; font-weight: bold;">${project.location_name}</td>
-            <td style="padding: 6px 10px; border: 1px solid #cbd5e1; font-weight: bold;">Kategori Pekerjaan</td>
-            <td style="padding: 6px 10px; border: 1px solid #cbd5e1;">${project.category}</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #64748b;">Tanggal Mulai Kerja:</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; font-weight: bold;">${project.created_at || '2026-09-20'}</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #64748b;">Tanggal Selesai Tuntas:</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; font-weight: bold; color: #047857;">${project.completed_at || project.target_date || '2026-10-01'}</td>
           </tr>
           <tr>
-            <td style="padding: 6px 10px; border: 1px solid #cbd5e1; font-weight: bold;">Status Hasil Akhir</td>
-            <td style="padding: 6px 10px; border: 1px solid #cbd5e1; font-weight: bold; color: #047857;">100% Selesai & Diterima Baik</td>
-            <td style="padding: 6px 10px; border: 1px solid #cbd5e1; font-weight: bold;">Pelaksana / Mandor</td>
-            <td style="padding: 6px 10px; border: 1px solid #cbd5e1;">${project.vendor_name || 'TB. Al-Imam Jaya Material'}</td>
-          </tr>
-          <tr>
-            <td style="padding: 6px 10px; border: 1px solid #cbd5e1; font-weight: bold;">Total Realisasi Biaya</td>
-            <td style="padding: 6px 10px; border: 1px solid #cbd5e1; font-weight: bold; color: #0f172a;">Rp ${this.formatNumber(grandTotal)}</td>
-            <td style="padding: 6px 10px; border: 1px solid #cbd5e1; font-weight: bold;">Penanggung Jawab (PJ)</td>
-            <td style="padding: 6px 10px; border: 1px solid #cbd5e1;">${project.pj_name || 'Tim Sarpras'}</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #64748b;">Pelaksana / Kontraktor:</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; font-weight: bold;">${project.contractor_name || 'TB. Al-Imam Jaya Material & Mitra Tukang'}</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #64748b;">Status Fisik:</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; font-weight: bold; color: #047857;">SELESAI 100% (TUNTAS)</td>
           </tr>
         </table>
 
-        <!-- Berita Acara Statement -->
-        <div style="font-size: 10pt; line-height: 1.6; margin-bottom: 16px;">
-          <p style="margin: 0 0 6px 0;">Pada hari ini telah dilakukan pemeriksaan fisik, verifikasi mutu, dan serah terima hasil pekerjaan untuk titik renovasi <b>${project.location_name}</b> dengan rincian evaluasi sebagai berikut:</p>
-          <ul style="margin: 0; padding-left: 20px;">
-            <li>Hasil pekerjaan telah selesai 100% sesuai dengan spesifikasi yang tertuang pada SPK.</li>
-            <li>Bahan material yang digunakan dalam kondisi baik, rapi, dan sesuai standar mutu operasional sekolah.</li>
-            <li>Seluruh biaya pekerjaan sejumlah <b>Rp ${this.formatNumber(grandTotal)}</b> telah dicatat dan diverifikasi pada pembukuan pos RAPBS.</li>
-          </ul>
+        <!-- Realization Financial Summary -->
+        <h4 style="margin: 12px 0 6px 0; font-size: 10pt; text-transform: uppercase; font-weight: bold;">Rekapitulasi Realisasi Keuangan Proyek:</h4>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 9pt;">
+          <thead>
+            <tr style="background: #e2e8f0; font-weight: bold;">
+              <th style="border: 1px solid #333; padding: 6px; text-align: left;">Uraian Pos Biaya</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 120px;">Anggaran Estimasi</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 120px;">Realisasi Pembayaran</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: center; width: 100px;">Status / Selisih</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #333; padding: 6px;">1. Pembelian Bahan Material & Perlengkapan Fisik</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: right;">Rp ${this.formatNumber(initialBudget * 0.65)}</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: right; font-weight: bold;">Rp ${this.formatNumber(totalMat || (realCost * 0.65))}</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: center; color: #047857;">Sesuai Nota</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #333; padding: 6px;">2. Upah Kerja Tukang Bangunan & Tenaga Ahli</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: right;">Rp ${this.formatNumber(initialBudget * 0.35)}</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: right; font-weight: bold;">Rp ${this.formatNumber(totalLabor || (realCost * 0.35))}</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: center; color: #047857;">Selesai</td>
+            </tr>
+            <tr style="background: #ecfdf5; font-weight: bold;">
+              <td style="border: 1px solid #333; padding: 8px; text-transform: uppercase;">TOTAL BIAYA AKHIR PROYEK:</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: right;">Rp ${this.formatNumber(initialBudget)}</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: right; font-size: 10.5pt; color: #047857;">Rp ${this.formatNumber(realCost)}</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: center; font-size: 8.5pt;">${variance >= 0 ? 'Hemat Rp ' + this.formatNumber(variance) : 'Sesuai Plafon'}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Evaluasi Mutu Pekerjaan -->
+        <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px 12px; margin-bottom: 14px; font-size: 8.5pt; line-height: 1.5;">
+          <b>Catatan Hasil Evaluasi & Serah Terima:</b>
+          <p style="margin: 2px 0 0 0; color: #334155;">
+            ${project.evaluation_notes || project.notes || 'Pekerjaan telah diperiksa bersama di lokasi, hasil pengerjaan rapi, kokoh, dan berfungsi optimal sesuai standar mutu Yayasan Pendidikan Islam Al-Imam.'}
+          </p>
         </div>
 
-        ${photosPrintHTML}
+        <!-- Lampiran Foto & Screenshot -->
+        ${photosHtml}
 
-        <!-- Tanda Tangan 3 Pihak Pengesahan BAST -->
-        <div style="margin-top: 30px; display: flex; justify-content: space-between; page-break-inside: avoid; text-align: center;">
-          <div style="width: 190px;">
-            <p style="margin: 0 0 50px 0; font-size: 9.5pt;">Diserahkan Oleh (Pelaksana),<br><b>${project.vendor_name || 'Mandor Pelaksana'}</b></p>
-            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold; font-size: 9.5pt;">Mandor / Rekanan</p>
+        <!-- 3 Pihak Pengesahan BAST -->
+        <div style="display: flex; justify-content: space-between; margin-top: 25px; page-break-inside: avoid; font-size: 9pt;">
+          <div style="text-align: center; width: 180px;">
+            <p style="margin: 0 0 50px 0;">PIHAK I (Pelaksana / Tukang),<br><b>Koordinator Lapangan / Mitra</b></p>
+            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">Bpk. Mandor Wardi / Rekanan</p>
           </div>
-          <div style="width: 190px;">
-            <p style="margin: 0 0 50px 0; font-size: 9.5pt;">Diterima Oleh (PJ Unit),<br><b>${unitName}</b></p>
-            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold; font-size: 9.5pt;">${project.pj_name || 'PJ Sarpras'}</p>
+          <div style="text-align: center; width: 180px;">
+            <p style="margin: 0 0 50px 0;">PIHAK II (Penerima Hasil),<br><b>PJ Sarpras ${unitName}</b></p>
+            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${pjName}</p>
           </div>
-          <div style="width: 190px;">
-            <p style="margin: 0 0 50px 0; font-size: 9.5pt;">Mengetahui & Menyetujui,<br><b>Kepala Sekolah / Yayasan</b></p>
-            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold; font-size: 9.5pt;">${cms.signers.kaur_name || 'Kepala Sekolah'}</p>
+          <div style="text-align: center; width: 180px;">
+            <p style="margin: 0 0 50px 0;">Mengetahui & Mengesahkan,<br><b>Kepala Sekolah / Yayasan</b></p>
+            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${cms.signers?.headmaster_smp_name || cms.signers?.bendahara_name || 'Arif Rohman, M.Pd.'}</p>
           </div>
         </div>
+
       </div>
     `;
+  },
 
-    modal.classList.remove('hidden');
+  renderRenovAnalytics() {
+    const cardsContainer = document.getElementById('renovUnitBudgetCardsContainer');
+    const tableBody = document.getElementById('renovRequestsLogTableBody');
+    const requests = this.db.renov_requests || [];
+
+    const units = [
+      { id: 'unit_tk', name: 'PG-TK Islam Al-Imam', budget: 4500000, icon: 'fa-shapes', color: 'emerald' },
+      { id: 'unit_sd', name: 'SD Islam Al-Imam', budget: 12500000, icon: 'fa-school', color: 'blue' },
+      { id: 'unit_smp', name: 'SMP Islam Al-Imam', budget: 9700000, icon: 'fa-graduation-cap', color: 'indigo' }
+    ];
+
+    if (cardsContainer) {
+      cardsContainer.innerHTML = units.map(u => {
+        const spent = requests.filter(r => r.unit_id === u.id).reduce((s, r) => s + (Number(r.total_amount) || 0), 0);
+        const sisa = Math.max(0, u.budget - spent);
+        const pct = Math.min(100, Math.round((spent / u.budget) * 100));
+
+        return `
+          <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="w-9 h-9 rounded-2xl bg-${u.color}-50 text-${u.color}-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid ${u.icon}"></i>
+                </div>
+                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-700 text-[10px] font-bold rounded-full">${pct}% Terpakai</span>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-xs text-slate-900 font-heading">${u.name}</h4>
+                <div class="text-lg font-black text-slate-900 mt-1">Rp ${this.formatNumber(spent)}</div>
+                <div class="text-[10px] text-slate-400">Plafond: Rp ${this.formatNumber(u.budget)}</div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 mt-3">
+              <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden mb-1.5">
+                <div class="h-full bg-${u.color}-500 rounded-full" style="width: ${pct}%"></div>
+              </div>
+              <div class="flex items-center justify-between text-[10px] font-bold text-slate-500">
+                <span>Sisa Alokasi</span>
+                <span class="text-emerald-700">Rp ${this.formatNumber(sisa)}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    if (tableBody) {
+      if (requests.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="9" class="text-center py-8 text-slate-400">
+              <i class="fa-solid fa-receipt text-3xl mb-2 block"></i>
+              <p>Belum ada riwayat pembelanjaan material / upah tukang.</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tableBody.innerHTML = requests.map(r => `
+        <tr class="hover:bg-slate-50/80 transition">
+          <td class="px-4 py-3 text-center font-mono font-bold text-amber-800">${r.request_id}</td>
+          <td class="px-4 py-3">
+            <div class="font-extrabold text-slate-900">${r.location_name}</div>
+            <div class="text-[10px] text-slate-400">${r.unit_id.toUpperCase()} • ${r.category}</div>
+          </td>
+          <td class="px-4 py-3">
+            <span class="font-semibold text-slate-800">${r.material_name} (x${r.qty})</span>
+            ${r.labor_count > 0 ? `<div class="text-[10px] text-indigo-600">${r.labor_count} Tukang (${r.labor_days} hari)</div>` : ''}
+          </td>
+          <td class="px-4 py-3 text-right font-bold text-slate-800">Rp ${this.formatNumber(r.material_subtotal || (r.qty * r.unit_price))}</td>
+          <td class="px-4 py-3 text-right font-bold text-indigo-700">Rp ${this.formatNumber(r.labor_subtotal || 0)}</td>
+          <td class="px-4 py-3 text-right font-black text-slate-900 font-heading">Rp ${this.formatNumber(r.total_amount)}</td>
+          <td class="px-4 py-3 text-center text-slate-500">${r.scheduled_date || r.created_at}</td>
+          <td class="px-4 py-3 text-center">
+            <span class="px-2.5 py-1 text-[10px] font-bold rounded-full ${
+              r.status === 'Selesai' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+            }">
+              ${r.status}
+            </span>
+          </td>
+          <td class="px-4 py-3 text-center">
+            ${r.status !== 'Selesai' ? `
+              <button onclick="app.updateRenovRequestStatus('${r.request_id}', 'Selesai')" class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[10px] rounded-lg transition">
+                Selesai
+              </button>
+            ` : `
+              <span class="text-[10px] text-emerald-600 font-bold"><i class="fa-solid fa-check-double mr-1"></i>Tuntas</span>
+            `}
+          </td>
+        </tr>
+      `).join('');
+    }
+  },
+
+  renderRenovVendors() {
+    const container = document.getElementById('renovVendorsContainer');
+    if (!container) return;
+
+    const vendors = this.db.renov_vendors || INITIAL_DB.renov_vendors;
+
+    container.innerHTML = vendors.map(v => `
+      <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm card-hover flex flex-col justify-between space-y-4">
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 bg-amber-100 text-amber-900 text-[10px] font-bold rounded-full">
+              ${v.badge}
+            </span>
+            <div class="flex items-center space-x-1 text-amber-500 text-xs font-bold">
+              <i class="fa-solid fa-star"></i>
+              <span>${v.rating} (${v.review_count})</span>
+            </div>
+          </div>
+
+          <h4 class="font-extrabold text-base text-slate-900 font-heading">
+            ${v.name}
+          </h4>
+
+          <p class="text-xs text-slate-500 leading-relaxed">
+            ${v.description}
+          </p>
+
+          <div class="space-y-1.5 pt-2 border-t border-slate-100 text-xs text-slate-600">
+            <div class="flex items-center space-x-2">
+              <i class="fa-solid fa-user-tie text-amber-600 w-4"></i>
+              <span>Kontak: <b>${v.pic}</b></span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i class="fa-solid fa-shield-halved text-emerald-600 w-4"></i>
+              <span>Garansi: <b>${v.warranty}</b></span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i class="fa-solid fa-truck-fast text-sky-600 w-4"></i>
+              <span>SLA: <b>${v.sla}</b></span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i class="fa-solid fa-location-dot text-rose-500 w-4"></i>
+              <span class="truncate">${v.address}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100">
+          <a href="https://wa.me/${v.phone.replace(/[^0-9]/g, '')}?text=Halo%20${encodeURIComponent(v.name)},%20kami%20dari%20SARPRAS%20Sekolah%20Al-Imam%20ingin%20memesan%20material%20bangunan%20dan%20jasa%20tukang." target="_blank" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center justify-center space-x-2">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>Hubungi WhatsApp Mitra</span>
+          </a>
+        </div>
+      </div>
+    `).join('');
+  },
+
+  updateRenovRequestStatus(requestId, newStatus) {
+    const requests = this.db.renov_requests || [];
+    const req = requests.find(r => r.request_id === requestId);
+    if (!req) return;
+
+    req.status = newStatus;
+    if (newStatus === 'Selesai') {
+      req.completed_at = this.formatCurrentDateTime();
+
+      if (req.project_id && this.db.renov_projects) {
+        const prj = this.db.renov_projects.find(p => p.project_id === req.project_id);
+        if (prj) {
+          prj.progress_pct = 100;
+          prj.status = 'Selesai';
+        }
+      }
+    }
+
+    this.saveState();
+    this.showToast(`Status pengajuan ${requestId} berhasil diperbarui menjadi "${newStatus}"!`, 'success');
+    this.renderRenovServiceView();
   },
 
   printRenovReport() {
@@ -9080,11 +9397,8 @@ const app = {
     const totalLabor = requests.reduce((sum, r) => sum + (Number(r.labor_subtotal) || 0), 0);
 
     const modal = document.getElementById('renovPrintReportModal');
-    const modalTitle = document.getElementById('renovPrintReportModalTitle');
     const container = document.getElementById('renovPrintReportContent');
     if (!modal || !container) return;
-
-    if (modalTitle) modalTitle.textContent = 'Pratinjau Laporan Pengadaan Material & Jasa Tukang';
 
     const unitExpense = {
       unit_tk: requests.filter(r => r.unit_id === 'unit_tk').reduce((s, r) => s + (Number(r.total_amount) || 0), 0),

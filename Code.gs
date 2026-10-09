@@ -308,7 +308,7 @@ function handleApproveOrder(ss, payload) {
         stockSheet.appendRow([
           batchId,
           prodName,
-          reqItem.category || 'ATK & Kertas',
+          reqItem.category || 'ATK',
           Number(reqItem.qty) || 1,
           Number(reqItem.unit_price) || 0,
           dateInStr,
@@ -436,7 +436,7 @@ function handleRestockInventory(ss, payload) {
   const newRow = [
     batchId,
     batch.product_name,
-    batch.category || 'ATK & Kertas',
+    batch.category || 'ATK',
     Number(batch.stock_qty),
     Number(batch.unit_price),
     dateInStr,
@@ -454,7 +454,7 @@ function handleSaveProduct(ss, payload) {
   const mode = payload.mode || 'add';
   const originalName = payload.original_name || '';
   const newName = payload.product_name;
-  const category = payload.category || 'ATK & Kertas';
+  const category = payload.category || 'ATK';
   const price = Number(payload.unit_price) || 0;
   const imageUrl = payload.image_url || '';
 
@@ -505,7 +505,7 @@ function handleBulkSaveProducts(ss, payload) {
   const newRows = products.map(p => {
     const batchId = p.batch_id || `BATCH-${dateInStr.replace(/-/g, '').slice(0,6)}-${Math.floor(Math.random() * 900 + 100)}`;
     const prodName = p.product_name || p.name || 'Produk Tanpa Nama';
-    const category = p.category || 'ATK & Kertas';
+    const category = p.category || 'ATK';
     const stockQty = Number(p.stock_qty !== undefined ? p.stock_qty : (p.initial_stock !== undefined ? p.initial_stock : 10)) || 0;
     const unitPrice = Number(p.unit_price !== undefined ? p.unit_price : p.price) || 0;
     const dateIn = p.date_in || dateInStr;
@@ -870,20 +870,20 @@ function initDatabase() {
     stockSheet = ss.insertSheet(CONFIG.SHEETS.STOCK);
     stockSheet.appendRow(['Batch_ID', 'Product_Name', 'Category', 'Stock_Qty', 'Unit_Price', 'Date_In', 'Method', 'Status', 'Image_URL']);
     stockSheet.appendRow(['BATCH-202609-01', 'Alat kebersihan OB', 'Kebersihan & Sanitasi', 24, 100000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202609-02', 'Tinta white board 1 kelas/2/1botol', 'ATK & Kertas', 60, 15000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202609-03', 'Spidol', 'ATK & Kertas', 50, 10000, '2026-09-05', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202609-04', 'Kertas HVS F4 untuk admin guru', 'ATK & Kertas', 40, 60000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202609-05', 'Kertas HVS F4 untuk admin kantor', 'ATK & Kertas', 35, 50000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-02', 'Tinta white board 1 kelas/2/1botol', 'ATK', 60, 15000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-03', 'Spidol', 'ATK', 50, 10000, '2026-09-05', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-04', 'Kertas HVS F4 untuk admin guru', 'ATK', 40, 60000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-05', 'Kertas HVS F4 untuk admin kantor', 'ATK', 35, 50000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202609-06', 'Pewangi kelas', 'Kebersihan & Sanitasi', 50, 10000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202609-07', 'Gayung, Ember', 'Kebersihan & Sanitasi', 20, 35000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202609-08', 'Penghapus papan tulis', 'Perlengkapan Kelas', 40, 10000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202609-09', 'Tinta Printer Hitam dan warna 6 bln 1 set (4 btl)', 'Elektronik & IT', 15, 700000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202609-10', 'Fotocopy', 'Jasa & Operasional', 5000, 2000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1568667256549-094345857637?w=600&auto=format&fit=crop&q=80']);
     // SMP items
-    stockSheet.appendRow(['BATCH-202609-20', 'Kertas SPR', 'ATK & Kertas', 500, 500, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202609-21', 'Kertas Dinas (rim)', 'ATK & Kertas', 20, 50000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202609-22', 'Tinta white board 1 kelas @10 botol', 'ATK & Kertas', 36, 15000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202609-23', 'Pena, Pensil, Penghapus', 'ATK & Kertas', 30, 15000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-20', 'Kertas SPR', 'ATK', 500, 500, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-21', 'Kertas Dinas (rim)', 'ATK', 20, 50000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-22', 'Tinta white board 1 kelas @10 botol', 'ATK', 36, 15000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202609-23', 'Pena, Pensil, Penghapus', 'ATK', 30, 15000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202609-24', 'Sabun kamar mandi', 'Kebersihan & Sanitasi', 72, 10000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1585421514738-01798e348b17?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202609-25', 'Pewangi kamar mandi', 'Kebersihan & Sanitasi', 72, 10000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202609-26', 'Obat pel', 'Kebersihan & Sanitasi', 30, 15000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1585421514738-01798e348b17?w=600&auto=format&fit=crop&q=80']);
@@ -892,27 +892,27 @@ function initDatabase() {
     stockSheet.appendRow(['BATCH-202609-29', 'Maintenance AC', 'Jasa & Operasional', 56, 75000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202609-30', 'Alat Peraga Olah Raga dll', 'Perlengkapan Kelas', 5, 1000000, '2026-09-01', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80']);
     // SMP July & August 2026 Catalog
-    stockSheet.appendRow(['BATCH-202607-10', 'Kertas Concord A4', 'ATK & Kertas', 15, 13000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202607-11', 'Lem Kertas Stik', 'ATK & Kertas', 20, 26000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202607-12', 'Lem Fox Putih PVAc', 'ATK & Kertas', 24, 5000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202607-13', 'Lakban Bening', 'ATK & Kertas', 30, 8000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202607-14', 'Sticky Note Apple', 'ATK & Kertas', 36, 5600, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202607-10', 'Kertas Concord A4', 'ATK', 15, 13000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202607-11', 'Lem Kertas Stik', 'ATK', 20, 26000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202607-12', 'Lem Fox Putih PVAc', 'ATK', 24, 5000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202607-13', 'Lakban Bening', 'ATK', 30, 8000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202607-14', 'Sticky Note Apple', 'ATK', 36, 5600, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202607-15', 'Box Besar (Penyimpanan Barang)', 'Perlengkapan Kelas', 8, 128000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1595079672139-5470805086ae?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202607-16', 'Penggaris Besi 30 cm', 'ATK & Kertas', 25, 3500, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202607-16', 'Penggaris Besi 30 cm', 'ATK', 25, 3500, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202607-17', 'Pembalut Sanitasi UKS', 'Kebersihan & Sanitasi', 12, 21000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202607-18', 'Double Tape', 'ATK & Kertas', 30, 5000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202607-19', 'Lakban Hitam', 'ATK & Kertas', 20, 8000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202607-18', 'Double Tape', 'ATK', 30, 5000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202607-19', 'Lakban Hitam', 'ATK', 20, 8000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202607-20', 'Timbangan Berat Badan UKS', 'Perlengkapan Kelas', 4, 73900, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1590736969955-71cc94801759?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202607-21', 'Gunting Besar', 'ATK & Kertas', 18, 11500, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202607-22', 'Staples Besar + Isi (Set)', 'ATK & Kertas', 10, 42000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202607-21', 'Gunting Besar', 'ATK', 18, 11500, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202607-22', 'Staples Besar + Isi (Set)', 'ATK', 10, 42000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202607-23', 'Konektor Proyektor HDMI to Type C', 'Elektronik & IT', 6, 36000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202607-24', 'Bola Futsal Ortus', 'Perlengkapan Kelas', 4, 178695, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202607-25', 'Net Bola Voli', 'Perlengkapan Kelas', 3, 149847, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202607-26', 'Cons Kerucut (Set 20 pcs)', 'Perlengkapan Kelas', 6, 45000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202607-27', 'Gantungan Kunci Prakarya', 'Perlengkapan Kelas', 10, 11800, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202607-28', 'Rantai Pelor Biji Lada', 'Perlengkapan Kelas', 10, 11500, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202607-29', 'Pembolong Kertas', 'ATK & Kertas', 12, 29500, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202607-30', 'Cutter Kecil', 'ATK & Kertas', 24, 4000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202607-29', 'Pembolong Kertas', 'ATK', 12, 29500, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202607-30', 'Cutter Kecil', 'ATK', 24, 4000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202607-31', 'Klem Penjepit Kaca Lemari', 'Perlengkapan Kelas', 10, 12000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202607-32', 'Whiteboard Timeboard Kecil', 'Perlengkapan Kelas', 15, 11000, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202607-33', 'Tissue Box Kotak Meja', 'Kebersihan & Sanitasi', 20, 20900, '2026-07-29', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80']);
@@ -924,13 +924,13 @@ function initDatabase() {
     stockSheet.appendRow(['BATCH-202608-32', 'Cetak Banner Target Panahan', 'Perlengkapan Kelas', 5, 26000, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202608-33', 'Stella Pocket Jeruk', 'Kebersihan & Sanitasi', 36, 9700, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202608-34', 'Cable Ties', 'Elektronik & IT', 15, 4725, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202608-35', 'Tape Cutter Pemotong Lakban', 'ATK & Kertas', 10, 17000, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202608-35', 'Tape Cutter Pemotong Lakban', 'ATK', 10, 17000, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202608-36', 'Minyak Kayu Putih 120 ML (P3K)', 'Kebersihan & Sanitasi', 12, 40000, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202608-37', 'Promag Tablet Obat Sakit Maag Box', 'Kebersihan & Sanitasi', 10, 25000, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202608-38', 'Tissue Soft Pack', 'Kebersihan & Sanitasi', 20, 31000, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202608-39', 'Selempang Upacara Bendera', 'Perlengkapan Kelas', 30, 6500, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202608-40', 'Sarung Tangan Putih Upacara', 'Perlengkapan Kelas', 10, 38000, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80']);
-    stockSheet.appendRow(['BATCH-202608-41', 'Isi Spidol Papan Tulis Warna Hitam', 'ATK & Kertas', 24, 20500, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202608-41', 'Isi Spidol Papan Tulis Warna Hitam', 'ATK', 24, 20500, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202608-42', 'Cone Pelangi Marker (Pack 20pcs)', 'Perlengkapan Kelas', 6, 73200, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202608-43', 'Indikator Benedict Test Reducing IPA', 'Perlengkapan Kelas', 5, 21000, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202608-44', 'Larutan Iodine Uji Karbohidrat IPA', 'Perlengkapan Kelas', 5, 45000, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&auto=format&fit=crop&q=80']);
@@ -941,6 +941,34 @@ function initDatabase() {
     stockSheet.appendRow(['BATCH-202608-49', 'Wireless Mic Clip-on Kelas', 'Elektronik & IT', 5, 231734, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202608-50', 'Sticker Dinding Emas Kaligrafi', 'Perlengkapan Kelas', 20, 7372, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80']);
     stockSheet.appendRow(['BATCH-202608-51', 'Tirai Jendela Hitam 68x125 cm', 'Perlengkapan Kelas', 10, 53000, '2026-08-28', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80']);
+
+    // SMP September / October 2026 Procurement Catalog Additions
+    stockSheet.appendRow(['BATCH-202610-01', 'Kertas HVS A4', 'ATK', 2, 50000, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-02', 'Kertas HVS F4', 'ATK', 2, 50000, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-03', 'Kertas Concord A4', 'ATK', 10, 13000, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-04', 'Lakban Bening', 'ATK', 5, 8000, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-05', 'Double tape', 'ATK', 3, 5000, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-06', 'Lakban hitam', 'ATK', 2, 8000, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-07', 'Push pin', 'ATK', 6, 2800, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-08', 'Tinta Printer Epson hitam dan kuning seri L', 'Elektronik & IT', 2, 75000, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-09', 'Fiber hitam 0,6 x 1m', 'Perlengkapan Kelas', 3, 13500, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-10', 'Isi spidol papan tulis warna biru', 'ATK', 4, 20500, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-11', 'Spray botol pengharum ruangan', 'Kebersihan & Sanitasi', 8, 14800, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-12', 'stella pocket jeruk', 'Kebersihan & Sanitasi', 2, 47900, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-13', 'Larutan Lugol 250 ml', 'Perlengkapan Kelas', 1, 58000, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-14', 'Indikator Biuret botol', 'Perlengkapan Kelas', 1, 25500, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-15', 'WATER HEATER SHENG WEI /KOSS Random 350watt', 'Elektronik & IT', 6, 18000, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-16', 'Bola Basket Sz 5 akhwat', 'Perlengkapan Kelas', 1, 181000, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-17', 'Bola Basket Sz 6 ikhwan', 'Perlengkapan Kelas', 1, 248310, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-18', 'Bola Futsal Ortus', 'Perlengkapan Kelas', 1, 178695, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-19', 'Jam dinding', 'Perlengkapan Kelas', 1, 64900, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-20', 'Playmat', 'Perlengkapan Kelas', 2, 90000, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-21', 'Penutup pintu', 'Perlengkapan Kelas', 1, 25480, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-22', 'Rak serbaguna 3 susun', 'Perlengkapan Kelas', 1, 20000, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1595079672139-5470805086ae?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-23', 'Wallpaper panel gold kuning', 'Perlengkapan Kelas', 2, 33900, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-24', 'Rak Ambalan putih', 'Perlengkapan Kelas', 1, 32200, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1595079672139-5470805086ae?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-25', 'Tape dinding', 'Perlengkapan Kelas', 1, 18900, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80']);
+    stockSheet.appendRow(['BATCH-202610-26', '1 paket kebersihan(sapu+pengki+pel lantai)', 'Kebersihan & Sanitasi', 1, 30000, '2026-10-03', 'FIFO', 'Active', 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80']);
   }
 
   // 4. Orders Sheet

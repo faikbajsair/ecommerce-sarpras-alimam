@@ -437,6 +437,51 @@ const CURATED_PRODUCT_PHOTOS = [
     keywords: ['kemoceng', 'sulak', 'debu', 'bulu'],
     title: 'Kemoceng Bulu Pembersih Debu Meja',
     image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['basket', 'bola basket', 'sz 5', 'sz 6', 'akhwat', 'ikhwan', 'molten', 'mikasa'],
+    title: 'Bola Basket Standar Pertandingan',
+    image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['lugol', 'biuret', 'larutan', 'indikator', 'praktikum', 'ipa', 'laboratorium'],
+    title: 'Larutan & Reagen Laboratorium IPA',
+    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['water heater', 'pemanas', 'sheng wei', 'koss', '350watt', 'heater'],
+    title: 'Water Heater Pemanas Air Celup',
+    image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['wallpaper', 'wallpaper panel', 'panel gold', 'dinding'],
+    title: 'Wallpaper Panel Dekorasi Dinding',
+    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['rak', 'rak serbaguna', 'rak 3 susun', 'rak susun', 'ambalan', 'rak ambalan'],
+    title: 'Rak Serbaguna & Rak Ambalan Dinding',
+    image: 'https://images.unsplash.com/photo-1595079672139-5470805086ae?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['penutup pintu', 'door stopper', 'door seal', 'bawah pintu'],
+    title: 'Penutup Bawah Pintu / Door Seal',
+    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['tape dinding', 'nano tape', 'magic tape', 'double tape'],
+    title: 'Tape Dinding Transparan Kuat',
+    image: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['push pin', 'pines', 'paku mading', 'thumb tack'],
+    title: 'Push Pin Paku Mading Softboard',
+    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    keywords: ['spray botol', 'pengharum ruangan', 'air freshener', 'spray'],
+    title: 'Spray Botol Pengharum Ruangan',
+    image: 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80'
   }
 ];
 
@@ -447,11 +492,11 @@ const INITIAL_DB = {
   cms_settings: JSON.parse(JSON.stringify(DEFAULT_CMS_SETTINGS)),
 
   users: [
-    { unit_id: 'unit_tk', username: 'tk_alimam', unit_name: 'TK Islam Al-Imam', role: 'Unit' },
-    { unit_id: 'unit_sd', username: 'sd_alimam', unit_name: 'SD Islam Al-Imam', role: 'Unit' },
-    { unit_id: 'unit_smp', username: 'smp_alimam', unit_name: 'SMP Islam Al-Imam', role: 'Unit' },
-    { unit_id: 'bendahara', username: 'bendahara_yayasan', unit_name: 'Bendahara Yayasan', role: 'Bendahara' },
-    { unit_id: 'admin', username: 'admin_sarpras', unit_name: 'Admin Logistik & SARPRAS', role: 'Admin' }
+    { unit_id: 'unit_tk', username: 'tk_alimam', password: '123', unit_name: 'TK Islam Al-Imam', role: 'Unit' },
+    { unit_id: 'unit_sd', username: 'sd_alimam', password: '123', unit_name: 'SD Islam Al-Imam', role: 'Unit' },
+    { unit_id: 'unit_smp', username: 'smp_alimam', password: '123', unit_name: 'SMP Islam Al-Imam', role: 'Unit' },
+    { unit_id: 'bendahara', username: 'bendahara_yayasan', password: '123', unit_name: 'Bendahara Yayasan', role: 'Bendahara' },
+    { unit_id: 'admin', username: 'admin_sarpras', password: '123', unit_name: 'Admin / Pelaksana Harian SARPRAS', role: 'Admin' }
   ],
   
   rapbs_poin: [
@@ -471,7 +516,7 @@ const INITIAL_DB = {
       description: 'Rincian alokasi belanja operasional sentra, mainan edukatif APE, dan pemeliharaan sarpras TK Islam Al-Imam Tahun Ajaran 2026/2027.',
       items: [
         { no: 1, name: 'Maintenance AC (Cuci 6 Unit)', unit_price: 85000, qty_req: 6, qty_people: 1, total: 510000, category: 'Jasa & Operasional', image_url: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&auto=format&fit=crop&q=80' },
-        { no: 2, name: 'Kertas HVS & ATK Sentra / Kelas PG-TK', unit_price: 50000, qty_req: 10, qty_people: 7, total: 3500000, category: 'ATK & Kertas', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
+        { no: 2, name: 'Kertas HVS & ATK Sentra / Kelas PG-TK', unit_price: 50000, qty_req: 10, qty_people: 7, total: 3500000, category: 'ATK', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
         { no: 3, name: 'Kebutuhan Alat Kebersihan & Sanitasi Anak', unit_price: 250000, qty_req: 10, qty_people: 1, total: 2500000, category: 'Kebersihan & Sanitasi', image_url: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80' },
         { no: 4, name: 'Mainan Edukatif & Alat Peraga Edukasi (APE)', unit_price: 1000000, qty_req: 4, qty_people: 1, total: 4000000, category: 'Perlengkapan Kelas', image_url: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80' },
         { no: 5, name: 'Perlengkapan Kelas & P3K Anak', unit_price: 500000, qty_req: 4, qty_people: 1, total: 2000000, category: 'Perlengkapan Kelas', image_url: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80' },
@@ -487,10 +532,10 @@ const INITIAL_DB = {
       description: 'Rincian alokasi belanja operasional dan sarana prasarana ringan SD Islam Al-Imam Tahun Ajaran 2026/2027.',
       items: [
         { no: 1, name: 'Alat kebersihan OB', unit_price: 100000, qty_req: 12, qty_people: 2, total: 2400000, category: 'Kebersihan & Sanitasi', image_url: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80' },
-        { no: 2, name: 'Tinta white board 1 kelas/2/1botol', unit_price: 15000, qty_req: 13, qty_people: 20, total: 3900000, category: 'ATK & Kertas', image_url: 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80' },
-        { no: 3, name: 'Spidol', unit_price: 10000, qty_req: 13, qty_people: 1, total: 130000, category: 'ATK & Kertas', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
-        { no: 4, name: 'Kertas HVS F4 untuk admin guru', unit_price: 60000, qty_req: 13, qty_people: 12, total: 9360000, category: 'ATK & Kertas', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
-        { no: 5, name: 'Kertas HVS F4 untuk admin kantor', unit_price: 50000, qty_req: 13, qty_people: 12, total: 7800000, category: 'ATK & Kertas', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+        { no: 2, name: 'Tinta white board 1 kelas/2/1botol', unit_price: 15000, qty_req: 13, qty_people: 20, total: 3900000, category: 'ATK', image_url: 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80' },
+        { no: 3, name: 'Spidol', unit_price: 10000, qty_req: 13, qty_people: 1, total: 130000, category: 'ATK', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
+        { no: 4, name: 'Kertas HVS F4 untuk admin guru', unit_price: 60000, qty_req: 13, qty_people: 12, total: 9360000, category: 'ATK', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
+        { no: 5, name: 'Kertas HVS F4 untuk admin kantor', unit_price: 50000, qty_req: 13, qty_people: 12, total: 7800000, category: 'ATK', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
         { no: 6, name: 'Pewangi kelas', unit_price: 10000, qty_req: 13, qty_people: 12, total: 1560000, category: 'Kebersihan & Sanitasi', image_url: 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80' },
         { no: 7, name: 'Gayung, Ember', unit_price: 35000, qty_req: 4, qty_people: 1, total: 140000, category: 'Kebersihan & Sanitasi', image_url: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80' },
         { no: 8, name: 'Penghapus papan tulis', unit_price: 10000, qty_req: 13, qty_people: 1, total: 130000, category: 'Perlengkapan Kelas', image_url: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80' },
@@ -506,13 +551,13 @@ const INITIAL_DB = {
       academic_year: '2026/2027',
       description: 'Rincian alokasi belanja ATK, kebutuhan kelas, dan operasional sarpras SMP Islam Al-Imam Tahun Ajaran 2026/2027.',
       items: [
-        { no: 1, name: 'Kertas SPR', unit_price: 500, qty_req: 3, qty_people: 140, total: 210000, category: 'ATK & Kertas', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
-        { no: 2, name: 'Kertas Dinas (rim)', unit_price: 50000, qty_req: 3, qty_people: 2, total: 300000, category: 'ATK & Kertas', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
-        { no: 3, name: 'Tinta white board 1 kelas @10 botol', unit_price: 15000, qty_req: 6, qty_people: 6, total: 540000, category: 'ATK & Kertas', image_url: 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80' },
-        { no: 4, name: 'Pena, Pensil, Penghapus', unit_price: 15000, qty_req: 3, qty_people: 10, total: 450000, category: 'ATK & Kertas', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
-        { no: 5, name: 'Spidol', unit_price: 15000, qty_req: 6, qty_people: 6, total: 540000, category: 'ATK & Kertas', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
-        { no: 6, name: 'Kertas HVS F4 untuk admin guru', unit_price: 50000, qty_req: 10, qty_people: 5, total: 2500000, category: 'ATK & Kertas', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
-        { no: 7, name: 'Kertas HVS F4 untuk admin kantor', unit_price: 50000, qty_req: 10, qty_people: 5, total: 2500000, category: 'ATK & Kertas', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+        { no: 1, name: 'Kertas SPR', unit_price: 500, qty_req: 3, qty_people: 140, total: 210000, category: 'ATK', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+        { no: 2, name: 'Kertas Dinas (rim)', unit_price: 50000, qty_req: 3, qty_people: 2, total: 300000, category: 'ATK', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
+        { no: 3, name: 'Tinta white board 1 kelas @10 botol', unit_price: 15000, qty_req: 6, qty_people: 6, total: 540000, category: 'ATK', image_url: 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80' },
+        { no: 4, name: 'Pena, Pensil, Penghapus', unit_price: 15000, qty_req: 3, qty_people: 10, total: 450000, category: 'ATK', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
+        { no: 5, name: 'Spidol', unit_price: 15000, qty_req: 6, qty_people: 6, total: 540000, category: 'ATK', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
+        { no: 6, name: 'Kertas HVS F4 untuk admin guru', unit_price: 50000, qty_req: 10, qty_people: 5, total: 2500000, category: 'ATK', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
+        { no: 7, name: 'Kertas HVS F4 untuk admin kantor', unit_price: 50000, qty_req: 10, qty_people: 5, total: 2500000, category: 'ATK', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
         { no: 8, name: 'Sabun kamar mandi', unit_price: 10000, qty_req: 6, qty_people: 12, total: 720000, category: 'Kebersihan & Sanitasi', image_url: 'https://images.unsplash.com/photo-1585421514738-01798e348b17?w=600&auto=format&fit=crop&q=80' },
         { no: 9, name: 'Sabun Cuci tangan', unit_price: 13000, qty_req: 6, qty_people: 12, total: 936000, category: 'Kebersihan & Sanitasi', image_url: 'https://images.unsplash.com/photo-1608248597359-bb4f5e08df05?w=600&auto=format&fit=crop&q=80' },
         { no: 10, name: 'Pewangi kamar mandi', unit_price: 10000, qty_req: 6, qty_people: 12, total: 720000, category: 'Kebersihan & Sanitasi', image_url: 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80' },
@@ -529,20 +574,20 @@ const INITIAL_DB = {
 
   stock_inventory: [
     { batch_id: 'BATCH-202609-01', product_name: 'Alat kebersihan OB', category: 'Kebersihan & Sanitasi', stock_qty: 24, unit_price: 100000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202609-02', product_name: 'Tinta white board 1 kelas/2/1botol', category: 'ATK & Kertas', stock_qty: 60, unit_price: 15000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202609-03', product_name: 'Spidol', category: 'ATK & Kertas', stock_qty: 50, unit_price: 10000, date_in: '2026-09-05', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202609-04', product_name: 'Kertas HVS F4 untuk admin guru', category: 'ATK & Kertas', stock_qty: 40, unit_price: 50000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202609-05', product_name: 'Kertas HVS F4 untuk admin kantor', category: 'ATK & Kertas', stock_qty: 35, unit_price: 50000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202609-02', product_name: 'Tinta white board 1 kelas/2/1botol', category: 'ATK', stock_qty: 60, unit_price: 15000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202609-03', product_name: 'Spidol', category: 'ATK', stock_qty: 50, unit_price: 10000, date_in: '2026-09-05', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202609-04', product_name: 'Kertas HVS F4 untuk admin guru', category: 'ATK', stock_qty: 40, unit_price: 50000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202609-05', product_name: 'Kertas HVS F4 untuk admin kantor', category: 'ATK', stock_qty: 35, unit_price: 50000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202609-06', product_name: 'Pewangi kelas', category: 'Kebersihan & Sanitasi', stock_qty: 50, unit_price: 10000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202609-07', product_name: 'Gayung, Ember', category: 'Kebersihan & Sanitasi', stock_qty: 20, unit_price: 35000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202609-08', product_name: 'Penghapus papan tulis', category: 'Perlengkapan Kelas', stock_qty: 40, unit_price: 10000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202609-09', product_name: 'Tinta Printer Hitam dan warna 6 bln 1 set (4 btl)', category: 'Elektronik & IT', stock_qty: 15, unit_price: 700000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202609-10', product_name: 'Fotocopy', category: 'Jasa & Operasional', stock_qty: 5000, unit_price: 2000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1568667256549-094345857637?w=600&auto=format&fit=crop&q=80' },
     // SMP specific items
-    { batch_id: 'BATCH-202609-20', product_name: 'Kertas SPR', category: 'ATK & Kertas', stock_qty: 500, unit_price: 500, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202609-21', product_name: 'Kertas Dinas (rim)', category: 'ATK & Kertas', stock_qty: 20, unit_price: 50000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202609-22', product_name: 'Tinta white board 1 kelas @10 botol', category: 'ATK & Kertas', stock_qty: 36, unit_price: 15000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202609-23', product_name: 'Pena, Pensil, Penghapus', category: 'ATK & Kertas', stock_qty: 30, unit_price: 15000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202609-20', product_name: 'Kertas SPR', category: 'ATK', stock_qty: 500, unit_price: 500, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202609-21', product_name: 'Kertas Dinas (rim)', category: 'ATK', stock_qty: 20, unit_price: 50000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202609-22', product_name: 'Tinta white board 1 kelas @10 botol', category: 'ATK', stock_qty: 36, unit_price: 15000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202609-23', product_name: 'Pena, Pensil, Penghapus', category: 'ATK', stock_qty: 30, unit_price: 15000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202609-24', product_name: 'Sabun kamar mandi', category: 'Kebersihan & Sanitasi', stock_qty: 72, unit_price: 10000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1585421514738-01798e348b17?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202609-25', product_name: 'Pewangi kamar mandi', category: 'Kebersihan & Sanitasi', stock_qty: 72, unit_price: 10000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202609-26', product_name: 'Obat pel', category: 'Kebersihan & Sanitasi', stock_qty: 30, unit_price: 15000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1585421514738-01798e348b17?w=600&auto=format&fit=crop&q=80' },
@@ -550,41 +595,41 @@ const INITIAL_DB = {
     { batch_id: 'BATCH-202609-28', product_name: 'Kebutuhan Kebersihan', category: 'Kebersihan & Sanitasi', stock_qty: 12, unit_price: 300000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202609-29', product_name: 'Maintenance AC', category: 'Jasa & Operasional', stock_qty: 56, unit_price: 75000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202609-30', product_name: 'Alat Peraga Olah Raga dll', category: 'Perlengkapan Kelas', stock_qty: 5, unit_price: 1000000, date_in: '2026-09-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202607-01', product_name: 'Spidol Whiteboard Snowman Hitam', category: 'ATK & Kertas', stock_qty: 0, unit_price: 8500, date_in: '2026-07-10', method: 'FIFO', status: 'Empty', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202608-04', product_name: 'Spidol Whiteboard Snowman Hitam', category: 'ATK & Kertas', stock_qty: 12, unit_price: 9000, date_in: '2026-08-15', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202608-01', product_name: 'Kertas HVS A4 80gr PaperOne (Rim)', category: 'ATK & Kertas', stock_qty: 25, unit_price: 52000, date_in: '2026-08-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202609-11', product_name: 'Kertas HVS A4 80gr PaperOne (Rim)', category: 'ATK & Kertas', stock_qty: 40, unit_price: 54000, date_in: '2026-09-02', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-01', product_name: 'Spidol Whiteboard Snowman Hitam', category: 'ATK', stock_qty: 0, unit_price: 8500, date_in: '2026-07-10', method: 'FIFO', status: 'Empty', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-04', product_name: 'Spidol Whiteboard Snowman Hitam', category: 'ATK', stock_qty: 12, unit_price: 9000, date_in: '2026-08-15', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-01', product_name: 'Kertas HVS A4 80gr PaperOne (Rim)', category: 'ATK', stock_qty: 25, unit_price: 52000, date_in: '2026-08-01', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202609-11', product_name: 'Kertas HVS A4 80gr PaperOne (Rim)', category: 'ATK', stock_qty: 40, unit_price: 54000, date_in: '2026-09-02', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-08', product_name: 'Tinta Epson 003 Black Original', category: 'Elektronik & IT', stock_qty: 8, unit_price: 85000, date_in: '2026-08-20', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-09', product_name: 'Tinta Epson 003 Color Set (C,M,Y)', category: 'Elektronik & IT', stock_qty: 5, unit_price: 245000, date_in: '2026-08-20', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202609-12', product_name: 'Cairan Pembersih Lantai Wipol Karbol 5 Liter', category: 'Kebersihan & Sanitasi', stock_qty: 10, unit_price: 78000, date_in: '2026-09-08', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1585421514738-01798e348b17?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202609-13', product_name: 'Sabun Cuci Tangan Lifebuoy Handwash 4 Liter', category: 'Kebersihan & Sanitasi', stock_qty: 6, unit_price: 110000, date_in: '2026-09-08', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1608248597359-bb4f5e08df05?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-11', product_name: 'Sapu Lantai Ijuk Dragon & Pengki Set', category: 'Kebersihan & Sanitasi', stock_qty: 15, unit_price: 38000, date_in: '2026-08-12', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-15', product_name: 'Kabel HDMI 10 Meter Vention Braided', category: 'Elektronik & IT', stock_qty: 4, unit_price: 135000, date_in: '2026-08-25', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202608-20', product_name: 'Stopmap Folio Kertas Sinar Dunia (Pack 50 pcs)', category: 'ATK & Kertas', stock_qty: 14, unit_price: 65000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-20', product_name: 'Stopmap Folio Kertas Sinar Dunia (Pack 50 pcs)', category: 'ATK', stock_qty: 14, unit_price: 65000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202607-02', product_name: 'Baterai Mic Wireless Alkaline AA (Pack 4)', category: 'Elektronik & IT', stock_qty: 0, unit_price: 32000, date_in: '2026-07-15', method: 'FIFO', status: 'Empty', image_url: 'https://images.unsplash.com/photo-1619725002198-6a689b72f41d?w=600&auto=format&fit=crop&q=80' },
     
     // SMP July & August 2026 Procurement Catalog Additions
-    { batch_id: 'BATCH-202607-10', product_name: 'Kertas Concord A4', category: 'ATK & Kertas', stock_qty: 15, unit_price: 13000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202607-11', product_name: 'Lem Kertas Stik', category: 'ATK & Kertas', stock_qty: 20, unit_price: 26000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202607-12', product_name: 'Lem Fox Putih PVAc', category: 'ATK & Kertas', stock_qty: 24, unit_price: 5000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202607-13', product_name: 'Lakban Bening', category: 'ATK & Kertas', stock_qty: 30, unit_price: 8000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202607-14', product_name: 'Sticky Note Apple', category: 'ATK & Kertas', stock_qty: 36, unit_price: 5600, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-10', product_name: 'Kertas Concord A4', category: 'ATK', stock_qty: 15, unit_price: 13000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-11', product_name: 'Lem Kertas Stik', category: 'ATK', stock_qty: 20, unit_price: 26000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-12', product_name: 'Lem Fox Putih PVAc', category: 'ATK', stock_qty: 24, unit_price: 5000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-13', product_name: 'Lakban Bening', category: 'ATK', stock_qty: 30, unit_price: 8000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-14', product_name: 'Sticky Note Apple', category: 'ATK', stock_qty: 36, unit_price: 5600, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202607-15', product_name: 'Box Besar (Penyimpanan Barang)', category: 'Perlengkapan Kelas', stock_qty: 8, unit_price: 128000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1595079672139-5470805086ae?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202607-16', product_name: 'Penggaris Besi 30 cm', category: 'ATK & Kertas', stock_qty: 25, unit_price: 3500, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-16', product_name: 'Penggaris Besi 30 cm', category: 'ATK', stock_qty: 25, unit_price: 3500, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202607-17', product_name: 'Pembalut Sanitasi UKS', category: 'Kebersihan & Sanitasi', stock_qty: 12, unit_price: 21000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202607-18', product_name: 'Double Tape', category: 'ATK & Kertas', stock_qty: 30, unit_price: 5000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202607-19', product_name: 'Lakban Hitam', category: 'ATK & Kertas', stock_qty: 20, unit_price: 8000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-18', product_name: 'Double Tape', category: 'ATK', stock_qty: 30, unit_price: 5000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-19', product_name: 'Lakban Hitam', category: 'ATK', stock_qty: 20, unit_price: 8000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202607-20', product_name: 'Timbangan Berat Badan UKS', category: 'Perlengkapan Kelas', stock_qty: 4, unit_price: 73900, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1590736969955-71cc94801759?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202607-21', product_name: 'Gunting Besar', category: 'ATK & Kertas', stock_qty: 18, unit_price: 11500, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202607-22', product_name: 'Staples Besar + Isi (Set)', category: 'ATK & Kertas', stock_qty: 10, unit_price: 42000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-21', product_name: 'Gunting Besar', category: 'ATK', stock_qty: 18, unit_price: 11500, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-22', product_name: 'Staples Besar + Isi (Set)', category: 'ATK', stock_qty: 10, unit_price: 42000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202607-23', product_name: 'Konektor Proyektor HDMI to Type C', category: 'Elektronik & IT', stock_qty: 6, unit_price: 36000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202607-24', product_name: 'Bola Futsal Ortus', category: 'Perlengkapan Kelas', stock_qty: 4, unit_price: 178695, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202607-25', product_name: 'Net Bola Voli', category: 'Perlengkapan Kelas', stock_qty: 3, unit_price: 149847, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202607-26', product_name: 'Cons Kerucut (Set 20 pcs)', category: 'Perlengkapan Kelas', stock_qty: 6, unit_price: 45000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202607-27', product_name: 'Gantungan Kunci Prakarya', category: 'Perlengkapan Kelas', stock_qty: 10, unit_price: 11800, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202607-28', product_name: 'Rantai Pelor Biji Lada', category: 'Perlengkapan Kelas', stock_qty: 10, unit_price: 11500, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202607-29', product_name: 'Pembolong Kertas', category: 'ATK & Kertas', stock_qty: 12, unit_price: 29500, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202607-30', product_name: 'Cutter Kecil', category: 'ATK & Kertas', stock_qty: 24, unit_price: 4000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-29', product_name: 'Pembolong Kertas', category: 'ATK', stock_qty: 12, unit_price: 29500, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202607-30', product_name: 'Cutter Kecil', category: 'ATK', stock_qty: 24, unit_price: 4000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202607-31', product_name: 'Klem Penjepit Kaca Lemari', category: 'Perlengkapan Kelas', stock_qty: 10, unit_price: 12000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202607-32', product_name: 'Whiteboard Timeboard Kecil', category: 'Perlengkapan Kelas', stock_qty: 15, unit_price: 11000, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202607-33', product_name: 'Tissue Box Kotak Meja', category: 'Kebersihan & Sanitasi', stock_qty: 20, unit_price: 20900, date_in: '2026-07-29', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80' },
@@ -596,13 +641,13 @@ const INITIAL_DB = {
     { batch_id: 'BATCH-202608-32', product_name: 'Cetak Banner Target Panahan', category: 'Perlengkapan Kelas', stock_qty: 5, unit_price: 26000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-33', product_name: 'Stella Pocket Jeruk', category: 'Kebersihan & Sanitasi', stock_qty: 36, unit_price: 9700, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-34', product_name: 'Cable Ties', category: 'Elektronik & IT', stock_qty: 15, unit_price: 4725, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202608-35', product_name: 'Tape Cutter Pemotong Lakban', category: 'ATK & Kertas', stock_qty: 10, unit_price: 17000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-35', product_name: 'Tape Cutter Pemotong Lakban', category: 'ATK', stock_qty: 10, unit_price: 17000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-36', product_name: 'Minyak Kayu Putih 120 ML (P3K)', category: 'Kebersihan & Sanitasi', stock_qty: 12, unit_price: 40000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-37', product_name: 'Promag Tablet Obat Sakit Maag Box', category: 'Kebersihan & Sanitasi', stock_qty: 10, unit_price: 25000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-38', product_name: 'Tissue Soft Pack', category: 'Kebersihan & Sanitasi', stock_qty: 20, unit_price: 31000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-39', product_name: 'Selempang Upacara Bendera', category: 'Perlengkapan Kelas', stock_qty: 30, unit_price: 6500, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-40', product_name: 'Sarung Tangan Putih Upacara', category: 'Perlengkapan Kelas', stock_qty: 10, unit_price: 38000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202608-41', product_name: 'Isi Spidol Papan Tulis Warna Hitam', category: 'ATK & Kertas', stock_qty: 24, unit_price: 20500, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202608-41', product_name: 'Isi Spidol Papan Tulis Warna Hitam', category: 'ATK', stock_qty: 24, unit_price: 20500, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-42', product_name: 'Cone Pelangi Marker (Pack 20pcs)', category: 'Perlengkapan Kelas', stock_qty: 6, unit_price: 73200, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-43', product_name: 'Indikator Benedict Test Reducing IPA', category: 'Perlengkapan Kelas', stock_qty: 5, unit_price: 21000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-44', product_name: 'Larutan Iodine Uji Karbohidrat IPA', category: 'Perlengkapan Kelas', stock_qty: 5, unit_price: 45000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&auto=format&fit=crop&q=80' },
@@ -612,7 +657,35 @@ const INITIAL_DB = {
     { batch_id: 'BATCH-202608-48', product_name: 'Kemoceng Bulu Pembersih Debu', category: 'Kebersihan & Sanitasi', stock_qty: 20, unit_price: 8500, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-49', product_name: 'Wireless Mic Clip-on Kelas', category: 'Elektronik & IT', stock_qty: 5, unit_price: 231734, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202608-50', product_name: 'Sticker Dinding Emas Kaligrafi', category: 'Perlengkapan Kelas', stock_qty: 20, unit_price: 7372, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202608-51', product_name: 'Tirai Jendela Hitam 68x125 cm', category: 'Perlengkapan Kelas', stock_qty: 10, unit_price: 53000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80' }
+    { batch_id: 'BATCH-202608-51', product_name: 'Tirai Jendela Hitam 68x125 cm', category: 'Perlengkapan Kelas', stock_qty: 10, unit_price: 53000, date_in: '2026-08-28', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80' },
+
+    // SMP September / October 2026 Procurement Catalog Additions
+    { batch_id: 'BATCH-202610-01', product_name: 'Kertas HVS A4', category: 'ATK', stock_qty: 2, unit_price: 50000, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-02', product_name: 'Kertas HVS F4', category: 'ATK', stock_qty: 2, unit_price: 50000, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-03', product_name: 'Kertas Concord A4', category: 'ATK', stock_qty: 10, unit_price: 13000, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-04', product_name: 'Lakban Bening', category: 'ATK', stock_qty: 5, unit_price: 8000, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-05', product_name: 'Double tape', category: 'ATK', stock_qty: 3, unit_price: 5000, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-06', product_name: 'Lakban hitam', category: 'ATK', stock_qty: 2, unit_price: 8000, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-07', product_name: 'Push pin', category: 'ATK', stock_qty: 6, unit_price: 2800, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-08', product_name: 'Tinta Printer Epson hitam dan kuning seri L', category: 'Elektronik & IT', stock_qty: 2, unit_price: 75000, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-09', product_name: 'Fiber hitam 0,6 x 1m', category: 'Perlengkapan Kelas', stock_qty: 3, unit_price: 13500, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-10', product_name: 'Isi spidol papan tulis warna biru', category: 'ATK', stock_qty: 4, unit_price: 20500, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-11', product_name: 'Spray botol pengharum ruangan', category: 'Kebersihan & Sanitasi', stock_qty: 8, unit_price: 14800, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-12', product_name: 'stella pocket jeruk', category: 'Kebersihan & Sanitasi', stock_qty: 2, unit_price: 47900, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-13', product_name: 'Larutan Lugol 250 ml', category: 'Perlengkapan Kelas', stock_qty: 1, unit_price: 58000, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-14', product_name: 'Indikator Biuret botol', category: 'Perlengkapan Kelas', stock_qty: 1, unit_price: 25500, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-15', product_name: 'WATER HEATER SHENG WEI /KOSS Random 350watt', category: 'Elektronik & IT', stock_qty: 6, unit_price: 18000, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-16', product_name: 'Bola Basket Sz 5 akhwat', category: 'Perlengkapan Kelas', stock_qty: 1, unit_price: 181000, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-17', product_name: 'Bola Basket Sz 6 ikhwan', category: 'Perlengkapan Kelas', stock_qty: 1, unit_price: 248310, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-18', product_name: 'Bola Futsal Ortus', category: 'Perlengkapan Kelas', stock_qty: 1, unit_price: 178695, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-19', product_name: 'Jam dinding', category: 'Perlengkapan Kelas', stock_qty: 1, unit_price: 64900, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-20', product_name: 'Playmat', category: 'Perlengkapan Kelas', stock_qty: 2, unit_price: 90000, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-21', product_name: 'Penutup pintu', category: 'Perlengkapan Kelas', stock_qty: 1, unit_price: 25480, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-22', product_name: 'Rak serbaguna 3 susun', category: 'Perlengkapan Kelas', stock_qty: 1, unit_price: 20000, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1595079672139-5470805086ae?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-23', product_name: 'Wallpaper panel gold kuning', category: 'Perlengkapan Kelas', stock_qty: 2, unit_price: 33900, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-24', product_name: 'Rak Ambalan putih', category: 'Perlengkapan Kelas', stock_qty: 1, unit_price: 32200, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1595079672139-5470805086ae?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-25', product_name: 'Tape dinding', category: 'Perlengkapan Kelas', stock_qty: 1, unit_price: 18900, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
+    { batch_id: 'BATCH-202610-26', product_name: '1 paket kebersihan(sapu+pengki+pel lantai)', category: 'Kebersihan & Sanitasi', stock_qty: 1, unit_price: 30000, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80' }
   ],
 
   orders: [
@@ -624,29 +697,29 @@ const INITIAL_DB = {
         { product_name: 'Cleaning AC Kantor Guru (Biaya 50% SMP)', qty: 4, unit_price: 37500, subtotal: 150000, category: 'Jasa & Operasional', room_target: 'Kantor Guru (Sharing SD & SMP 50%)', status: 'Approved' },
         { product_name: 'Tambah Freon AC (Biaya 50% SMP)', qty: 1, unit_price: 125000, subtotal: 125000, category: 'Jasa & Operasional', room_target: 'Kantor Guru (Sharing SD & SMP 50%)', status: 'Approved' },
         { product_name: 'Jasa Perbaikan AC (Biaya 50% SMP)', qty: 1, unit_price: 75000, subtotal: 75000, category: 'Jasa & Operasional', room_target: 'Kantor Guru (Sharing SD & SMP 50%)', status: 'Approved' },
-        { product_name: 'Kertas HVS A4', qty: 2, unit_price: 50000, subtotal: 100000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/2GF2dak', status: 'Approved' },
-        { product_name: 'Kertas Concord A4', qty: 5, unit_price: 13000, subtotal: 65000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/BSzWL5n', status: 'Approved' },
-        { product_name: 'Spidol Hitam Whiteboard', qty: 1, unit_price: 60000, subtotal: 60000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/TrD9k6Z', status: 'Approved' },
-        { product_name: 'Lem Kertas Stik', qty: 1, unit_price: 26000, subtotal: 26000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/mu4jAvN', status: 'Approved' },
-        { product_name: 'Lem Fox Putih PVAc', qty: 2, unit_price: 5000, subtotal: 10000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/4rCBP3F', status: 'Approved' },
-        { product_name: 'Lakban Bening', qty: 5, unit_price: 8000, subtotal: 40000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/W8v4jaf', status: 'Approved' },
-        { product_name: 'Sticky Note Apple', qty: 6, unit_price: 5600, subtotal: 33600, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/hi4hH9F', status: 'Approved' },
+        { product_name: 'Kertas HVS A4', qty: 2, unit_price: 50000, subtotal: 100000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/2GF2dak', status: 'Approved' },
+        { product_name: 'Kertas Concord A4', qty: 5, unit_price: 13000, subtotal: 65000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/BSzWL5n', status: 'Approved' },
+        { product_name: 'Spidol Hitam Whiteboard', qty: 1, unit_price: 60000, subtotal: 60000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/TrD9k6Z', status: 'Approved' },
+        { product_name: 'Lem Kertas Stik', qty: 1, unit_price: 26000, subtotal: 26000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/mu4jAvN', status: 'Approved' },
+        { product_name: 'Lem Fox Putih PVAc', qty: 2, unit_price: 5000, subtotal: 10000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/4rCBP3F', status: 'Approved' },
+        { product_name: 'Lakban Bening', qty: 5, unit_price: 8000, subtotal: 40000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/W8v4jaf', status: 'Approved' },
+        { product_name: 'Sticky Note Apple', qty: 6, unit_price: 5600, subtotal: 33600, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/hi4hH9F', status: 'Approved' },
         { product_name: 'Box Besar (Penyimpanan Barang)', qty: 1, unit_price: 128000, subtotal: 128000, category: 'Perlengkapan Kelas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/c5H67hFX', status: 'Approved' },
-        { product_name: 'Penggaris Besi 30 cm', qty: 6, unit_price: 3500, subtotal: 21000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/29cqa7Ur', status: 'Approved' },
+        { product_name: 'Penggaris Besi 30 cm', qty: 6, unit_price: 3500, subtotal: 21000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/29cqa7Ur', status: 'Approved' },
         { product_name: 'Pembalut Sanitasi UKS', qty: 1, unit_price: 21000, subtotal: 21000, category: 'Kebersihan & Sanitasi', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/4kF8VKC', status: 'Approved' },
-        { product_name: 'Double Tape', qty: 3, unit_price: 5000, subtotal: 15000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/2NcH7px', status: 'Approved' },
-        { product_name: 'Lakban Hitam', qty: 2, unit_price: 8000, subtotal: 16000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/5Mh3gvG', status: 'Approved' },
+        { product_name: 'Double Tape', qty: 3, unit_price: 5000, subtotal: 15000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/2NcH7px', status: 'Approved' },
+        { product_name: 'Lakban Hitam', qty: 2, unit_price: 8000, subtotal: 16000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/5Mh3gvG', status: 'Approved' },
         { product_name: 'Timbangan Berat Badan UKS', qty: 1, unit_price: 73900, subtotal: 73900, category: 'Perlengkapan Kelas', room_target: 'SARPRAS SMP AI IS (TF Yayasan)', marketplace_url: 'https://s.shopee.co.id/3B64bYsFtf', status: 'Approved' },
-        { product_name: 'Gunting Besar', qty: 3, unit_price: 11500, subtotal: 34500, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/g4ji2tpt', status: 'Approved' },
-        { product_name: 'Staples Besar + Isi (Set)', qty: 1, unit_price: 42000, subtotal: 42000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://s.shopee.co.id/AAFjQjoIf1', status: 'Approved' },
+        { product_name: 'Gunting Besar', qty: 3, unit_price: 11500, subtotal: 34500, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/g4ji2tpt', status: 'Approved' },
+        { product_name: 'Staples Besar + Isi (Set)', qty: 1, unit_price: 42000, subtotal: 42000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://s.shopee.co.id/AAFjQjoIf1', status: 'Approved' },
         { product_name: 'Konektor Proyektor HDMI to Type C', qty: 2, unit_price: 36000, subtotal: 72000, category: 'Elektronik & IT', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/awvgwdap?smtt=0.0.3', status: 'Approved' },
         { product_name: 'Bola Futsal Ortus', qty: 1, unit_price: 178695, subtotal: 178695, category: 'Perlengkapan Kelas', room_target: 'Mapel PJOK (Pa Guntur)', marketplace_url: 'https://id.shp.ee/wqgDZHwv', status: 'Approved' },
         { product_name: 'Net Bola Voli', qty: 1, unit_price: 149847, subtotal: 149847, category: 'Perlengkapan Kelas', room_target: 'Mapel PJOK (Pa Guntur)', marketplace_url: 'https://id.shp.ee/7zGjQUyN', status: 'Approved' },
         { product_name: 'Cons Kerucut (Set 20 pcs)', qty: 1, unit_price: 45000, subtotal: 45000, category: 'Perlengkapan Kelas', room_target: 'Mapel PJOK (Pa Guntur)', marketplace_url: 'https://id.shp.ee/1pdanbg8?smtt=0.0.9', status: 'Approved' },
         { product_name: 'Gantungan Kunci Prakarya', qty: 1, unit_price: 11800, subtotal: 11800, category: 'Perlengkapan Kelas', room_target: 'Mapel Prakarya (Bu Aning)', marketplace_url: 'https://id.shp.ee/eAK97C2H', status: 'Approved' },
         { product_name: 'Rantai Pelor Biji Lada', qty: 1, unit_price: 11500, subtotal: 11500, category: 'Perlengkapan Kelas', room_target: 'Mapel Prakarya (Bu Aning)', marketplace_url: 'https://id.shp.ee/Q7uJXAaU', status: 'Approved' },
-        { product_name: 'Pembolong Kertas', qty: 1, unit_price: 29500, subtotal: 29500, category: 'ATK & Kertas', room_target: 'Kelas 9 Abu Bakar', marketplace_url: 'https://s.shopee.co.id/7FyOPIctLn', status: 'Approved' },
-        { product_name: 'Cutter Kecil', qty: 1, unit_price: 4000, subtotal: 4000, category: 'ATK & Kertas', room_target: 'Kelas 8 Umar bin Khattab', marketplace_url: 'https://id.shp.ee/GYBklTLs', status: 'Approved' },
+        { product_name: 'Pembolong Kertas', qty: 1, unit_price: 29500, subtotal: 29500, category: 'ATK', room_target: 'Kelas 9 Abu Bakar', marketplace_url: 'https://s.shopee.co.id/7FyOPIctLn', status: 'Approved' },
+        { product_name: 'Cutter Kecil', qty: 1, unit_price: 4000, subtotal: 4000, category: 'ATK', room_target: 'Kelas 8 Umar bin Khattab', marketplace_url: 'https://id.shp.ee/GYBklTLs', status: 'Approved' },
         { product_name: 'Klem Penjepit Kaca Lemari', qty: 1, unit_price: 12000, subtotal: 12000, category: 'Perlengkapan Kelas', room_target: 'Kelas 8 Umar (TF Yayasan)', marketplace_url: 'https://id.shp.ee/2njl64nxS', status: 'Approved' },
         { product_name: 'Whiteboard Timeboard Kecil', qty: 1, unit_price: 11000, subtotal: 11000, category: 'Perlengkapan Kelas', room_target: 'Kelas 8 Umar bin Khattab', marketplace_url: 'https://id.shp.ee/yt3tNX4M', status: 'Approved' },
         { product_name: 'Tissue Box Kotak Meja', qty: 1, unit_price: 20900, subtotal: 20900, category: 'Kebersihan & Sanitasi', room_target: 'Kelas 8 Khodijah', marketplace_url: 'https://s.shopee.co.id/7OIiXcjnMg', status: 'Approved' },
@@ -674,16 +747,16 @@ const INITIAL_DB = {
         { product_name: 'Cetak Banner Target Panahan', qty: 1, unit_price: 26000, subtotal: 26000, category: 'Perlengkapan Kelas', room_target: 'SARPRAS SMP AI IS', receipt_type: 'Nota TF BSI KS Arif Rohman', status: 'Approved' },
         { product_name: 'Stella Pocket Jeruk', qty: 12, unit_price: 9700, subtotal: 116400, category: 'Kebersihan & Sanitasi', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/zkw7tKQ', status: 'Approved' },
         { product_name: 'Cable Ties', qty: 1, unit_price: 4725, subtotal: 4725, category: 'Elektronik & IT', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://shopee.co.id/5LA2AIPUH', status: 'Approved' },
-        { product_name: 'Tape Cutter Pemotong Lakban', qty: 1, unit_price: 17000, subtotal: 17000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/W5HnYNXh7', status: 'Approved' },
+        { product_name: 'Tape Cutter Pemotong Lakban', qty: 1, unit_price: 17000, subtotal: 17000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/W5HnYNXh7', status: 'Approved' },
         { product_name: 'Fiber Hitam 0,6 x 1m', qty: 2, unit_price: 14000, subtotal: 28000, category: 'Perlengkapan Kelas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/tDQhymV5', status: 'Approved' },
-        { product_name: 'Kertas Concord A4', qty: 5, unit_price: 13000, subtotal: 65000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/BSzWL5n', status: 'Approved' },
+        { product_name: 'Kertas Concord A4', qty: 5, unit_price: 13000, subtotal: 65000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/BSzWL5n', status: 'Approved' },
         { product_name: 'Minyak Kayu Putih 120 ML (P3K)', qty: 1, unit_price: 40000, subtotal: 40000, category: 'Kebersihan & Sanitasi', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/fNGrMwZaz', status: 'Approved' },
         { product_name: 'Promag Tablet Obat Sakit Maag Box', qty: 1, unit_price: 25000, subtotal: 25000, category: 'Kebersihan & Sanitasi', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/zaZmDego', status: 'Approved' },
-        { product_name: 'Kertas HVS A4', qty: 2, unit_price: 50000, subtotal: 100000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/2GF2dak', status: 'Approved' },
+        { product_name: 'Kertas HVS A4', qty: 2, unit_price: 50000, subtotal: 100000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/2GF2dak', status: 'Approved' },
         { product_name: 'Tissue Soft Pack', qty: 2, unit_price: 31000, subtotal: 62000, category: 'Kebersihan & Sanitasi', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/fXevk14r', status: 'Approved' },
         { product_name: 'Selempang Upacara Bendera', qty: 24, unit_price: 6500, subtotal: 156000, category: 'Perlengkapan Kelas', room_target: 'SARPRAS SMP AI IS (TF Yayasan)', marketplace_url: 'https://id.shp.ee/AHKBiuxq', status: 'Approved' },
         { product_name: 'Sarung Tangan Putih Upacara', qty: 2, unit_price: 38000, subtotal: 76000, category: 'Perlengkapan Kelas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/GZWCFJxb', status: 'Approved' },
-        { product_name: 'Isi Spidol Papan Tulis Warna Hitam', qty: 6, unit_price: 20500, subtotal: 123000, category: 'ATK & Kertas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/anV2UhnT', status: 'Approved' },
+        { product_name: 'Isi Spidol Papan Tulis Warna Hitam', qty: 6, unit_price: 20500, subtotal: 123000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/anV2UhnT', status: 'Approved' },
         { product_name: 'Baterai Alkaline AA (Pack)', qty: 2, unit_price: 26524, subtotal: 53048, category: 'Elektronik & IT', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/jBW6XU23t', status: 'Approved' },
         { product_name: 'Cone Pelangi Marker (Pack 20pcs)', qty: 1, unit_price: 73200, subtotal: 73200, category: 'Perlengkapan Kelas', room_target: 'Mapel PJOK (Pa Guntur)', marketplace_url: 'https://id.shp.ee/bNcbUUMpE', status: 'Approved' },
         { product_name: 'Indikator Benedict Test Reducing IPA', qty: 1, unit_price: 21000, subtotal: 21000, category: 'Perlengkapan Kelas', room_target: 'Mapel IPA', marketplace_url: 'https://id.shp.ee/qsGVeK5K', status: 'Approved' },
@@ -707,6 +780,47 @@ const INITIAL_DB = {
       pj_name: 'Aning Nurhayati, S.T, Gr',
       recipient_name: 'Arif Rohman, M.Pd (BSI *******2769)',
       invoice_number: 'LPJ/SMP/2026/0801'
+    },
+    {
+      order_id: 'ORD-SMP-20261003-01',
+      unit_id: 'unit_smp',
+      order_type: 'E-Commerce',
+      items_json: JSON.stringify([
+        { product_name: 'Kertas HVS A4', qty: 2, unit_price: 50000, subtotal: 100000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/2GF2dak', status: 'Approved' },
+        { product_name: 'Kertas HVS F4', qty: 2, unit_price: 50000, subtotal: 100000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/2GF2dak', status: 'Approved' },
+        { product_name: 'Kertas Concord A4', qty: 10, unit_price: 13000, subtotal: 130000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/BSzWL5n', status: 'Approved' },
+        { product_name: 'Lakban Bening', qty: 5, unit_price: 8000, subtotal: 40000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/W8v4Faf', status: 'Approved' },
+        { product_name: 'Double tape', qty: 3, unit_price: 5000, subtotal: 15000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/2NoH7px', status: 'Approved' },
+        { product_name: 'Lakban hitam', qty: 2, unit_price: 8000, subtotal: 16000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/5Mh3gvG', status: 'Approved' },
+        { product_name: 'Push pin', qty: 6, unit_price: 2800, subtotal: 16800, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/4ETY988', status: 'Approved' },
+        { product_name: 'Tinta Printer Epson hitam dan kuning seri L', qty: 2, unit_price: 75000, subtotal: 150000, category: 'Elektronik & IT', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://shopee.co.id/Tinta-Refill-Isi-Ulang-1-Liter-Universal-Printer-Canon-Epson-HP-i.523942080.20254060010?', status: 'Approved' },
+        { product_name: 'Fiber hitam 0,6 x 1m', qty: 3, unit_price: 13500, subtotal: 40500, category: 'Perlengkapan Kelas', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/tQQhymV5', status: 'Approved' },
+        { product_name: 'Isi spidol papan tulis warna biru', qty: 4, unit_price: 20500, subtotal: 82000, category: 'ATK', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/enV2UJhT', status: 'Approved' },
+        { product_name: 'Spray botol pengharum ruangan', qty: 8, unit_price: 14800, subtotal: 118400, category: 'Kebersihan & Sanitasi', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/WWkfkjhX', status: 'Approved' },
+        { product_name: 'stella pocket jeruk', qty: 2, unit_price: 47900, subtotal: 95800, category: 'Kebersihan & Sanitasi', room_target: 'SARPRAS SMP AI IS', marketplace_url: 'https://id.shp.ee/rj8zEtyv', status: 'Approved' },
+        { product_name: 'Larutan Lugol 250 ml', qty: 1, unit_price: 58000, subtotal: 58000, category: 'Perlengkapan Kelas', room_target: 'Mapel IPA (Bu Eli)', marketplace_url: 'https://id.shp.ee/L2YtkEiN', status: 'Approved' },
+        { product_name: 'Indikator Biuret botol', qty: 1, unit_price: 25500, subtotal: 25500, category: 'Perlengkapan Kelas', room_target: 'Mapel IPA (Bu Eli)', marketplace_url: 'https://id.shp.ee/CittcFX1', status: 'Approved' },
+        { product_name: 'WATER HEATER SHENG WEI /KOSS Random 350watt', qty: 6, unit_price: 18000, subtotal: 108000, category: 'Elektronik & IT', room_target: 'Mapel IPA (Bu Eli)', marketplace_url: 'https://id.shp.ee/KtuANfkS', status: 'Approved' },
+        { product_name: 'Bola Basket Sz 5 akhwat', qty: 1, unit_price: 181000, subtotal: 181000, category: 'Perlengkapan Kelas', room_target: 'Mapel PJOK (Pa Guntur)', marketplace_url: 'https://id.shp.ee/vzhXXjL', status: 'Approved' },
+        { product_name: 'Bola Basket Sz 6 ikhwan', qty: 1, unit_price: 248310, subtotal: 248310, category: 'Perlengkapan Kelas', room_target: 'Mapel PJOK (Pa Guntur)', marketplace_url: 'https://id.shp.ee/M34Ev1Q3', status: 'Approved' },
+        { product_name: 'Bola Futsal Ortus', qty: 1, unit_price: 178695, subtotal: 178695, category: 'Perlengkapan Kelas', room_target: 'Mapel PJOK (Pa Guntur)', marketplace_url: 'https://id.shp.ee/wqgDZHwv', status: 'Approved' },
+        { product_name: 'Jam dinding', qty: 1, unit_price: 64900, subtotal: 64900, category: 'Perlengkapan Kelas', room_target: 'Kelas 9 Abu Bakar', marketplace_url: 'https://s.shopee.co.id/6L36KYleDI', status: 'Approved' },
+        { product_name: 'Playmat', qty: 1, unit_price: 90000, subtotal: 90000, category: 'Perlengkapan Kelas', room_target: 'Kelas 9 Ummu', marketplace_url: 'https://s.shopee.co.id/1BL0BJLFwu', status: 'Approved' },
+        { product_name: 'Penutup pintu', qty: 1, unit_price: 25480, subtotal: 25480, category: 'Perlengkapan Kelas', room_target: 'Kelas 8 Umar bin Khattab', marketplace_url: 'https://id.shp.ee/3syafryd?fromSource=copy_link&smtt=0.0.9', status: 'Approved' },
+        { product_name: 'Rak serbaguna 3 susun', qty: 1, unit_price: 20000, subtotal: 20000, category: 'Perlengkapan Kelas', room_target: 'Kelas 8 Umar bin Khattab', marketplace_url: 'https://shopee.co.id/Jual-Square-rak-susun-serbaguna-rak-dapur-portable-rak-troli-plastik-organizer-sayur-dengan-4-roda-i.123', status: 'Approved' },
+        { product_name: 'Wallpaper panel gold kuning', qty: 2, unit_price: 33900, subtotal: 67800, category: 'Perlengkapan Kelas', room_target: 'Kelas 8 Khodijah', marketplace_url: 'https://s.shopee.co.id/AKZDVsxFA4', status: 'Approved' },
+        { product_name: 'Playmat', qty: 1, unit_price: 90000, subtotal: 90000, category: 'Perlengkapan Kelas', room_target: 'Kelas 8 Khodijah', marketplace_url: 'https://s.shopee.co.id/1BL0BJLFwu', status: 'Approved' },
+        { product_name: 'Rak Ambalan putih', qty: 1, unit_price: 32200, subtotal: 32200, category: 'Perlengkapan Kelas', room_target: 'Kelas 8 Khodijah', marketplace_url: 'https://s.shopee.co.id/qi9obj8Dk', status: 'Approved' },
+        { product_name: 'Tape dinding', qty: 1, unit_price: 18900, subtotal: 18900, category: 'Perlengkapan Kelas', room_target: 'Kelas 8 Khodijah', marketplace_url: 'https://vt.tokopedia.com/t/ZS9r1vtn37oU1-MRfNB/', status: 'Approved' },
+        { product_name: '1 paket kebersihan(sapu+pengki+pel lantai)', qty: 1, unit_price: 30000, subtotal: 30000, category: 'Kebersihan & Sanitasi', room_target: 'Kelas 7 Utsman', marketplace_url: 'https://id.shp.ee/cZyTHEri', status: 'Approved' }
+      ]),
+      total_amount: 2143485,
+      status: 'Approved',
+      created_at: '2026-10-03 10:00',
+      approved_at: '2026-10-03 14:00',
+      notes: 'LPJ Pengadaan SARPRAS Administrasi Kelas SMP Bulan September/Oktober 2026 (No: 03/PS/Int/SMP-AIIS/IX/2026). Meliputi Sarpras SMP, Mapel IPA (Bu Eli), Mapel PJOK (Pa Guntur), Kelas 9 Abu Bakar, Kelas 9 Ummu, Kelas 8 Umar bin Khattab, Kelas 8 Khodijah, Kelas 7 Utsman.',
+      pj_name: 'Aning Nurhayati, S.T, Gr',
+      invoice_number: 'LPJ/SMP/2026/0901'
     },
     {
       order_id: 'ORD-AC-20260710-01',
@@ -853,6 +967,7 @@ const INITIAL_DB = {
   transactions_log: [
     { log_id: 'LOG-SMP-20260729-01', order_id: 'ORD-SMP-20260729-01', unit_id: 'unit_smp', keterangan: 'Pengadaan SARPRAS Administrasi Kelas SMP Bulan Juli 2026 (No: 01/PS/Int/SMP-AIIS/VII/2026)', amount_deducted: 1859198, debet: 0, kredit: 1859198, remaining_balance: 22646802, timestamp: '2026-07-29 14:00', invoice_number: 'LPJ/SMP/2026/0701' },
     { log_id: 'LOG-SMP-20260828-01', order_id: 'ORD-SMP-20260828-01', unit_id: 'unit_smp', keterangan: 'Pengadaan SARPRAS Administrasi Kelas SMP Bulan Agustus 2026 (No: 02/PS/Int/SMP-AIIS/VIII/2026)', amount_deducted: 1897431, debet: 0, kredit: 1897431, remaining_balance: 20749371, timestamp: '2026-08-28 16:00', invoice_number: 'LPJ/SMP/2026/0801' },
+    { log_id: 'LOG-SMP-20261003-01', order_id: 'ORD-SMP-20261003-01', unit_id: 'unit_smp', keterangan: 'Pengadaan SARPRAS Administrasi Kelas SMP Bulan September/Oktober 2026 (No: 03/PS/Int/SMP-AIIS/IX/2026)', amount_deducted: 2143485, debet: 0, kredit: 2143485, remaining_balance: 18605886, timestamp: '2026-10-03 14:00', invoice_number: 'LPJ/SMP/2026/0901' },
     { log_id: 'LOG-AC-20260710-01', order_id: 'ORD-AC-20260710-01', unit_id: 'unit_smp', keterangan: 'Pembayaran Layanan Maintenance AC: 2 unit cuci SMP', amount_deducted: 170326, debet: 0, kredit: 170326, remaining_balance: 24335674, timestamp: '2026-07-10 09:00', invoice_number: 'INV/AC/2026/0701' },
     { log_id: 'LOG-AC-20260710-02', order_id: 'ORD-AC-20260710-02', unit_id: 'unit_tk', keterangan: 'Pembayaran Layanan Maintenance AC: 6 unit cuci TK', amount_deducted: 510000, debet: 0, kredit: 510000, remaining_balance: 14490000, timestamp: '2026-07-10 10:45', invoice_number: 'INV/AC/2026/0702' },
     { log_id: 'LOG-AC-20260716-01', order_id: 'ORD-AC-20260716-01', unit_id: 'unit_smp', keterangan: 'Pembayaran Layanan Maintenance AC: Kabel AC ruang yys', amount_deducted: 110061, debet: 0, kredit: 110061, remaining_balance: 24225613, timestamp: '2026-07-16 11:30', invoice_number: 'INV/AC/2026/0703' },
@@ -1711,6 +1826,7 @@ const app = {
   currentUser: null,
   activeView: 'dashboard',
   categoryFilter: 'ALL',
+  productNameFilter: 'ALL',
   searchQuery: '',
   cart: [],
   currentPrintDoc: null,
@@ -1782,6 +1898,32 @@ const app = {
     const dummyRnvReqIds = ['RNV-REQ-202609-01', 'RNV-REQ-202609-02', 'RNV-REQ-202609-03', 'RNV-REQ-202609-04'];
 
     if (this.db) {
+      // Auto-migrate legacy category 'ATK & Kertas' to 'ATK'
+      if (Array.isArray(this.db.stock_inventory)) {
+        this.db.stock_inventory.forEach(item => {
+          if (item && item.category === 'ATK & Kertas') item.category = 'ATK';
+        });
+      }
+      if (Array.isArray(this.db.master_rapbs)) {
+        this.db.master_rapbs.forEach(item => {
+          if (item && item.category === 'ATK & Kertas') item.category = 'ATK';
+        });
+      }
+      if (Array.isArray(this.db.orders)) {
+        this.db.orders.forEach(order => {
+          if (order && Array.isArray(order.items)) {
+            order.items.forEach(item => {
+              if (item && item.category === 'ATK & Kertas') item.category = 'ATK';
+            });
+          }
+        });
+      }
+      if (Array.isArray(this.db.transactions_log)) {
+        this.db.transactions_log.forEach(log => {
+          if (log && log.category === 'ATK & Kertas') log.category = 'ATK';
+        });
+      }
+
       if (this.db.orders) {
         this.db.orders = this.db.orders.filter(o => !dummyOrderIds.includes(o.order_id));
       } else {
@@ -1927,10 +2069,10 @@ const app = {
       if (this.db.renov_requests) this.db.renov_requests = this.db.renov_requests.filter(r => r.unit_id !== 'unit_sma');
     }
 
-    // Synchronize newly added seed products to stock_inventory if missing
+    // Synchronize newly added seed products/batches to stock_inventory if missing
     if (this.db && this.db.stock_inventory) {
       INITIAL_DB.stock_inventory.forEach(seedItem => {
-        const exists = this.db.stock_inventory.some(existing => existing.product_name === seedItem.product_name);
+        const exists = this.db.stock_inventory.some(existing => existing.batch_id === seedItem.batch_id || (existing.product_name === seedItem.product_name && existing.date_in === seedItem.date_in));
         if (!exists) {
           this.db.stock_inventory.push(JSON.parse(JSON.stringify(seedItem)));
         }
@@ -2131,6 +2273,81 @@ const app = {
     }
   },
 
+  // ==========================================
+  // LOGIN & MULTI-UNIT AUTH CONTROLLERS
+  // ==========================================
+  openLoginModal() {
+    const modal = document.getElementById('loginModal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      this.setLoginTab('quick');
+      const select = document.getElementById('loginSelectUsername');
+      if (select) select.value = this.currentUser.unit_id;
+    }
+    const menu = document.getElementById('userMenuDropdown');
+    if (menu) menu.classList.add('hidden');
+  },
+
+  closeLoginModal() {
+    const modal = document.getElementById('loginModal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  setLoginTab(tab) {
+    const btnQuick = document.getElementById('loginTabBtn-quick');
+    const btnForm = document.getElementById('loginTabBtn-form');
+    const contentQuick = document.getElementById('loginTabContent-quick');
+    const contentForm = document.getElementById('loginTabContent-form');
+    if (tab === 'quick') {
+      if (btnQuick) btnQuick.className = 'flex-1 py-2 rounded-xl bg-white text-brand-primary shadow-sm font-bold transition flex items-center justify-center space-x-1.5';
+      if (btnForm) btnForm.className = 'flex-1 py-2 rounded-xl text-slate-500 hover:text-slate-800 font-semibold transition flex items-center justify-center space-x-1.5';
+      if (contentQuick) contentQuick.classList.remove('hidden');
+      if (contentForm) contentForm.classList.add('hidden');
+    } else {
+      if (btnQuick) btnQuick.className = 'flex-1 py-2 rounded-xl text-slate-500 hover:text-slate-800 font-semibold transition flex items-center justify-center space-x-1.5';
+      if (btnForm) btnForm.className = 'flex-1 py-2 rounded-xl bg-white text-brand-primary shadow-sm font-bold transition flex items-center justify-center space-x-1.5';
+      if (contentQuick) contentQuick.classList.add('hidden');
+      if (contentForm) contentForm.classList.remove('hidden');
+    }
+  },
+
+  loginAs(unitId) {
+    this.switchUser(unitId);
+    this.closeLoginModal();
+  },
+
+  handleLoginUsernameChange(val) {
+    const pwdInput = document.getElementById('loginInputPassword');
+    if (pwdInput) pwdInput.value = '123';
+  },
+
+  toggleLoginPasswordVisibility() {
+    const pwdInput = document.getElementById('loginInputPassword');
+    const icon = document.getElementById('loginPasswordEyeIcon');
+    if (!pwdInput) return;
+    if (pwdInput.type === 'password') {
+      pwdInput.type = 'text';
+      if (icon) icon.className = 'fa-solid fa-eye-slash';
+    } else {
+      pwdInput.type = 'password';
+      if (icon) icon.className = 'fa-solid fa-eye';
+    }
+  },
+
+  handleLoginFormSubmit(e) {
+    if (e) e.preventDefault();
+    const select = document.getElementById('loginSelectUsername');
+    const unitId = select ? select.value : 'unit_sd';
+    this.loginAs(unitId);
+  },
+
+  logout() {
+    const menu = document.getElementById('userMenuDropdown');
+    if (menu) menu.classList.add('hidden');
+    this.openLoginModal();
+    this.showToast('Silakan pilih unit untuk login kembali.', 'info');
+  },
+
   // Single Page View Router
   navigate(viewName) {
     this.activeView = viewName;
@@ -2195,21 +2412,91 @@ const app = {
     const isAdmin = this.currentUser.role === 'Admin';
     const isUnit = this.currentUser.role === 'Unit';
 
-    document.getElementById('userNameDisplay').textContent = this.currentUser.unit_name;
-    document.getElementById('userRoleDisplay').textContent = this.currentUser.role;
-    document.getElementById('dropdownFullName').textContent = this.currentUser.unit_name;
+    const userNameEl = document.getElementById('userNameDisplay');
+    if (userNameEl) userNameEl.textContent = this.currentUser.unit_name;
     
+    const userRoleEl = document.getElementById('userRoleDisplay');
+    if (userRoleEl) userRoleEl.textContent = this.currentUser.role;
+    
+    const dropNameEl = document.getElementById('dropdownFullName');
+    if (dropNameEl) dropNameEl.textContent = this.currentUser.unit_name;
+    
+    const dropRoleBadge = document.getElementById('dropdownRoleBadge');
+    if (dropRoleBadge) {
+      dropRoleBadge.textContent = isUnit ? 'Unit Pemohon' : (isBendahara ? 'Approver Yayasan' : 'Admin SARPRAS');
+      if (isUnit) {
+        dropRoleBadge.className = 'inline-block px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded-md';
+      } else if (isBendahara) {
+        dropRoleBadge.className = 'inline-block px-2 py-0.5 bg-amber-100 text-amber-800 text-[10px] font-bold rounded-md';
+      } else {
+        dropRoleBadge.className = 'inline-block px-2 py-0.5 bg-slate-200 text-slate-800 text-[10px] font-bold rounded-md';
+      }
+    }
+    
+    const dashUnitNameEl = document.getElementById('dashUnitNameActionHub');
+    if (dashUnitNameEl) dashUnitNameEl.textContent = this.currentUser.unit_name;
+
     let avatarText = this.db.cms_settings.branding.logo_short || 'AI';
     if (this.currentUser.unit_id === 'unit_tk') avatarText = 'TK';
     else if (this.currentUser.unit_id === 'unit_sd') avatarText = 'SD';
     else if (this.currentUser.unit_id === 'unit_smp') avatarText = 'SMP';
     else if (this.currentUser.unit_id === 'bendahara') avatarText = 'BY';
     else if (this.currentUser.unit_id === 'admin') avatarText = 'ADM';
-    document.getElementById('userAvatar').textContent = avatarText;
+    const avatarEl = document.getElementById('userAvatar');
+    if (avatarEl) avatarEl.textContent = avatarText;
 
     const userRapbs = this.db.rapbs_poin.find(r => r.unit_id === this.currentUser.unit_id) || {
       total_plafond: 0, terpakai: 0, saldo_tersedia: 0
     };
+
+    const dropSaldo = document.getElementById('dropdownSaldoBadge');
+    if (dropSaldo) {
+      if (isUnit) {
+        dropSaldo.textContent = 'Saldo: Rp ' + this.formatNumber(userRapbs.saldo_tersedia);
+      } else {
+        const totalAllAvailable = this.db.rapbs_poin.reduce((acc, r) => acc + r.saldo_tersedia, 0);
+        dropSaldo.textContent = 'Total: Rp ' + this.formatNumber(totalAllAvailable);
+      }
+    }
+
+    // Update login modal saldo cards
+    ['tk', 'sd', 'smp'].forEach(uKey => {
+      const el = document.getElementById(`loginCardSaldo-${uKey}`);
+      const rapbs = this.db.rapbs_poin.find(r => r.unit_id === `unit_${uKey}`);
+      if (el && rapbs) {
+        el.textContent = 'Rp ' + this.formatNumber(rapbs.saldo_tersedia);
+      }
+    });
+
+    // Update active user highlight in dropdown
+    ['unit_tk', 'unit_sd', 'unit_smp', 'bendahara', 'admin'].forEach(uId => {
+      const item = document.getElementById(`userItem-${uId}`);
+      if (item) {
+        const isActive = this.currentUser.unit_id === uId;
+        const tag = item.querySelector('.user-active-tag');
+        if (isActive) {
+          item.classList.add('bg-emerald-50', 'font-bold', 'text-brand-primary');
+          if (tag) {
+            tag.className = 'text-[10px] bg-emerald-600 text-white px-2 py-0.5 rounded-full font-bold user-active-tag flex items-center gap-1';
+            tag.innerHTML = '<i class="fa-solid fa-check text-[9px]"></i> Aktif';
+          }
+        } else {
+          item.classList.remove('bg-emerald-50', 'font-bold', 'text-brand-primary');
+          if (tag) {
+            if (uId === 'bendahara') {
+              tag.className = 'text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-bold user-active-tag';
+              tag.textContent = 'Approver';
+            } else if (uId === 'admin') {
+              tag.className = 'text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-bold user-active-tag';
+              tag.textContent = 'Inventory';
+            } else {
+              tag.className = 'text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-semibold user-active-tag';
+              tag.textContent = 'Unit';
+            }
+          }
+        }
+      }
+    });
 
     const navPill = document.getElementById('unitQuotaPill');
     const sidebarCard = document.getElementById('sidebarSaldoCard');
@@ -2218,30 +2505,42 @@ const app = {
       if (navPill) navPill.classList.remove('hidden');
       if (sidebarCard) sidebarCard.classList.remove('hidden');
       
-      document.getElementById('navSaldoPoin').textContent = this.formatNumber(userRapbs.saldo_tersedia);
-      document.getElementById('navUnitName').textContent = this.currentUser.unit_name;
+      const navSaldoPoin = document.getElementById('navSaldoPoin');
+      if (navSaldoPoin) navSaldoPoin.textContent = this.formatNumber(userRapbs.saldo_tersedia);
+      const navUnitName = document.getElementById('navUnitName');
+      if (navUnitName) navUnitName.textContent = this.currentUser.unit_name;
       
-      document.getElementById('sidebarSaldoTersedia').textContent = 'Rp ' + this.formatNumber(userRapbs.saldo_tersedia);
-      document.getElementById('sidebarTerpakai').textContent = 'Rp ' + this.formatNumber(userRapbs.terpakai);
-      document.getElementById('sidebarTotalPlafond').textContent = 'Rp ' + this.formatNumber(userRapbs.total_plafond);
+      const sbSaldo = document.getElementById('sidebarSaldoTersedia');
+      if (sbSaldo) sbSaldo.textContent = 'Rp ' + this.formatNumber(userRapbs.saldo_tersedia);
+      const sbTerpakai = document.getElementById('sidebarTerpakai');
+      if (sbTerpakai) sbTerpakai.textContent = 'Rp ' + this.formatNumber(userRapbs.terpakai);
+      const sbTotal = document.getElementById('sidebarTotalPlafond');
+      if (sbTotal) sbTotal.textContent = 'Rp ' + this.formatNumber(userRapbs.total_plafond);
       
       const pct = userRapbs.total_plafond > 0 ? (userRapbs.terpakai / userRapbs.total_plafond) * 100 : 0;
-      document.getElementById('sidebarProgressBar').style.width = Math.min(100, Math.round(pct)) + '%';
+      const sbProgress = document.getElementById('sidebarProgressBar');
+      if (sbProgress) sbProgress.style.width = Math.min(100, Math.round(pct)) + '%';
     } else {
       if (navPill) navPill.classList.remove('hidden');
       const totalAllAvailable = this.db.rapbs_poin.reduce((acc, r) => acc + r.saldo_tersedia, 0);
-      document.getElementById('navSaldoPoin').textContent = this.formatNumber(totalAllAvailable);
-      document.getElementById('navUnitName').textContent = 'Total Kas RAPBS';
+      const navSaldoPoin = document.getElementById('navSaldoPoin');
+      if (navSaldoPoin) navSaldoPoin.textContent = this.formatNumber(totalAllAvailable);
+      const navUnitName = document.getElementById('navUnitName');
+      if (navUnitName) navUnitName.textContent = 'Total Kas RAPBS';
       
       if (sidebarCard) {
         sidebarCard.classList.remove('hidden');
-        document.getElementById('sidebarSaldoTersedia').textContent = 'Rp ' + this.formatNumber(totalAllAvailable);
+        const sbSaldo = document.getElementById('sidebarSaldoTersedia');
+        if (sbSaldo) sbSaldo.textContent = 'Rp ' + this.formatNumber(totalAllAvailable);
         const totalUsed = this.db.rapbs_poin.reduce((acc, r) => acc + r.terpakai, 0);
         const totalCap = this.db.rapbs_poin.reduce((acc, r) => acc + r.total_plafond, 0);
-        document.getElementById('sidebarTerpakai').textContent = 'Rp ' + this.formatNumber(totalUsed);
-        document.getElementById('sidebarTotalPlafond').textContent = 'Rp ' + this.formatNumber(totalCap);
+        const sbTerpakai = document.getElementById('sidebarTerpakai');
+        if (sbTerpakai) sbTerpakai.textContent = 'Rp ' + this.formatNumber(totalUsed);
+        const sbTotal = document.getElementById('sidebarTotalPlafond');
+        if (sbTotal) sbTotal.textContent = 'Rp ' + this.formatNumber(totalCap);
         const pct = totalCap > 0 ? (totalUsed / totalCap) * 100 : 0;
-        document.getElementById('sidebarProgressBar').style.width = Math.min(100, Math.round(pct)) + '%';
+        const sbProgress = document.getElementById('sidebarProgressBar');
+        if (sbProgress) sbProgress.style.width = Math.min(100, Math.round(pct)) + '%';
       }
     }
 
@@ -2900,14 +3199,50 @@ const app = {
     this.checkStockAlerts();
   },
 
+  populateCatalogProductNameFilter() {
+    const select = document.getElementById('catalogProductNameFilter');
+    if (!select) return;
+
+    let products = this.getAggregatedProducts();
+    if (this.categoryFilter && this.categoryFilter !== 'ALL') {
+      products = products.filter(p => p.category === this.categoryFilter);
+    }
+    const names = [...new Set(products.map(p => (p.name || '').trim()).filter(Boolean))];
+    names.sort((a, b) => a.localeCompare(b, 'id', { sensitivity: 'base' }));
+
+    const currentVal = this.productNameFilter || 'ALL';
+
+    if (currentVal !== 'ALL' && !names.includes(currentVal)) {
+      this.productNameFilter = 'ALL';
+    }
+
+    let html = `<option value="ALL">🔍 Semua Nama Produk (${names.length} item)</option>`;
+    html += names.map(n => `<option value="${escapeQuotes(n)}" ${n === this.productNameFilter ? 'selected' : ''}>${escapeHtml(n)}</option>`).join('');
+
+    const targetKey = `${this.categoryFilter}_${names.join('|')}_${this.productNameFilter}`;
+    if (select.dataset.renderKey !== targetKey) {
+      select.innerHTML = html;
+      select.value = this.productNameFilter;
+      select.dataset.renderKey = targetKey;
+    }
+  },
+
+  setProductNameFilter(name) {
+    this.productNameFilter = name || 'ALL';
+    this.renderCatalog();
+  },
+
   renderCatalog() {
+    this.populateCatalogProductNameFilter();
+
     const products = this.getAggregatedProducts();
     const query = this.searchQuery.toLowerCase().trim();
     
     const filtered = products.filter(p => {
       const matchCat = (this.categoryFilter === 'ALL' || p.category === this.categoryFilter);
+      const matchProd = (this.productNameFilter === 'ALL' || p.name === this.productNameFilter);
       const matchQuery = p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
-      return matchCat && matchQuery;
+      return matchCat && matchProd && matchQuery;
     });
 
     const grid = document.getElementById('catalogGrid');
@@ -3007,6 +3342,7 @@ const app = {
 
   setCategoryFilter(cat) {
     this.categoryFilter = cat;
+    this.productNameFilter = 'ALL';
     const pills = document.querySelectorAll('.category-pill');
     pills.forEach(p => {
       if (p.getAttribute('data-cat') === cat) {
@@ -3077,7 +3413,10 @@ const app = {
         const items = JSON.parse(ord.items_json);
         itemsSummary = items.map(i => {
           if (i.is_price_revised || i.is_revised) hasItemRevision = true;
-          return `${i.product_name || i.item_name} <span class="text-slate-400 font-normal">x${i.qty}</span>`;
+          if (i.status === 'Rejected') {
+            return `<span class="line-through text-slate-400">${escapeHtml(i.product_name || i.item_name)} x${i.qty}</span> <span class="text-[9px] font-bold text-rose-600 bg-rose-50 border border-rose-200 px-1 py-0.2 rounded">Ditolak</span>`;
+          }
+          return `${escapeHtml(i.product_name || i.item_name)} <span class="text-slate-400 font-normal">x${i.qty}</span>`;
         }).join('<br/>');
       } catch (e) {
         itemsSummary = ord.notes || '-';
@@ -3211,7 +3550,9 @@ const app = {
       });
 
       const approvedItems = calculatedItems.filter(it => it.is_approved);
+      const rejectedItems = calculatedItems.filter(it => !it.is_approved);
       const approvedTotalAmount = approvedItems.reduce((acc, it) => acc + it.effSubtotal, 0);
+      const rejectedTotalAmount = rejectedItems.reduce((acc, it) => acc + it.effSubtotal, 0);
       const originalTotalAmount = calculatedItems.reduce((acc, it) => acc + it.origSubtotal, 0);
       const hasAnyRevision = revisions.some(r => r && r.is_revised);
       const totalVariance = approvedTotalAmount - originalTotalAmount;
@@ -3250,18 +3591,30 @@ const app = {
 
           <!-- Item Table with Per-Item Approval & Price Revision -->
           <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-100 space-y-2">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-              <span class="text-[11px] font-bold text-slate-700 uppercase flex items-center">
-                <i class="fa-solid fa-list-check text-brand-primary mr-1.5"></i>Persetujuan & Revisi Harga Per-Item:
-              </span>
-              <span class="text-[10px] text-slate-400">Gunakan tombol <b>"Revisi Harga"</b> jika harga beli di nota fisik berbeda dengan pengajuan.</span>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <span class="text-[11px] font-bold text-slate-800 uppercase flex items-center">
+                  <i class="fa-solid fa-list-check text-brand-primary mr-1.5"></i>Persetujuan & Revisi Harga Per-Item:
+                </span>
+                <span class="text-[10px] text-slate-400">Pilih <b>Setuju</b> atau <b>Tidak</b> untuk tiap item. Gunakan <b>Revisi Harga</b> jika nota fisik berbeda.</span>
+              </div>
+              <div class="flex items-center space-x-1.5 shrink-0">
+                <button type="button" onclick="app.setAllItemsApproval('${ord.order_id}', true)" class="px-2.5 py-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-lg text-[10px] font-bold transition flex items-center space-x-1 shadow-2xs" title="Setujui semua item dalam pengajuan ini">
+                  <i class="fa-solid fa-check-double text-emerald-600"></i>
+                  <span>Setujui Semua</span>
+                </button>
+                <button type="button" onclick="app.setAllItemsApproval('${ord.order_id}', false)" class="px-2.5 py-1 bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200 rounded-lg text-[10px] font-bold transition flex items-center space-x-1 shadow-2xs" title="Tolak semua item dalam pengajuan ini">
+                  <i class="fa-solid fa-xmark text-rose-600"></i>
+                  <span>Tolak Semua</span>
+                </button>
+              </div>
             </div>
 
             <div class="overflow-x-auto">
               <table class="w-full text-xs text-left">
                 <thead class="text-[10px] text-slate-400 uppercase font-bold border-b border-slate-200/60 pb-1">
                   <tr>
-                    <th class="pb-1.5 w-24 text-center">Status Item</th>
+                    <th class="pb-1.5 w-36 text-center">Status Item</th>
                     <th class="pb-1.5 min-w-[200px]">Rincian Barang / Jasa</th>
                     <th class="pb-1.5 text-center w-16">Jumlah</th>
                     <th class="pb-1.5 text-right min-w-[120px]">Harga Satuan (Beli)</th>
@@ -3276,19 +3629,32 @@ const app = {
                     const isRev = item.is_revised;
 
                     return `
-                      <tr class="${item.is_approved ? (isRev ? 'bg-amber-50/40' : 'bg-white/80') : 'bg-red-50/50 text-slate-400'} transition">
-                        <td class="py-2 text-center">
-                          <button type="button" onclick="app.toggleItemApproval('${ord.order_id}', ${item.idx})" class="px-2.5 py-1 rounded-lg text-[10px] font-bold transition flex items-center space-x-1 mx-auto shadow-xs ${item.is_approved ? 'bg-emerald-100 hover:bg-emerald-200 text-emerald-800' : 'bg-red-100 hover:bg-red-200 text-red-800'}">
-                            <i class="fa-solid ${item.is_approved ? 'fa-check' : 'fa-xmark'}"></i>
-                            <span>${item.is_approved ? 'Disetujui' : 'Ditolak'}</span>
-                          </button>
+                      <tr class="${item.is_approved ? (isRev ? 'bg-amber-50/40' : 'bg-white/80') : 'bg-rose-50/50 border-l-2 border-rose-400 text-slate-400'} transition">
+                        <td class="py-2.5 text-center px-1">
+                          <div class="inline-flex items-center p-0.5 bg-slate-200/90 rounded-xl border border-slate-300/80 shadow-2xs">
+                            <button type="button" 
+                              onclick="app.setItemApproval('${ord.order_id}', ${item.idx}, true)" 
+                              class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold transition flex items-center space-x-1 ${item.is_approved ? 'bg-emerald-600 text-white shadow-xs' : 'text-slate-600 hover:text-emerald-700 hover:bg-white/80'}"
+                              title="Setujui item ini">
+                              <i class="fa-solid fa-check"></i>
+                              <span>Setuju</span>
+                            </button>
+                            <button type="button" 
+                              onclick="app.setItemApproval('${ord.order_id}', ${item.idx}, false)" 
+                              class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold transition flex items-center space-x-1 ${!item.is_approved ? 'bg-rose-600 text-white shadow-xs' : 'text-slate-600 hover:text-rose-700 hover:bg-white/80'}"
+                              title="Tolak item ini (tidak memotong RAPBS & stok)">
+                              <i class="fa-solid fa-xmark"></i>
+                              <span>Tidak</span>
+                            </button>
+                          </div>
                         </td>
                         <td class="py-2 font-semibold ${item.is_approved ? 'text-slate-800' : 'line-through text-slate-400'}">
                           <div class="flex flex-wrap items-center gap-1">
+                            ${!item.is_approved ? '<span class="px-1.5 py-0.5 bg-rose-100 text-rose-800 text-[9px] font-extrabold rounded"><i class="fa-solid fa-ban mr-0.5"></i>Ditolak</span>' : ''}
                             ${isCustomReq ? '<span class="px-1.5 py-0.5 bg-indigo-100 text-indigo-800 text-[9px] font-bold rounded">Barang Baru</span>' : ''}
                             ${isReimb ? '<span class="px-1.5 py-0.5 bg-amber-100 text-amber-800 text-[9px] font-bold rounded">Reimburse</span>' : ''}
                             <span>${item.product_name || item.item_name}</span>
-                            ${isRev ? '<span class="px-1.5 py-0.5 bg-amber-100 text-amber-900 border border-amber-300 text-[9px] font-extrabold rounded"><i class="fa-solid fa-pen-to-square mr-0.5 text-amber-600"></i>Revisi</span>' : ''}
+                            ${isRev && item.is_approved ? '<span class="px-1.5 py-0.5 bg-amber-100 text-amber-900 border border-amber-300 text-[9px] font-extrabold rounded"><i class="fa-solid fa-pen-to-square mr-0.5 text-amber-600"></i>Revisi</span>' : ''}
                           </div>
                           ${item.revision_reason ? `
                             <div class="text-[10px] text-amber-800 bg-amber-100/60 px-2 py-0.5 rounded-md border border-amber-200/60 mt-1 flex items-start space-x-1">
@@ -3317,7 +3683,7 @@ const app = {
                             <span>Rp ${this.formatNumber(item.effPrice)}</span>
                           `}
                         </td>
-                        <td class="py-2 text-right font-bold ${item.is_approved ? 'text-slate-900 font-heading' : 'line-through text-red-400'}">
+                        <td class="py-2 text-right font-bold ${item.is_approved ? 'text-slate-900 font-heading' : 'line-through text-rose-400'}">
                           ${isRev ? `
                             <span class="text-[10px] text-slate-400 line-through block font-normal">Rp ${this.formatNumber(item.origSubtotal)}</span>
                             <span class="font-extrabold text-slate-900 text-xs block font-heading">Rp ${this.formatNumber(item.effSubtotal)}</span>
@@ -3417,9 +3783,15 @@ const app = {
                   <span class="font-bold text-slate-700">Rp ${this.formatNumber(originalTotalAmount)}</span>
                 </div>
                 <div class="flex justify-between text-slate-700 font-bold border-t border-slate-200/60 pt-1.5">
-                  <span class="text-brand-primary">Total Disetujui (${approvedItems.length} Item):</span>
+                  <span class="text-brand-primary">Total Disetujui (${approvedItems.length} dari ${calculatedItems.length} Item):</span>
                   <span class="font-black text-brand-primary text-sm font-heading">Rp ${this.formatNumber(approvedTotalAmount)}</span>
                 </div>
+                ${rejectedItems.length > 0 ? `
+                  <div class="flex justify-between text-[11px] text-rose-600 font-semibold">
+                    <span>Item Ditolak / Tidak Disetujui (${rejectedItems.length} Item):</span>
+                    <span>- Rp ${this.formatNumber(rejectedTotalAmount)} (Tidak Dipotong)</span>
+                  </div>
+                ` : ''}
                 ${hasAnyRevision ? `
                   <div class="flex justify-between text-[11px] pt-0.5">
                     <span class="text-slate-500">Selisih Realisasi Harga:</span>
@@ -3446,8 +3818,8 @@ const app = {
 
               <div class="p-2.5 bg-white rounded-xl border border-slate-200/80 text-[10px] text-slate-500 space-y-0.5">
                 <p><i class="fa-solid fa-shield-check text-brand-primary mr-1"></i><b>Otomatisasi Sistem:</b></p>
-                <p>• Harga beli revisi akan menjadi patokan pemotongan RAPBS & Master Produk baru.</p>
-                <p>• Item yang ditolak tidak memotong saldo RAPBS unit maupun stok gudang.</p>
+                <p>• Item yang <b>Disetujui</b> akan memotong saldo RAPBS unit dan stok barang gudang.</p>
+                <p>• Item yang <b>Tidak / Ditolak</b> otomatis dilewati, tanpa memotong saldo RAPBS maupun stok.</p>
               </div>
             </div>
           </div>
@@ -3457,10 +3829,17 @@ const app = {
             <button type="button" onclick="app.rejectOrder('${ord.order_id}')" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold rounded-xl transition">
               <i class="fa-solid fa-xmark mr-1"></i>Tolak Seluruh Pengajuan
             </button>
-            <button type="button" onclick="app.approveOrderWithItemStates('${ord.order_id}')" ${!hasEnoughQuota ? 'disabled' : ''} class="px-5 py-2.5 bg-brand-primary hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold rounded-xl shadow-md transition flex items-center space-x-1.5">
-              <i class="fa-solid fa-check-double"></i>
-              <span>Setujui & Potong RAPBS (${approvedItems.length} Item Disetujui)</span>
-            </button>
+            ${approvedItems.length > 0 ? `
+              <button type="button" onclick="app.approveOrderWithItemStates('${ord.order_id}')" ${!hasEnoughQuota ? 'disabled' : ''} class="px-5 py-2.5 bg-brand-primary hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold rounded-xl shadow-md transition flex items-center space-x-1.5">
+                <i class="fa-solid fa-check-double"></i>
+                <span>Setujui & Potong RAPBS (${approvedItems.length} Item Disetujui)</span>
+              </button>
+            ` : `
+              <button type="button" disabled class="px-5 py-2.5 bg-slate-200 text-slate-400 text-xs font-bold rounded-xl cursor-not-allowed flex items-center space-x-1.5" title="Semua item ditolak. Gunakan tombol Tolak Seluruh Pengajuan.">
+                <i class="fa-solid fa-ban"></i>
+                <span>Semua Item Ditolak (0 Disetujui)</span>
+              </button>
+            `}
           </div>
         </div>
       `;
@@ -3692,7 +4071,7 @@ const app = {
     const url = urlInput ? urlInput.value.trim() : '';
     const qty = qtyInput ? Number(qtyInput.value) : 1;
     const price = priceInput ? Number(priceInput.value) : 0;
-    const category = categoryInput ? categoryInput.value : 'ATK & Kertas';
+    const category = categoryInput ? categoryInput.value : 'ATK';
     const pj = pjInput ? pjInput.value.trim() : '';
     const notes = notesInput ? notesInput.value.trim() : '';
 
@@ -4187,7 +4566,7 @@ const app = {
         status: 'Approved',
         item_type: c.type || 'catalog',
         marketplace_url: c.marketplace_url || '',
-        category: c.category || 'ATK & Kertas',
+        category: c.category || 'ATK',
         image_url: c.image_url || '',
         recipient_name: c.recipient_name || '',
         bank_account: c.bank_account || '',
@@ -4366,6 +4745,39 @@ const app = {
   // 11. ITEM APPROVAL & RECEIPT VIEWER CONTROLLER
   // ==========================================
 
+  setItemApproval(orderId, itemIdx, isApproved) {
+    if (!this.orderItemApprovals[orderId]) {
+      const ord = this.db.orders.find(o => o.order_id === orderId);
+      if (!ord) return;
+      try {
+        const items = JSON.parse(ord.items_json);
+        this.orderItemApprovals[orderId] = items.map(it => it.status !== 'Rejected');
+      } catch (e) {
+        this.orderItemApprovals[orderId] = [];
+      }
+    }
+
+    this.orderItemApprovals[orderId][itemIdx] = Boolean(isApproved);
+    this.renderVerificationView();
+  },
+
+  setAllItemsApproval(orderId, isApproved) {
+    const ord = this.db.orders.find(o => o.order_id === orderId);
+    if (!ord) return;
+    try {
+      const items = JSON.parse(ord.items_json);
+      this.orderItemApprovals[orderId] = items.map(() => Boolean(isApproved));
+    } catch (e) {
+      this.orderItemApprovals[orderId] = [];
+    }
+    this.renderVerificationView();
+    if (isApproved) {
+      this.showToast(`Semua item pengajuan ${orderId} ditandai Setuju`, 'info');
+    } else {
+      this.showToast(`Semua item pengajuan ${orderId} ditandai Tidak / Ditolak`, 'warning');
+    }
+  },
+
   toggleItemApproval(orderId, itemIdx) {
     if (!this.orderItemApprovals[orderId]) {
       const ord = this.db.orders.find(o => o.order_id === orderId);
@@ -4434,7 +4846,7 @@ const app = {
     this.db.stock_inventory.push({
       batch_id: batchId,
       product_name: prodName,
-      category: req.category || 'ATK & Kertas',
+      category: req.category || 'ATK',
       stock_qty: Number(req.qty) || 1,
       unit_price: Number(req.unit_price) || 0,
       date_in: dateStr,
@@ -4508,7 +4920,7 @@ const app = {
       if (item.item_type === 'custom_request' || order.order_type === 'Request_Barang_Baru') {
         this.autoCreateMasterProductFromRequest({
           product_name: item.raw_product_name || item.product_name || item.item_name,
-          category: item.category || 'ATK & Kertas',
+          category: item.category || 'ATK',
           unit_price: item.unit_price,
           image_url: item.image_url || '',
           qty: item.qty
@@ -4555,6 +4967,11 @@ const app = {
       invoice_number: invNum
     });
 
+    // Clean up temporary approval staging states
+    delete this.orderItemApprovals[orderId];
+    delete this.orderItemRevisions[orderId];
+    delete this.pendingTransferProofs[orderId];
+
     this.saveState();
     this.updateUI();
     this.showToast(`Pengajuan ${order.order_id} BERHASIL DISETUJUI (${approvedItems.length} item). Invoice: ${invNum}`, 'success');
@@ -4575,6 +4992,11 @@ const app = {
 
     order.status = 'Rejected';
     order.approved_at = this.formatCurrentDateTime();
+
+    // Clean up temporary approval staging states
+    delete this.orderItemApprovals[orderId];
+    delete this.orderItemRevisions[orderId];
+    delete this.pendingTransferProofs[orderId];
 
     this.saveState();
     this.updateUI();
@@ -4879,8 +5301,9 @@ const app = {
     order.items_json = JSON.stringify(updatedItems);
     order.total_amount = total;
 
-    // Reset staged revisions if order was edited
+    // Reset staged revisions and approvals if order was edited
     delete this.orderItemRevisions[orderId];
+    delete this.orderItemApprovals[orderId];
 
     this.saveState();
     this.updateUI();
@@ -4906,8 +5329,8 @@ const app = {
     if (!this.bulkProductRows || this.bulkProductRows.length === 0) {
       const today = new Date().toISOString().split('T')[0];
       this.bulkProductRows = [
-        { product_name: '', category: 'ATK & Kertas', unit_price: '', stock_qty: 10, date_in: today, image_url: '' },
-        { product_name: '', category: 'ATK & Kertas', unit_price: '', stock_qty: 10, date_in: today, image_url: '' },
+        { product_name: '', category: 'ATK', unit_price: '', stock_qty: 10, date_in: today, image_url: '' },
+        { product_name: '', category: 'ATK', unit_price: '', stock_qty: 10, date_in: today, image_url: '' },
         { product_name: '', category: 'Kebersihan & Sanitasi', unit_price: '', stock_qty: 10, date_in: today, image_url: '' }
       ];
     }
@@ -4947,7 +5370,7 @@ const app = {
     for (let i = 0; i < count; i++) {
       this.bulkProductRows.push({
         product_name: '',
-        category: 'ATK & Kertas',
+        category: 'ATK',
         unit_price: '',
         stock_qty: 10,
         date_in: today,
@@ -4961,7 +5384,7 @@ const app = {
     if (this.bulkProductRows.length <= 1) {
       this.bulkProductRows = [{
         product_name: '',
-        category: 'ATK & Kertas',
+        category: 'ATK',
         unit_price: '',
         stock_qty: 10,
         date_in: new Date().toISOString().split('T')[0],
@@ -4976,7 +5399,7 @@ const app = {
   clearBulkRows() {
     const today = new Date().toISOString().split('T')[0];
     this.bulkProductRows = [
-      { product_name: '', category: 'ATK & Kertas', unit_price: '', stock_qty: 10, date_in: today, image_url: '' }
+      { product_name: '', category: 'ATK', unit_price: '', stock_qty: 10, date_in: today, image_url: '' }
     ];
     this.renderBulkGrid();
     this.showToast('Tabel baris produk dibersihkan.', 'info');
@@ -5014,7 +5437,7 @@ const app = {
     if (!tbody) return;
 
     const categories = [
-      'ATK & Kertas',
+      'ATK',
       'Kebersihan & Sanitasi',
       'Elektronik & IT',
       'Perlengkapan Kelas',
@@ -5105,7 +5528,7 @@ const app = {
         return;
       }
 
-      const cat = cols[1] ? cols[1].trim().replace(/^["']|["']$/g, '') : 'ATK & Kertas';
+      const cat = cols[1] ? cols[1].trim().replace(/^["']|["']$/g, '') : 'ATK';
       const rawPrice = cols[2] ? cols[2].replace(/[^0-9]/g, '') : '0';
       const price = Number(rawPrice) || 0;
       const rawQty = cols[3] ? cols[3].replace(/[^0-9]/g, '') : '10';
@@ -5123,7 +5546,7 @@ const app = {
 
       newRows.push({
         product_name: name,
-        category: cat || 'ATK & Kertas',
+        category: cat || 'ATK',
         unit_price: price,
         stock_qty: qty,
         date_in: dateIn,
@@ -5142,7 +5565,7 @@ const app = {
   },
 
   copyBulkSampleTemplate() {
-    const template = "Nama Produk\tKategori\tHarga Satuan\tStok Awal\tTanggal Masuk\tURL Foto\nSpidol Whiteboard Snowman Hitam\tATK & Kertas\t9000\t50\t2026-10-03\t\nKertas HVS PaperOne A4 80gr\tATK & Kertas\t52000\t20\t2026-10-03\t\nSapu Lantai Ijuk Dragon\tKebersihan & Sanitasi\t28000\t15\t2026-10-03\t\nStop Kontak Uticon 4 Lubang 3M\tElektronik & IT\t65000\t8\t2026-10-03\t";
+    const template = "Nama Produk\tKategori\tHarga Satuan\tStok Awal\tTanggal Masuk\tURL Foto\nSpidol Whiteboard Snowman Hitam\tATK\t9000\t50\t2026-10-03\t\nKertas HVS PaperOne A4 80gr\tATK\t52000\t20\t2026-10-03\t\nSapu Lantai Ijuk Dragon\tKebersihan & Sanitasi\t28000\t15\t2026-10-03\t\nStop Kontak Uticon 4 Lubang 3M\tElektronik & IT\t65000\t8\t2026-10-03\t";
     navigator.clipboard.writeText(template).then(() => {
       this.showToast('Format template Excel disalin ke clipboard! Silakan paste di Excel.', 'success');
     }).catch(() => {
@@ -5152,8 +5575,8 @@ const app = {
 
   downloadBulkTemplateCSV() {
     const csv = "Nama Produk,Kategori,Harga Satuan,Stok Awal,Tanggal Masuk,URL Foto\n" +
-      "Spidol Whiteboard Snowman Hitam,ATK & Kertas,9000,50,2026-10-03,\n" +
-      "Kertas HVS PaperOne A4 80gr,ATK & Kertas,52000,20,2026-10-03,\n" +
+      "Spidol Whiteboard Snowman Hitam,ATK,9000,50,2026-10-03,\n" +
+      "Kertas HVS PaperOne A4 80gr,ATK,52000,20,2026-10-03,\n" +
       "Sapu Lantai Ijuk Dragon,Kebersihan & Sanitasi,28000,15,2026-10-03,\n" +
       "Stop Kontak Uticon 4 Lubang 3M,Elektronik & IT,65000,8,2026-10-03,";
 
@@ -5205,7 +5628,7 @@ const app = {
       return {
         batch_id: batchId,
         product_name: r.product_name.trim(),
-        category: r.category || 'ATK & Kertas',
+        category: r.category || 'ATK',
         stock_qty: qty,
         unit_price: price,
         date_in: r.date_in || dateStr,
@@ -5254,7 +5677,7 @@ const app = {
     document.getElementById('productModalSubmitBtnText').textContent = 'Simpan Master Produk';
     
     document.getElementById('productModalName').value = '';
-    document.getElementById('productModalCategory').value = 'ATK & Kertas';
+    document.getElementById('productModalCategory').value = 'ATK';
     document.getElementById('productModalPrice').value = '';
     document.getElementById('productModalStock').value = '10';
     document.getElementById('productModalDateIn').value = new Date().toISOString().split('T')[0];

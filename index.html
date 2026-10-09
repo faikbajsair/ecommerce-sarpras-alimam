@@ -2049,32 +2049,35 @@
         <!-- ================= SUB-TAB 2: MONITORING PROYEK RENOVASI FISIK ================= -->
         <div id="renovSubTab-projects" class="hidden space-y-6">
           
-          <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
             <!-- Filter Unit -->
             <div class="flex flex-wrap items-center gap-2">
-              <span class="text-xs font-bold text-slate-400 mr-1">Filter Unit:</span>
-              <button onclick="app.filterRenovProjects('all')" id="renovFilterUnit-all" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-600 text-white shadow-xs transition">
+              <span class="text-xs font-bold text-slate-400 mr-1 flex items-center space-x-1">
+                <i class="fa-solid fa-filter text-slate-400 text-[10px]"></i>
+                <span>Filter Unit:</span>
+              </span>
+              <button onclick="app.filterRenovProjects('all')" id="renovFilterUnit-all" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-amber-600 text-white shadow-sm transition">
                 Semua Unit
               </button>
-              <button onclick="app.filterRenovProjects('unit_tk')" id="renovFilterUnit-unit_tk" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
+              <button onclick="app.filterRenovProjects('unit_tk')" id="renovFilterUnit-unit_tk" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
                 PG-TK
               </button>
-              <button onclick="app.filterRenovProjects('unit_sd')" id="renovFilterUnit-unit_sd" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
+              <button onclick="app.filterRenovProjects('unit_sd')" id="renovFilterUnit-unit_sd" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
                 SD
               </button>
-              <button onclick="app.filterRenovProjects('unit_smp')" id="renovFilterUnit-unit_smp" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
+              <button onclick="app.filterRenovProjects('unit_smp')" id="renovFilterUnit-unit_smp" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
                 SMP
               </button>
             </div>
 
             <!-- Search & Add Project Button -->
             <div class="flex items-center space-x-3">
-              <div class="relative w-full sm:w-56">
+              <div class="relative w-full sm:w-64">
                 <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
-                <input type="text" id="renovSearchInput" oninput="app.onRenovSearchChange(this.value)" placeholder="Cari lokasi / proyek..." class="w-full pl-9 pr-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:bg-white focus:outline-none focus:border-amber-500">
+                <input type="text" id="renovSearchInput" oninput="app.onRenovSearchChange(this.value)" placeholder="Cari kode, lokasi, nota..." class="w-full pl-9 pr-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:bg-white focus:outline-none focus:border-amber-500 transition">
               </div>
 
-              <button onclick="app.openAddRenovProjectModal()" class="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center space-x-1.5 shrink-0">
+              <button onclick="app.openAddRenovProjectModal()" class="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center space-x-1.5 shrink-0">
                 <i class="fa-solid fa-plus"></i>
                 <span>Tambah Titik Renovasi</span>
               </button>
@@ -2082,27 +2085,34 @@
           </div>
 
           <!-- Master Renovation Projects Table -->
-          <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
-            <div class="p-4 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
-              <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-helmet-safety text-amber-600"></i>
-                <h4 class="font-extrabold text-sm text-slate-800 font-heading">Daftar Titik Proyek & Renovasi Fisik Gedung</h4>
+          <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden">
+            <div class="p-5 bg-gradient-to-r from-slate-50 via-amber-50/20 to-slate-50 border-b border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-700 flex items-center justify-center text-base border border-amber-500/20">
+                  <i class="fa-solid fa-helmet-safety"></i>
+                </div>
+                <div>
+                  <h4 class="font-black text-sm text-slate-900 font-heading">Daftar Titik Proyek & Renovasi Fisik Gedung</h4>
+                  <p class="text-[11px] text-slate-500">Monitoring real-time progres pengerjaan, anggaran, invoice SPK, dan BAST fisik.</p>
+                </div>
               </div>
-              <span class="text-xs text-slate-400" id="renovProjectCountLabel">Menampilkan 0 proyek</span>
+              <div class="flex items-center space-x-2">
+                <span class="px-3 py-1 bg-white border border-slate-200 text-xs font-bold text-slate-700 rounded-xl shadow-2xs" id="renovProjectCountLabel">Menampilkan 0 titik proyek</span>
+              </div>
             </div>
 
             <div class="overflow-x-auto">
-              <table class="w-full text-left text-xs border-collapse">
+              <table class="w-full text-left text-xs border-collapse table-modern">
                 <thead>
-                  <tr class="bg-slate-100 text-slate-700 font-extrabold text-[11px] uppercase tracking-wider">
-                    <th class="px-4 py-3 text-center w-24">KODE PROYEK</th>
-                    <th class="px-4 py-3">UNIT & LOKASI PEKERJAAN</th>
-                    <th class="px-4 py-3">JENIS & BAHAN MATERIAL</th>
-                    <th class="px-4 py-3 text-right">TOTAL BIAYA</th>
-                    <th class="px-4 py-3 text-center">PROGRES FISIK</th>
-                    <th class="px-4 py-3 text-center">TARGET WAKTU</th>
-                    <th class="px-4 py-3 text-center">STATUS</th>
-                    <th class="px-4 py-3 text-center w-36">AKSI CEPAT</th>
+                  <tr class="bg-slate-100/90 border-b border-slate-200 text-slate-700 font-extrabold text-[11px] uppercase tracking-wider">
+                    <th class="px-4 py-3.5 text-center whitespace-nowrap w-28">KODE & INVOICE</th>
+                    <th class="px-4 py-3.5 min-w-[200px]">UNIT & LOKASI PEKERJAAN</th>
+                    <th class="px-4 py-3.5 min-w-[220px]">JENIS & BAHAN MATERIAL</th>
+                    <th class="px-4 py-3.5 text-right whitespace-nowrap min-w-[120px]">TOTAL BIAYA</th>
+                    <th class="px-4 py-3.5 text-center min-w-[130px]">PROGRES FISIK</th>
+                    <th class="px-4 py-3.5 text-center whitespace-nowrap min-w-[115px]">TARGET WAKTU</th>
+                    <th class="px-4 py-3.5 text-center whitespace-nowrap min-w-[135px]">STATUS</th>
+                    <th class="px-4 py-3.5 text-center whitespace-nowrap min-w-[245px]">DOKUMEN & AKSI</th>
                   </tr>
                 </thead>
                 <tbody id="renovProjectsTableBody" class="divide-y divide-slate-100 font-medium text-slate-800">

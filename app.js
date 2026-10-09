@@ -8177,9 +8177,12 @@ const app = {
     if (list.length === 0) {
       tbody.innerHTML = `
         <tr>
-          <td colspan="8" class="text-center py-10 text-slate-400">
-            <i class="fa-solid fa-folder-open text-3xl mb-2 block"></i>
-            <p>Tidak ada data titik renovasi yang cocok.</p>
+          <td colspan="8" class="text-center py-12 text-slate-400">
+            <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3 text-lg">
+              <i class="fa-solid fa-folder-open"></i>
+            </div>
+            <p class="font-bold text-slate-600 text-sm">Tidak ada data titik renovasi yang cocok.</p>
+            <p class="text-xs text-slate-400 mt-1">Coba sesuaikan kata kunci pencarian atau ubah filter unit.</p>
           </td>
         </tr>
       `;
@@ -8187,13 +8190,13 @@ const app = {
     }
 
     const unitMap = {
-      unit_tk: { name: 'PG-TK Islam Al-Imam', badge: 'bg-emerald-100 text-emerald-800' },
-      unit_sd: { name: 'SD Islam Al-Imam', badge: 'bg-blue-100 text-blue-800' },
-      unit_smp: { name: 'SMP Islam Al-Imam', badge: 'bg-indigo-100 text-indigo-800' }
+      unit_tk: { name: 'PG-TK Islam Al-Imam', badge: 'bg-emerald-100/80 text-emerald-800 border border-emerald-200/60' },
+      unit_sd: { name: 'SD Islam Al-Imam', badge: 'bg-blue-100/80 text-blue-800 border border-blue-200/60' },
+      unit_smp: { name: 'SMP Islam Al-Imam', badge: 'bg-indigo-100/80 text-indigo-800 border border-indigo-200/60' }
     };
 
     tbody.innerHTML = list.map(p => {
-      const u = unitMap[p.unit_id] || { name: p.unit_id, badge: 'bg-slate-100 text-slate-800' };
+      const u = unitMap[p.unit_id] || { name: p.unit_id, badge: 'bg-slate-100 text-slate-800 border border-slate-200' };
       const pct = Number(p.progress_pct) || 0;
       let barColor = 'bg-amber-500';
       if (pct === 100) barColor = 'bg-emerald-500';
@@ -8202,86 +8205,120 @@ const app = {
       const photoCount = (p.photos && p.photos.length) || 0;
       const isCompleted = p.status === 'Selesai' || pct === 100;
 
+      // Format date
+      let displayDate = p.target_date || '-';
+      if (p.target_date && p.target_date.includes('-')) {
+        const parts = p.target_date.split('-');
+        if (parts.length === 3) {
+          const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+          const mIdx = parseInt(parts[1], 10) - 1;
+          displayDate = `${parts[2]} ${months[mIdx] || parts[1]} ${parts[0]}`;
+        }
+      }
+
       return `
-        <tr class="hover:bg-slate-50/80 transition">
-          <td class="px-4 py-3.5 text-center font-bold font-mono text-slate-700">
-            <span class="block">${p.project_id}</span>
-            ${p.invoice_no ? `<span class="text-[9px] text-blue-600 font-mono block">${p.invoice_no}</span>` : ''}
+        <tr class="hover:bg-amber-50/20 transition-colors border-b border-slate-100/90">
+          <!-- 1. KODE & INVOICE -->
+          <td class="px-4 py-3.5 text-center whitespace-nowrap align-middle">
+            <span class="inline-block px-2.5 py-1 bg-slate-100 text-slate-800 font-mono font-bold text-xs rounded-lg border border-slate-200 shadow-2xs">${p.project_id}</span>
+            ${p.invoice_no ? `<span class="mt-1 block text-[10px] text-blue-700 font-mono font-bold tracking-tight bg-blue-50 border border-blue-200/60 rounded px-1.5 py-0.5">${p.invoice_no}</span>` : ''}
           </td>
-          <td class="px-4 py-3.5">
-            <div class="flex items-center space-x-2 mb-0.5">
-              <span class="px-2 py-0.5 ${u.badge} text-[10px] font-extrabold rounded-full">${u.name}</span>
+
+          <!-- 2. UNIT & LOKASI PEKERJAAN -->
+          <td class="px-4 py-3.5 align-middle">
+            <div class="flex items-center space-x-1.5 mb-1">
+              <span class="px-2 py-0.5 ${u.badge} text-[10px] font-extrabold rounded-full tracking-wide uppercase">${u.name}</span>
             </div>
-            <div class="font-extrabold text-slate-900">${p.location_name}</div>
+            <div class="font-extrabold text-slate-900 text-xs leading-snug">${p.location_name}</div>
+            ${p.pic_name ? `<div class="text-[10px] text-slate-400 mt-0.5 flex items-center space-x-1"><i class="fa-solid fa-user-shield text-[9px]"></i><span>PJ: ${p.pic_name}</span></div>` : ''}
           </td>
-          <td class="px-4 py-3.5">
-            <span class="inline-block font-semibold text-slate-800">${p.category}</span>
-            <p class="text-[11px] text-slate-400 truncate max-w-xs">${p.notes || '-'}</p>
+
+          <!-- 3. JENIS & BAHAN MATERIAL -->
+          <td class="px-4 py-3.5 align-middle">
+            <div class="font-bold text-slate-800 text-xs">${p.category}</div>
+            <p class="text-[11px] text-slate-500 mt-0.5 line-clamp-2 max-w-xs leading-relaxed">${p.notes || '-'}</p>
           </td>
-          <td class="px-4 py-3.5 text-right font-black text-slate-900 font-heading">
-            Rp ${this.formatNumber(p.budget_estimate)}
+
+          <!-- 4. TOTAL BIAYA -->
+          <td class="px-4 py-3.5 text-right align-middle whitespace-nowrap">
+            <div class="font-black text-slate-900 font-heading text-sm">Rp ${this.formatNumber(p.budget_estimate)}</div>
+            ${p.labor_cost ? `<div class="text-[10px] text-slate-400 mt-0.5">Upah: Rp ${this.formatNumber(p.labor_cost)}</div>` : ''}
           </td>
-          <td class="px-4 py-3.5 text-center w-36">
-            <div class="flex items-center justify-between text-[10px] font-bold text-slate-600 mb-1">
-              <span>Progres</span>
-              <span>${pct}%</span>
+
+          <!-- 5. PROGRES FISIK -->
+          <td class="px-4 py-3.5 text-center align-middle whitespace-nowrap">
+            <div class="w-28 mx-auto">
+              <div class="flex items-center justify-between text-[10px] font-extrabold text-slate-700 mb-1">
+                <span>Fisik</span>
+                <span class="font-mono ${pct === 100 ? 'text-emerald-700' : 'text-amber-700'}">${pct}%</span>
+              </div>
+              <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden p-0.5 border border-slate-200/50">
+                <div class="h-full ${barColor} rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+              </div>
             </div>
-            <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
-              <div class="h-full ${barColor} rounded-full transition-all duration-500" style="width: ${pct}%"></div>
-            </div>
           </td>
-          <td class="px-4 py-3.5 text-center text-slate-600 font-semibold">
-            ${p.target_date || '-'}
-          </td>
-          <td class="px-4 py-3.5 text-center">
-            <span class="px-2.5 py-1 text-[10px] font-bold rounded-full ${
-              isCompleted ? 'bg-emerald-100 text-emerald-800' :
-              p.status === 'Dalam Pengerjaan' ? 'bg-amber-100 text-amber-800' :
-              'bg-slate-100 text-slate-700'
-            }">
-              ${p.status}
+
+          <!-- 6. TARGET WAKTU -->
+          <td class="px-4 py-3.5 text-center align-middle whitespace-nowrap">
+            <span class="inline-flex items-center space-x-1.5 text-xs font-semibold text-slate-600 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200/60">
+              <i class="fa-regular fa-calendar text-[10px] text-slate-400"></i>
+              <span>${displayDate}</span>
             </span>
           </td>
-          <td class="px-4 py-3.5 text-center">
-            <div class="flex items-center justify-center space-x-1.5 flex-wrap gap-y-1">
-              <!-- Invoice Proyek Masuk Button -->
-              <button onclick="app.openProjectInvoiceModal('${p.project_id}')" class="px-2 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg text-[10px] font-bold transition flex items-center space-x-1" title="Cetak Invoice & SPK Proyek">
+
+          <!-- 7. STATUS -->
+          <td class="px-4 py-3.5 text-center align-middle whitespace-nowrap">
+            <span class="inline-flex items-center space-x-1.5 px-3 py-1 text-[10px] font-extrabold rounded-full ${
+              isCompleted ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' :
+              p.status === 'Dalam Pengerjaan' ? 'bg-amber-100 text-amber-800 border border-amber-200' :
+              'bg-slate-100 text-slate-700 border border-slate-200'
+            }">
+              <span class="w-2 h-2 rounded-full ${isCompleted ? 'bg-emerald-500' : p.status === 'Dalam Pengerjaan' ? 'bg-amber-500 animate-pulse' : 'bg-slate-400'}"></span>
+              <span>${p.status}</span>
+            </span>
+          </td>
+
+          <!-- 8. DOKUMEN & AKSI -->
+          <td class="px-4 py-3.5 text-center align-middle whitespace-nowrap">
+            <div class="inline-flex items-center space-x-1.5">
+              <!-- Invoice Button -->
+              <button onclick="app.openProjectInvoiceModal('${p.project_id}')" class="px-2.5 py-1.5 bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-700 border border-blue-200/80 rounded-xl text-[11px] font-bold transition flex items-center space-x-1 shadow-2xs group" title="Cetak Invoice & SPK Proyek">
                 <i class="fa-solid fa-file-invoice"></i>
-                <span class="hidden xl:inline">Invoice</span>
+                <span>Invoice</span>
               </button>
 
-              <!-- Laporan BAST Selesai Button -->
-              <button onclick="app.openProjectCompletionModal('${p.project_id}')" class="px-2 py-1 ${isCompleted ? 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700' : 'bg-slate-100 hover:bg-slate-200 text-slate-600'} rounded-lg text-[10px] font-bold transition flex items-center space-x-1" title="${isCompleted ? 'Cetak BAST & Laporan Selesai' : 'Pratinjau BAST'}">
+              <!-- BAST Button -->
+              <button onclick="app.openProjectCompletionModal('${p.project_id}')" class="px-2.5 py-1.5 ${isCompleted ? 'bg-emerald-50 hover:bg-emerald-600 hover:text-white text-emerald-700 border border-emerald-200/80' : 'bg-slate-100 hover:bg-slate-700 hover:text-white text-slate-600 border border-slate-200'} rounded-xl text-[11px] font-bold transition flex items-center space-x-1 shadow-2xs" title="${isCompleted ? 'Cetak BAST & Laporan Selesai' : 'Pratinjau BAST'}">
                 <i class="fa-solid fa-file-contract"></i>
-                <span class="hidden xl:inline">BAST</span>
+                <span>BAST</span>
               </button>
 
-              <!-- Upload / View Photos Button -->
-              <button onclick="app.openRenovDetailModal('${p.project_id}', 'gallery')" class="px-2 py-1 bg-amber-50 hover:bg-amber-100 text-amber-700 rounded-lg text-[10px] font-bold transition flex items-center space-x-1" title="Galeri & Upload Foto / Screenshot">
-                <i class="fa-solid fa-camera"></i>
-                <span>${photoCount}</span>
+              <!-- Foto / Galeri Button -->
+              <button onclick="app.openRenovDetailModal('${p.project_id}', 'gallery')" class="px-2.5 py-1.5 bg-amber-50 hover:bg-amber-500 hover:text-white text-amber-800 border border-amber-200/80 rounded-xl text-[11px] font-bold transition flex items-center space-x-1 shadow-2xs" title="Galeri & Upload Foto / Screenshot">
+                <i class="fa-solid fa-camera text-[10px]"></i>
+                <span>Foto</span>
+                <span class="px-1.5 py-0.2 bg-amber-200/80 text-amber-900 rounded-full text-[9px] font-black">${photoCount}</span>
               </button>
 
-              <!-- Full Detail Modal -->
-              <button onclick="app.openRenovDetailModal('${p.project_id}')" class="w-6 h-6 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg flex items-center justify-center text-xs transition" title="Lihat Detail Lengkap">
-                <i class="fa-solid fa-eye"></i>
-              </button>
-
-              <!-- Edit Project -->
-              <button onclick="app.openAddRenovProjectModal('${p.project_id}')" class="w-6 h-6 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg flex items-center justify-center text-xs transition" title="Edit Titik">
-                <i class="fa-solid fa-pen-to-square"></i>
-              </button>
-
-              <!-- Delete Project -->
-              <button onclick="app.deleteRenovProject('${p.project_id}')" class="w-6 h-6 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center text-xs transition" title="Hapus Titik">
-                <i class="fa-solid fa-trash"></i>
-              </button>
+              <!-- Compact Actions Toolbar (Detail, Edit, Delete) -->
+              <div class="inline-flex items-center border border-slate-200/80 bg-slate-50/80 rounded-xl p-0.5 space-x-0.5 shadow-2xs">
+                <button onclick="app.openRenovDetailModal('${p.project_id}')" class="w-7 h-7 hover:bg-white text-slate-600 hover:text-slate-900 rounded-lg flex items-center justify-center text-xs transition" title="Lihat Detail Lengkap">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+                <button onclick="app.openAddRenovProjectModal('${p.project_id}')" class="w-7 h-7 hover:bg-white text-slate-600 hover:text-blue-600 rounded-lg flex items-center justify-center text-xs transition" title="Edit Titik Proyek">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button onclick="app.deleteRenovProject('${p.project_id}')" class="w-7 h-7 hover:bg-white text-rose-500 hover:text-rose-700 rounded-lg flex items-center justify-center text-xs transition" title="Hapus Titik Proyek">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
             </div>
           </td>
         </tr>
       `;
     }).join('');
   },
+
 
   filterRenovProjects(unitId) {
     this.renovUnitFilter = unitId;

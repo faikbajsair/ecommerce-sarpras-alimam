@@ -2274,15 +2274,19 @@ const app = {
   },
 
   // ==========================================
-  // LOGIN & MULTI-UNIT AUTH CONTROLLERS
+  // LOGIN & AUTHENTICATION CONTROLLERS
   // ==========================================
   openLoginModal() {
     const modal = document.getElementById('loginModal');
     if (modal) {
       modal.classList.remove('hidden');
-      this.setLoginTab('quick');
-      const select = document.getElementById('loginSelectUsername');
-      if (select) select.value = this.currentUser.unit_id;
+      const uInput = document.getElementById('loginInputUsername');
+      const pInput = document.getElementById('loginInputPassword');
+      if (uInput) {
+        uInput.value = '';
+        setTimeout(() => uInput.focus(), 100);
+      }
+      if (pInput) pInput.value = '';
     }
     const menu = document.getElementById('userMenuDropdown');
     if (menu) menu.classList.add('hidden');
@@ -2291,34 +2295,6 @@ const app = {
   closeLoginModal() {
     const modal = document.getElementById('loginModal');
     if (modal) modal.classList.add('hidden');
-  },
-
-  setLoginTab(tab) {
-    const btnQuick = document.getElementById('loginTabBtn-quick');
-    const btnForm = document.getElementById('loginTabBtn-form');
-    const contentQuick = document.getElementById('loginTabContent-quick');
-    const contentForm = document.getElementById('loginTabContent-form');
-    if (tab === 'quick') {
-      if (btnQuick) btnQuick.className = 'flex-1 py-2 rounded-xl bg-white text-brand-primary shadow-sm font-bold transition flex items-center justify-center space-x-1.5';
-      if (btnForm) btnForm.className = 'flex-1 py-2 rounded-xl text-slate-500 hover:text-slate-800 font-semibold transition flex items-center justify-center space-x-1.5';
-      if (contentQuick) contentQuick.classList.remove('hidden');
-      if (contentForm) contentForm.classList.add('hidden');
-    } else {
-      if (btnQuick) btnQuick.className = 'flex-1 py-2 rounded-xl text-slate-500 hover:text-slate-800 font-semibold transition flex items-center justify-center space-x-1.5';
-      if (btnForm) btnForm.className = 'flex-1 py-2 rounded-xl bg-white text-brand-primary shadow-sm font-bold transition flex items-center justify-center space-x-1.5';
-      if (contentQuick) contentQuick.classList.add('hidden');
-      if (contentForm) contentForm.classList.remove('hidden');
-    }
-  },
-
-  loginAs(unitId) {
-    this.switchUser(unitId);
-    this.closeLoginModal();
-  },
-
-  handleLoginUsernameChange(val) {
-    const pwdInput = document.getElementById('loginInputPassword');
-    if (pwdInput) pwdInput.value = '123';
   },
 
   toggleLoginPasswordVisibility() {
@@ -2336,16 +2312,52 @@ const app = {
 
   handleLoginFormSubmit(e) {
     if (e) e.preventDefault();
-    const select = document.getElementById('loginSelectUsername');
-    const unitId = select ? select.value : 'unit_sd';
-    this.loginAs(unitId);
+    const uInput = document.getElementById('loginInputUsername');
+    const pInput = document.getElementById('loginInputPassword');
+    
+    const username = uInput ? uInput.value.trim().toLowerCase() : '';
+    const password = pInput ? pInput.value.trim() : '';
+
+    if (!username || !password) {
+      this.showToast('Silakan masukkan Username dan PIN / Password!', 'warning');
+      return;
+    }
+
+    // Verify credentials against this.db.users
+    const matchedUser = this.db.users.find(u => {
+      const uNameMatch = (u.username && u.username.toLowerCase() === username) || (u.unit_id && u.unit_id.toLowerCase() === username);
+      const pwdMatch = u.password ? u.password === password : password === '123';
+      return uNameMatch && pwdMatch;
+    });
+
+    if (!matchedUser) {
+      this.showToast('Username atau PIN tidak valid! Akses ditolak.', 'error');
+      if (pInput) {
+        pInput.value = '';
+        pInput.focus();
+      }
+      return;
+    }
+
+    // Success authentication
+    this.currentUser = matchedUser;
+    localStorage.setItem(this.AUTH_KEY, matchedUser.unit_id);
+    this.closeLoginModal();
+    this.showToast(`Login berhasil! Selamat datang, ${matchedUser.unit_name}`, 'success');
+    this.updateUI();
+    
+    if (matchedUser.role === 'Bendahara' && this.activeView === 'verification') {
+      this.renderVerificationView();
+    } else {
+      this.navigate(this.activeView || 'dashboard');
+    }
   },
 
   logout() {
     const menu = document.getElementById('userMenuDropdown');
     if (menu) menu.classList.add('hidden');
     this.openLoginModal();
-    this.showToast('Silakan pilih unit untuk login kembali.', 'info');
+    this.showToast('Silakan login dengan Username dan PIN Anda.', 'info');
   },
 
   // Single Page View Router
@@ -2458,45 +2470,6 @@ const app = {
         dropSaldo.textContent = 'Total: Rp ' + this.formatNumber(totalAllAvailable);
       }
     }
-
-    // Update login modal saldo cards
-    ['tk', 'sd', 'smp'].forEach(uKey => {
-      const el = document.getElementById(`loginCardSaldo-${uKey}`);
-      const rapbs = this.db.rapbs_poin.find(r => r.unit_id === `unit_${uKey}`);
-      if (el && rapbs) {
-        el.textContent = 'Rp ' + this.formatNumber(rapbs.saldo_tersedia);
-      }
-    });
-
-    // Update active user highlight in dropdown
-    ['unit_tk', 'unit_sd', 'unit_smp', 'bendahara', 'admin'].forEach(uId => {
-      const item = document.getElementById(`userItem-${uId}`);
-      if (item) {
-        const isActive = this.currentUser.unit_id === uId;
-        const tag = item.querySelector('.user-active-tag');
-        if (isActive) {
-          item.classList.add('bg-emerald-50', 'font-bold', 'text-brand-primary');
-          if (tag) {
-            tag.className = 'text-[10px] bg-emerald-600 text-white px-2 py-0.5 rounded-full font-bold user-active-tag flex items-center gap-1';
-            tag.innerHTML = '<i class="fa-solid fa-check text-[9px]"></i> Aktif';
-          }
-        } else {
-          item.classList.remove('bg-emerald-50', 'font-bold', 'text-brand-primary');
-          if (tag) {
-            if (uId === 'bendahara') {
-              tag.className = 'text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-bold user-active-tag';
-              tag.textContent = 'Approver';
-            } else if (uId === 'admin') {
-              tag.className = 'text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-bold user-active-tag';
-              tag.textContent = 'Inventory';
-            } else {
-              tag.className = 'text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-semibold user-active-tag';
-              tag.textContent = 'Unit';
-            }
-          }
-        }
-      }
-    });
 
     const navPill = document.getElementById('unitQuotaPill');
     const sidebarCard = document.getElementById('sidebarSaldoCard');

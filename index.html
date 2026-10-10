@@ -129,49 +129,24 @@
             </div>
             
             <div class="py-1">
-              <div class="px-4 py-1.5 text-[10px] font-extrabold text-slate-400 uppercase tracking-wider flex items-center justify-between">
-                <span>Ganti Unit / Login Cepat</span>
-                <button type="button" onclick="app.openLoginModal()" class="text-brand-primary hover:underline lowercase text-[10px] font-bold">dialog login</button>
-              </div>
-              
-              <button onclick="app.switchUser('unit_tk')" id="userItem-unit_tk" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-50 flex items-center justify-between text-slate-700 transition">
-                <span class="flex items-center"><i class="fa-solid fa-child-reaching text-amber-500 w-5 text-center mr-2"></i>TK Islam Al-Imam</span>
-                <span class="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-semibold user-active-tag">Unit</span>
+              <button onclick="app.navigate('dashboard'); document.getElementById('userMenuDropdown').classList.add('hidden');" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-50 flex items-center text-slate-700 transition">
+                <i class="fa-solid fa-gauge-high text-brand-primary w-5 text-center mr-2"></i>Dashboard Utama
               </button>
-              <button onclick="app.switchUser('unit_sd')" id="userItem-unit_sd" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-50 flex items-center justify-between text-slate-700 transition">
-                <span class="flex items-center"><i class="fa-solid fa-school text-emerald-600 w-5 text-center mr-2"></i>SD Islam Al-Imam</span>
-                <span class="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-semibold user-active-tag">Unit</span>
-              </button>
-              <button onclick="app.switchUser('unit_smp')" id="userItem-unit_smp" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-50 flex items-center justify-between text-slate-700 transition">
-                <span class="flex items-center"><i class="fa-solid fa-graduation-cap text-blue-600 w-5 text-center mr-2"></i>SMP Islam Al-Imam</span>
-                <span class="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-semibold user-active-tag">Unit</span>
-              </button>
-              
-              <div class="border-t border-slate-100 my-1"></div>
-              
-              <button onclick="app.switchUser('bendahara')" id="userItem-bendahara" class="w-full text-left px-4 py-2 text-xs hover:bg-amber-50/70 flex items-center justify-between text-slate-800 font-bold transition">
-                <span class="flex items-center"><i class="fa-solid fa-scale-balanced text-amber-600 w-5 text-center mr-2"></i>Bendahara Yayasan</span>
-                <span class="text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-bold user-active-tag">Approver</span>
-              </button>
-              <button onclick="app.switchUser('admin')" id="userItem-admin" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-100 flex items-center justify-between text-slate-800 font-bold transition">
-                <span class="flex items-center"><i class="fa-solid fa-boxes-stacked text-slate-700 w-5 text-center mr-2"></i>Admin / Pelaksana Harian</span>
-                <span class="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-bold user-active-tag">Logistik</span>
+              <button onclick="app.navigate('orders'); document.getElementById('userMenuDropdown').classList.add('hidden');" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-50 flex items-center text-slate-700 transition">
+                <i class="fa-solid fa-clipboard-list text-brand-primary w-5 text-center mr-2"></i>Riwayat Pengajuan Unit
               </button>
             </div>
             
             <div class="border-t border-slate-100 pt-1">
-              <button onclick="app.openLoginModal()" class="w-full text-left px-4 py-2 text-xs text-brand-primary hover:bg-emerald-50 font-bold flex items-center transition">
-                <i class="fa-solid fa-right-to-bracket text-brand-primary w-5 text-center mr-2"></i>Buka Dialog Login Lengkap
-              </button>
-              <button onclick="app.navigate('cms')" class="w-full text-left px-4 py-2 text-xs text-amber-700 hover:bg-amber-50 font-bold flex items-center transition">
+              <button onclick="app.navigate('cms'); document.getElementById('userMenuDropdown').classList.add('hidden');" class="w-full text-left px-4 py-2 text-xs text-amber-700 hover:bg-amber-50 font-bold flex items-center transition">
                 <i class="fa-solid fa-palette text-amber-600 w-5 text-center mr-2"></i>CMS & Tampilan White-Label
               </button>
-              <button onclick="app.openSettingsModal()" class="w-full text-left px-4 py-2 text-xs text-slate-600 hover:bg-slate-50 flex items-center transition">
+              <button onclick="app.openSettingsModal(); document.getElementById('userMenuDropdown').classList.add('hidden');" class="w-full text-left px-4 py-2 text-xs text-slate-600 hover:bg-slate-50 flex items-center transition">
                 <i class="fa-solid fa-sliders text-slate-400 w-5 text-center mr-2"></i>Pengaturan Koneksi API
               </button>
               <div class="border-t border-slate-100 my-1"></div>
               <button onclick="app.logout()" class="w-full text-left px-4 py-2 text-xs text-red-600 hover:bg-red-50 font-bold flex items-center transition">
-                <i class="fa-solid fa-arrow-right-from-bracket text-red-500 w-5 text-center mr-2"></i>Keluar / Ganti Akun
+                <i class="fa-solid fa-arrow-right-from-bracket text-red-500 w-5 text-center mr-2"></i>Ganti Akun / Keluar
               </button>
             </div>
           </div>
@@ -4071,15 +4046,15 @@ Sapu Lantai Ijuk Dragon	Kebersihan & Sanitasi	28000	15	2026-10-03" class="w-full
     </div>
   </div>
 
-  <!-- ================= MODAL: LOGIN / GANTI UNIT ================= -->
+  <!-- ================= MODAL: LOGIN USERNAME & PIN ================= -->
   <div id="loginModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all animate-fadeIn">
+    <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all animate-fadeIn">
       <!-- Header with Brand Accent -->
       <div class="theme-gradient-bg p-6 text-white relative">
         <div class="flex items-center justify-between relative z-10">
           <div class="flex items-center space-x-3">
             <div class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-2xl font-black shadow-inner">
-              <i class="fa-solid fa-school-flag"></i>
+              <i class="fa-solid fa-lock"></i>
             </div>
             <div>
               <h3 class="font-extrabold text-lg leading-tight font-heading">Portal Login SARPRAS</h3>
@@ -4091,193 +4066,44 @@ Sapu Lantai Ijuk Dragon	Kebersihan & Sanitasi	28000	15	2026-10-03" class="w-full
           </button>
         </div>
         <p class="text-xs text-white/90 mt-3 relative z-10 leading-relaxed">
-          Silakan pilih unit Anda atau masuk dengan akun terdaftar untuk langsung mengajukan belanja ATK, servis AC, dan renovasi fisik unit.
+          Silakan masukkan Username dan PIN resmi unit Anda untuk mengakses layanan pengadaan dan administrasi SARPRAS.
         </p>
       </div>
 
-      <div class="p-6 space-y-5">
-        <!-- Login Mode Switcher Tabs -->
-        <div class="flex rounded-2xl bg-slate-100 p-1 text-xs font-bold">
-          <button type="button" onclick="app.setLoginTab('quick')" id="loginTabBtn-quick" class="flex-1 py-2 rounded-xl bg-white text-brand-primary shadow-sm font-bold transition flex items-center justify-center space-x-1.5">
-            <i class="fa-solid fa-bolt"></i>
-            <span>Pilih Akun Unit (1-Klik)</span>
-          </button>
-          <button type="button" onclick="app.setLoginTab('form')" id="loginTabBtn-form" class="flex-1 py-2 rounded-xl text-slate-500 hover:text-slate-800 font-semibold transition flex items-center justify-center space-x-1.5">
-            <i class="fa-solid fa-key"></i>
-            <span>Login Username & PIN</span>
-          </button>
-        </div>
-
-        <!-- TAB 1: ONE-CLICK QUICK UNIT SELECTION -->
-        <div id="loginTabContent-quick" class="space-y-3">
-          <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Unit Pemohon Sekolah:</p>
-          
-          <!-- TK Al-Imam -->
-          <button type="button" onclick="app.loginAs('unit_tk')" class="w-full p-3.5 rounded-2xl border border-slate-200/80 hover:border-amber-400 hover:bg-amber-50/40 transition flex items-center justify-between text-left group">
-            <div class="flex items-center space-x-3">
-              <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg font-bold group-hover:scale-110 transition-transform">
-                <i class="fa-solid fa-child-reaching"></i>
-              </div>
-              <div>
-                <h4 class="text-xs font-bold text-slate-800 group-hover:text-amber-700 transition">TK Islam Al-Imam</h4>
-                <p class="text-[11px] text-slate-500">Unit Pemohon • Saldo: <span class="font-bold text-emerald-600" id="loginCardSaldo-tk">Rp 14.490.000</span></p>
-              </div>
-            </div>
-            <div class="flex items-center space-x-2">
-              <span class="px-2 py-0.5 bg-amber-100 text-amber-800 text-[10px] font-bold rounded-lg">Masuk TK</span>
-              <i class="fa-solid fa-arrow-right text-xs text-slate-400 group-hover:text-amber-600 group-hover:translate-x-1 transition"></i>
-            </div>
-          </button>
-
-          <!-- SD Al-Imam -->
-          <button type="button" onclick="app.loginAs('unit_sd')" class="w-full p-3.5 rounded-2xl border border-slate-200/80 hover:border-emerald-400 hover:bg-emerald-50/40 transition flex items-center justify-between text-left group">
-            <div class="flex items-center space-x-3">
-              <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg font-bold group-hover:scale-110 transition-transform">
-                <i class="fa-solid fa-school"></i>
-              </div>
-              <div>
-                <h4 class="text-xs font-bold text-slate-800 group-hover:text-emerald-700 transition">SD Islam Al-Imam</h4>
-                <p class="text-[11px] text-slate-500">Unit Pemohon • Saldo: <span class="font-bold text-emerald-600" id="loginCardSaldo-sd">Rp 34.918.671</span></p>
-              </div>
-            </div>
-            <div class="flex items-center space-x-2">
-              <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded-lg">Masuk SD</span>
-              <i class="fa-solid fa-arrow-right text-xs text-slate-400 group-hover:text-emerald-600 group-hover:translate-x-1 transition"></i>
-            </div>
-          </button>
-
-          <!-- SMP Al-Imam -->
-          <button type="button" onclick="app.loginAs('unit_smp')" class="w-full p-3.5 rounded-2xl border border-slate-200/80 hover:border-blue-400 hover:bg-blue-50/40 transition flex items-center justify-between text-left group">
-            <div class="flex items-center space-x-3">
-              <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-lg font-bold group-hover:scale-110 transition-transform">
-                <i class="fa-solid fa-graduation-cap"></i>
-              </div>
-              <div>
-                <h4 class="text-xs font-bold text-slate-800 group-hover:text-blue-700 transition">SMP Islam Al-Imam</h4>
-                <p class="text-[11px] text-slate-500">Unit Pemohon • Saldo: <span class="font-bold text-emerald-600" id="loginCardSaldo-smp">Rp 18.605.886</span></p>
-              </div>
-            </div>
-            <div class="flex items-center space-x-2">
-              <span class="px-2 py-0.5 bg-blue-100 text-blue-800 text-[10px] font-bold rounded-lg">Masuk SMP</span>
-              <i class="fa-solid fa-arrow-right text-xs text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition"></i>
-            </div>
-          </button>
-
-          <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider pt-2">Verifikator & Manajemen Logistik:</p>
-
-          <div class="grid grid-cols-2 gap-2.5">
-            <!-- Bendahara -->
-            <button type="button" onclick="app.loginAs('bendahara')" class="p-3.5 rounded-2xl border border-slate-200 hover:border-amber-400 hover:bg-amber-50/50 transition flex flex-col justify-between text-left group">
-              <div class="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-sm font-bold mb-2">
-                <i class="fa-solid fa-scale-balanced"></i>
-              </div>
-              <h5 class="text-xs font-bold text-slate-800">Bendahara Yayasan</h5>
-              <p class="text-[10px] text-slate-400">Verifikasi & Kas</p>
-            </button>
-
-            <!-- Admin Sarpras / Pelaksana Harian -->
-            <button type="button" onclick="app.loginAs('admin')" class="p-3.5 rounded-2xl border border-slate-200 hover:border-slate-400 hover:bg-slate-100/60 transition flex flex-col justify-between text-left group">
-              <div class="w-8 h-8 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center text-sm font-bold mb-2">
-                <i class="fa-solid fa-boxes-stacked"></i>
-              </div>
-              <h5 class="text-xs font-bold text-slate-800">Admin / Pelaksana Harian</h5>
-              <p class="text-[10px] text-slate-400">Stok Batch & FIFO</p>
-            </button>
-          </div>
-        </div>
-
-        <!-- TAB 2: USERNAME & PASSWORD FORM LOGIN -->
-        <form id="loginTabContent-form" onsubmit="app.handleLoginFormSubmit(event)" class="hidden space-y-4">
+      <div class="p-6">
+        <!-- FORM LOGIN USERNAME & PIN -->
+        <form id="loginForm" onsubmit="app.handleLoginFormSubmit(event)" class="space-y-4">
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Pilih Unit / Username</label>
+            <label for="loginInputUsername" class="block text-xs font-bold text-slate-700 mb-1.5">Username Akun</label>
             <div class="relative">
               <i class="fa-solid fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-              <select id="loginSelectUsername" onchange="app.handleLoginUsernameChange(this.value)" class="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:bg-white focus:outline-none focus:border-brand-primary transition">
-                <option value="unit_tk">tk_alimam (TK Islam Al-Imam)</option>
-                <option value="unit_sd" selected>sd_alimam (SD Islam Al-Imam)</option>
-                <option value="unit_smp">smp_alimam (SMP Islam Al-Imam)</option>
-                <option value="admin">admin_sarpras (Admin / Pelaksana Harian)</option>
-                <option value="bendahara">bendahara_yayasan (Bendahara Yayasan)</option>
-              </select>
+              <input type="text" id="loginInputUsername" required autocomplete="username" placeholder="Masukkan username akun..." class="w-full pl-9 pr-3 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition">
             </div>
           </div>
 
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Password / PIN Keamanan</label>
+            <label for="loginInputPassword" class="block text-xs font-bold text-slate-700 mb-1.5">PIN / Password Keamanan</label>
             <div class="relative">
-              <i class="fa-solid fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-              <input type="password" id="loginInputPassword" value="123" placeholder="Masukkan password..." class="w-full pl-9 pr-10 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-brand-primary transition">
-              <button type="button" onclick="app.toggleLoginPasswordVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs">
+              <i class="fa-solid fa-key absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <input type="password" id="loginInputPassword" required autocomplete="current-password" placeholder="Masukkan PIN / Password..." class="w-full pl-9 pr-10 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition">
+              <button type="button" onclick="app.toggleLoginPasswordVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs p-1">
                 <i id="loginPasswordEyeIcon" class="fa-solid fa-eye"></i>
               </button>
             </div>
-            <p class="text-[10px] text-slate-400 mt-1">Default PIN login semua akun: <code class="bg-slate-100 px-1 py-0.5 rounded font-mono text-slate-600 font-bold">123</code></p>
           </div>
 
           <div class="pt-2">
-            <button type="submit" class="w-full py-3 bg-brand-primary hover:opacity-90 text-white font-bold text-xs rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
+            <button type="submit" class="w-full py-3.5 bg-brand-primary hover:opacity-90 text-white font-bold text-xs rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
               <i class="fa-solid fa-right-to-bracket"></i>
-              <span>Masuk Sekarang</span>
+              <span>Masuk ke Sistem</span>
             </button>
           </div>
-        </form>
 
-        <!-- CREDENTIAL CHEAT-SHEET TABLE ACCORDION -->
-        <div class="mt-4 pt-3 border-t border-slate-100">
-          <div class="bg-slate-50 rounded-2xl p-3 border border-slate-200/80">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-[11px] font-extrabold text-slate-700 flex items-center gap-1.5">
-                <i class="fa-solid fa-shield-halved text-brand-primary"></i>
-                Tabel Akun & Kredensial Login
-              </span>
-              <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">5 Akun Terdaftar</span>
-            </div>
-            <div class="overflow-x-auto text-[11px]">
-              <table class="w-full text-left border-collapse">
-                <thead>
-                  <tr class="border-b border-slate-200 text-slate-400 text-[10px] uppercase font-bold">
-                    <th class="py-1 px-1.5">Nama Unit / Entitas</th>
-                    <th class="py-1 px-1.5">Username</th>
-                    <th class="py-1 px-1.5">PIN/Sandi</th>
-                    <th class="py-1 px-1.5">Peran</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
-                  <tr class="hover:bg-white/60 transition cursor-pointer" onclick="app.loginAs('unit_tk')">
-                    <td class="py-1.5 px-1.5 font-bold text-amber-700">TK Islam Al-Imam</td>
-                    <td class="py-1.5 px-1.5 font-mono text-slate-600">tk_alimam</td>
-                    <td class="py-1.5 px-1.5 font-mono font-bold text-slate-800">123</td>
-                    <td class="py-1.5 px-1.5"><span class="px-1.5 py-0.5 bg-amber-100 text-amber-800 rounded text-[9px] font-bold">Unit</span></td>
-                  </tr>
-                  <tr class="hover:bg-white/60 transition cursor-pointer" onclick="app.loginAs('unit_sd')">
-                    <td class="py-1.5 px-1.5 font-bold text-emerald-700">SD Islam Al-Imam</td>
-                    <td class="py-1.5 px-1.5 font-mono text-slate-600">sd_alimam</td>
-                    <td class="py-1.5 px-1.5 font-mono font-bold text-slate-800">123</td>
-                    <td class="py-1.5 px-1.5"><span class="px-1.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-[9px] font-bold">Unit</span></td>
-                  </tr>
-                  <tr class="hover:bg-white/60 transition cursor-pointer" onclick="app.loginAs('unit_smp')">
-                    <td class="py-1.5 px-1.5 font-bold text-blue-700">SMP Islam Al-Imam</td>
-                    <td class="py-1.5 px-1.5 font-mono text-slate-600">smp_alimam</td>
-                    <td class="py-1.5 px-1.5 font-mono font-bold text-slate-800">123</td>
-                    <td class="py-1.5 px-1.5"><span class="px-1.5 py-0.5 bg-blue-100 text-blue-800 rounded text-[9px] font-bold">Unit</span></td>
-                  </tr>
-                  <tr class="hover:bg-white/60 transition cursor-pointer" onclick="app.loginAs('admin')">
-                    <td class="py-1.5 px-1.5 font-bold text-slate-800">Admin / Pelaksana Harian</td>
-                    <td class="py-1.5 px-1.5 font-mono text-slate-600">admin_sarpras</td>
-                    <td class="py-1.5 px-1.5 font-mono font-bold text-slate-800">123</td>
-                    <td class="py-1.5 px-1.5"><span class="px-1.5 py-0.5 bg-slate-200 text-slate-800 rounded text-[9px] font-bold">Admin SARPRAS</span></td>
-                  </tr>
-                  <tr class="hover:bg-white/60 transition cursor-pointer" onclick="app.loginAs('bendahara')">
-                    <td class="py-1.5 px-1.5 font-bold text-amber-800">Bendahara Yayasan</td>
-                    <td class="py-1.5 px-1.5 font-mono text-slate-600">bendahara_yayasan</td>
-                    <td class="py-1.5 px-1.5 font-mono font-bold text-slate-800">123</td>
-                    <td class="py-1.5 px-1.5"><span class="px-1.5 py-0.5 bg-amber-100 text-amber-800 rounded text-[9px] font-bold">Approver</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          <div class="flex items-center justify-center space-x-1.5 pt-2 text-[11px] text-slate-400">
+            <i class="fa-solid fa-shield-check text-emerald-600"></i>
+            <span>Sistem Otentikasi Terenkripsi & Terverifikasi</span>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>

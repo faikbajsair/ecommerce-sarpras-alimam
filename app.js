@@ -501,7 +501,7 @@ const INITIAL_DB = {
   
   rapbs_poin: [
     { unit_id: 'unit_tk', total_plafond: 15000000, terpakai: 510000, saldo_tersedia: 14490000, updated_at: '2026-07-10 10:45' },
-    { unit_id: 'unit_sd', total_plafond: 35884000, terpakai: 965329, saldo_tersedia: 34918671, updated_at: '2026-09-28 10:00' },
+    { unit_id: 'unit_sd', total_plafond: 35884000, terpakai: 26883661, saldo_tersedia: 9000339, updated_at: '2026-10-15 14:00' },
     { unit_id: 'unit_smp', total_plafond: 24506000, terpakai: 3756629, saldo_tersedia: 20749371, updated_at: '2026-08-28 16:00' }
   ],
 
@@ -685,7 +685,146 @@ const INITIAL_DB = {
     { batch_id: 'BATCH-202610-23', product_name: 'Wallpaper panel gold kuning', category: 'Perlengkapan Kelas', stock_qty: 2, unit_price: 33900, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202610-24', product_name: 'Rak Ambalan putih', category: 'Perlengkapan Kelas', stock_qty: 1, unit_price: 32200, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1595079672139-5470805086ae?w=600&auto=format&fit=crop&q=80' },
     { batch_id: 'BATCH-202610-25', product_name: 'Tape dinding', category: 'Perlengkapan Kelas', stock_qty: 1, unit_price: 18900, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80' },
-    { batch_id: 'BATCH-202610-26', product_name: '1 paket kebersihan(sapu+pengki+pel lantai)', category: 'Kebersihan & Sanitasi', stock_qty: 1, unit_price: 30000, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80' }
+    { batch_id: 'BATCH-202610-26', product_name: '1 paket kebersihan(sapu+pengki+pel lantai)', category: 'Kebersihan & Sanitasi', stock_qty: 1, unit_price: 30000, date_in: '2026-10-03', method: 'FIFO', status: 'Active', image_url: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80' },
+
+    // SD Procurement Batches (Juli - Oktober 2026)
+    {"batch_id": "BATCH-202607-SD-01", "product_name": "Baterai jam Alkaline AA", "category": "Elektronik & IT", "stock_qty": 5, "unit_price": 42000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1619725002198-6a689b72f41d?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-02", "product_name": "Bola Kasti", "category": "Perlengkapan Kelas", "stock_qty": 6, "unit_price": 17000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-03", "product_name": "Bola Sepak (kurang 1)", "category": "Perlengkapan Kelas", "stock_qty": 2, "unit_price": 120000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-04", "product_name": "Bola Basket", "category": "Perlengkapan Kelas", "stock_qty": 2, "unit_price": 120000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-05", "product_name": "Blinder clips penjepit kertas (no.260)", "category": "ATK", "stock_qty": 3, "unit_price": 15000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-06", "product_name": "Cone Kerucut", "category": "Perlengkapan Kelas", "stock_qty": 3, "unit_price": 49000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-07", "product_name": "Cutter besar", "category": "ATK", "stock_qty": 4, "unit_price": 24000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-08", "product_name": "Double tape bening", "category": "ATK", "stock_qty": 6, "unit_price": 16000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-09", "product_name": "Gambar Presiden dan Wakil", "category": "Perlengkapan Kelas", "stock_qty": 2, "unit_price": 35000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-10", "product_name": "Gunting Besar", "category": "ATK", "stock_qty": 9, "unit_price": 11000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-11", "product_name": "Gantungan hook bulat polos", "category": "Perlengkapan Kelas", "stock_qty": 3, "unit_price": 11000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-12", "product_name": "Gunting kuku", "category": "Kebersihan & Sanitasi", "stock_qty": 3, "unit_price": 5000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-13", "product_name": "Gunting zig-zag", "category": "ATK", "stock_qty": 1, "unit_price": 13000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-14", "product_name": "Handsaplast", "category": "Kebersihan & Sanitasi", "stock_qty": 1, "unit_price": 38500, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-15", "product_name": "Highlighter warna warni", "category": "ATK", "stock_qty": 3, "unit_price": 17000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-16", "product_name": "Isi spidol hitam", "category": "ATK", "stock_qty": 15, "unit_price": 18000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-17", "product_name": "Isi spidol biru", "category": "ATK", "stock_qty": 15, "unit_price": 18000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-18", "product_name": "Isi Spidol merah", "category": "ATK", "stock_qty": 5, "unit_price": 18000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-19", "product_name": "Isi staples", "category": "ATK", "stock_qty": 1, "unit_price": 30000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-20", "product_name": "Pelpelan (kain pel)", "category": "Kebersihan & Sanitasi", "stock_qty": 5, "unit_price": 40000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-21", "product_name": "Kain penutup lemari sama agar rapih ukuran 2 x 1,2", "category": "Perlengkapan Kelas", "stock_qty": 2, "unit_price": 20000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-22", "product_name": "Kamper", "category": "Kebersihan & Sanitasi", "stock_qty": 1, "unit_price": 21000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1585421514738-01798e348b17?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-23", "product_name": "Kanebo", "category": "Kebersihan & Sanitasi", "stock_qty": 5, "unit_price": 10000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-24", "product_name": "Kain lap microfiber", "category": "Kebersihan & Sanitasi", "stock_qty": 9, "unit_price": 12000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-25", "product_name": "Kapas", "category": "Kebersihan & Sanitasi", "stock_qty": 2, "unit_price": 15000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-26", "product_name": "Kasa steril", "category": "Kebersihan & Sanitasi", "stock_qty": 1, "unit_price": 24000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-27", "product_name": "Kemoceng", "category": "Kebersihan & Sanitasi", "stock_qty": 6, "unit_price": 22000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-28", "product_name": "Keset", "category": "Kebersihan & Sanitasi", "stock_qty": 5, "unit_price": 10000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-29", "product_name": "Lakban hitam", "category": "ATK", "stock_qty": 15, "unit_price": 8000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-30", "product_name": "Laminating pouch film F4 isi 100", "category": "ATK", "stock_qty": 3, "unit_price": 15000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-31", "product_name": "Lem fox", "category": "ATK", "stock_qty": 3, "unit_price": 20000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-32", "product_name": "Note warna warni", "category": "ATK", "stock_qty": 9, "unit_price": 5000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-33", "product_name": "Magnet papan tulis", "category": "Perlengkapan Kelas", "stock_qty": 4, "unit_price": 10000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-34", "product_name": "Minyak butbut", "category": "Kebersihan & Sanitasi", "stock_qty": 7, "unit_price": 45000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-35", "product_name": "Map plastik kancing", "category": "ATK", "stock_qty": 27, "unit_price": 3000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-36", "product_name": "Minyak kayu putih", "category": "Kebersihan & Sanitasi", "stock_qty": 8, "unit_price": 10000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-37", "product_name": "Mouse", "category": "Elektronik & IT", "stock_qty": 4, "unit_price": 70000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-38", "product_name": "Origami bolak balik", "category": "ATK", "stock_qty": 12, "unit_price": 10000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-39", "product_name": "Pushpin", "category": "ATK", "stock_qty": 1, "unit_price": 8000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-40", "product_name": "Paper clip", "category": "ATK", "stock_qty": 3, "unit_price": 7000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-41", "product_name": "Penghapus Papan Tulis", "category": "Perlengkapan Kelas", "stock_qty": 8, "unit_price": 8000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-42", "product_name": "Pengharum kamar mandi", "category": "Kebersihan & Sanitasi", "stock_qty": 2, "unit_price": 15000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-43", "product_name": "Pengki", "category": "Kebersihan & Sanitasi", "stock_qty": 3, "unit_price": 26000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-44", "product_name": "Pemukul Bola Kasti", "category": "Perlengkapan Kelas", "stock_qty": 2, "unit_price": 14000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-45", "product_name": "Perekat Velcro bulat", "category": "ATK", "stock_qty": 12, "unit_price": 30000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-46", "product_name": "Plester roll", "category": "Kebersihan & Sanitasi", "stock_qty": 4, "unit_price": 22000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-47", "product_name": "Points bulat", "category": "ATK", "stock_qty": 17, "unit_price": 10000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-48", "product_name": "Points Bintang", "category": "ATK", "stock_qty": 15, "unit_price": 10000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-49", "product_name": "Pulpen gel gliter", "category": "ATK", "stock_qty": 1, "unit_price": 17000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-50", "product_name": "Papan jalan with cover", "category": "ATK", "stock_qty": 1, "unit_price": 25000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-51", "product_name": "Rak guci gallon", "category": "Perlengkapan Kelas", "stock_qty": 1, "unit_price": 90000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1595079672139-5470805086ae?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-52", "product_name": "Rautan pensil", "category": "ATK", "stock_qty": 2, "unit_price": 15000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-53", "product_name": "Refil Pulpen hitam jel", "category": "ATK", "stock_qty": 10, "unit_price": 13000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-54", "product_name": "Sapu", "category": "Kebersihan & Sanitasi", "stock_qty": 7, "unit_price": 22000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-55", "product_name": "Solatip bening besar", "category": "ATK", "stock_qty": 16, "unit_price": 6500, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-56", "product_name": "eva 100*60 cm (coklat, biru, pink, kuning)", "category": "Perlengkapan Kelas", "stock_qty": 6, "unit_price": 23000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-57", "product_name": "Stapler putar dan isi (BESAR)", "category": "ATK", "stock_qty": 5, "unit_price": 35000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-58", "product_name": "Stiker poin", "category": "ATK", "stock_qty": 10, "unit_price": 10000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-59", "product_name": "Stiker vinill untuk meja", "category": "ATK", "stock_qty": 5, "unit_price": 8500, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-60", "product_name": "Stempel bintang atau checked guru", "category": "ATK", "stock_qty": 10, "unit_price": 17000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-61", "product_name": "Stapler", "category": "ATK", "stock_qty": 1, "unit_price": 10000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-62", "product_name": "Tape nano bening 10 m", "category": "ATK", "stock_qty": 3, "unit_price": 16000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-63", "product_name": "Stop Kontak", "category": "Elektronik & IT", "stock_qty": 1, "unit_price": 30000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-64", "product_name": "Selempang petugas upacara", "category": "Perlengkapan Kelas", "stock_qty": 1, "unit_price": 78000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-65", "product_name": "Tip Ex", "category": "ATK", "stock_qty": 1, "unit_price": 50000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-66", "product_name": "Tisu basah", "category": "Kebersihan & Sanitasi", "stock_qty": 2, "unit_price": 5000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-67", "product_name": "Tisu kering besar", "category": "Kebersihan & Sanitasi", "stock_qty": 1, "unit_price": 10000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-68", "product_name": "Tongkat penunjuk jari papan tulis", "category": "Perlengkapan Kelas", "stock_qty": 3, "unit_price": 5000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-69", "product_name": "Sarung", "category": "Perlengkapan Kelas", "stock_qty": 3, "unit_price": 35000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202607-SD-70", "product_name": "Paketan HDMI extender Sumayah, Waqos, Ustman, Malik, Zuhair", "category": "Elektronik & IT", "stock_qty": 5, "unit_price": 175000, "date_in": "2026-07-29", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-01", "product_name": "Busines file map (isi 12)", "category": "ATK", "stock_qty": 1, "unit_price": 23500, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-02", "product_name": "Mesin laminating 5 in 1", "category": "Elektronik & IT", "stock_qty": 1, "unit_price": 242000, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-03", "product_name": "Plastik laminating pouch F4 isi 100", "category": "ATK", "stock_qty": 2, "unit_price": 76000, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-04", "product_name": "Stempel good job", "category": "ATK", "stock_qty": 12, "unit_price": 15000, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-05", "product_name": "Isi tinta stempel (10 ml)", "category": "ATK", "stock_qty": 12, "unit_price": 8000, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-06", "product_name": "Stiker untuk anggur literasi", "category": "ATK", "stock_qty": 60, "unit_price": 950, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-07", "product_name": "Kertas samson", "category": "ATK", "stock_qty": 12, "unit_price": 2100, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-08", "product_name": "Kertas karton manila isi 10", "category": "ATK", "stock_qty": 5, "unit_price": 21000, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-09", "product_name": "Kertas kado isi 10", "category": "ATK", "stock_qty": 2, "unit_price": 10500, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-10", "product_name": "Paperclip", "category": "ATK", "stock_qty": 1, "unit_price": 3000, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-11", "product_name": "Spon eva 100*60 cm", "category": "Perlengkapan Kelas", "stock_qty": 5, "unit_price": 18500, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-12", "product_name": "Set notebook isi 4 (reward anggur literasi)", "category": "ATK", "stock_qty": 24, "unit_price": 22000, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-13", "product_name": "Highliter 10 warna", "category": "ATK", "stock_qty": 10, "unit_price": 25000, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-14", "product_name": "Kalapa wafer paket 2 box", "category": "Perlengkapan Kelas", "stock_qty": 2, "unit_price": 47000, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-15", "product_name": "Push pin bantex isi 80", "category": "ATK", "stock_qty": 1, "unit_price": 13000, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-16", "product_name": "Bunga rambat", "category": "Perlengkapan Kelas", "stock_qty": 2, "unit_price": 20500, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-17", "product_name": "Daun rambat", "category": "Perlengkapan Kelas", "stock_qty": 12, "unit_price": 5200, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-18", "product_name": "Kertas BC / Brief Card isi 100", "category": "ATK", "stock_qty": 1, "unit_price": 42000, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-19", "product_name": "Sticknote motif", "category": "ATK", "stock_qty": 15, "unit_price": 1500, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-20", "product_name": "Kertas foto holografik isi 20", "category": "ATK", "stock_qty": 1, "unit_price": 15000, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202608-SD-21", "product_name": "Kertas stiker matte isi 20", "category": "ATK", "stock_qty": 1, "unit_price": 13000, "date_in": "2026-08-20", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-01", "product_name": "Bendera merah putih kecil untuk pawai", "category": "Perlengkapan Kelas", "stock_qty": 5, "unit_price": 15000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-02", "product_name": "Betadine", "category": "Kebersihan & Sanitasi", "stock_qty": 1, "unit_price": 55000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-03", "product_name": "Bindex/box file", "category": "ATK", "stock_qty": 3, "unit_price": 25000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-04", "product_name": "Baterai 9 volt", "category": "Elektronik & IT", "stock_qty": 1, "unit_price": 120000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1619725002198-6a689b72f41d?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-05", "product_name": "Bingkai foto untuk sertijab komite", "category": "Perlengkapan Kelas", "stock_qty": 12, "unit_price": 25000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-06", "product_name": "Cico botol tanggung", "category": "Kebersihan & Sanitasi", "stock_qty": 4, "unit_price": 20000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-07", "product_name": "Card Printer", "category": "Elektronik & IT", "stock_qty": 1, "unit_price": 200000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-08", "product_name": "Folder SPM", "category": "ATK", "stock_qty": 30, "unit_price": 30000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-09", "product_name": "Hvs napkin", "category": "ATK", "stock_qty": 3, "unit_price": 35000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-10", "product_name": "Isi spidol hitam", "category": "ATK", "stock_qty": 1, "unit_price": 137000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-11", "product_name": "Jam dinding", "category": "Perlengkapan Kelas", "stock_qty": 1, "unit_price": 72000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-12", "product_name": "Kabel Roll Panjang", "category": "Elektronik & IT", "stock_qty": 1, "unit_price": 75100, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-13", "product_name": "Kertas A4", "category": "ATK", "stock_qty": 4, "unit_price": 60000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-14", "product_name": "Kertas concord A4 160 gsm", "category": "ATK", "stock_qty": 4, "unit_price": 19000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-15", "product_name": "Kertas F4", "category": "ATK", "stock_qty": 4, "unit_price": 60000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-16", "product_name": "Kotak P3K jinjing", "category": "Kebersihan & Sanitasi", "stock_qty": 1, "unit_price": 229000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-17", "product_name": "Mic bando", "category": "Elektronik & IT", "stock_qty": 2, "unit_price": 147000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-18", "product_name": "Minyak kayu putih 60 ml", "category": "Kebersihan & Sanitasi", "stock_qty": 1, "unit_price": 126000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-19", "product_name": "Pengharum kamar mandi", "category": "Kebersihan & Sanitasi", "stock_qty": 4, "unit_price": 24000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-20", "product_name": "Pengki", "category": "Kebersihan & Sanitasi", "stock_qty": 3, "unit_price": 26000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-21", "product_name": "Pengukur Tinggi Badan", "category": "Perlengkapan Kelas", "stock_qty": 1, "unit_price": 47000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-22", "product_name": "Pewangi ruangan", "category": "Kebersihan & Sanitasi", "stock_qty": 7, "unit_price": 35000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-23", "product_name": "Plastik laminating F4 isi 100", "category": "ATK", "stock_qty": 2, "unit_price": 74000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-24", "product_name": "Pulpen biru", "category": "ATK", "stock_qty": 2, "unit_price": 3500, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-25", "product_name": "Pulpen warna warni", "category": "ATK", "stock_qty": 4, "unit_price": 13000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-26", "product_name": "Rak buku", "category": "Perlengkapan Kelas", "stock_qty": 1, "unit_price": 45000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1595079672139-5470805086ae?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-27", "product_name": "Rak guci galon", "category": "Perlengkapan Kelas", "stock_qty": 1, "unit_price": 74000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1595079672139-5470805086ae?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-28", "product_name": "Rosebrand syrup", "category": "Perlengkapan Kelas", "stock_qty": 1, "unit_price": 47000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-29", "product_name": "Sapu", "category": "Kebersihan & Sanitasi", "stock_qty": 7, "unit_price": 58000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-30", "product_name": "Spidol hitam", "category": "ATK", "stock_qty": 1, "unit_price": 69000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-31", "product_name": "Taplak meja kantor", "category": "Perlengkapan Kelas", "stock_qty": 2, "unit_price": 28500, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-32", "product_name": "Teko Listrik", "category": "Elektronik & IT", "stock_qty": 1, "unit_price": 73000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-33", "product_name": "Termometer", "category": "Perlengkapan Kelas", "stock_qty": 1, "unit_price": 21000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-34", "product_name": "Timbangan berat badan digital", "category": "Perlengkapan Kelas", "stock_qty": 1, "unit_price": 97000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1590736969955-71cc94801759?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-35", "product_name": "Tinta literan warna hitam", "category": "Elektronik & IT", "stock_qty": 1, "unit_price": 195000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-36", "product_name": "Tinta printer bulk ink cyan", "category": "Elektronik & IT", "stock_qty": 1, "unit_price": 120000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-37", "product_name": "Tinta printer bulk ink magenta", "category": "Elektronik & IT", "stock_qty": 1, "unit_price": 120000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-38", "product_name": "Tinta printer bulk ink yellow", "category": "Elektronik & IT", "stock_qty": 1, "unit_price": 120000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-39", "product_name": "Tisu basah", "category": "Kebersihan & Sanitasi", "stock_qty": 5, "unit_price": 7500, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-40", "product_name": "Tisu kering", "category": "Kebersihan & Sanitasi", "stock_qty": 10, "unit_price": 15000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-41", "product_name": "Peralatan makan 1 set", "category": "Perlengkapan Kelas", "stock_qty": 1, "unit_price": 175000, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202609-SD-42", "product_name": "AC kelas 5 Malik", "category": "Elektronik & IT", "stock_qty": 1, "unit_price": 8016961, "date_in": "2026-09-08", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202610-SD-01", "product_name": "Folder Rapot", "category": "ATK", "stock_qty": 35, "unit_price": 50000, "date_in": "2026-10-15", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202610-SD-02", "product_name": "Batrai Toa R14 C", "category": "Elektronik & IT", "stock_qty": 1, "unit_price": 160000, "date_in": "2026-10-15", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202610-SD-03", "product_name": "Perbaikan : Pembelian alat dan jasa", "category": "Jasa & Operasional", "stock_qty": 1, "unit_price": 1000000, "date_in": "2026-10-15", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80"},
+    {"batch_id": "BATCH-202610-SD-04", "product_name": "Pembersihan AC", "category": "Jasa & Operasional", "stock_qty": 8, "unit_price": 75000, "date_in": "2026-10-15", "method": "FIFO", "status": "Active", "image_url": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&auto=format&fit=crop&q=80"}
   ],
 
   orders: [
@@ -823,6 +962,1179 @@ const INITIAL_DB = {
       invoice_number: 'LPJ/SMP/2026/0901'
     },
     {
+      order_id: 'ORD-SD-20260729-01',
+      unit_id: 'unit_sd',
+      order_type: 'E-Commerce',
+      items_json: JSON.stringify([
+        {
+                "product_name": "Baterai jam Alkaline AA",
+                "qty": 5,
+                "unit_price": 42000,
+                "subtotal": 210000,
+                "category": "Elektronik & IT",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Bola Kasti",
+                "qty": 6,
+                "unit_price": 17000,
+                "subtotal": 102000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Bola Sepak (kurang 1)",
+                "qty": 2,
+                "unit_price": 120000,
+                "subtotal": 240000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Bola Basket",
+                "qty": 2,
+                "unit_price": 120000,
+                "subtotal": 240000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Blinder clips penjepit kertas (no.260)",
+                "qty": 3,
+                "unit_price": 15000,
+                "subtotal": 45000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Cone Kerucut",
+                "qty": 3,
+                "unit_price": 49000,
+                "subtotal": 147000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Cutter besar",
+                "qty": 4,
+                "unit_price": 24000,
+                "subtotal": 96000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Double tape bening",
+                "qty": 6,
+                "unit_price": 16000,
+                "subtotal": 96000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Gambar Presiden dan Wakil",
+                "qty": 2,
+                "unit_price": 35000,
+                "subtotal": 70000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Gunting Besar",
+                "qty": 9,
+                "unit_price": 11000,
+                "subtotal": 99000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Gantungan hook bulat polos",
+                "qty": 3,
+                "unit_price": 11000,
+                "subtotal": 33000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Gunting kuku",
+                "qty": 3,
+                "unit_price": 5000,
+                "subtotal": 15000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Gunting zig-zag",
+                "qty": 1,
+                "unit_price": 13000,
+                "subtotal": 13000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Handsaplast",
+                "qty": 1,
+                "unit_price": 38500,
+                "subtotal": 38500,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Highlighter warna warni",
+                "qty": 3,
+                "unit_price": 17000,
+                "subtotal": 51000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Isi spidol hitam",
+                "qty": 15,
+                "unit_price": 18000,
+                "subtotal": 270000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Isi spidol biru",
+                "qty": 15,
+                "unit_price": 18000,
+                "subtotal": 270000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Isi Spidol merah",
+                "qty": 5,
+                "unit_price": 18000,
+                "subtotal": 90000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Isi staples",
+                "qty": 1,
+                "unit_price": 30000,
+                "subtotal": 30000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Pelpelan (kain pel)",
+                "qty": 5,
+                "unit_price": 40000,
+                "subtotal": 200000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Kain penutup lemari sama agar rapih ukuran 2 x 1,2",
+                "qty": 2,
+                "unit_price": 20000,
+                "subtotal": 40000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Kamper",
+                "qty": 1,
+                "unit_price": 21000,
+                "subtotal": 21000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Kanebo",
+                "qty": 5,
+                "unit_price": 10000,
+                "subtotal": 50000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Kain lap microfiber",
+                "qty": 9,
+                "unit_price": 12000,
+                "subtotal": 108000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Kapas",
+                "qty": 2,
+                "unit_price": 15000,
+                "subtotal": 30000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Kasa steril",
+                "qty": 1,
+                "unit_price": 24000,
+                "subtotal": 24000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Kemoceng",
+                "qty": 6,
+                "unit_price": 22000,
+                "subtotal": 132000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Keset",
+                "qty": 5,
+                "unit_price": 10000,
+                "subtotal": 50000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Lakban hitam",
+                "qty": 15,
+                "unit_price": 8000,
+                "subtotal": 120000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Laminating pouch film F4 isi 100",
+                "qty": 3,
+                "unit_price": 15000,
+                "subtotal": 45000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Lem fox",
+                "qty": 3,
+                "unit_price": 20000,
+                "subtotal": 60000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Note warna warni",
+                "qty": 9,
+                "unit_price": 5000,
+                "subtotal": 45000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Magnet papan tulis",
+                "qty": 4,
+                "unit_price": 10000,
+                "subtotal": 40000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Minyak butbut",
+                "qty": 7,
+                "unit_price": 45000,
+                "subtotal": 315000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Map plastik kancing",
+                "qty": 27,
+                "unit_price": 3000,
+                "subtotal": 81000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Minyak kayu putih",
+                "qty": 8,
+                "unit_price": 10000,
+                "subtotal": 80000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Mouse",
+                "qty": 4,
+                "unit_price": 70000,
+                "subtotal": 280000,
+                "category": "Elektronik & IT",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Origami bolak balik",
+                "qty": 12,
+                "unit_price": 10000,
+                "subtotal": 120000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Pushpin",
+                "qty": 1,
+                "unit_price": 8000,
+                "subtotal": 8000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Paper clip",
+                "qty": 3,
+                "unit_price": 7000,
+                "subtotal": 21000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Penghapus Papan Tulis",
+                "qty": 8,
+                "unit_price": 8000,
+                "subtotal": 64000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Pengharum kamar mandi",
+                "qty": 2,
+                "unit_price": 15000,
+                "subtotal": 30000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Pengki",
+                "qty": 3,
+                "unit_price": 26000,
+                "subtotal": 78000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Pemukul Bola Kasti",
+                "qty": 2,
+                "unit_price": 14000,
+                "subtotal": 28000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Perekat Velcro bulat",
+                "qty": 12,
+                "unit_price": 30000,
+                "subtotal": 360000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Plester roll",
+                "qty": 4,
+                "unit_price": 22000,
+                "subtotal": 88000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Points bulat",
+                "qty": 17,
+                "unit_price": 10000,
+                "subtotal": 170000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Points Bintang",
+                "qty": 15,
+                "unit_price": 10000,
+                "subtotal": 150000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Pulpen gel gliter",
+                "qty": 1,
+                "unit_price": 17000,
+                "subtotal": 17000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Papan jalan with cover",
+                "qty": 1,
+                "unit_price": 25000,
+                "subtotal": 25000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Rak guci gallon",
+                "qty": 1,
+                "unit_price": 90000,
+                "subtotal": 90000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Rautan pensil",
+                "qty": 2,
+                "unit_price": 15000,
+                "subtotal": 30000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Refil Pulpen hitam jel",
+                "qty": 10,
+                "unit_price": 13000,
+                "subtotal": 130000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Sapu",
+                "qty": 7,
+                "unit_price": 22000,
+                "subtotal": 154000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Solatip bening besar",
+                "qty": 16,
+                "unit_price": 6500,
+                "subtotal": 104000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "eva 100*60 cm (coklat, biru, pink, kuning)",
+                "qty": 6,
+                "unit_price": 23000,
+                "subtotal": 138000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Stapler putar dan isi (BESAR)",
+                "qty": 5,
+                "unit_price": 35000,
+                "subtotal": 175000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Stiker poin",
+                "qty": 10,
+                "unit_price": 10000,
+                "subtotal": 100000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Stiker vinill untuk meja",
+                "qty": 5,
+                "unit_price": 8500,
+                "subtotal": 42500,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Stempel bintang atau checked guru",
+                "qty": 10,
+                "unit_price": 17000,
+                "subtotal": 170000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Stapler",
+                "qty": 1,
+                "unit_price": 10000,
+                "subtotal": 10000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Tape nano bening 10 m",
+                "qty": 3,
+                "unit_price": 16000,
+                "subtotal": 48000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Stop Kontak",
+                "qty": 1,
+                "unit_price": 30000,
+                "subtotal": 30000,
+                "category": "Elektronik & IT",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Selempang petugas upacara",
+                "qty": 1,
+                "unit_price": 78000,
+                "subtotal": 78000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Tip Ex",
+                "qty": 1,
+                "unit_price": 50000,
+                "subtotal": 50000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Tisu basah",
+                "qty": 2,
+                "unit_price": 5000,
+                "subtotal": 10000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Tisu kering besar",
+                "qty": 1,
+                "unit_price": 10000,
+                "subtotal": 10000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Tongkat penunjuk jari papan tulis",
+                "qty": 3,
+                "unit_price": 5000,
+                "subtotal": 15000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Sarung",
+                "qty": 3,
+                "unit_price": 35000,
+                "subtotal": 105000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Paketan HDMI extender Sumayah, Waqos, Ustman, Malik, Zuhair",
+                "qty": 5,
+                "unit_price": 175000,
+                "subtotal": 875000,
+                "category": "Elektronik & IT",
+                "status": "Approved"
+        }
+]),
+      total_amount: 7400000,
+      status: 'Approved',
+      created_at: '2026-07-29 09:00',
+      approved_at: '2026-07-29 11:30',
+      notes: 'LPJ Pengadaan Perlengkapan Kelas & SARPRAS SD Tahap 1 Bulan Juli 2026 (70 Item Diserahkan 19 Agustus). Meliputi perlengkapan kelas, ATK, kebersihan & P3K SD.',
+      pj_name: 'Radinal Bajsair',
+      invoice_number: 'LPJ/SD/2026/0701'
+    },
+    {
+      order_id: 'ORD-SD-20260820-01',
+      unit_id: 'unit_sd',
+      order_type: 'E-Commerce',
+      items_json: JSON.stringify([
+        {
+		"product_name": "Busines file map (isi 12)",
+		"qty": 1,
+		"unit_price": 23500,
+		"subtotal": 23500,
+		"category": "ATK",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/qi2bZYqPm"
+	},
+        {
+		"product_name": "Mesin laminating 5 in 1",
+		"qty": 1,
+		"unit_price": 242000,
+		"subtotal": 242000,
+		"category": "Elektronik & IT",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/2g9gn9w9gl"
+	},
+        {
+		"product_name": "Plastik laminating pouch F4 isi 100",
+		"qty": 2,
+		"unit_price": 76000,
+		"subtotal": 152000,
+		"category": "ATK",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/5Ar1lmY9Ks"
+	},
+        {
+		"product_name": "Stempel good job",
+		"qty": 12,
+		"unit_price": 15000,
+		"subtotal": 180000,
+		"category": "ATK",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/3qLeBpiEWY"
+	},
+        {
+		"product_name": "Isi tinta stempel (10 ml)",
+		"qty": 12,
+		"unit_price": 8000,
+		"subtotal": 96000,
+		"category": "ATK",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/40f4OA7w9A"
+	},
+        {
+		"product_name": "Stiker untuk anggur literasi",
+		"qty": 60,
+		"unit_price": 950,
+		"subtotal": 57000,
+		"category": "ATK",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/9pcrLC97zA"
+	},
+        {
+		"product_name": "Kertas samson",
+		"qty": 12,
+		"unit_price": 2100,
+		"subtotal": 25200,
+		"category": "ATK",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/7KvWN9nFfm"
+	},
+        {
+		"product_name": "Kertas karton manila isi 10",
+		"qty": 5,
+		"unit_price": 21000,
+		"subtotal": 105000,
+		"category": "ATK",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/9fJR9jSYpE"
+	},
+        {
+		"product_name": "Kertas kado isi 10",
+		"qty": 2,
+		"unit_price": 10500,
+		"subtotal": 21000,
+		"category": "ATK",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/4AzNi2kqSt"
+	},
+        {
+		"product_name": "Paperclip",
+		"qty": 1,
+		"unit_price": 3000,
+		"subtotal": 3000,
+		"category": "ATK",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/6AkS5jcxs2"
+	},
+        {
+		"product_name": "Spon eva 100*60 cm",
+		"qty": 5,
+		"unit_price": 18500,
+		"subtotal": 92500,
+		"category": "Perlengkapan Kelas",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/3B5xPyQBW"
+	},
+        {
+		"product_name": "Set notebook isi 4 (reward anggur literasi)",
+		"qty": 24,
+		"unit_price": 22000,
+		"subtotal": 528000,
+		"category": "ATK",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/6ffsnjEYcz"
+	},
+        {
+		"product_name": "Highliter 10 warna",
+		"qty": 10,
+		"unit_price": 25000,
+		"subtotal": 250000,
+		"category": "ATK",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/80BGOCD8L2"
+	},
+        {
+		"product_name": "Kalapa wafer paket 2 box",
+		"qty": 2,
+		"unit_price": 47000,
+		"subtotal": 94000,
+		"category": "Perlengkapan Kelas",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/AAfKy8sQQ3"
+	},
+        {
+		"product_name": "Push pin bantex isi 80",
+		"qty": 1,
+		"unit_price": 13000,
+		"subtotal": 13000,
+		"category": "ATK",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/2gAZvFr9oC"
+	},
+        {
+		"product_name": "Bunga rambat",
+		"qty": 2,
+		"unit_price": 20500,
+		"subtotal": 41000,
+		"category": "Perlengkapan Kelas",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/4fuoPzwZXs"
+	},
+        {
+		"product_name": "Daun rambat",
+		"qty": 12,
+		"unit_price": 5200,
+		"subtotal": 62400,
+		"category": "Perlengkapan Kelas",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/60R2rMGhL2"
+	},
+        {
+		"product_name": "Kertas BC / Brief Card isi 100",
+		"qty": 1,
+		"unit_price": 42000,
+		"subtotal": 42000,
+		"category": "ATK",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/70Ja2wsLVx"
+	},
+        {
+		"product_name": "Sticknote motif",
+		"qty": 15,
+		"unit_price": 1500,
+		"subtotal": 22500,
+		"category": "ATK",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/1VydUtu0Xw"
+	},
+        {
+		"product_name": "Kertas foto holografik isi 20",
+		"qty": 1,
+		"unit_price": 15000,
+		"subtotal": 15000,
+		"category": "ATK",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/6fgjePj0Bn"
+	},
+        {
+		"product_name": "Kertas stiker matte isi 20",
+		"qty": 1,
+		"unit_price": 13000,
+		"subtotal": 13000,
+		"category": "ATK",
+		"status": "Approved",
+		"marketplace_url": "https://s.shopee.co.id/40fytBLj3P"
+	}
+]),
+      total_amount: 2078100,
+      status: 'Approved',
+      created_at: '2026-08-20 10:00',
+      approved_at: '2026-08-20 14:00',
+      notes: 'Laporan Pertanggungjawaban Pembelanjaan Program Literasi Tahap Satu SD Islam Al-Imam Tahun Ajaran 2026/2027 (Pengajuan 20 Juli 2026, 21 Item Shopee).',
+      pj_name: 'Dewi Fitria Nugraheni, S.Pd., Gr.',
+      invoice_number: 'LPJ/SD/2026/0801'
+    },
+    {
+      order_id: 'ORD-SD-20260908-01',
+      unit_id: 'unit_sd',
+      order_type: 'E-Commerce',
+      items_json: JSON.stringify([
+        {
+                "product_name": "Bendera merah putih kecil untuk pawai",
+                "qty": 5,
+                "unit_price": 15000,
+                "subtotal": 75000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Betadine",
+                "qty": 1,
+                "unit_price": 55000,
+                "subtotal": 55000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Bindex/box file",
+                "qty": 3,
+                "unit_price": 25000,
+                "subtotal": 75000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Baterai 9 volt",
+                "qty": 1,
+                "unit_price": 120000,
+                "subtotal": 120000,
+                "category": "Elektronik & IT",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Bingkai foto untuk sertijab komite",
+                "qty": 12,
+                "unit_price": 25000,
+                "subtotal": 300000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Cico botol tanggung",
+                "qty": 4,
+                "unit_price": 20000,
+                "subtotal": 80000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Card Printer",
+                "qty": 1,
+                "unit_price": 200000,
+                "subtotal": 200000,
+                "category": "Elektronik & IT",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Folder SPM",
+                "qty": 30,
+                "unit_price": 30000,
+                "subtotal": 900000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Hvs napkin",
+                "qty": 3,
+                "unit_price": 35000,
+                "subtotal": 105000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Isi spidol hitam",
+                "qty": 1,
+                "unit_price": 137000,
+                "subtotal": 137000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Jam dinding",
+                "qty": 1,
+                "unit_price": 72000,
+                "subtotal": 72000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Kabel Roll Panjang",
+                "qty": 1,
+                "unit_price": 75100,
+                "subtotal": 75100,
+                "category": "Elektronik & IT",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Kertas A4",
+                "qty": 4,
+                "unit_price": 60000,
+                "subtotal": 240000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Kertas concord A4 160 gsm",
+                "qty": 4,
+                "unit_price": 19000,
+                "subtotal": 76000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Kertas F4",
+                "qty": 4,
+                "unit_price": 60000,
+                "subtotal": 240000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Kotak P3K jinjing",
+                "qty": 1,
+                "unit_price": 229000,
+                "subtotal": 229000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Mic bando",
+                "qty": 2,
+                "unit_price": 147000,
+                "subtotal": 294000,
+                "category": "Elektronik & IT",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Minyak kayu putih 60 ml",
+                "qty": 1,
+                "unit_price": 126000,
+                "subtotal": 126000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Pengharum kamar mandi",
+                "qty": 4,
+                "unit_price": 24000,
+                "subtotal": 96000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Pengki",
+                "qty": 3,
+                "unit_price": 26000,
+                "subtotal": 78000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Pengukur Tinggi Badan",
+                "qty": 1,
+                "unit_price": 47000,
+                "subtotal": 47000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Pewangi ruangan",
+                "qty": 7,
+                "unit_price": 35000,
+                "subtotal": 245000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Plastik laminating F4 isi 100",
+                "qty": 2,
+                "unit_price": 74000,
+                "subtotal": 148000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Pulpen biru",
+                "qty": 2,
+                "unit_price": 3500,
+                "subtotal": 7000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Pulpen warna warni",
+                "qty": 4,
+                "unit_price": 13000,
+                "subtotal": 52000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Rak buku",
+                "qty": 1,
+                "unit_price": 45000,
+                "subtotal": 45000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Rak guci galon",
+                "qty": 1,
+                "unit_price": 74000,
+                "subtotal": 74000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Rosebrand syrup",
+                "qty": 1,
+                "unit_price": 47000,
+                "subtotal": 47000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Sapu",
+                "qty": 7,
+                "unit_price": 58000,
+                "subtotal": 406000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Spidol hitam",
+                "qty": 1,
+                "unit_price": 69000,
+                "subtotal": 69000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Taplak meja kantor",
+                "qty": 2,
+                "unit_price": 28500,
+                "subtotal": 57000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Teko Listrik",
+                "qty": 1,
+                "unit_price": 73000,
+                "subtotal": 73000,
+                "category": "Elektronik & IT",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Termometer",
+                "qty": 1,
+                "unit_price": 21000,
+                "subtotal": 21000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Timbangan berat badan digital",
+                "qty": 1,
+                "unit_price": 97000,
+                "subtotal": 97000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Tinta literan warna hitam",
+                "qty": 1,
+                "unit_price": 195000,
+                "subtotal": 195000,
+                "category": "Elektronik & IT",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Tinta printer bulk ink cyan",
+                "qty": 1,
+                "unit_price": 120000,
+                "subtotal": 120000,
+                "category": "Elektronik & IT",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Tinta printer bulk ink magenta",
+                "qty": 1,
+                "unit_price": 120000,
+                "subtotal": 120000,
+                "category": "Elektronik & IT",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Tinta printer bulk ink yellow",
+                "qty": 1,
+                "unit_price": 120000,
+                "subtotal": 120000,
+                "category": "Elektronik & IT",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Tisu basah",
+                "qty": 5,
+                "unit_price": 7500,
+                "subtotal": 37500,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Tisu kering",
+                "qty": 10,
+                "unit_price": 15000,
+                "subtotal": 150000,
+                "category": "Kebersihan & Sanitasi",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Peralatan makan 1 set",
+                "qty": 1,
+                "unit_price": 175000,
+                "subtotal": 175000,
+                "category": "Perlengkapan Kelas",
+                "status": "Approved"
+        },
+        {
+                "product_name": "AC kelas 5 Malik",
+                "qty": 1,
+                "unit_price": 8016961,
+                "subtotal": 8016961,
+                "category": "Elektronik & IT",
+                "status": "Approved"
+        }
+]),
+      total_amount: 13895561,
+      status: 'Approved',
+      created_at: '2026-09-08 09:30',
+      approved_at: '2026-09-08 13:00',
+      notes: 'LPJ Pengadaan & Belanja SARPRAS SD Bulan September 2026 (42 Item). Termasuk pengadaan AC Kelas 5 Malik, ATK, kebersihan, P3K & komite.',
+      pj_name: 'Radinal Bajsair',
+      invoice_number: 'LPJ/SD/2026/0901'
+    },
+    {
+      order_id: 'ORD-SD-20261015-01',
+      unit_id: 'unit_sd',
+      order_type: 'E-Commerce',
+      items_json: JSON.stringify([
+        {
+                "product_name": "Folder Rapot",
+                "qty": 35,
+                "unit_price": 50000,
+                "subtotal": 1750000,
+                "category": "ATK",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Batrai Toa R14 C",
+                "qty": 1,
+                "unit_price": 160000,
+                "subtotal": 160000,
+                "category": "Elektronik & IT",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Perbaikan : Pembelian alat dan jasa",
+                "qty": 1,
+                "unit_price": 1000000,
+                "subtotal": 1000000,
+                "category": "Jasa & Operasional",
+                "status": "Approved"
+        },
+        {
+                "product_name": "Pembersihan AC",
+                "qty": 8,
+                "unit_price": 75000,
+                "subtotal": 600000,
+                "category": "Jasa & Operasional",
+                "status": "Approved"
+        }
+]),
+      total_amount: 3510000,
+      status: 'Approved',
+      created_at: '2026-10-15 09:00',
+      approved_at: '2026-10-15 11:30',
+      notes: 'LPJ Kebutuhan & Perbaikan SARPRAS SD Bulan Oktober 2026 (Folder Rapot 35 pcs, Batrai Toa R14 C, Pembelian Alat & Jasa Perbaikan AC, Pembersihan 8 Unit AC).',
+      pj_name: 'Radinal Bajsair',
+      invoice_number: 'LPJ/SD/2026/1001'
+    },
+    {
       order_id: 'ORD-AC-20260710-01',
       unit_id: 'unit_smp',
       order_type: 'AC_Service',
@@ -878,20 +2190,7 @@ const INITIAL_DB = {
       notes: 'Pengeluaran Maintenance AC: 4 unit cuci, 1 unit isi freon, 1 unit Service SMP (Pos D Item 16)',
       invoice_number: 'INV/AC/2026/0704'
     },
-    {
-      order_id: 'ORD-AC-20260731-01',
-      unit_id: 'unit_sd',
-      order_type: 'AC_Service',
-      items_json: JSON.stringify([
-        { product_name: '[Maintenance AC] Perbaikan & Service AC SD (1 Unit Kelas SD)', qty: 1, unit_price: 175000, subtotal: 175000 }
-      ]),
-      total_amount: 175000,
-      status: 'Approved',
-      created_at: '2026-07-31 09:00',
-      approved_at: '2026-07-31 09:30',
-      notes: 'Pengeluaran Maintenance AC: 1 unit service SD',
-      invoice_number: 'INV/AC/2026/0705'
-    },
+
     {
       order_id: 'ORD-AC-20260731-02',
       unit_id: 'unit_smp',
@@ -906,20 +2205,7 @@ const INITIAL_DB = {
       notes: 'Pengeluaran Maintenance AC: 2 unit cuci SMP (Pos D Item 16)',
       invoice_number: 'INV/AC/2026/0706'
     },
-    {
-      order_id: 'ORD-AC-20260829-01',
-      unit_id: 'unit_sd',
-      order_type: 'AC_Service',
-      items_json: JSON.stringify([
-        { product_name: '[Maintenance AC] Service & Pengecekan 1 Unit AC SD (Kelas 4 Ali)', qty: 1, unit_price: 90329, subtotal: 90329 }
-      ]),
-      total_amount: 90329,
-      status: 'Approved',
-      created_at: '2026-08-29 10:00',
-      approved_at: '2026-08-29 10:30',
-      notes: 'Pengeluaran Maintenance AC: 1 unit service SD',
-      invoice_number: 'INV/AC/2026/0801'
-    },
+
     {
       order_id: 'ORD-AC-20260904-01',
       unit_id: 'unit_smp',
@@ -948,36 +2234,28 @@ const INITIAL_DB = {
       notes: 'Pengeluaran Maintenance AC: 4 unit cuci 4 SMP (Pos D Item 16)',
       invoice_number: 'INV/AC/2026/0902'
     },
-    {
-      order_id: 'ORD-AC-20260928-01',
-      unit_id: 'unit_sd',
-      order_type: 'AC_Service',
-      items_json: JSON.stringify([
-        { product_name: '[Maintenance AC] Paket 4 Unit Cleaning AC Kelas 1 (2 Ruang), Tambah Freon 1.5-2 PK Guru Kls 4, & Bocor Air Perpus', qty: 1, unit_price: 700000, subtotal: 700000 }
-      ]),
-      total_amount: 700000,
-      status: 'Approved',
-      created_at: '2026-09-28 09:30',
-      approved_at: '2026-09-28 10:00',
-      notes: 'Pengeluaran Maintenance AC: 4 Unit Cleaning AC Kelas 1 (2 Ruang), Guru Kelas 4 Tambah Freon 1,5-2pk 1 Unit, Penanganan Bocor Air Ruang Perpus',
-      invoice_number: 'INV/AC/2026/0903'
-    }
+
   ],
 
   transactions_log: [
     { log_id: 'LOG-SMP-20260729-01', order_id: 'ORD-SMP-20260729-01', unit_id: 'unit_smp', keterangan: 'Pengadaan SARPRAS Administrasi Kelas SMP Bulan Juli 2026 (No: 01/PS/Int/SMP-AIIS/VII/2026)', amount_deducted: 1859198, debet: 0, kredit: 1859198, remaining_balance: 22646802, timestamp: '2026-07-29 14:00', invoice_number: 'LPJ/SMP/2026/0701' },
     { log_id: 'LOG-SMP-20260828-01', order_id: 'ORD-SMP-20260828-01', unit_id: 'unit_smp', keterangan: 'Pengadaan SARPRAS Administrasi Kelas SMP Bulan Agustus 2026 (No: 02/PS/Int/SMP-AIIS/VIII/2026)', amount_deducted: 1897431, debet: 0, kredit: 1897431, remaining_balance: 20749371, timestamp: '2026-08-28 16:00', invoice_number: 'LPJ/SMP/2026/0801' },
     { log_id: 'LOG-SMP-20261003-01', order_id: 'ORD-SMP-20261003-01', unit_id: 'unit_smp', keterangan: 'Pengadaan SARPRAS Administrasi Kelas SMP Bulan September/Oktober 2026 (No: 03/PS/Int/SMP-AIIS/IX/2026)', amount_deducted: 2143485, debet: 0, kredit: 2143485, remaining_balance: 18605886, timestamp: '2026-10-03 14:00', invoice_number: 'LPJ/SMP/2026/0901' },
+    { log_id: 'LOG-SD-20260701-01', order_id: '', unit_id: 'unit_sd', keterangan: 'Alokasi Pagu Plafon RAPBS SD Tahun Ajaran 2026/2027 Point Sarpras (Pemasukan)', amount_deducted: 0, debet: 35884000, kredit: 0, remaining_balance: 35884000, timestamp: '2026-07-01 08:00', invoice_number: 'RAPBS/SD/2026-2027' },
+    { log_id: 'LOG-SD-20260729-01', order_id: 'ORD-SD-20260729-01', unit_id: 'unit_sd', keterangan: 'LPJ Pengadaan Perlengkapan Kelas & SARPRAS SD Tahap 1 Bulan Juli 2026 (70 Item)', amount_deducted: 7400000, debet: 0, kredit: 7400000, remaining_balance: 28484000, timestamp: '2026-07-29 11:30', invoice_number: 'LPJ/SD/2026/0701' },
+    { log_id: 'LOG-SD-20260820-01', order_id: 'ORD-SD-20260820-01', unit_id: 'unit_sd', keterangan: 'LPJ Pembelanjaan Program Literasi Tahap Satu SD TA 2026/2027 (21 Item)', amount_deducted: 2078100, debet: 0, kredit: 2078100, remaining_balance: 26405900, timestamp: '2026-08-20 14:00', invoice_number: 'LPJ/SD/2026/0801' },
+    { log_id: 'LOG-SD-20260908-01', order_id: 'ORD-SD-20260908-01', unit_id: 'unit_sd', keterangan: 'LPJ Pengadaan & Belanja SARPRAS SD Bulan September 2026 (42 Item inc. AC Kelas 5 Malik)', amount_deducted: 13895561, debet: 0, kredit: 13895561, remaining_balance: 12510339, timestamp: '2026-09-08 13:00', invoice_number: 'LPJ/SD/2026/0901' },
+    { log_id: 'LOG-SD-20261015-01', order_id: 'ORD-SD-20261015-01', unit_id: 'unit_sd', keterangan: 'LPJ Kebutuhan & Perbaikan SARPRAS SD Bulan Oktober 2026 (Rapot, Toa, Servis & Cuci AC)', amount_deducted: 3510000, debet: 0, kredit: 3510000, remaining_balance: 9000339, timestamp: '2026-10-15 11:30', invoice_number: 'LPJ/SD/2026/1001' },
     { log_id: 'LOG-AC-20260710-01', order_id: 'ORD-AC-20260710-01', unit_id: 'unit_smp', keterangan: 'Pembayaran Layanan Maintenance AC: 2 unit cuci SMP', amount_deducted: 170326, debet: 0, kredit: 170326, remaining_balance: 24335674, timestamp: '2026-07-10 09:00', invoice_number: 'INV/AC/2026/0701' },
     { log_id: 'LOG-AC-20260710-02', order_id: 'ORD-AC-20260710-02', unit_id: 'unit_tk', keterangan: 'Pembayaran Layanan Maintenance AC: 6 unit cuci TK', amount_deducted: 510000, debet: 0, kredit: 510000, remaining_balance: 14490000, timestamp: '2026-07-10 10:45', invoice_number: 'INV/AC/2026/0702' },
     { log_id: 'LOG-AC-20260716-01', order_id: 'ORD-AC-20260716-01', unit_id: 'unit_smp', keterangan: 'Pembayaran Layanan Maintenance AC: Kabel AC ruang yys', amount_deducted: 110061, debet: 0, kredit: 110061, remaining_balance: 24225613, timestamp: '2026-07-16 11:30', invoice_number: 'INV/AC/2026/0703' },
     { log_id: 'LOG-AC-20260717-01', order_id: 'ORD-AC-20260717-01', unit_id: 'unit_smp', keterangan: 'Pembayaran Layanan Maintenance AC: 4 unit cuci, 1 unit isi freon, 1 unit Service SMP', amount_deducted: 700000, debet: 0, kredit: 700000, remaining_balance: 23525613, timestamp: '2026-07-17 09:00', invoice_number: 'INV/AC/2026/0704' },
-    { log_id: 'LOG-AC-20260731-01', order_id: 'ORD-AC-20260731-01', unit_id: 'unit_sd', keterangan: 'Pembayaran Layanan Maintenance AC: 1 unit service SD', amount_deducted: 175000, debet: 0, kredit: 175000, remaining_balance: 35709000, timestamp: '2026-07-31 09:30', invoice_number: 'INV/AC/2026/0705' },
+
     { log_id: 'LOG-AC-20260731-02', order_id: 'ORD-AC-20260731-02', unit_id: 'unit_smp', keterangan: 'Pembayaran Layanan Maintenance AC: 2 unit cuci SMP', amount_deducted: 150000, debet: 0, kredit: 150000, remaining_balance: 23375613, timestamp: '2026-07-31 13:30', invoice_number: 'INV/AC/2026/0706' },
-    { log_id: 'LOG-AC-20260829-01', order_id: 'ORD-AC-20260829-01', unit_id: 'unit_sd', keterangan: 'Pembayaran Layanan Maintenance AC: 1 unit service SD', amount_deducted: 90329, debet: 0, kredit: 90329, remaining_balance: 35618671, timestamp: '2026-08-29 10:30', invoice_number: 'INV/AC/2026/0801' },
+
     { log_id: 'LOG-AC-20260904-01', order_id: 'ORD-AC-20260904-01', unit_id: 'unit_smp', keterangan: 'Pembayaran Layanan Maintenance AC: 4 unit cuci SMP (Batch 1)', amount_deducted: 300000, debet: 0, kredit: 300000, remaining_balance: 23075613, timestamp: '2026-09-04 09:00', invoice_number: 'INV/AC/2026/0901' },
     { log_id: 'LOG-AC-20260904-02', order_id: 'ORD-AC-20260904-02', unit_id: 'unit_smp', keterangan: 'Pembayaran Layanan Maintenance AC: 4 unit cuci 4 SMP (Batch 2)', amount_deducted: 300000, debet: 0, kredit: 300000, remaining_balance: 22775613, timestamp: '2026-09-04 13:30', invoice_number: 'INV/AC/2026/0902' },
-    { log_id: 'LOG-AC-20260928-01', order_id: 'ORD-AC-20260928-01', unit_id: 'unit_sd', keterangan: 'Pembayaran Layanan Maintenance AC: 4 Unit Cleaning AC Kelas 1, Tambah Freon Guru Kls 4 & Bocor Air Perpus', amount_deducted: 700000, debet: 0, kredit: 700000, remaining_balance: 34918671, timestamp: '2026-09-28 10:00', invoice_number: 'INV/AC/2026/0903' }
+
   ],
 
   // ==========================================
@@ -1892,8 +3170,8 @@ const app = {
     }
 
     // Filter out legacy dummy orders, logs, and mock requests
-    const dummyOrderIds = ['ORD-202609-001', 'ORD-202609-002', 'ORD-202609-003'];
-    const dummyLogIds = ['LOG-202609-001'];
+    const dummyOrderIds = ['ORD-202609-001', 'ORD-202609-002', 'ORD-202609-003', 'ORD-AC-20260731-01', 'ORD-AC-20260829-01', 'ORD-AC-20260928-01'];
+    const dummyLogIds = ['LOG-202609-001', 'LOG-AC-20260731-01', 'LOG-AC-20260829-01', 'LOG-AC-20260928-01'];
     const dummyAcReqIds = ['AC-REQ-202609-01-MOCK', 'AC-REQ-202609-02-MOCK', 'AC-REQ-202609-03-MOCK'];
     const dummyRnvReqIds = ['RNV-REQ-202609-01', 'RNV-REQ-202609-02', 'RNV-REQ-202609-03', 'RNV-REQ-202609-04'];
 
@@ -3985,8 +5263,13 @@ const app = {
               </button>
             ` : `<span class="text-slate-400 font-mono text-xs">-</span>`}
           </td>
-          <td class="px-4 py-3 font-semibold text-slate-800">${unitObj.unit_name}</td>
-          <td class="px-4 py-3 font-extrabold text-red-600 font-heading">- Rp ${this.formatNumber(l.amount_deducted)}</td>
+          <td class="px-4 py-3 font-semibold text-slate-800">
+            <div>${unitObj.unit_name}</div>
+            <div class="text-[10px] text-slate-400 font-normal line-clamp-1">${this.escapeHtml(l.keterangan || '')}</div>
+          </td>
+          <td class="px-4 py-3 font-extrabold font-heading ${l.amount_deducted > 0 ? 'text-red-600' : 'text-emerald-600'}">
+            ${l.amount_deducted > 0 ? `- Rp ${this.formatNumber(l.amount_deducted)}` : `+ Rp ${this.formatNumber(l.debet || 0)}`}
+          </td>
           <td class="px-4 py-3 font-extrabold text-brand-primary font-heading">Rp ${this.formatNumber(l.remaining_balance)}</td>
           <td class="px-4 py-3 text-slate-500 text-[11px]">${l.timestamp}</td>
         </tr>
@@ -6274,6 +7557,15 @@ const app = {
                 <span class="${isItemApproved ? 'font-bold text-slate-800' : 'line-through text-slate-400'} block">
                   ${escapeHtml(it.product_name || it.item_name)}
                 </span>
+                ${it.marketplace_url ? `
+                  <div class="mt-1">
+                    <a href="${escapeHtml(it.marketplace_url)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1 text-[10px] text-amber-700 hover:text-amber-900 bg-amber-50 hover:bg-amber-100 border border-amber-200 px-1.5 py-0.5 rounded transition font-medium">
+                      <i class="fa-solid fa-cart-shopping text-[9px] text-amber-600"></i>
+                      <span>Link Belanja Online</span>
+                      <i class="fa-solid fa-arrow-up-right-from-square text-[8px] opacity-70"></i>
+                    </a>
+                  </div>
+                ` : ''}
                 ${isRevised ? `
                   <div class="text-[10px] text-amber-700 font-normal mt-0.5 flex items-center space-x-1 flex-wrap">
                     <span class="px-1.5 py-0.2 bg-amber-100 border border-amber-300 rounded font-semibold text-[9px]">Revisi Nota</span>
@@ -8163,1765 +9455,6 @@ const app = {
               <th style="border: 1px solid #333; padding: 6px; text-align: right;">Total Biaya</th>
               <th style="border: 1px solid #333; padding: 6px; text-align: left;">Vendor Teknisi</th>
               <th style="border: 1px solid #333; padding: 6px; text-align: center;">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${tableRows}
-          </tbody>
-        </table>
-
-        <!-- Signatures Box -->
-        <div style="margin-top: 35px; display: flex; justify-content: space-between; page-break-inside: avoid;">
-          <div style="text-align: center; width: 200px;">
-            <p style="margin: 0 0 50px 0;">Mengetahui,<br><b>Kaur Logistik & SARPRAS</b></p>
-            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${cms.signers.kaur_name || 'Kaur SARPRAS'}</p>
-          </div>
-          <div style="text-align: center; width: 200px;">
-            <p style="margin: 0 0 50px 0;">Disetujui,<br><b>Bendahara Yayasan</b></p>
-            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${cms.signers.bendahara_name || 'Bendahara Yayasan'}</p>
-          </div>
-          <div style="text-align: center; width: 200px;">
-            <p style="margin: 0 0 50px 0;">Diverifikasi,<br><b>Teknisi Rekanan Utama</b></p>
-            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">Bpk. Hendra Kurniawan, S.T.</p>
-          </div>
-        </div>
-      </div>
-    `;
-
-    modal.classList.remove('hidden');
-  },
-
-  closeAcPrintModal() {
-    const modal = document.getElementById('acPrintReportModal');
-    if (modal) modal.classList.add('hidden');
-  },
-
-  // ==========================================
-  // 14B. RENOVATION, MATERIAL & HANDYMAN LABOR CONTROLLER
-  // ==========================================
-
-  renderRenovServiceView() {
-    const projects = this.db.renov_projects || [];
-    const requests = this.db.renov_requests || [];
-
-    // 1. Calculate and update Top KPI Stats
-    const activeProjectsCount = projects.filter(p => p.status !== 'Selesai').length;
-    const totalSpent = requests.reduce((sum, r) => sum + (Number(r.total_amount) || 0), 0);
-    const laborSpent = requests.reduce((sum, r) => sum + (Number(r.labor_subtotal) || 0), 0);
-    const pendingCount = requests.filter(r => ['Menunggu Persetujuan', 'Menunggu Pengiriman', 'Dalam Pengerjaan'].includes(r.status)).length;
-
-    const elActive = document.getElementById('metricRenovActiveProjects');
-    const elTotal = document.getElementById('metricRenovTotalExpense');
-    const elLabor = document.getElementById('metricRenovLaborExpense');
-    const elPending = document.getElementById('metricRenovPendingRequests');
-
-    if (elActive) elActive.textContent = `${activeProjectsCount} Titik`;
-    if (elTotal) elTotal.textContent = `Rp ${this.formatNumber(totalSpent)}`;
-    if (elLabor) elLabor.textContent = `Rp ${this.formatNumber(laborSpent)}`;
-    if (elPending) elPending.textContent = pendingCount;
-
-    // 2. Populate form dropdowns and sync current active tab
-    this.populateRenovFormDropdowns();
-    this.switchRenovSubTab(this.activeRenovSubTab || 'materials');
-  },
-
-  switchRenovSubTab(tabName) {
-    this.activeRenovSubTab = tabName;
-
-    const tabs = ['materials', 'projects', 'analytics', 'vendors'];
-    tabs.forEach(t => {
-      const btn = document.getElementById(`renovSubTabBtn-${t}`);
-      const pane = document.getElementById(`renovSubTab-${t}`);
-
-      if (btn) {
-        if (t === tabName) {
-          btn.className = 'px-4 py-2 rounded-xl text-xs font-bold bg-amber-100 text-amber-900 transition flex items-center space-x-2 shrink-0';
-        } else {
-          btn.className = 'px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition flex items-center space-x-2 shrink-0';
-        }
-      }
-
-      if (pane) {
-        if (t === tabName) pane.classList.remove('hidden');
-        else pane.classList.add('hidden');
-      }
-    });
-
-    if (tabName === 'materials') {
-      this.renderRenovPackagesGrid();
-      this.calculateRenovFormTotal();
-    } else if (tabName === 'projects') {
-      this.renderRenovProjectsTable();
-    } else if (tabName === 'analytics') {
-      this.renderRenovAnalytics();
-    } else if (tabName === 'vendors') {
-      this.renderRenovVendors();
-    }
-  },
-
-  renderRenovPackagesGrid() {
-    const container = document.getElementById('renovPackagesGrid');
-    if (!container) return;
-
-    const packages = this.db.renov_pricing_catalogue || INITIAL_DB.renov_pricing_catalogue;
-
-    container.innerHTML = packages.map(pkg => `
-      <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm card-hover flex flex-col justify-between group transition">
-        <div>
-          <div class="flex items-start justify-between gap-2 mb-3">
-            <span class="inline-block px-2.5 py-0.5 ${pkg.badge_color || 'bg-amber-100 text-amber-800'} text-[10px] font-bold rounded-full">
-              ${pkg.badge}
-            </span>
-            <div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
-              <i class="fa-solid ${pkg.icon || 'fa-paint-roller'}"></i>
-            </div>
-          </div>
-          
-          <h4 class="font-extrabold text-sm text-slate-900 font-heading leading-snug mb-1">
-            ${pkg.name}
-          </h4>
-          <p class="text-[11px] text-slate-500 leading-relaxed line-clamp-2 mb-3">
-            ${pkg.description}
-          </p>
-        </div>
-
-        <div class="pt-3 border-t border-slate-100 mt-2 flex items-center justify-between">
-          <div>
-            <span class="text-[10px] text-slate-400 block font-semibold">${pkg.category}</span>
-            <span class="text-sm font-black text-slate-900 font-heading">Rp ${this.formatNumber(pkg.unit_price)}</span>
-          </div>
-          <button onclick="app.selectRenovPackage('${pkg.material_id}')" class="px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center space-x-1">
-            <i class="fa-solid fa-check"></i>
-            <span>Pilih</span>
-          </button>
-        </div>
-      </div>
-    `).join('');
-  },
-
-  selectRenovPackage(materialId) {
-    const packages = this.db.renov_pricing_catalogue || INITIAL_DB.renov_pricing_catalogue;
-    const pkg = packages.find(p => p.material_id === materialId);
-    if (!pkg) return;
-
-    const selectEl = document.getElementById('renovFormMaterialSelect');
-    const priceEl = document.getElementById('renovFormUnitPrice');
-    const catEl = document.getElementById('renovFormCategory');
-
-    if (selectEl) selectEl.value = pkg.material_id;
-    if (priceEl) priceEl.value = pkg.unit_price;
-
-    if (catEl) {
-      if (pkg.category.includes('Cat')) catEl.value = 'Pengecatan Gedung / Kelas';
-      else if (pkg.category.includes('Lantai')) catEl.value = 'Renovasi Toilet & Sanitasi';
-      else if (pkg.name.toLowerCase().includes('plafon')) catEl.value = 'Perbaikan Plafon & Atap';
-    }
-
-    this.calculateRenovFormTotal();
-
-    const formContainer = document.getElementById('renovRequestForm');
-    if (formContainer) {
-      formContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      formContainer.parentElement.classList.add('ring-2', 'ring-amber-400');
-      setTimeout(() => {
-        if (formContainer.parentElement) formContainer.parentElement.classList.remove('ring-2', 'ring-amber-400');
-      }, 1200);
-    }
-
-    this.showToast(`Material / Jasa "${pkg.name}" dipilih!`, 'info');
-  },
-
-  populateRenovFormDropdowns() {
-    const unitSelect = document.getElementById('renovFormUnitSelect');
-    if (unitSelect && this.currentUser && this.currentUser.unit_id) {
-      if (['unit_tk', 'unit_sd', 'unit_smp'].includes(this.currentUser.unit_id)) {
-        unitSelect.value = this.currentUser.unit_id;
-      }
-    }
-
-    const materialSelect = document.getElementById('renovFormMaterialSelect');
-    if (materialSelect) {
-      const catalogue = this.db.renov_pricing_catalogue || INITIAL_DB.renov_pricing_catalogue;
-      materialSelect.innerHTML = catalogue.map(m => `
-        <option value="${m.material_id}">${m.name} - Rp ${this.formatNumber(m.unit_price)}</option>
-      `).join('') + '<option value="CUSTOM_MATERIAL">+ Bahan / Material Custom Lainnya</option>';
-    }
-
-    const dateInput = document.getElementById('renovFormDate');
-    if (dateInput && !dateInput.value) {
-      dateInput.value = new Date().toISOString().split('T')[0];
-    }
-
-    this.onRenovUnitSelectChange();
-  },
-
-  onRenovUnitSelectChange() {
-    const unitSelect = document.getElementById('renovFormUnitSelect');
-    const projectSelect = document.getElementById('renovFormProjectSelect');
-    if (!unitSelect || !projectSelect) return;
-
-    const selectedUnit = unitSelect.value;
-    const projects = this.db.renov_projects || [];
-    const unitProjects = projects.filter(p => p.unit_id === selectedUnit);
-
-    projectSelect.innerHTML = '<option value="">-- Pilih Titik Proyek Terdaftar (atau isi manual) --</option>' + 
-      unitProjects.map(p => `<option value="${p.project_id}">[${p.project_id}] ${p.location_name} (${p.category})</option>`).join('') +
-      '<option value="NEW_PROJECT">+ Daftarkan Titik Renovasi Baru</option>';
-  },
-
-  onRenovProjectSelectChange() {
-    const projectSelect = document.getElementById('renovFormProjectSelect');
-    const locInput = document.getElementById('renovFormLocation');
-    const catSelect = document.getElementById('renovFormCategory');
-    if (!projectSelect) return;
-
-    const val = projectSelect.value;
-    if (!val || val === 'NEW_PROJECT') {
-      if (val === 'NEW_PROJECT') {
-        this.openAddRenovProjectModal();
-      }
-      return;
-    }
-
-    const projects = this.db.renov_projects || [];
-    const item = projects.find(p => p.project_id === val);
-    if (item) {
-      if (locInput) locInput.value = item.location_name;
-      if (catSelect && item.category) catSelect.value = item.category;
-    }
-  },
-
-  onRenovMaterialSelectChange() {
-    const materialSelect = document.getElementById('renovFormMaterialSelect');
-    const priceInput = document.getElementById('renovFormUnitPrice');
-    if (!materialSelect || !priceInput) return;
-
-    if (materialSelect.value === 'CUSTOM_MATERIAL') {
-      priceInput.removeAttribute('readonly');
-      priceInput.focus();
-      return;
-    }
-
-    const catalogue = this.db.renov_pricing_catalogue || INITIAL_DB.renov_pricing_catalogue;
-    const item = catalogue.find(m => m.material_id === materialSelect.value);
-    if (item) {
-      priceInput.value = item.unit_price;
-    }
-    this.calculateRenovFormTotal();
-  },
-
-  calculateRenovFormTotal() {
-    const qtyInput = document.getElementById('renovFormQty');
-    const priceInput = document.getElementById('renovFormUnitPrice');
-    const laborCountInput = document.getElementById('renovFormLaborCount');
-    const laborDaysInput = document.getElementById('renovFormLaborDays');
-    const laborRateInput = document.getElementById('renovFormLaborRate');
-
-    const subMatEl = document.getElementById('renovFormSubtotalMaterial');
-    const subLaborEl = document.getElementById('renovFormSubtotalLabor');
-    const grandTotalEl = document.getElementById('renovFormGrandTotal');
-
-    const qty = Number(qtyInput ? qtyInput.value : 1) || 0;
-    const price = Number(priceInput ? priceInput.value : 0) || 0;
-    const matSubtotal = qty * price;
-
-    const laborCount = Number(laborCountInput ? laborCountInput.value : 0) || 0;
-    const laborDays = Number(laborDaysInput ? laborDaysInput.value : 0) || 0;
-    const laborRate = Number(laborRateInput ? laborRateInput.value : 0) || 0;
-    const laborSubtotal = laborCount * laborDays * laborRate;
-
-    const grandTotal = matSubtotal + laborSubtotal;
-
-    if (subMatEl) subMatEl.textContent = 'Rp ' + this.formatNumber(matSubtotal);
-    if (subLaborEl) subLaborEl.textContent = 'Rp ' + this.formatNumber(laborSubtotal);
-    if (grandTotalEl) grandTotalEl.textContent = 'Rp ' + this.formatNumber(grandTotal);
-
-    return { matSubtotal, laborSubtotal, grandTotal };
-  },
-
-  submitRenovRequest(event) {
-    event.preventDefault();
-
-    const unitSelect = document.getElementById('renovFormUnitSelect');
-    const projectSelect = document.getElementById('renovFormProjectSelect');
-    const locInput = document.getElementById('renovFormLocation');
-    const catSelect = document.getElementById('renovFormCategory');
-    const matSelect = document.getElementById('renovFormMaterialSelect');
-    const qtyInput = document.getElementById('renovFormQty');
-    const priceInput = document.getElementById('renovFormUnitPrice');
-    const laborCountInput = document.getElementById('renovFormLaborCount');
-    const laborDaysInput = document.getElementById('renovFormLaborDays');
-    const laborRateInput = document.getElementById('renovFormLaborRate');
-    const dateInput = document.getElementById('renovFormDate');
-    const vendorSelect = document.getElementById('renovFormVendor');
-    const fundingSelect = document.getElementById('renovFormFundingSource');
-    const notesInput = document.getElementById('renovFormNotes');
-
-    const unitId = unitSelect ? unitSelect.value : 'unit_sd';
-    const projectId = projectSelect ? projectSelect.value : '';
-    const locationName = locInput ? locInput.value.trim() : '';
-    const category = catSelect ? catSelect.value : 'Pengecatan Gedung / Kelas';
-    const materialId = matSelect ? matSelect.value : 'RNV-MAT-CAT-INT-20KG';
-    const materialName = matSelect && matSelect.options[matSelect.selectedIndex] ? matSelect.options[matSelect.selectedIndex].text.split(' - ')[0] : 'Material Bangunan';
-    const qty = Number(qtyInput ? qtyInput.value : 1) || 1;
-    const unitPrice = Number(priceInput ? priceInput.value : 0) || 0;
-    const laborCount = Number(laborCountInput ? laborCountInput.value : 0) || 0;
-    const laborDays = Number(laborDaysInput ? laborDaysInput.value : 0) || 0;
-    const laborRate = Number(laborRateInput ? laborRateInput.value : 0) || 0;
-    const scheduledDate = dateInput ? dateInput.value : '';
-    const vendorName = vendorSelect && vendorSelect.options[vendorSelect.selectedIndex] ? vendorSelect.options[vendorSelect.selectedIndex].text : 'TB. Al-Imam Jaya Material';
-    const fundingSource = fundingSelect ? fundingSelect.value : 'RAPBS_POIN';
-    const notes = notesInput ? notesInput.value.trim() : '';
-
-    if (!locationName) {
-      this.showToast('Mohon isi lokasi / titik pekerjaan renovasi!', 'warning');
-      return;
-    }
-
-    const { matSubtotal, laborSubtotal, grandTotal } = this.calculateRenovFormTotal();
-
-    if (grandTotal <= 0) {
-      this.showToast('Total biaya tidak boleh Rp 0!', 'warning');
-      return;
-    }
-
-    // Check RAPBS Quota if using RAPBS Poin
-    if (fundingSource === 'RAPBS_POIN' && this.db.rapbs_poin) {
-      const userRapbs = this.db.rapbs_poin.find(r => r.unit_id === unitId);
-      if (userRapbs) {
-        if (userRapbs.saldo_tersedia < grandTotal) {
-          this.showToast(`Saldo RAPBS ${unitId.toUpperCase()} tidak mencukupi! (Sisa: Rp ${this.formatNumber(userRapbs.saldo_tersedia)})`, 'error');
-          return;
-        }
-        userRapbs.saldo_tersedia -= grandTotal;
-        userRapbs.terpakai += grandTotal;
-        userRapbs.updated_at = this.formatCurrentDateTime();
-      }
-    }
-
-    const requestId = `RNV-REQ-${this.generateTimestampId()}`;
-
-    const newRequest = {
-      request_id: requestId,
-      project_id: projectId || `PRJ-${unitId.replace('unit_', '').toUpperCase()}-GEN`,
-      unit_id: unitId,
-      location_name: locationName,
-      category: category,
-      material_name: materialName,
-      material_id: materialId,
-      qty: qty,
-      unit_price: unitPrice,
-      material_subtotal: matSubtotal,
-      labor_count: laborCount,
-      labor_days: laborDays,
-      labor_rate: laborRate,
-      labor_subtotal: laborSubtotal,
-      total_amount: grandTotal,
-      scheduled_date: scheduledDate,
-      vendor_name: vendorName,
-      funding_source: fundingSource,
-      notes: notes,
-      status: 'Dalam Pengerjaan',
-      created_at: this.formatCurrentDateTime(),
-      approved_at: this.formatCurrentDateTime()
-    };
-
-    if (!this.db.renov_requests) this.db.renov_requests = [];
-    this.db.renov_requests.unshift(newRequest);
-
-    this.saveState();
-    this.updateUI();
-
-    this.showToast(`Pengajuan material & tukang ${requestId} (Rp ${this.formatNumber(grandTotal)}) berhasil dibuat!`, 'success');
-
-    // Reset Form
-    if (locInput) locInput.value = '';
-    if (notesInput) notesInput.value = '';
-    if (laborCountInput) laborCountInput.value = '0';
-    if (laborDaysInput) laborDaysInput.value = '0';
-    this.calculateRenovFormTotal();
-
-    this.renderRenovServiceView();
-  },
-
-  renderRenovProjectsTable() {
-    const tbody = document.getElementById('renovProjectsTableBody');
-    const countLabel = document.getElementById('renovProjectCountLabel');
-    if (!tbody) return;
-
-    let list = this.db.renov_projects || [];
-
-    // Filter by unit
-    if (this.renovUnitFilter && this.renovUnitFilter !== 'all') {
-      list = list.filter(p => p.unit_id === this.renovUnitFilter);
-    }
-
-    // Search filter
-    if (this.renovSearchQuery) {
-      const q = this.renovSearchQuery.toLowerCase();
-      list = list.filter(p => 
-        (p.project_id && p.project_id.toLowerCase().includes(q)) ||
-        (p.location_name && p.location_name.toLowerCase().includes(q)) ||
-        (p.category && p.category.toLowerCase().includes(q)) ||
-        (p.notes && p.notes.toLowerCase().includes(q)) ||
-        (p.invoice_no && p.invoice_no.toLowerCase().includes(q))
-      );
-    }
-
-    if (countLabel) countLabel.textContent = `Menampilkan ${list.length} titik proyek`;
-
-    if (list.length === 0) {
-      tbody.innerHTML = `
-        <tr>
-          <td colspan="8" class="text-center py-12 text-slate-400">
-            <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3 text-lg">
-              <i class="fa-solid fa-folder-open"></i>
-            </div>
-            <p class="font-bold text-slate-600 text-sm">Tidak ada data titik renovasi yang cocok.</p>
-            <p class="text-xs text-slate-400 mt-1">Coba sesuaikan kata kunci pencarian atau ubah filter unit.</p>
-          </td>
-        </tr>
-      `;
-      return;
-    }
-
-    const unitMap = {
-      unit_tk: { name: 'PG-TK Islam Al-Imam', badge: 'bg-emerald-100/80 text-emerald-800 border border-emerald-200/60' },
-      unit_sd: { name: 'SD Islam Al-Imam', badge: 'bg-blue-100/80 text-blue-800 border border-blue-200/60' },
-      unit_smp: { name: 'SMP Islam Al-Imam', badge: 'bg-indigo-100/80 text-indigo-800 border border-indigo-200/60' }
-    };
-
-    tbody.innerHTML = list.map(p => {
-      const u = unitMap[p.unit_id] || { name: p.unit_id, badge: 'bg-slate-100 text-slate-800 border border-slate-200' };
-      const pct = Number(p.progress_pct) || 0;
-      let barColor = 'bg-amber-500';
-      if (pct === 100) barColor = 'bg-emerald-500';
-      else if (pct <= 25) barColor = 'bg-sky-500';
-
-      const photoCount = (p.photos && p.photos.length) || 0;
-      const isCompleted = p.status === 'Selesai' || pct === 100;
-
-      // Format date
-      let displayDate = p.target_date || '-';
-      if (p.target_date && p.target_date.includes('-')) {
-        const parts = p.target_date.split('-');
-        if (parts.length === 3) {
-          const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-          const mIdx = parseInt(parts[1], 10) - 1;
-          displayDate = `${parts[2]} ${months[mIdx] || parts[1]} ${parts[0]}`;
-        }
-      }
-
-      return `
-        <tr class="hover:bg-amber-50/20 transition-colors border-b border-slate-100/90">
-          <!-- 1. KODE & INVOICE -->
-          <td class="px-4 py-3.5 text-center whitespace-nowrap align-middle">
-            <span class="inline-block px-2.5 py-1 bg-slate-100 text-slate-800 font-mono font-bold text-xs rounded-lg border border-slate-200 shadow-2xs">${p.project_id}</span>
-            ${p.invoice_no ? `<span class="mt-1 block text-[10px] text-blue-700 font-mono font-bold tracking-tight bg-blue-50 border border-blue-200/60 rounded px-1.5 py-0.5">${p.invoice_no}</span>` : ''}
-          </td>
-
-          <!-- 2. UNIT & LOKASI PEKERJAAN -->
-          <td class="px-4 py-3.5 align-middle">
-            <div class="flex items-center space-x-1.5 mb-1">
-              <span class="px-2 py-0.5 ${u.badge} text-[10px] font-extrabold rounded-full tracking-wide uppercase">${u.name}</span>
-            </div>
-            <div class="font-extrabold text-slate-900 text-xs leading-snug">${p.location_name}</div>
-            ${p.pic_name ? `<div class="text-[10px] text-slate-400 mt-0.5 flex items-center space-x-1"><i class="fa-solid fa-user-shield text-[9px]"></i><span>PJ: ${p.pic_name}</span></div>` : ''}
-          </td>
-
-          <!-- 3. JENIS & BAHAN MATERIAL -->
-          <td class="px-4 py-3.5 align-middle">
-            <div class="font-bold text-slate-800 text-xs">${p.category}</div>
-            <p class="text-[11px] text-slate-500 mt-0.5 line-clamp-2 max-w-xs leading-relaxed">${p.notes || '-'}</p>
-          </td>
-
-          <!-- 4. TOTAL BIAYA -->
-          <td class="px-4 py-3.5 text-right align-middle whitespace-nowrap">
-            <div class="font-black text-slate-900 font-heading text-sm">Rp ${this.formatNumber(p.budget_estimate)}</div>
-            ${p.labor_cost ? `<div class="text-[10px] text-slate-400 mt-0.5">Upah: Rp ${this.formatNumber(p.labor_cost)}</div>` : ''}
-          </td>
-
-          <!-- 5. PROGRES FISIK -->
-          <td class="px-4 py-3.5 text-center align-middle whitespace-nowrap">
-            <div class="w-28 mx-auto">
-              <div class="flex items-center justify-between text-[10px] font-extrabold text-slate-700 mb-1">
-                <span>Fisik</span>
-                <span class="font-mono ${pct === 100 ? 'text-emerald-700' : 'text-amber-700'}">${pct}%</span>
-              </div>
-              <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden p-0.5 border border-slate-200/50">
-                <div class="h-full ${barColor} rounded-full transition-all duration-500" style="width: ${pct}%"></div>
-              </div>
-            </div>
-          </td>
-
-          <!-- 6. TARGET WAKTU -->
-          <td class="px-4 py-3.5 text-center align-middle whitespace-nowrap">
-            <span class="inline-flex items-center space-x-1.5 text-xs font-semibold text-slate-600 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200/60">
-              <i class="fa-regular fa-calendar text-[10px] text-slate-400"></i>
-              <span>${displayDate}</span>
-            </span>
-          </td>
-
-          <!-- 7. STATUS -->
-          <td class="px-4 py-3.5 text-center align-middle whitespace-nowrap">
-            <span class="inline-flex items-center space-x-1.5 px-3 py-1 text-[10px] font-extrabold rounded-full ${
-              isCompleted ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' :
-              p.status === 'Dalam Pengerjaan' ? 'bg-amber-100 text-amber-800 border border-amber-200' :
-              'bg-slate-100 text-slate-700 border border-slate-200'
-            }">
-              <span class="w-2 h-2 rounded-full ${isCompleted ? 'bg-emerald-500' : p.status === 'Dalam Pengerjaan' ? 'bg-amber-500 animate-pulse' : 'bg-slate-400'}"></span>
-              <span>${p.status}</span>
-            </span>
-          </td>
-
-          <!-- 8. DOKUMEN & AKSI -->
-          <td class="px-4 py-3.5 text-center align-middle whitespace-nowrap">
-            <div class="inline-flex items-center space-x-1.5">
-              <!-- Invoice Button -->
-              <button onclick="app.openProjectInvoiceModal('${p.project_id}')" class="px-2.5 py-1.5 bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-700 border border-blue-200/80 rounded-xl text-[11px] font-bold transition flex items-center space-x-1 shadow-2xs group" title="Cetak Invoice & SPK Proyek">
-                <i class="fa-solid fa-file-invoice"></i>
-                <span>Invoice</span>
-              </button>
-
-              <!-- BAST Button -->
-              <button onclick="app.openProjectCompletionModal('${p.project_id}')" class="px-2.5 py-1.5 ${isCompleted ? 'bg-emerald-50 hover:bg-emerald-600 hover:text-white text-emerald-700 border border-emerald-200/80' : 'bg-slate-100 hover:bg-slate-700 hover:text-white text-slate-600 border border-slate-200'} rounded-xl text-[11px] font-bold transition flex items-center space-x-1 shadow-2xs" title="${isCompleted ? 'Cetak BAST & Laporan Selesai' : 'Pratinjau BAST'}">
-                <i class="fa-solid fa-file-contract"></i>
-                <span>BAST</span>
-              </button>
-
-              <!-- Foto / Galeri Button -->
-              <button onclick="app.openRenovDetailModal('${p.project_id}', 'gallery')" class="px-2.5 py-1.5 bg-amber-50 hover:bg-amber-500 hover:text-white text-amber-800 border border-amber-200/80 rounded-xl text-[11px] font-bold transition flex items-center space-x-1 shadow-2xs" title="Galeri & Upload Foto / Screenshot">
-                <i class="fa-solid fa-camera text-[10px]"></i>
-                <span>Foto</span>
-                <span class="px-1.5 py-0.2 bg-amber-200/80 text-amber-900 rounded-full text-[9px] font-black">${photoCount}</span>
-              </button>
-
-              <!-- Compact Actions Toolbar (Detail, Edit, Delete) -->
-              <div class="inline-flex items-center border border-slate-200/80 bg-slate-50/80 rounded-xl p-0.5 space-x-0.5 shadow-2xs">
-                <button onclick="app.openRenovDetailModal('${p.project_id}')" class="w-7 h-7 hover:bg-white text-slate-600 hover:text-slate-900 rounded-lg flex items-center justify-center text-xs transition" title="Lihat Detail Lengkap">
-                  <i class="fa-solid fa-eye"></i>
-                </button>
-                <button onclick="app.openAddRenovProjectModal('${p.project_id}')" class="w-7 h-7 hover:bg-white text-slate-600 hover:text-blue-600 rounded-lg flex items-center justify-center text-xs transition" title="Edit Titik Proyek">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                </button>
-                <button onclick="app.deleteRenovProject('${p.project_id}')" class="w-7 h-7 hover:bg-white text-rose-500 hover:text-rose-700 rounded-lg flex items-center justify-center text-xs transition" title="Hapus Titik Proyek">
-                  <i class="fa-solid fa-trash"></i>
-                </button>
-              </div>
-            </div>
-          </td>
-        </tr>
-      `;
-    }).join('');
-  },
-
-
-  filterRenovProjects(unitId) {
-    this.renovUnitFilter = unitId;
-
-    const btns = ['all', 'unit_tk', 'unit_sd', 'unit_smp'];
-    btns.forEach(b => {
-      const el = document.getElementById(`renovFilterUnit-${b}`);
-      if (el) {
-        if (b === unitId) {
-          el.className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-600 text-white shadow-xs transition';
-        } else {
-          el.className = 'px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition';
-        }
-      }
-    });
-
-    this.renderRenovProjectsTable();
-  },
-
-  onRenovSearchChange(query) {
-    this.renovSearchQuery = (query || '').toLowerCase();
-    this.renderRenovProjectsTable();
-  },
-
-  openAddRenovProjectModal(projectId = null) {
-    this.editingProjectId = projectId;
-    const modal = document.getElementById('renovAddProjectModal');
-    const title = document.getElementById('renovAddProjectModalTitle');
-    const editIdInput = document.getElementById('renovEditProjectId');
-
-    const schoolSelect = document.getElementById('renovProjectModalSchool');
-    const locInput = document.getElementById('renovProjectModalLocation');
-    const catSelect = document.getElementById('renovProjectModalCategory');
-    const budgetInput = document.getElementById('renovProjectModalBudget');
-    const progressSelect = document.getElementById('renovProjectModalProgress');
-    const targetInput = document.getElementById('renovProjectModalTargetDate');
-    const notesInput = document.getElementById('renovProjectModalNotes');
-
-    if (projectId) {
-      const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
-      if (project) {
-        if (title) title.textContent = `Edit Titik Renovasi [${project.project_id}]`;
-        if (editIdInput) editIdInput.value = project.project_id;
-        if (schoolSelect) schoolSelect.value = project.unit_id;
-        if (locInput) locInput.value = project.location_name;
-        if (catSelect) catSelect.value = project.category;
-        if (budgetInput) budgetInput.value = project.budget_estimate;
-        if (progressSelect) progressSelect.value = String(project.progress_pct);
-        if (targetInput) targetInput.value = project.target_date || '';
-        if (notesInput) notesInput.value = project.notes || '';
-      }
-    } else {
-      if (title) title.textContent = 'Daftarkan Titik Renovasi Baru';
-      if (editIdInput) editIdInput.value = '';
-      if (locInput) locInput.value = '';
-      if (budgetInput) budgetInput.value = '2500000';
-      if (progressSelect) progressSelect.value = '0';
-      if (targetInput) {
-        const nextMonth = new Date();
-        nextMonth.setDate(nextMonth.getDate() + 14);
-        targetInput.value = nextMonth.toISOString().split('T')[0];
-      }
-      if (notesInput) notesInput.value = '';
-    }
-
-    if (modal) modal.classList.remove('hidden');
-  },
-
-  closeAddRenovProjectModal() {
-    const modal = document.getElementById('renovAddProjectModal');
-    if (modal) modal.classList.add('hidden');
-    this.editingProjectId = null;
-  },
-
-  saveRenovProject(event) {
-    event.preventDefault();
-
-    const editId = document.getElementById('renovEditProjectId').value;
-    const unitId = document.getElementById('renovProjectModalSchool').value;
-    const locationName = document.getElementById('renovProjectModalLocation').value.trim();
-    const category = document.getElementById('renovProjectModalCategory').value;
-    const budgetEstimate = Number(document.getElementById('renovProjectModalBudget').value) || 0;
-    const progressPct = Number(document.getElementById('renovProjectModalProgress').value) || 0;
-    const targetDate = document.getElementById('renovProjectModalTargetDate').value;
-    const notes = document.getElementById('renovProjectModalNotes').value.trim();
-
-    if (!locationName) {
-      this.showToast('Lokasi pekerjaan wajib diisi!', 'warning');
-      return;
-    }
-
-    let status = 'Dalam Pengerjaan';
-    if (progressPct === 100) status = 'Selesai';
-    else if (progressPct === 0) status = 'Perencanaan';
-
-    if (!this.db.renov_projects) this.db.renov_projects = [];
-
-    const nowStr = new Date().toISOString().split('T')[0];
-    const yearMonth = nowStr.substring(0, 7).replace('-', '');
-
-    if (editId) {
-      const idx = this.db.renov_projects.findIndex(p => p.project_id === editId);
-      if (idx !== -1) {
-        const existing = this.db.renov_projects[idx];
-        this.db.renov_projects[idx] = {
-          ...existing,
-          unit_id: unitId,
-          location_name: locationName,
-          category: category,
-          budget_estimate: budgetEstimate,
-          progress_pct: progressPct,
-          target_date: targetDate,
-          status: status,
-          notes: notes,
-          completed_at: progressPct === 100 ? (existing.completed_at || nowStr) : existing.completed_at
-        };
-        this.showToast(`Proyek ${editId} berhasil diperbarui!`, 'success');
-      }
-    } else {
-      const unitCode = unitId.replace('unit_', '').toUpperCase();
-      const numRandom = Math.floor(Math.random() * 89 + 10);
-      const newId = `PRJ-${unitCode}-${numRandom}`;
-      const newProject = {
-        project_id: newId,
-        unit_id: unitId,
-        location_name: locationName,
-        category: category,
-        budget_estimate: budgetEstimate,
-        progress_pct: progressPct,
-        target_date: targetDate,
-        status: status,
-        notes: notes,
-        created_at: nowStr,
-        invoice_no: `INV-PRJ-${yearMonth}-${numRandom}`,
-        spk_no: `SPK-PRJ-${yearMonth}-${numRandom}`,
-        bast_no: `BAST-PRJ-${yearMonth}-${numRandom}`,
-        pj_name: unitId === 'unit_smp' ? 'Aning Nurhayati, S.T., Gr.' : (unitId === 'unit_sd' ? 'Dewi Fitria Nugraheni, S.Pd., Gr.' : 'Siti Rahmawati, S.Pd.'),
-        contractor_name: 'TB. Al-Imam Jaya Material & Mitra Tukang',
-        funding_source: 'RAPBS Sarpras ' + unitCode,
-        photos: []
-      };
-      this.db.renov_projects.unshift(newProject);
-      this.showToast(`Titik proyek ${newId} dan Invoice ${newProject.invoice_no} berhasil dibuat!`, 'success');
-    }
-
-    this.saveState();
-    this.closeAddRenovProjectModal();
-    this.populateRenovFormDropdowns();
-    this.renderRenovProjectsTable();
-    this.renderRenovServiceView();
-  },
-
-  deleteRenovProject(projectId) {
-    if (!confirm(`Apakah Anda yakin ingin menghapus titik proyek ${projectId}?`)) return;
-
-    this.db.renov_projects = (this.db.renov_projects || []).filter(p => p.project_id !== projectId);
-    this.saveState();
-    this.showToast(`Titik proyek ${projectId} berhasil dihapus.`, 'info');
-    this.populateRenovFormDropdowns();
-    this.renderRenovProjectsTable();
-    this.renderRenovServiceView();
-  },
-
-  // ==========================================
-  // 14.7. DETAIL MODAL, PHOTO GALLERY & INVOICING
-  // ==========================================
-
-  openRenovDetailModal(projectId, defaultTab = 'transactions') {
-    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
-    if (!project) return;
-
-    this.currentDetailProjectId = projectId;
-
-    const modal = document.getElementById('renovDetailModal');
-    const title = document.getElementById('renovDetailModalTitle');
-    const subtitle = document.getElementById('renovDetailModalSubtitle');
-    const statusBadge = document.getElementById('renovDetailStatusBadge');
-    const codeEl = document.getElementById('renovDetailProjectCode');
-    const catEl = document.getElementById('renovDetailCategory');
-    const progEl = document.getElementById('renovDetailProgress');
-    const totalEl = document.getElementById('renovDetailTotalSpent');
-    const invNoEl = document.getElementById('renovDocInvoiceNo');
-    const bastNoEl = document.getElementById('renovDocBastNo');
-    const bastBadge = document.getElementById('renovDocBastBadge');
-    const markCompleteBtn = document.getElementById('renovDetailMarkCompleteBtn');
-    const photoCountEl = document.getElementById('renovDetailPhotoCount');
-
-    const requests = (this.db.renov_requests || []).filter(r => r.project_id === projectId || (r.location_name && r.location_name.includes(project.location_name)));
-    const spent = requests.reduce((sum, r) => sum + (Number(r.total_amount) || 0), 0);
-
-    const isCompleted = project.status === 'Selesai' || project.progress_pct === 100;
-
-    if (title) title.textContent = project.location_name;
-    if (subtitle) subtitle.textContent = `Master Data Proyek [${project.project_id}] • Ref Invoice: ${project.invoice_no || '-'}`;
-    if (codeEl) codeEl.textContent = project.project_id;
-    if (catEl) catEl.textContent = project.category;
-    if (progEl) progEl.textContent = `${project.progress_pct}% (${project.status})`;
-    if (totalEl) totalEl.textContent = `Rp ${this.formatNumber(spent || project.budget_estimate)}`;
-    if (invNoEl) invNoEl.textContent = project.invoice_no || `INV-PRJ-${project.project_id}`;
-    if (bastNoEl) bastNoEl.textContent = project.bast_no || `BAST-PRJ-${project.project_id}`;
-    if (photoCountEl) photoCountEl.textContent = (project.photos && project.photos.length) || 0;
-
-    if (statusBadge) {
-      statusBadge.textContent = project.status;
-      statusBadge.className = `px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border ${
-        isCompleted ? 'bg-emerald-100 text-emerald-800 border-emerald-300' :
-        project.status === 'Dalam Pengerjaan' ? 'bg-amber-100 text-amber-800 border-amber-300' :
-        'bg-slate-100 text-slate-700 border-slate-300'
-      }`;
-    }
-
-    if (bastBadge) {
-      bastBadge.textContent = isCompleted ? 'Proyek Selesai 100% (BAST Siap)' : 'Progres ' + project.progress_pct + '% (Draft BAST)';
-      bastBadge.className = isCompleted ? 'px-2.5 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-extrabold rounded-full' : 'px-2.5 py-0.5 bg-amber-100 text-amber-800 text-[10px] font-extrabold rounded-full';
-    }
-
-    if (markCompleteBtn) {
-      if (isCompleted) {
-        markCompleteBtn.innerHTML = '<i class="fa-solid fa-check-double mr-1.5"></i><span>Telah Selesai (100%)</span>';
-        markCompleteBtn.className = 'px-4 py-2 bg-emerald-700 text-white font-bold rounded-xl shadow-xs transition flex items-center space-x-1.5 shrink-0 opacity-80 cursor-default';
-        markCompleteBtn.disabled = true;
-      } else {
-        markCompleteBtn.innerHTML = '<i class="fa-solid fa-circle-check mr-1.5"></i><span>Tandai Selesai (100%)</span>';
-        markCompleteBtn.className = 'px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-xs transition flex items-center space-x-1.5 shrink-0 cursor-pointer';
-        markCompleteBtn.disabled = false;
-      }
-    }
-
-    // Render Material & Labor Transactions in Tab 1
-    this.renderRenovDetailItems(project, requests);
-
-    // Render Photos in Tab 2
-    this.renderRenovDetailGallery(project, 'all');
-
-    // Switch to target subtab
-    this.switchRenovDetailTab(defaultTab);
-
-    // Quick add material button setup
-    const quickAddBtn = document.getElementById('renovDetailQuickAddMaterialBtn');
-    if (quickAddBtn) {
-      quickAddBtn.onclick = () => {
-        this.closeRenovDetailModal();
-        this.switchRenovSubTab('materials');
-        const projSelect = document.getElementById('renovFormProjectSelect');
-        if (projSelect) {
-          projSelect.value = project.project_id;
-          this.onRenovProjectSelectChange();
-        }
-      };
-    }
-
-    if (modal) modal.classList.remove('hidden');
-  },
-
-  closeRenovDetailModal() {
-    const modal = document.getElementById('renovDetailModal');
-    if (modal) modal.classList.add('hidden');
-    this.currentDetailProjectId = null;
-  },
-
-  switchRenovDetailTab(tabName) {
-    const tabs = ['transactions', 'gallery', 'docs'];
-    tabs.forEach(t => {
-      const btn = document.getElementById(`renovDetailTabBtn-${t}`);
-      const content = document.getElementById(`renovDetailTab-${t}`);
-      if (btn) {
-        if (t === tabName) {
-          btn.className = 'pb-2.5 px-3 font-bold border-b-2 border-amber-600 text-amber-900 transition flex items-center space-x-1.5';
-        } else {
-          btn.className = 'pb-2.5 px-3 font-semibold text-slate-500 hover:text-slate-800 border-b-2 border-transparent transition flex items-center space-x-1.5';
-        }
-      }
-      if (content) {
-        if (t === tabName) content.classList.remove('hidden');
-        else content.classList.add('hidden');
-      }
-    });
-  },
-
-  renderRenovDetailItems(project, requests) {
-    const container = document.getElementById('renovDetailItemsContainer');
-    if (!container) return;
-
-    if (requests.length === 0) {
-      container.innerHTML = `
-        <div class="text-center py-8 text-slate-400 bg-slate-50 rounded-2xl border border-slate-200/80">
-          <i class="fa-solid fa-clipboard-list text-3xl mb-2 block text-slate-300"></i>
-          <p class="text-xs font-semibold text-slate-600">Belum ada rincian transaksi belanja material toko atau upah tukang.</p>
-          <p class="text-[11px] text-slate-400 mt-0.5">Klik tombol <b>Tambah Belanja</b> di atas untuk menambahkan kebutuhan material.</p>
-        </div>
-      `;
-    } else {
-      container.innerHTML = requests.map(r => `
-        <div class="p-3.5 bg-slate-50 border border-slate-200/80 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div class="space-y-1">
-            <div class="flex items-center space-x-2">
-              <span class="font-mono text-[10px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-md">${r.request_id}</span>
-              <span class="text-xs font-bold text-slate-900">${r.material_name} (x${r.qty})</span>
-            </div>
-            <p class="text-[11px] text-slate-500">
-              <i class="fa-solid fa-store mr-1 text-slate-400"></i>${r.vendor_name || 'TB. Al-Imam Jaya'} • 
-              <i class="fa-regular fa-calendar mr-1 text-slate-400"></i>${r.scheduled_date || r.created_at}
-            </p>
-            ${r.labor_count > 0 ? `
-              <div class="text-[10px] text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded inline-block font-semibold">
-                <i class="fa-solid fa-users-gear mr-1"></i>${r.labor_count} Tukang x ${r.labor_days} Hari (@Rp ${this.formatNumber(r.labor_rate)}) = Rp ${this.formatNumber(r.labor_subtotal)}
-              </div>
-            ` : ''}
-            ${r.notes ? `<p class="text-[10px] text-slate-400 italic">"${r.notes}"</p>` : ''}
-          </div>
-
-          <div class="text-right shrink-0">
-            <span class="text-[10px] text-slate-400 block font-medium">Total Biaya</span>
-            <span class="text-sm font-black text-slate-900 font-heading">Rp ${this.formatNumber(r.total_amount)}</span>
-            <span class="inline-block mt-1 px-2 py-0.5 text-[9px] font-bold rounded-full ${
-              r.status === 'Selesai' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
-            }">${r.status}</span>
-          </div>
-        </div>
-      `).join('');
-    }
-  },
-
-  // ==========================================
-  // PHOTO & SCREENSHOT UPLOAD HANDLERS
-  // ==========================================
-
-  onProjectPhotoFileSelected(event) {
-    const file = event.target.files && event.target.files[0];
-    const previewContainer = document.getElementById('projectPhotoUploadPreviewContainer');
-    const previewImg = document.getElementById('projectPhotoUploadPreviewImg');
-    const previewName = document.getElementById('projectPhotoUploadPreviewName');
-
-    if (!file) {
-      if (previewContainer) previewContainer.classList.add('hidden');
-      this.currentSelectedPhotoBase64 = null;
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      this.currentSelectedPhotoBase64 = e.target.result;
-      if (previewImg) previewImg.src = e.target.result;
-      if (previewName) previewName.textContent = `${file.name} (${Math.round(file.size / 1024)} KB)`;
-      if (previewContainer) previewContainer.classList.remove('hidden');
-    };
-    reader.readAsDataURL(file);
-  },
-
-  submitProjectPhotoUpload(event) {
-    event.preventDefault();
-    const projectId = this.currentDetailProjectId;
-    if (!projectId) {
-      this.showToast('Pilih proyek terlebih dahulu!', 'warning');
-      return;
-    }
-
-    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
-    if (!project) return;
-
-    const typeInput = document.getElementById('projectPhotoTypeInput');
-    const urlInput = document.getElementById('projectPhotoUrlInput');
-    const captionInput = document.getElementById('projectPhotoCaptionInput');
-    const fileInput = document.getElementById('projectPhotoFileInput');
-
-    const photoType = typeInput ? typeInput.value : 'after';
-    const caption = captionInput ? captionInput.value.trim() : 'Dokumentasi Proyek';
-    const urlFromInput = urlInput ? urlInput.value.trim() : '';
-
-    const photoUrl = this.currentSelectedPhotoBase64 || urlFromInput;
-
-    if (!photoUrl) {
-      this.showToast('Mohon pilih file gambar atau masukkan link screenshot foto!', 'warning');
-      return;
-    }
-
-    if (!project.photos) project.photos = [];
-
-    const newPhoto = {
-      id: `PH-${projectId}-${Date.now().toString().slice(-4)}`,
-      type: photoType,
-      url: photoUrl,
-      caption: caption,
-      uploaded_at: new Date().toISOString().split('T')[0]
-    };
-
-    project.photos.unshift(newPhoto);
-    this.saveState();
-
-    this.showToast(`Foto "${caption}" berhasil diunggah ke dokumentasi proyek!`, 'success');
-
-    // Reset Form
-    if (captionInput) captionInput.value = '';
-    if (urlInput) urlInput.value = '';
-    if (fileInput) fileInput.value = '';
-    const previewContainer = document.getElementById('projectPhotoUploadPreviewContainer');
-    if (previewContainer) previewContainer.classList.add('hidden');
-    this.currentSelectedPhotoBase64 = null;
-
-    // Refresh UI
-    const photoCountEl = document.getElementById('renovDetailPhotoCount');
-    if (photoCountEl) photoCountEl.textContent = project.photos.length;
-    this.renderRenovDetailGallery(project, 'all');
-    this.renderRenovProjectsTable();
-  },
-
-  filterProjectGallery(filterType) {
-    this.currentGalleryFilter = filterType;
-    const btns = ['all', 'before', 'progress', 'after'];
-    btns.forEach(b => {
-      const el = document.getElementById(`btnGalleryFilter-${b}`);
-      if (el) {
-        if (b === filterType) {
-          el.className = 'px-2.5 py-1 rounded-lg font-bold bg-amber-600 text-white transition';
-        } else {
-          el.className = 'px-2.5 py-1 rounded-lg font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition';
-        }
-      }
-    });
-
-    const project = (this.db.renov_projects || []).find(p => p.project_id === this.currentDetailProjectId);
-    if (project) {
-      this.renderRenovDetailGallery(project, filterType);
-    }
-  },
-
-  renderRenovDetailGallery(project, filterType = 'all') {
-    const grid = document.getElementById('renovDetailGalleryGrid');
-    if (!grid) return;
-
-    let photos = project.photos || [];
-
-    if (filterType && filterType !== 'all') {
-      if (filterType === 'after') {
-        photos = photos.filter(p => p.type === 'after' || p.type === 'screenshot');
-      } else {
-        photos = photos.filter(p => p.type === filterType);
-      }
-    }
-
-    if (photos.length === 0) {
-      grid.innerHTML = `
-        <div class="col-span-full text-center py-8 text-slate-400 bg-slate-50 rounded-2xl border border-slate-200/80">
-          <i class="fa-solid fa-camera-retro text-3xl mb-2 block text-slate-300"></i>
-          <p class="text-xs font-semibold text-slate-600">Belum ada foto dalam kategori ini.</p>
-          <p class="text-[11px] text-slate-400 mt-0.5">Gunakan formulir unggah di atas untuk melampirkan foto hasil jadi / screenshot.</p>
-        </div>
-      `;
-      return;
-    }
-
-    const typeBadges = {
-      before: { label: 'Sebelum (Before)', cls: 'bg-rose-100 text-rose-800 border-rose-200', icon: 'fa-camera' },
-      progress: { label: 'Sedang Pengerjaan', cls: 'bg-amber-100 text-amber-800 border-amber-200', icon: 'fa-hammer' },
-      after: { label: 'Hasil Jadi Selesai', cls: 'bg-emerald-100 text-emerald-800 border-emerald-200', icon: 'fa-circle-check' },
-      screenshot: { label: 'Screenshot Aplikasi', cls: 'bg-indigo-100 text-indigo-800 border-indigo-200', icon: 'fa-display' }
-    };
-
-    grid.innerHTML = photos.map(photo => {
-      const b = typeBadges[photo.type] || typeBadges.after;
-      const captionEsc = this.escapeHtml(photo.caption || 'Foto Dokumentasi');
-      const photoUrlEsc = this.escapeQuotes(photo.url);
-
-      return `
-        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-2xs group hover:border-amber-400 transition flex flex-col justify-between">
-          <div class="relative aspect-video bg-slate-900 overflow-hidden cursor-pointer" onclick="app.viewReceiptImage('${photoUrlEsc}', 'Dokumentasi Proyek [${project.project_id}]', '${this.escapeQuotes(photo.caption || '')}')">
-            <img src="${photo.url}" alt="${captionEsc}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&auto=format&fit=crop&q=80'">
-            <div class="absolute top-2 left-2">
-              <span class="px-2 py-0.5 rounded-full text-[9px] font-black border ${b.cls} flex items-center space-x-1 shadow-xs backdrop-blur-sm">
-                <i class="fa-solid ${b.icon}"></i>
-                <span>${b.label}</span>
-              </span>
-            </div>
-            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-sm">
-              <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Perbesar
-            </div>
-          </div>
-
-          <div class="p-3 space-y-2 flex-1 flex flex-col justify-between">
-            <div>
-              <p class="text-xs font-bold text-slate-800 line-clamp-2">${captionEsc}</p>
-              <span class="text-[10px] text-slate-400 block mt-1">
-                <i class="fa-regular fa-calendar mr-1"></i>${photo.uploaded_at || '-'}
-              </span>
-            </div>
-
-            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-              <button type="button" onclick="app.viewReceiptImage('${photoUrlEsc}', 'Dokumentasi [${project.project_id}]', '${this.escapeQuotes(photo.caption || '')}')" class="text-amber-700 hover:text-amber-900 font-bold flex items-center space-x-1">
-                <i class="fa-solid fa-expand text-[10px]"></i>
-                <span>Lihat Foto</span>
-              </button>
-              <button type="button" onclick="app.deleteProjectPhoto('${project.project_id}', '${photo.id}')" class="text-rose-500 hover:text-rose-700 font-semibold p-1" title="Hapus Foto">
-                <i class="fa-solid fa-trash-can"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
-    }).join('');
-  },
-
-  deleteProjectPhoto(projectId, photoId) {
-    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
-    if (!project || !project.photos) return;
-
-    if (!confirm('Apakah Anda yakin ingin menghapus foto dokumentasi ini?')) return;
-
-    project.photos = project.photos.filter(p => p.id !== photoId);
-    this.saveState();
-    this.showToast('Foto dokumentasi berhasil dihapus.', 'info');
-
-    const photoCountEl = document.getElementById('renovDetailPhotoCount');
-    if (photoCountEl) photoCountEl.textContent = project.photos.length;
-
-    this.renderRenovDetailGallery(project, this.currentGalleryFilter || 'all');
-    this.renderRenovProjectsTable();
-  },
-
-  // ==========================================
-  // PROJECT INVOICE & SPK GENERATION (NEW ENTRY)
-  // ==========================================
-
-  openProjectInvoiceModal(projectId) {
-    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
-    if (!project) return;
-
-    const modal = document.getElementById('projectInvoiceModal');
-    const container = document.getElementById('projectInvoiceContent');
-    const cms = this.db.cms_settings || DEFAULT_CMS_SETTINGS;
-
-    const requests = (this.db.renov_requests || []).filter(r => r.project_id === projectId || (r.location_name && r.location_name.includes(project.location_name)));
-
-    if (container) {
-      container.innerHTML = this.renderProjectInvoiceHtml(project, requests, cms);
-    }
-
-    if (modal) modal.classList.remove('hidden');
-  },
-
-  openProjectInvoiceModalFromDetail() {
-    if (this.currentDetailProjectId) {
-      this.openProjectInvoiceModal(this.currentDetailProjectId);
-    }
-  },
-
-  closeProjectInvoiceModal() {
-    const modal = document.getElementById('projectInvoiceModal');
-    if (modal) modal.classList.add('hidden');
-  },
-
-  printProjectInvoice(projectId) {
-    this.openProjectInvoiceModal(projectId);
-    setTimeout(() => window.print(), 300);
-  },
-
-  renderProjectInvoiceHtml(project, requests, cms) {
-    const unitNames = {
-      unit_tk: 'PG-TK ISLAM AL-IMAM',
-      unit_sd: 'SD ISLAM AL-IMAM',
-      unit_smp: 'SMP ISLAM AL-IMAM'
-    };
-
-    const unitName = unitNames[project.unit_id] || project.unit_id.toUpperCase();
-    const invNo = project.invoice_no || `INV-PRJ-${project.project_id}`;
-    const spkNo = project.spk_no || `SPK-PRJ-${project.project_id}`;
-    const pjName = project.pj_name || (project.unit_id === 'unit_smp' ? 'Aning Nurhayati, S.T., Gr.' : (project.unit_id === 'unit_sd' ? 'Dewi Fitria Nugraheni, S.Pd., Gr.' : 'Siti Rahmawati, S.Pd.'));
-
-    const totalMat = requests.reduce((sum, r) => sum + (Number(r.material_subtotal) || (r.qty * r.unit_price) || 0), 0);
-    const totalLabor = requests.reduce((sum, r) => sum + (Number(r.labor_subtotal) || 0), 0);
-    const grandTotal = (totalMat + totalLabor) || project.budget_estimate || 0;
-
-    let itemsTable = '';
-    if (requests.length > 0) {
-      itemsTable = requests.map((r, idx) => `
-        <tr>
-          <td style="text-align: center; padding: 7px; border: 1px solid #333;">${idx + 1}</td>
-          <td style="padding: 7px; border: 1px solid #333; font-weight: bold;">
-            ${r.material_name}
-            ${r.notes ? `<div style="font-size: 8.5pt; color: #555; font-weight: normal;">Catatan: ${r.notes}</div>` : ''}
-          </td>
-          <td style="text-align: center; padding: 7px; border: 1px solid #333;">${r.qty}</td>
-          <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(r.unit_price)}</td>
-          <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(r.material_subtotal || (r.qty * r.unit_price))}</td>
-          <td style="text-align: right; padding: 7px; border: 1px solid #333;">
-            ${r.labor_count > 0 ? `${r.labor_count} org x ${r.labor_days} hr<br><span style="font-weight: bold;">Rp ${this.formatNumber(r.labor_subtotal)}</span>` : '-'}
-          </td>
-          <td style="text-align: right; padding: 7px; border: 1px solid #333; font-weight: bold;">Rp ${this.formatNumber(r.total_amount)}</td>
-        </tr>
-      `).join('');
-    } else {
-      itemsTable = `
-        <tr>
-          <td style="text-align: center; padding: 7px; border: 1px solid #333;">1</td>
-          <td style="padding: 7px; border: 1px solid #333; font-weight: bold;">
-            Pekerjaan ${project.category} (${project.location_name})
-            <div style="font-size: 8.5pt; color: #555; font-weight: normal;">${project.notes || 'Pengadaan material & pengerjaan tenaga ahli sipil.'}</div>
-          </td>
-          <td style="text-align: center; padding: 7px; border: 1px solid #333;">1 Paket</td>
-          <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(project.budget_estimate)}</td>
-          <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(project.budget_estimate * 0.65)}</td>
-          <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(project.budget_estimate * 0.35)}</td>
-          <td style="text-align: right; padding: 7px; border: 1px solid #333; font-weight: bold;">Rp ${this.formatNumber(project.budget_estimate)}</td>
-        </tr>
-      `;
-    }
-
-    return `
-      <div class="print-page text-slate-900" style="font-family: Arial, sans-serif; font-size: 10.5pt; color: #111;">
-        
-        <!-- Header Kop Surat Resmi -->
-        <div style="text-align: center; border-bottom: 2.5px solid #000; padding-bottom: 12px; margin-bottom: 18px;">
-          <h2 style="margin: 0 0 3px 0; font-size: 15pt; text-transform: uppercase; font-weight: bold;">${cms.foundation_name || 'YAYASAN PENDIDIKAN ISLAM AL-IMAM'}</h2>
-          <h3 style="margin: 0 0 3px 0; font-size: 12pt; font-weight: bold; color: #0284c7;">DIVISI SARANA PRASARANA & PENGADAAN FISIK (${unitName})</h3>
-          <p style="margin: 0; font-size: 9.5pt; color: #444;">${cms.address || 'Jakarta'} • Telp: ${cms.phone || '(021) 8899-7711'} • Email: sarpras@al-imamschool.sch.id</p>
-        </div>
-
-        <!-- Title & Document Number -->
-        <div style="text-align: center; margin-bottom: 16px;">
-          <h3 style="margin: 0 0 4px 0; font-size: 13pt; text-transform: uppercase; text-decoration: underline; font-weight: bold;">INVOICE & SURAT PERINTAH KERJA (SPK) PROYEK</h3>
-          <p style="margin: 0; font-size: 10pt; font-weight: bold; font-family: monospace; color: #1e3a8a;">NO. INVOICE: ${invNo} / NO. SPK: ${spkNo}</p>
-        </div>
-
-        <!-- Info Box Grid 2 Kolom -->
-        <div style="display: flex; justify-content: space-between; gap: 20px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 9.5pt;">
-          <div style="flex: 1; line-height: 1.6;">
-            <div><span style="color: #64748b;">Unit Pemohon:</span> <b>${unitName}</b></div>
-            <div><span style="color: #64748b;">Titik / Lokasi:</span> <b>${project.location_name}</b></div>
-            <div><span style="color: #64748b;">Jenis Pekerjaan:</span> <b>${project.category}</b></div>
-            <div><span style="color: #64748b;">Pelaksana / Mitra:</span> <b>${project.contractor_name || 'TB. Al-Imam Jaya Material & Mitra Tukang'}</b></div>
-          </div>
-          <div style="flex: 1; line-height: 1.6;">
-            <div><span style="color: #64748b;">Tanggal Masuk / SPK:</span> <b>${project.created_at || '2026-09-20'}</b></div>
-            <div><span style="color: #64748b;">Target Selesai:</span> <b>${project.target_date || '-'}</b></div>
-            <div><span style="color: #64748b;">Sumber Anggaran:</span> <b style="color: #047857;">${project.funding_source || 'RAPBS Sarpras'}</b></div>
-            <div><span style="color: #64748b;">Status Proyek:</span> <b style="color: #b45309; text-transform: uppercase;">${project.status} (${project.progress_pct}%)</b></div>
-          </div>
-        </div>
-
-        <!-- Table Rincian Biaya -->
-        <h4 style="margin: 12px 0 6px 0; font-size: 10.5pt; text-transform: uppercase; font-weight: bold;">Rincian Estimasi Biaya Material & Jasa Tukang:</h4>
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 9pt;">
-          <thead>
-            <tr style="background: #e2e8f0; font-weight: bold;">
-              <th style="border: 1px solid #333; padding: 6px; text-align: center; width: 25px;">NO</th>
-              <th style="border: 1px solid #333; padding: 6px; text-align: left;">DESKRIPSI MATERIAL / PEKERJAAN</th>
-              <th style="border: 1px solid #333; padding: 6px; text-align: center; width: 60px;">QTY</th>
-              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 85px;">HARGA SATUAN</th>
-              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 95px;">SUBTOTAL BAHAN</th>
-              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 105px;">UPAH TUKANG</th>
-              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 100px;">TOTAL (RP)</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${itemsTable}
-            <tr style="background: #f1f5f9; font-weight: bold;">
-              <td colspan="4" style="border: 1px solid #333; padding: 8px; text-align: right; text-transform: uppercase;">Total Pembebanan Anggaran Proyek:</td>
-              <td style="border: 1px solid #333; padding: 8px; text-align: right;">Rp ${this.formatNumber(totalMat || (grandTotal * 0.65))}</td>
-              <td style="border: 1px solid #333; padding: 8px; text-align: right;">Rp ${this.formatNumber(totalLabor || (grandTotal * 0.35))}</td>
-              <td style="border: 1px solid #333; padding: 8px; text-align: right; font-size: 11pt; color: #1e3a8a;">Rp ${this.formatNumber(grandTotal)}</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- Catatan & Ketentuan SPK -->
-        <div style="border: 1px dashed #94a3b8; border-radius: 6px; padding: 8px 12px; margin-bottom: 24px; font-size: 8.5pt; color: #334155; line-height: 1.5;">
-          <b>Ketentuan & Instruksi Pelaksanaan:</b>
-          <ol style="margin: 4px 0 0 16px; padding: 0;">
-            <li>Pekerjaan wajib diselesaikan sesuai spesifikasi teknis dan tenggat waktu yang telah ditetapkan dalam SPK ini.</li>
-            <li>Segala pembelian material menggunakan dana sekolah wajib menyertakan faktur/nota resmi dan didokumentasikan (foto before/after).</li>
-            <li>Setelah pekerjaan selesai 100%, pelaksana dan PJ unit wajib menandatangani <b>Berita Acara Serah Terima (BAST)</b>.</li>
-          </ol>
-        </div>
-
-        <!-- 3 Kolom Tanda Tangan -->
-        <div style="display: flex; justify-content: space-between; margin-top: 20px; page-break-inside: avoid; font-size: 9.5pt;">
-          <div style="text-align: center; width: 180px;">
-            <p style="margin: 0 0 50px 0;">Diajukan Oleh,<br><b>PJ Sarpras ${unitName}</b></p>
-            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${pjName}</p>
-          </div>
-          <div style="text-align: center; width: 180px;">
-            <p style="margin: 0 0 50px 0;">Diverifikasi & Disetujui,<br><b>Kaur Logistik & SARPRAS</b></p>
-            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${cms.signers?.kaur_name || 'Kaur SARPRAS Al-Imam'}</p>
-          </div>
-          <div style="text-align: center; width: 180px;">
-            <p style="margin: 0 0 50px 0;">Mengetahui,<br><b>Kepala Sekolah / Yayasan</b></p>
-            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${cms.signers?.headmaster_smp_name || cms.signers?.bendahara_name || 'Arif Rohman, M.Pd.'}</p>
-          </div>
-        </div>
-
-      </div>
-    `;
-  },
-
-  // ==========================================
-  // PROJECT COMPLETION REPORT & BAST (100% FINISHED)
-  // ==========================================
-
-  openProjectCompletionModal(projectId) {
-    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
-    if (!project) return;
-
-    const modal = document.getElementById('projectCompletionModal');
-    const container = document.getElementById('projectCompletionContent');
-    const cms = this.db.cms_settings || DEFAULT_CMS_SETTINGS;
-
-    const requests = (this.db.renov_requests || []).filter(r => r.project_id === projectId || (r.location_name && r.location_name.includes(project.location_name)));
-
-    if (container) {
-      container.innerHTML = this.renderProjectCompletionHtml(project, requests, cms);
-    }
-
-    if (modal) modal.classList.remove('hidden');
-  },
-
-  openProjectCompletionModalFromDetail() {
-    if (this.currentDetailProjectId) {
-      this.openProjectCompletionModal(this.currentDetailProjectId);
-    }
-  },
-
-  closeProjectCompletionModal() {
-    const modal = document.getElementById('projectCompletionModal');
-    if (modal) modal.classList.add('hidden');
-  },
-
-  printProjectCompletionReport(projectId) {
-    this.openProjectCompletionModal(projectId);
-    setTimeout(() => window.print(), 300);
-  },
-
-  markCurrentProjectAsCompleted() {
-    if (this.currentDetailProjectId) {
-      this.markProjectAsCompleted(this.currentDetailProjectId);
-    }
-  },
-
-  markProjectAsCompleted(projectId) {
-    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
-    if (!project) return;
-
-    const todayStr = new Date().toISOString().split('T')[0];
-    project.progress_pct = 100;
-    project.status = 'Selesai';
-    project.completed_at = todayStr;
-    if (!project.bast_no) project.bast_no = `BAST-PRJ-${todayStr.substring(0, 7).replace('-', '')}-${project.project_id.replace(/[^0-9]/g, '') || '01'}`;
-
-    // Mark associated requests as Selesai as well
-    const requests = (this.db.renov_requests || []).filter(r => r.project_id === projectId || (r.location_name && r.location_name.includes(project.location_name)));
-    requests.forEach(r => {
-      r.status = 'Selesai';
-      r.completed_at = todayStr;
-    });
-
-    this.saveState();
-    this.showToast(`Alhamdulillah! Proyek [${project.project_id}] ${project.location_name} ditandai 100% Selesai!`, 'success');
-
-    this.renderRenovProjectsTable();
-    this.renderRenovServiceView();
-
-    // Reopen detail modal to reflect completed state
-    this.openRenovDetailModal(projectId, 'docs');
-  },
-
-  renderProjectCompletionHtml(project, requests, cms) {
-    const unitNames = {
-      unit_tk: 'PG-TK ISLAM AL-IMAM',
-      unit_sd: 'SD ISLAM AL-IMAM',
-      unit_smp: 'SMP ISLAM AL-IMAM'
-    };
-
-    const unitName = unitNames[project.unit_id] || project.unit_id.toUpperCase();
-    const bastNo = project.bast_no || `BAST/SARPRAS/${new Date().getFullYear()}/${project.project_id}`;
-    const spkNo = project.spk_no || `SPK-PRJ-${project.project_id}`;
-    const pjName = project.pj_name || (project.unit_id === 'unit_smp' ? 'Aning Nurhayati, S.T., Gr.' : (project.unit_id === 'unit_sd' ? 'Dewi Fitria Nugraheni, S.Pd., Gr.' : 'Siti Rahmawati, S.Pd.'));
-
-    const totalMat = requests.reduce((sum, r) => sum + (Number(r.material_subtotal) || (r.qty * r.unit_price) || 0), 0);
-    const totalLabor = requests.reduce((sum, r) => sum + (Number(r.labor_subtotal) || 0), 0);
-    const realCost = (totalMat + totalLabor) || project.budget_estimate || 0;
-    const initialBudget = project.budget_estimate || realCost;
-    const variance = initialBudget - realCost;
-
-    const photos = project.photos || [];
-
-    // Photo Gallery HTML for print & visual document
-    let photosHtml = '';
-    if (photos.length > 0) {
-      const typeLabels = {
-        before: 'FOTO SEBELUM (BEFORE)',
-        progress: 'FOTO PROSES PENGERJAAN',
-        after: 'FOTO HASIL JADI SELESAI (AFTER)',
-        screenshot: 'SCREENSHOT APLIKASI / DIGITAL'
-      };
-
-      photosHtml = `
-        <h4 style="margin: 18px 0 8px 0; font-size: 10.5pt; text-transform: uppercase; font-weight: bold; border-bottom: 1.5px solid #333; padding-bottom: 4px;">
-          LAMPIRAN BUKTI DOKUMENTASI HASIL PEKERJAAN & SCREENSHOT:
-        </h4>
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 18px;">
-          ${photos.map(p => `
-            <div style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px; background: #f8fafc; break-inside: avoid;">
-              <div style="aspect-ratio: 16/9; max-height: 150px; overflow: hidden; border-radius: 4px; background: #000; text-align: center;">
-                <img src="${p.url}" style="width: 100%; height: 100%; object-fit: cover;" alt="${p.caption || 'Foto Bukti'}">
-              </div>
-              <div style="margin-top: 6px;">
-                <span style="display: inline-block; font-size: 7.5pt; font-weight: bold; padding: 2px 6px; background: #e0f2fe; color: #0369a1; border-radius: 4px;">
-                  ${typeLabels[p.type] || 'DOKUMENTASI'}
-                </span>
-                <p style="margin: 4px 0 0 0; font-size: 8.5pt; font-weight: 600; color: #1e293b; line-height: 1.3;">${p.caption || '-'}</p>
-                <span style="font-size: 7.5pt; color: #64748b;">Tanggal: ${p.uploaded_at || '-'}</span>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      `;
-    } else {
-      photosHtml = `
-        <div style="border: 1px dashed #94a3b8; border-radius: 6px; padding: 12px; margin: 16px 0; text-align: center; color: #64748b; font-size: 9pt;">
-          <p style="margin: 0;">(Dokumentasi foto fisik telah diverifikasi langsung di lokasi oleh Tim Sarpras & Pemohon)</p>
-        </div>
-      `;
-    }
-
-    return `
-      <div class="print-page text-slate-900" style="font-family: Arial, sans-serif; font-size: 10pt; color: #111;">
-        
-        <!-- Header Kop Surat Resmi -->
-        <div style="text-align: center; border-bottom: 2.5px solid #000; padding-bottom: 12px; margin-bottom: 16px;">
-          <h2 style="margin: 0 0 3px 0; font-size: 15pt; text-transform: uppercase; font-weight: bold;">${cms.foundation_name || 'YAYASAN PENDIDIKAN ISLAM AL-IMAM'}</h2>
-          <h3 style="margin: 0 0 3px 0; font-size: 12pt; font-weight: bold; color: #047857;">BERITA ACARA SERAH TERIMA (BAST) & LAPORAN AKHIR PEKERJAAN</h3>
-          <p style="margin: 0; font-size: 9.5pt; color: #444;">${cms.address || 'Jakarta'} • Telp: ${cms.phone || '(021) 8899-7711'} • Divisi Logistik, Sarpras & Sipil Bangunan</p>
-        </div>
-
-        <!-- Document Number & Title -->
-        <div style="text-align: center; margin-bottom: 14px;">
-          <p style="margin: 0; font-size: 10pt; font-weight: bold; font-family: monospace; color: #065f46;">NOMOR DOKUMEN: ${bastNo}</p>
-          <p style="margin: 2px 0 0 0; font-size: 9pt; color: #475569;">Dasar Pelaksanaan: Surat Perintah Kerja No. <b>${spkNo}</b></p>
-        </div>
-
-        <!-- Narrative Statement of Handover -->
-        <p style="margin: 0 0 10px 0; font-size: 9.5pt; line-height: 1.5; text-align: justify;">
-          Pada hari ini telah diselesaikan dan diserahterimakan dengan baik hasil pekerjaan fisik / pengadaan sarana prasarana sekolah untuk unit <b>${unitName}</b> dengan rincian teknis sebagai berikut:
-        </p>
-
-        <!-- Project Identification Box -->
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 9pt; background: #f8fafc;">
-          <tr>
-            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; width: 22%; color: #64748b;">Nama Titik / Lokasi:</td>
-            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; width: 28%; font-weight: bold;">${project.location_name}</td>
-            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; width: 22%; color: #64748b;">Kategori Pekerjaan:</td>
-            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; width: 28%; font-weight: bold;">${project.category}</td>
-          </tr>
-          <tr>
-            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #64748b;">Tanggal Mulai Kerja:</td>
-            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; font-weight: bold;">${project.created_at || '2026-09-20'}</td>
-            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #64748b;">Tanggal Selesai Tuntas:</td>
-            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; font-weight: bold; color: #047857;">${project.completed_at || project.target_date || '2026-10-01'}</td>
-          </tr>
-          <tr>
-            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #64748b;">Pelaksana / Kontraktor:</td>
-            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; font-weight: bold;">${project.contractor_name || 'TB. Al-Imam Jaya Material & Mitra Tukang'}</td>
-            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #64748b;">Status Fisik:</td>
-            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; font-weight: bold; color: #047857;">SELESAI 100% (TUNTAS)</td>
-          </tr>
-        </table>
-
-        <!-- Realization Financial Summary -->
-        <h4 style="margin: 12px 0 6px 0; font-size: 10pt; text-transform: uppercase; font-weight: bold;">Rekapitulasi Realisasi Keuangan Proyek:</h4>
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 9pt;">
-          <thead>
-            <tr style="background: #e2e8f0; font-weight: bold;">
-              <th style="border: 1px solid #333; padding: 6px; text-align: left;">Uraian Pos Biaya</th>
-              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 120px;">Anggaran Estimasi</th>
-              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 120px;">Realisasi Pembayaran</th>
-              <th style="border: 1px solid #333; padding: 6px; text-align: center; width: 100px;">Status / Selisih</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="border: 1px solid #333; padding: 6px;">1. Pembelian Bahan Material & Perlengkapan Fisik</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: right;">Rp ${this.formatNumber(initialBudget * 0.65)}</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: right; font-weight: bold;">Rp ${this.formatNumber(totalMat || (realCost * 0.65))}</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: center; color: #047857;">Sesuai Nota</td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #333; padding: 6px;">2. Upah Kerja Tukang Bangunan & Tenaga Ahli</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: right;">Rp ${this.formatNumber(initialBudget * 0.35)}</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: right; font-weight: bold;">Rp ${this.formatNumber(totalLabor || (realCost * 0.35))}</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: center; color: #047857;">Selesai</td>
-            </tr>
-            <tr style="background: #ecfdf5; font-weight: bold;">
-              <td style="border: 1px solid #333; padding: 8px; text-transform: uppercase;">TOTAL BIAYA AKHIR PROYEK:</td>
-              <td style="border: 1px solid #333; padding: 8px; text-align: right;">Rp ${this.formatNumber(initialBudget)}</td>
-              <td style="border: 1px solid #333; padding: 8px; text-align: right; font-size: 10.5pt; color: #047857;">Rp ${this.formatNumber(realCost)}</td>
-              <td style="border: 1px solid #333; padding: 8px; text-align: center; font-size: 8.5pt;">${variance >= 0 ? 'Hemat Rp ' + this.formatNumber(variance) : 'Sesuai Plafon'}</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- Evaluasi Mutu Pekerjaan -->
-        <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px 12px; margin-bottom: 14px; font-size: 8.5pt; line-height: 1.5;">
-          <b>Catatan Hasil Evaluasi & Serah Terima:</b>
-          <p style="margin: 2px 0 0 0; color: #334155;">
-            ${project.evaluation_notes || project.notes || 'Pekerjaan telah diperiksa bersama di lokasi, hasil pengerjaan rapi, kokoh, dan berfungsi optimal sesuai standar mutu Yayasan Pendidikan Islam Al-Imam.'}
-          </p>
-        </div>
-
-        <!-- Lampiran Foto & Screenshot -->
-        ${photosHtml}
-
-        <!-- 3 Pihak Pengesahan BAST -->
-        <div style="display: flex; justify-content: space-between; margin-top: 25px; page-break-inside: avoid; font-size: 9pt;">
-          <div style="text-align: center; width: 180px;">
-            <p style="margin: 0 0 50px 0;">PIHAK I (Pelaksana / Tukang),<br><b>Koordinator Lapangan / Mitra</b></p>
-            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">Bpk. Mandor Wardi / Rekanan</p>
-          </div>
-          <div style="text-align: center; width: 180px;">
-            <p style="margin: 0 0 50px 0;">PIHAK II (Penerima Hasil),<br><b>PJ Sarpras ${unitName}</b></p>
-            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${pjName}</p>
-          </div>
-          <div style="text-align: center; width: 180px;">
-            <p style="margin: 0 0 50px 0;">Mengetahui & Mengesahkan,<br><b>Kepala Sekolah / Yayasan</b></p>
-            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${cms.signers?.headmaster_smp_name || cms.signers?.bendahara_name || 'Arif Rohman, M.Pd.'}</p>
-          </div>
-        </div>
-
-      </div>
-    `;
-  },
-
-  renderRenovAnalytics() {
-    const cardsContainer = document.getElementById('renovUnitBudgetCardsContainer');
-    const tableBody = document.getElementById('renovRequestsLogTableBody');
-    const requests = this.db.renov_requests || [];
-
-    const units = [
-      { id: 'unit_tk', name: 'PG-TK Islam Al-Imam', budget: 4500000, icon: 'fa-shapes', color: 'emerald' },
-      { id: 'unit_sd', name: 'SD Islam Al-Imam', budget: 12500000, icon: 'fa-school', color: 'blue' },
-      { id: 'unit_smp', name: 'SMP Islam Al-Imam', budget: 9700000, icon: 'fa-graduation-cap', color: 'indigo' }
-    ];
-
-    if (cardsContainer) {
-      cardsContainer.innerHTML = units.map(u => {
-        const spent = requests.filter(r => r.unit_id === u.id).reduce((s, r) => s + (Number(r.total_amount) || 0), 0);
-        const sisa = Math.max(0, u.budget - spent);
-        const pct = Math.min(100, Math.round((spent / u.budget) * 100));
-
-        return `
-          <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm flex flex-col justify-between">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <div class="w-9 h-9 rounded-2xl bg-${u.color}-50 text-${u.color}-600 flex items-center justify-center text-sm">
-                  <i class="fa-solid ${u.icon}"></i>
-                </div>
-                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-700 text-[10px] font-bold rounded-full">${pct}% Terpakai</span>
-              </div>
-              <div>
-                <h4 class="font-extrabold text-xs text-slate-900 font-heading">${u.name}</h4>
-                <div class="text-lg font-black text-slate-900 mt-1">Rp ${this.formatNumber(spent)}</div>
-                <div class="text-[10px] text-slate-400">Plafond: Rp ${this.formatNumber(u.budget)}</div>
-              </div>
-            </div>
-
-            <div class="pt-3 border-t border-slate-100 mt-3">
-              <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden mb-1.5">
-                <div class="h-full bg-${u.color}-500 rounded-full" style="width: ${pct}%"></div>
-              </div>
-              <div class="flex items-center justify-between text-[10px] font-bold text-slate-500">
-                <span>Sisa Alokasi</span>
-                <span class="text-emerald-700">Rp ${this.formatNumber(sisa)}</span>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    if (tableBody) {
-      if (requests.length === 0) {
-        tableBody.innerHTML = `
-          <tr>
-            <td colspan="9" class="text-center py-8 text-slate-400">
-              <i class="fa-solid fa-receipt text-3xl mb-2 block"></i>
-              <p>Belum ada riwayat pembelanjaan material / upah tukang.</p>
-            </td>
-          </tr>
-        `;
-        return;
-      }
-
-      tableBody.innerHTML = requests.map(r => `
-        <tr class="hover:bg-slate-50/80 transition">
-          <td class="px-4 py-3 text-center font-mono font-bold text-amber-800">${r.request_id}</td>
-          <td class="px-4 py-3">
-            <div class="font-extrabold text-slate-900">${r.location_name}</div>
-            <div class="text-[10px] text-slate-400">${r.unit_id.toUpperCase()} • ${r.category}</div>
-          </td>
-          <td class="px-4 py-3">
-            <span class="font-semibold text-slate-800">${r.material_name} (x${r.qty})</span>
-            ${r.labor_count > 0 ? `<div class="text-[10px] text-indigo-600">${r.labor_count} Tukang (${r.labor_days} hari)</div>` : ''}
-          </td>
-          <td class="px-4 py-3 text-right font-bold text-slate-800">Rp ${this.formatNumber(r.material_subtotal || (r.qty * r.unit_price))}</td>
-          <td class="px-4 py-3 text-right font-bold text-indigo-700">Rp ${this.formatNumber(r.labor_subtotal || 0)}</td>
-          <td class="px-4 py-3 text-right font-black text-slate-900 font-heading">Rp ${this.formatNumber(r.total_amount)}</td>
-          <td class="px-4 py-3 text-center text-slate-500">${r.scheduled_date || r.created_at}</td>
-          <td class="px-4 py-3 text-center">
-            <span class="px-2.5 py-1 text-[10px] font-bold rounded-full ${
-              r.status === 'Selesai' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
-            }">
-              ${r.status}
-            </span>
-          </td>
-          <td class="px-4 py-3 text-center">
-            ${r.status !== 'Selesai' ? `
-              <button onclick="app.updateRenovRequestStatus('${r.request_id}', 'Selesai')" class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[10px] rounded-lg transition">
-                Selesai
-              </button>
-            ` : `
-              <span class="text-[10px] text-emerald-600 font-bold"><i class="fa-solid fa-check-double mr-1"></i>Tuntas</span>
-            `}
-          </td>
-        </tr>
-      `).join('');
-    }
-  },
-
-  renderRenovVendors() {
-    const container = document.getElementById('renovVendorsContainer');
-    if (!container) return;
-
-    const vendors = this.db.renov_vendors || INITIAL_DB.renov_vendors;
-
-    container.innerHTML = vendors.map(v => `
-      <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm card-hover flex flex-col justify-between space-y-4">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="px-2.5 py-0.5 bg-amber-100 text-amber-900 text-[10px] font-bold rounded-full">
-              ${v.badge}
-            </span>
-            <div class="flex items-center space-x-1 text-amber-500 text-xs font-bold">
-              <i class="fa-solid fa-star"></i>
-              <span>${v.rating} (${v.review_count})</span>
-            </div>
-          </div>
-
-          <h4 class="font-extrabold text-base text-slate-900 font-heading">
-            ${v.name}
-          </h4>
-
-          <p class="text-xs text-slate-500 leading-relaxed">
-            ${v.description}
-          </p>
-
-          <div class="space-y-1.5 pt-2 border-t border-slate-100 text-xs text-slate-600">
-            <div class="flex items-center space-x-2">
-              <i class="fa-solid fa-user-tie text-amber-600 w-4"></i>
-              <span>Kontak: <b>${v.pic}</b></span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <i class="fa-solid fa-shield-halved text-emerald-600 w-4"></i>
-              <span>Garansi: <b>${v.warranty}</b></span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <i class="fa-solid fa-truck-fast text-sky-600 w-4"></i>
-              <span>SLA: <b>${v.sla}</b></span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <i class="fa-solid fa-location-dot text-rose-500 w-4"></i>
-              <span class="truncate">${v.address}</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="pt-3 border-t border-slate-100">
-          <a href="https://wa.me/${v.phone.replace(/[^0-9]/g, '')}?text=Halo%20${encodeURIComponent(v.name)},%20kami%20dari%20SARPRAS%20Sekolah%20Al-Imam%20ingin%20memesan%20material%20bangunan%20dan%20jasa%20tukang." target="_blank" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center justify-center space-x-2">
-            <i class="fa-brands fa-whatsapp text-sm"></i>
-            <span>Hubungi WhatsApp Mitra</span>
-          </a>
-        </div>
-      </div>
-    `).join('');
-  },
-
-  updateRenovRequestStatus(requestId, newStatus) {
-    const requests = this.db.renov_requests || [];
-    const req = requests.find(r => r.request_id === requestId);
-    if (!req) return;
-
-    req.status = newStatus;
-    if (newStatus === 'Selesai') {
-      req.completed_at = this.formatCurrentDateTime();
-
-      if (req.project_id && this.db.renov_projects) {
-        const prj = this.db.renov_projects.find(p => p.project_id === req.project_id);
-        if (prj) {
-          prj.progress_pct = 100;
-          prj.status = 'Selesai';
-        }
-      }
-    }
-
-    this.saveState();
-    this.showToast(`Status pengajuan ${requestId} berhasil diperbarui menjadi "${newStatus}"!`, 'success');
-    this.renderRenovServiceView();
-  },
-
-  printRenovReport() {
-    const cms = this.db.cms_settings || DEFAULT_CMS_SETTINGS;
-    const projects = this.db.renov_projects || [];
-    const requests = this.db.renov_requests || [];
-
-    const totalCost = requests.reduce((sum, r) => sum + (Number(r.total_amount) || 0), 0);
-    const totalMaterial = requests.reduce((sum, r) => sum + (Number(r.material_subtotal) || 0), 0);
-    const totalLabor = requests.reduce((sum, r) => sum + (Number(r.labor_subtotal) || 0), 0);
-
-    const modal = document.getElementById('renovPrintReportModal');
-    const container = document.getElementById('renovPrintReportContent');
-    if (!modal || !container) return;
-
-    const unitExpense = {
-      unit_tk: requests.filter(r => r.unit_id === 'unit_tk').reduce((s, r) => s + (Number(r.total_amount) || 0), 0),
-      unit_sd: requests.filter(r => r.unit_id === 'unit_sd').reduce((s, r) => s + (Number(r.total_amount) || 0), 0),
-      unit_smp: requests.filter(r => r.unit_id === 'unit_smp').reduce((s, r) => s + (Number(r.total_amount) || 0), 0),
-    };
-
-    const tableRows = requests.map((r, idx) => `
-      <tr>
-        <td style="text-align: center; padding: 6px; border: 1px solid #333;">${idx + 1}</td>
-        <td style="padding: 6px; border: 1px solid #333; font-family: monospace;">${r.request_id}</td>
-        <td style="padding: 6px; border: 1px solid #333; font-weight: bold;">${r.location_name}</td>
-        <td style="padding: 6px; border: 1px solid #333;">${r.material_name} (x${r.qty})</td>
-        <td style="text-align: right; padding: 6px; border: 1px solid #333;">Rp ${this.formatNumber(r.material_subtotal || 0)}</td>
-        <td style="text-align: right; padding: 6px; border: 1px solid #333;">Rp ${this.formatNumber(r.labor_subtotal || 0)}</td>
-        <td style="text-align: right; padding: 6px; border: 1px solid #333; font-weight: bold;">Rp ${this.formatNumber(r.total_amount)}</td>
-        <td style="padding: 6px; border: 1px solid #333;">${r.vendor_name || 'TB. Al-Imam Jaya'}</td>
-        <td style="text-align: center; padding: 6px; border: 1px solid #333;">${r.status}</td>
-      </tr>
-    `).join('');
-
-    container.innerHTML = `
-      <div class="print-page text-slate-900" style="font-family: Arial, sans-serif; font-size: 11pt;">
-        <!-- Header Kop Surat -->
-        <div style="text-align: center; border-bottom: 2.5px solid #000; padding-bottom: 12px; margin-bottom: 20px;">
-          <h2 style="margin: 0 0 4px 0; font-size: 16pt; text-transform: uppercase; font-weight: bold;">${cms.foundation_name || 'YAYASAN PENDIDIKAN ISLAM AL-IMAM'}</h2>
-          <h3 style="margin: 0 0 4px 0; font-size: 13pt; font-weight: 600;">DIVISI SARANA PRASARANA & PEMELIHARAAN BANGUNAN SIPIL</h3>
-          <p style="margin: 0; font-size: 10pt; color: #444;">${cms.address || 'Jakarta'} • Telp: ${cms.phone || '(021) 8899-7711'}</p>
-        </div>
-
-        <h3 style="text-align: center; margin: 0 0 4px 0; text-transform: uppercase; font-size: 13pt;">REKAPITULASI BIAYA MATERIAL, CAT & UPAH TUKANG</h3>
-        <p style="text-align: center; margin: 0 0 20px 0; font-size: 10pt; color: #555;">Tahun Ajaran 2026/2027 • Pemeliharaan Fisik Gedung (PG-TK, SD, SMP)</p>
-
-        <!-- Summary Table per Unit -->
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-          <thead>
-            <tr style="background: #f1f5f9;">
-              <th style="border: 1px solid #333; padding: 7px; text-align: left;">Unit Sekolah</th>
-              <th style="border: 1px solid #333; padding: 7px; text-align: center;">Titik Proyek</th>
-              <th style="border: 1px solid #333; padding: 7px; text-align: right;">Alokasi RAPBS Renovasi</th>
-              <th style="border: 1px solid #333; padding: 7px; text-align: right;">Realisasi Biaya</th>
-              <th style="border: 1px solid #333; padding: 7px; text-align: center;">Persentase</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="border: 1px solid #333; padding: 6px; font-weight: bold;">PG-TK Islam Al-Imam</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: center;">${projects.filter(p => p.unit_id === 'unit_tk').length} Titik</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: right;">Rp 4.500.000</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: right; font-weight: bold;">Rp ${this.formatNumber(unitExpense.unit_tk)}</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: center;">${Math.round((unitExpense.unit_tk / 4500000) * 100)}%</td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #333; padding: 6px; font-weight: bold;">SD Islam Al-Imam</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: center;">${projects.filter(p => p.unit_id === 'unit_sd').length} Titik</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: right;">Rp 12.500.000</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: right; font-weight: bold;">Rp ${this.formatNumber(unitExpense.unit_sd)}</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: center;">${Math.round((unitExpense.unit_sd / 12500000) * 100)}%</td>
-            </tr>
-            <tr>
-              <td style="border: 1px solid #333; padding: 6px; font-weight: bold;">SMP Islam Al-Imam</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: center;">${projects.filter(p => p.unit_id === 'unit_smp').length} Titik</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: right;">Rp 9.700.000</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: right; font-weight: bold;">Rp ${this.formatNumber(unitExpense.unit_smp)}</td>
-              <td style="border: 1px solid #333; padding: 6px; text-align: center;">${Math.round((unitExpense.unit_smp / 9700000) * 100)}%</td>
-            </tr>
-            <tr style="background: #f8fafc; font-weight: bold;">
-              <td style="border: 1px solid #333; padding: 7px;">TOTAL KESELURUHAN</td>
-              <td style="border: 1px solid #333; padding: 7px; text-align: center;">${projects.length} Titik</td>
-              <td style="border: 1px solid #333; padding: 7px; text-align: right;">Rp 26.700.000</td>
-              <td style="border: 1px solid #333; padding: 7px; text-align: right; font-size: 12pt; color: #b45309;">Rp ${this.formatNumber(totalCost)}</td>
-              <td style="border: 1px solid #333; padding: 7px; text-align: center;">${Math.round((totalCost / 26700000) * 100)}%</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- Detailed Transactions Table -->
-        <h4 style="margin: 15px 0 6px 0; font-size: 11pt; text-transform: uppercase;">Rincian Pembelian Material & Upah Kerja:</h4>
-        <table style="width: 100%; border-collapse: collapse; font-size: 9pt;">
-          <thead>
-            <tr style="background: #f1f5f9;">
-              <th style="border: 1px solid #333; padding: 5px; width: 25px; text-align: center;">No</th>
-              <th style="border: 1px solid #333; padding: 5px; text-align: center;">ID</th>
-              <th style="border: 1px solid #333; padding: 5px; text-align: left;">Titik Pekerjaan</th>
-              <th style="border: 1px solid #333; padding: 5px; text-align: left;">Bahan Material</th>
-              <th style="border: 1px solid #333; padding: 5px; text-align: right;">Bahan</th>
-              <th style="border: 1px solid #333; padding: 5px; text-align: right;">Tukang</th>
-              <th style="border: 1px solid #333; padding: 5px; text-align: right;">Total</th>
-              <th style="border: 1px solid #333; padding: 5px; text-align: left;">Mitra / Toko</th>
-              <th style="border: 1px solid #333; padding: 5px; text-align: center;">Status</th>
             </tr>
           </thead>
           <tbody>

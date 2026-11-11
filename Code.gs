@@ -860,7 +860,7 @@ function initDatabase() {
     rapbsSheet = ss.insertSheet(CONFIG.SHEETS.RAPBS);
     rapbsSheet.appendRow(['Unit_ID', 'Total_Plafond', 'Terpakai', 'Saldo_Tersedia', 'Updated_At']);
     rapbsSheet.appendRow(['unit_tk', 15000000, 510000, 14490000, '2026-07-10 10:45']);
-    rapbsSheet.appendRow(['unit_sd', 35884000, 965329, 34918671, '2026-09-28 10:00']);
+    rapbsSheet.appendRow(['unit_sd', 35884000, 26883661, 9000339, '2026-10-15 14:00']);
     rapbsSheet.appendRow(['unit_smp', 24506000, 3756629, 20749371, '2026-08-28 16:00']);
   }
 
@@ -982,12 +982,13 @@ function initDatabase() {
     ordersSheet.appendRow(['ORD-AC-20260710-02', 'unit_tk', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] Cuci AC Rutin 6 Unit PG-TK', qty: 6, unit_price: 85000, subtotal: 510000 }]), 510000, 'Approved', '2026-07-10 10:15', '2026-07-10 10:45', '6 unit cuci TK', '', 'INV/AC/2026/0702']);
     ordersSheet.appendRow(['ORD-AC-20260716-01', 'unit_smp', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] Kabel AC Ruang Yayasan', qty: 1, unit_price: 110061, subtotal: 110061 }]), 110061, 'Approved', '2026-07-16 11:00', '2026-07-16 11:30', 'Kabel AC ruang yys', '', 'INV/AC/2026/0703']);
     ordersSheet.appendRow(['ORD-AC-20260717-01', 'unit_smp', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] 4 unit cuci, 1 unit isi freon, 1 unit Service SMP', qty: 1, unit_price: 700000, subtotal: 700000 }]), 700000, 'Approved', '2026-07-17 08:30', '2026-07-17 09:00', '4 unit cuci, 1 freon, 1 service SMP (Pos D Item 16)', '', 'INV/AC/2026/0704']);
-    ordersSheet.appendRow(['ORD-AC-20260731-01', 'unit_sd', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] 1 unit service SD', qty: 1, unit_price: 175000, subtotal: 175000 }]), 175000, 'Approved', '2026-07-31 09:00', '2026-07-31 09:30', '1 unit service SD', '', 'INV/AC/2026/0705']);
     ordersSheet.appendRow(['ORD-AC-20260731-02', 'unit_smp', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] 2 unit cuci SMP', qty: 2, unit_price: 75000, subtotal: 150000 }]), 150000, 'Approved', '2026-07-31 13:00', '2026-07-31 13:30', '2 unit cuci SMP (Pos D Item 16)', '', 'INV/AC/2026/0706']);
-    ordersSheet.appendRow(['ORD-AC-20260829-01', 'unit_sd', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] 1 unit service SD', qty: 1, unit_price: 90329, subtotal: 90329 }]), 90329, 'Approved', '2026-08-29 10:00', '2026-08-29 10:30', '1 unit service SD', '', 'INV/AC/2026/0801']);
     ordersSheet.appendRow(['ORD-AC-20260904-01', 'unit_smp', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] 4 unit cuci SMP (Batch 1)', qty: 4, unit_price: 75000, subtotal: 300000 }]), 300000, 'Approved', '2026-09-04 08:30', '2026-09-04 09:00', '4 unit cuci SMP (Pos D Item 16)', '', 'INV/AC/2026/0901']);
     ordersSheet.appendRow(['ORD-AC-20260904-02', 'unit_smp', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] 4 unit cuci 4 SMP (Batch 2)', qty: 4, unit_price: 75000, subtotal: 300000 }]), 300000, 'Approved', '2026-09-04 13:00', '2026-09-04 13:30', '4 unit cuci 4 SMP (Pos D Item 16)', '', 'INV/AC/2026/0902']);
-    ordersSheet.appendRow(['ORD-AC-20260928-01', 'unit_sd', 'AC_Service', JSON.stringify([{ product_name: '[Maintenance AC] 4 Unit Cleaning Kelas 1, Tambah Freon Guru Kls 4, Bocor Perpus', qty: 1, unit_price: 700000, subtotal: 700000 }]), 700000, 'Approved', '2026-09-28 09:30', '2026-09-28 10:00', 'Cleaning Kls 1, Freon Kls 4, Bocor Perpus', '', 'INV/AC/2026/0903']);
+    ordersSheet.appendRow(['ORD-SD-20260729-01', 'unit_sd', 'E-Commerce', JSON.stringify([{ product_name: 'Pengadaan Perlengkapan Kelas & SARPRAS SD Tahap 1 Bulan Juli 2026 (70 Item)', qty: 70, unit_price: 7400000, subtotal: 7400000 }]), 7400000, 'Approved', '2026-07-29 09:00', '2026-07-29 11:30', 'LPJ Pengadaan Perlengkapan Kelas & SARPRAS SD Tahap 1 Bulan Juli 2026 (70 Item Diserahkan 19 Agustus)', '', 'LPJ/SD/2026/0701']);
+    ordersSheet.appendRow(['ORD-SD-20260820-01', 'unit_sd', 'E-Commerce', JSON.stringify([{ product_name: 'Pembelanjaan Program Literasi Tahap Satu SD Islam Al-Imam (21 Item Shopee)', qty: 21, unit_price: 2078100, subtotal: 2078100 }]), 2078100, 'Approved', '2026-08-20 10:00', '2026-08-20 14:00', 'LPJ Pembelanjaan Program Literasi Tahap Satu SD Islam Al-Imam Tahun Ajaran 2026/2027 (21 Item)', '', 'LPJ/SD/2026/0801']);
+    ordersSheet.appendRow(['ORD-SD-20260908-01', 'unit_sd', 'E-Commerce', JSON.stringify([{ product_name: 'Pengadaan & Belanja SARPRAS SD Bulan September 2026 inc. AC Kls 5 Malik (42 Item)', qty: 42, unit_price: 13895561, subtotal: 13895561 }]), 13895561, 'Approved', '2026-09-08 09:30', '2026-09-08 13:00', 'LPJ Pengadaan & Belanja SARPRAS SD Bulan September 2026 (42 Item inc. AC Kelas 5 Malik)', '', 'LPJ/SD/2026/0901']);
+    ordersSheet.appendRow(['ORD-SD-20261015-01', 'unit_sd', 'E-Commerce', JSON.stringify([{ product_name: 'Kebutuhan & Perbaikan SARPRAS SD Bulan Oktober 2026 (Folder Rapot, Toa, Servis & Cuci AC)', qty: 4, unit_price: 3510000, subtotal: 3510000 }]), 3510000, 'Approved', '2026-10-15 09:00', '2026-10-15 11:30', 'LPJ Kebutuhan & Perbaikan SARPRAS SD Bulan Oktober 2026 (Folder Rapot, Batrai Toa, Pembelian Alat & Servis AC, Cuci 8 Unit AC)', '', 'LPJ/SD/2026/1001']);
   }
 
   // 5. Transactions_Log Sheet
@@ -1001,12 +1002,14 @@ function initDatabase() {
     logSheet.appendRow(['LOG-AC-20260710-02', 'ORD-AC-20260710-02', 'unit_tk', 510000, 14490000, '2026-07-10 10:45', 'INV/AC/2026/0702']);
     logSheet.appendRow(['LOG-AC-20260716-01', 'ORD-AC-20260716-01', 'unit_smp', 110061, 24225613, '2026-07-16 11:30', 'INV/AC/2026/0703']);
     logSheet.appendRow(['LOG-AC-20260717-01', 'ORD-AC-20260717-01', 'unit_smp', 700000, 23525613, '2026-07-17 09:00', 'INV/AC/2026/0704']);
-    logSheet.appendRow(['LOG-AC-20260731-01', 'ORD-AC-20260731-01', 'unit_sd', 175000, 35709000, '2026-07-31 09:30', 'INV/AC/2026/0705']);
     logSheet.appendRow(['LOG-AC-20260731-02', 'ORD-AC-20260731-02', 'unit_smp', 150000, 23375613, '2026-07-31 13:30', 'INV/AC/2026/0706']);
-    logSheet.appendRow(['LOG-AC-20260829-01', 'ORD-AC-20260829-01', 'unit_sd', 90329, 35618671, '2026-08-29 10:30', 'INV/AC/2026/0801']);
     logSheet.appendRow(['LOG-AC-20260904-01', 'ORD-AC-20260904-01', 'unit_smp', 300000, 23075613, '2026-09-04 09:00', 'INV/AC/2026/0901']);
     logSheet.appendRow(['LOG-AC-20260904-02', 'ORD-AC-20260904-02', 'unit_smp', 300000, 22775613, '2026-09-04 13:30', 'INV/AC/2026/0902']);
-    logSheet.appendRow(['LOG-AC-20260928-01', 'ORD-AC-20260928-01', 'unit_sd', 700000, 34918671, '2026-09-28 10:00', 'INV/AC/2026/0903']);
+    logSheet.appendRow(['LOG-SD-20260701-01', '', 'unit_sd', 0, 35884000, '2026-07-01 08:00', 'RAPBS/SD/2026-2027']);
+    logSheet.appendRow(['LOG-SD-20260729-01', 'ORD-SD-20260729-01', 'unit_sd', 7400000, 28484000, '2026-07-29 11:30', 'LPJ/SD/2026/0701']);
+    logSheet.appendRow(['LOG-SD-20260820-01', 'ORD-SD-20260820-01', 'unit_sd', 2078100, 26405900, '2026-08-20 14:00', 'LPJ/SD/2026/0801']);
+    logSheet.appendRow(['LOG-SD-20260908-01', 'ORD-SD-20260908-01', 'unit_sd', 13895561, 12510339, '2026-09-08 13:00', 'LPJ/SD/2026/0901']);
+    logSheet.appendRow(['LOG-SD-20261015-01', 'ORD-SD-20261015-01', 'unit_sd', 3510000, 9000339, '2026-10-15 11:30', 'LPJ/SD/2026/1001']);
   }
 
   // 6. Settings Sheet (White-Label Config)

@@ -144,6 +144,9 @@
               <button onclick="app.openSettingsModal(); document.getElementById('userMenuDropdown').classList.add('hidden');" class="w-full text-left px-4 py-2 text-xs text-slate-600 hover:bg-slate-50 flex items-center transition">
                 <i class="fa-solid fa-sliders text-slate-400 w-5 text-center mr-2"></i>Pengaturan Koneksi API
               </button>
+              <button onclick="app.openChangePinModal(); document.getElementById('userMenuDropdown').classList.add('hidden');" class="w-full text-left px-4 py-2 text-xs text-slate-700 hover:bg-slate-50 flex items-center transition">
+                <i class="fa-solid fa-key text-emerald-600 w-5 text-center mr-2"></i>Ganti PIN Keamanan
+              </button>
               <div class="border-t border-slate-100 my-1"></div>
               <button onclick="app.logout()" class="w-full text-left px-4 py-2 text-xs text-red-600 hover:bg-red-50 font-bold flex items-center transition">
                 <i class="fa-solid fa-arrow-right-from-bracket text-red-500 w-5 text-center mr-2"></i>Ganti Akun / Keluar
@@ -4171,7 +4174,7 @@ Sapu Lantai Ijuk Dragon	Kebersihan & Sanitasi	28000	15	2026-10-03" class="w-full
               <p class="text-xs text-white/80"><span id="loginModalSchoolName">Sekolah Islam Al-Imam</span> • TA 2026/2027</p>
             </div>
           </div>
-          <button onclick="app.closeLoginModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+          <button id="loginModalCloseBtn" onclick="app.closeLoginModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
             <i class="fa-solid fa-xmark text-sm"></i>
           </button>
         </div>
@@ -4181,6 +4184,9 @@ Sapu Lantai Ijuk Dragon	Kebersihan & Sanitasi	28000	15	2026-10-03" class="w-full
       </div>
 
       <div class="p-6">
+        <!-- Rate Limit Alert Box -->
+        <div id="loginRateLimitAlert" class="hidden p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl font-medium mb-3"></div>
+
         <!-- FORM LOGIN USERNAME & PIN -->
         <form id="loginForm" onsubmit="app.handleLoginFormSubmit(event)" class="space-y-4">
           <div>
@@ -4203,7 +4209,7 @@ Sapu Lantai Ijuk Dragon	Kebersihan & Sanitasi	28000	15	2026-10-03" class="w-full
           </div>
 
           <div class="pt-2">
-            <button type="submit" class="w-full py-3.5 bg-brand-primary hover:opacity-90 text-white font-bold text-xs rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
+            <button type="submit" id="loginSubmitBtn" class="w-full py-3.5 bg-brand-primary hover:opacity-90 text-white font-bold text-xs rounded-xl shadow-lg transition flex items-center justify-center space-x-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
               <i class="fa-solid fa-right-to-bracket"></i>
               <span>Masuk ke Sistem</span>
             </button>
@@ -4212,6 +4218,66 @@ Sapu Lantai Ijuk Dragon	Kebersihan & Sanitasi	28000	15	2026-10-03" class="w-full
           <div class="flex items-center justify-center space-x-1.5 pt-2 text-[11px] text-slate-400">
             <i class="fa-solid fa-shield-check text-emerald-600"></i>
             <span>Sistem Otentikasi Terenkripsi & Terverifikasi</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: GANTI PIN KEAMANAN ================= -->
+  <div id="changePinModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all animate-fadeIn">
+      <div class="theme-gradient-bg p-6 text-white relative">
+        <div class="flex items-center justify-between relative z-10">
+          <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-2xl font-black shadow-inner">
+              <i class="fa-solid fa-key"></i>
+            </div>
+            <div>
+              <h3 class="font-extrabold text-lg leading-tight font-heading">Ganti PIN Keamanan</h3>
+              <p class="text-xs text-white/80">Perbarui PIN Akun Unit Anda</p>
+            </div>
+          </div>
+          <button onclick="app.closeChangePinModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition cursor-pointer">
+            <i class="fa-solid fa-xmark text-sm"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="p-6">
+        <form id="changePinForm" onsubmit="app.handleChangePinSubmit(event)" class="space-y-4">
+          <div>
+            <label for="changePinOld" class="block text-xs font-bold text-slate-700 mb-1.5">PIN Lama</label>
+            <div class="relative">
+              <i class="fa-solid fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <input type="password" id="changePinOld" required placeholder="Masukkan PIN lama..." class="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition">
+            </div>
+          </div>
+
+          <div>
+            <label for="changePinNew" class="block text-xs font-bold text-slate-700 mb-1.5">PIN Baru</label>
+            <div class="relative">
+              <i class="fa-solid fa-key absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <input type="password" id="changePinNew" required placeholder="Masukkan PIN baru minimal 3 karakter..." class="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition">
+            </div>
+          </div>
+
+          <div>
+            <label for="changePinConfirm" class="block text-xs font-bold text-slate-700 mb-1.5">Konfirmasi PIN Baru</label>
+            <div class="relative">
+              <i class="fa-solid fa-check-double absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <input type="password" id="changePinConfirm" required placeholder="Ketik ulang PIN baru..." class="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition">
+            </div>
+          </div>
+
+          <div class="pt-2 flex items-center space-x-3">
+            <button type="button" onclick="app.closeChangePinModal()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition cursor-pointer">
+              Batal
+            </button>
+            <button type="submit" class="w-1/2 py-2.5 bg-brand-primary hover:opacity-90 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center space-x-1.5 cursor-pointer">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>Simpan PIN Baru</span>
+            </button>
           </div>
         </form>
       </div>

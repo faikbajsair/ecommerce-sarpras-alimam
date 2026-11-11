@@ -842,16 +842,16 @@ function saveBase64ToDrive(base64Data, filename) {
 function initDatabase() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
 
-  // 1. Users Sheet
+  // 1. Users Sheet (Terenkripsi Salted SHA-256 Hash Vault)
   let usersSheet = ss.getSheetByName(CONFIG.SHEETS.USERS);
   if (!usersSheet) {
     usersSheet = ss.insertSheet(CONFIG.SHEETS.USERS);
-    usersSheet.appendRow(['Unit_ID', 'Username', 'Password_Hash', 'Unit_Name', 'Role']);
-    usersSheet.appendRow(['unit_tk', 'tk_alimam', 'hash_tk', 'TK Islam Al-Imam', 'Unit']);
-    usersSheet.appendRow(['unit_sd', 'sd_alimam', 'hash_sd', 'SD Islam Al-Imam', 'Unit']);
-    usersSheet.appendRow(['unit_smp', 'smp_alimam', 'hash_smp', 'SMP Islam Al-Imam', 'Unit']);
-    usersSheet.appendRow(['bendahara', 'bendahara_yayasan', 'hash_ben', 'Bendahara Yayasan', 'Bendahara']);
-    usersSheet.appendRow(['admin', 'admin_sarpras', 'hash_adm', 'Admin Logistik & SARPRAS', 'Admin']);
+    usersSheet.appendRow(['Unit_ID', 'Username', 'Salt', 'Password_Hash', 'Unit_Name', 'Role']);
+    usersSheet.appendRow(['unit_tk', 'tk_alimam', 'a190b47302d6c0ce', 'a4ce06ff4f8d0da8047d0bfdd1c7ed8a3650f84358884c1232455cd3d0edc175', 'TK Islam Al-Imam', 'Unit']);
+    usersSheet.appendRow(['unit_sd', 'sd_alimam', '2b8ae5f0d1857e50', '8ec54be6297677c62606503494c33ff487ad50ad3449dd8db0272f43193a81ac', 'SD Islam Al-Imam', 'Unit']);
+    usersSheet.appendRow(['unit_smp', 'smp_alimam', 'b4ebde51b88a500c', 'f52774d3cbbe0ba92279e4db375752aae71e9c05c99b51dbcb510f6b6311e7f4', 'SMP Islam Al-Imam', 'Unit']);
+    usersSheet.appendRow(['bendahara', 'bendahara_yayasan', '60d670cdc333a2dc', 'c5bc97cea75916ce03157ef992d1914fa9c8963a2e944243c311eda74a950f3a', 'Bendahara Yayasan', 'Bendahara']);
+    usersSheet.appendRow(['admin', 'admin_sarpras', '83d6d89cd4034210', 'f86b3908d70df530e274eb1ebae79719f001a6a071004689282f5f112ddf79e1', 'Admin Logistik & SARPRAS', 'Admin']);
   }
 
   // 2. RAPBS_Poin Sheet

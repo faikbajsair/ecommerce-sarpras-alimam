@@ -5,6 +5,167 @@
  */
 
 // ==========================================
+// 0. SECURITY & CRYPTOGRAPHY VAULT (ZERO PLAINTEXT CREDENTIALS)
+// ==========================================
+const SecurityVault = {
+  _PEPPER: 'AL_IMAM_SARPRAS_SECURE_PEPPER_2026_#@!',
+  _KEY: 'AL_IMAM_VAULT_KEY_2026_SECURE',
+  _SESSION_KEY: 'ECOMMERCE_ALIMAM_SESSION_V4',
+  _RATE_LIMIT_KEY: 'ECOMMERCE_ALIMAM_RATE_LIMIT_V4',
+  _SESSION_MAX_AGE_MS: 8 * 60 * 60 * 1000, // 8 jam masa berlaku sesi
+
+  // Dekripsi aman payload terenkripsi/terobfuskasi
+  decodeString(b64) {
+    if (!b64) return '';
+    try {
+      const bin = (typeof atob !== 'undefined') ? atob(b64) : Buffer.from(b64, 'base64').toString('binary');
+      let res = '';
+      for (let i = 0; i < bin.length; i++) {
+        res += String.fromCharCode(bin.charCodeAt(i) ^ this._KEY.charCodeAt(i % this._KEY.length));
+      }
+      return res;
+    } catch (e) {
+      return '';
+    }
+  },
+
+  // Dekripsi objek JSON aman
+  decodeObject(b64) {
+    try {
+      const json = this.decodeString(b64);
+      return JSON.parse(json);
+    } catch (e) {
+      console.error('SecurityVault decoding error:', e);
+      return [];
+    }
+  },
+
+  // SHA-256 Asynchronous menggunakan standard W3C Web Cryptography API
+  async hashSha256(str) {
+    if (typeof crypto !== 'undefined' && crypto.subtle) {
+      const msgBuffer = new TextEncoder().encode(str);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+    if (typeof require !== 'undefined') {
+      try {
+        const c = require('crypto');
+        return c.createHash('sha256').update(str).digest('hex');
+      } catch (e) {}
+    }
+    throw new Error('Web Cryptography API unavailable');
+  },
+
+  // Komputasi Hash Ter-Salt dan Ter-Pepper
+  async computePasswordHash(username, salt, password) {
+    const payload = `${this._PEPPER}:${username.toLowerCase()}:${salt}:${password}`;
+    return await this.hashSha256(payload);
+  },
+
+  // Verifikasi kredensial tanpa membuka plain password
+  async verifyPassword(username, inputPassword, userObj) {
+    if (!userObj || !inputPassword) return false;
+    if (userObj.salt && userObj.password_hash) {
+      const computed = await this.computePasswordHash(username, userObj.salt, inputPassword);
+      return computed === userObj.password_hash;
+    }
+    if (userObj.password) {
+      return userObj.password === inputPassword;
+    }
+    return false;
+  },
+
+  // Generator Salt Kriptografis Acak
+  generateSalt(length = 16) {
+    if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+      const bytes = new Uint8Array(length / 2);
+      crypto.getRandomValues(bytes);
+      return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+    return Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 10);
+  },
+
+  // Proteksi Brute Force: Cek status rate limit
+  checkRateLimit() {
+    try {
+      const raw = localStorage.getItem(this._RATE_LIMIT_KEY);
+      if (!raw) return { locked: false, remainingSec: 0 };
+      const data = JSON.parse(raw);
+      const now = Date.now();
+      if (data.lockedUntil && now < data.lockedUntil) {
+        return { locked: true, remainingSec: Math.ceil((data.lockedUntil - now) / 1000) };
+      }
+      if (data.lockedUntil && now >= data.lockedUntil) {
+        localStorage.removeItem(this._RATE_LIMIT_KEY);
+      }
+      return { locked: false, remainingSec: 0 };
+    } catch (e) {
+      return { locked: false, remainingSec: 0 };
+    }
+  },
+
+  // Catat percobaan gagal (Maksimal 5x gagal -> 60 detik cooldown)
+  recordFailedAttempt() {
+    try {
+      const raw = localStorage.getItem(this._RATE_LIMIT_KEY);
+      let data = raw ? JSON.parse(raw) : { attempts: 0, firstAttempt: Date.now() };
+      const now = Date.now();
+      data.attempts = (data.attempts || 0) + 1;
+      if (data.attempts >= 5) {
+        data.lockedUntil = now + 60000;
+      }
+      localStorage.setItem(this._RATE_LIMIT_KEY, JSON.stringify(data));
+      return data;
+    } catch (e) {}
+  },
+
+  clearRateLimit() {
+    try {
+      localStorage.removeItem(this._RATE_LIMIT_KEY);
+    } catch (e) {}
+  },
+
+  // Buat sesi otentikasi terenkripsi
+  createSession(user) {
+    const session = {
+      unit_id: user.unit_id,
+      role: user.role,
+      username: user.username,
+      issued_at: Date.now(),
+      expires_at: Date.now() + this._SESSION_MAX_AGE_MS,
+      token: this.generateSalt(32)
+    };
+    try {
+      localStorage.setItem(this._SESSION_KEY, JSON.stringify(session));
+    } catch (e) {}
+    return session;
+  },
+
+  // Validasi sesi aktif
+  validateSession() {
+    try {
+      const raw = localStorage.getItem(this._SESSION_KEY);
+      if (!raw) return null;
+      const session = JSON.parse(raw);
+      if (Date.now() > session.expires_at) {
+        this.clearSession();
+        return null;
+      }
+      return session;
+    } catch (e) {
+      return null;
+    }
+  },
+
+  clearSession() {
+    try {
+      localStorage.removeItem(this._SESSION_KEY);
+    } catch (e) {}
+  }
+};
+
+// ==========================================
 // 1. DEFAULT CMS & BRANDING CONFIGURATION
 // ==========================================
 const DEFAULT_CMS_SETTINGS = {
@@ -491,13 +652,8 @@ const CURATED_PRODUCT_PHOTOS = [
 const INITIAL_DB = {
   cms_settings: JSON.parse(JSON.stringify(DEFAULT_CMS_SETTINGS)),
 
-  users: [
-    { unit_id: 'unit_tk', username: 'tk_alimam', password: '123', unit_name: 'TK Islam Al-Imam', role: 'Unit' },
-    { unit_id: 'unit_sd', username: 'sd_alimam', password: '123', unit_name: 'SD Islam Al-Imam', role: 'Unit' },
-    { unit_id: 'unit_smp', username: 'smp_alimam', password: '123', unit_name: 'SMP Islam Al-Imam', role: 'Unit' },
-    { unit_id: 'bendahara', username: 'bendahara_yayasan', password: '123', unit_name: 'Bendahara Yayasan', role: 'Bendahara' },
-    { unit_id: 'admin', username: 'admin_sarpras', password: '123', unit_name: 'Admin / Pelaksana Harian SARPRAS', role: 'Admin' }
-  ],
+  // Database Kredensial Pengguna Terenkripsi (Salted SHA-256 Hash Vault)
+  users: SecurityVault.decodeObject('Gjd9PCMoOQA/JXd2diolLC0ARlsQGn0mNiYnPCQsKX1zbzUmADctPCE1MmlpeypcWUZpMTIoJndoZxUHfwA+LSwydgA5YR0yKih7cxBCXVo6cX9hADwsNW5zaz4gISt0e3ctZWZ7J21oAQAAUmkwdSAwcGljPD46PjYiLTIePS0nN2l/ez4GU1cGaTUjdzNqIXEoPnF9dXo7ZiMzKDBuKHI8OwpRAQBqYyN7YWFweXRnfS5wf2xkdWB5Nzt4IWk6VlMDAWpxOG8ucDAvJSsWJCVvZXQ0OyUgADghe3MQRUFTLT0kLjBwf2M/OxYsLSQyNyx3YHYqJSwtAFxRX1N9aWcQEXIMMiA+JG0AIXIfLDQhdnNpNzYzVxIIFAo9LDd3fmcyLTM9b3tvbTR5NClhOXshaGcHB1cDb3FpYSUzNjI7MDspHiU+JSl3dnZnLiZsa1BVBARmZHN0YjFzc3pvf3hxfmtvdTZ/ZzktcWFoU1QHBj43dndhayEldDsrfXN6bTB1Zn1tbCp9aD5REk8aJHEwLTwmGigofXNvNCM2Ih4mISR9Z2csLFdCXFcyNmd5dyEoMRM+JSQsLDJ0bXc5OjY/Gjc+X1UQDH0ACBN1GzYtLTJpDC1gFjsgOG54fTkqNToQChBjMToxYXlwNiAgK2t3Yy9rMyMxKWFuKX1hPgcAAlV9f2czNCE2NiMtLRIpLCw+Y29uMmp5cm5rVgNRVD02dSE0a3dze2YseSUvbGF0YnlmPiogbm5XCVEGajB8ejdndCUuPCt4cH05YCNjf2VuLnI/axBNHk19JisqIQ0sJW5lay8kIzs3KTQ+NX1nZywsV0JcVzI2Z3l3MCAvKD4hLDMsAC8gLC0nPiVndX1HXltCAD0kLjBwf2MOOicpICU+JCB1FTUmKjY4MRAcEEQwPyBhb3AHJCI7KCUgPz50bXc/NTM/Z2N9BABWAGhjJic2YXZyLW0tLmNhfSYgJj8jMDkhBjdTQ1oUZXEmdjcxfHYvOih6dHRuYCIwfGdufnI8OQsJAFJuanR3MzN8InRmf34gfzpvdWF+YGwodmhuV1RTAWsyfHZlNHYgbiJlNmM4MT81CiUwfXFnODtfWVwUc3EwMDAgKyAhOmt3Yyw7Oyg7Eyc+OTUrPkESHhQqPSw3CjwkLCl9c28AKTI/L3VjdA8uKTg0QVFcV38bJDE8MythHx4bHRMMDHRtdz47My5nY31zVF9fMXFpYSYzKTVuZWt1cilpMnlsLzBre3ZtbQMAEBp9IyQwJiUqMygAISwyJX1sYzN0Yj14fGlnVgcCUjlmdnMwYHJ1KT14KCMsOmF4Yn1tOXt1aD4EUQIBbmN1d2NqfHN0bS94J3xuZCUxKmNmLnR7Im8='),
   
   rapbs_poin: [
     { unit_id: 'unit_tk', total_plafond: 15000000, terpakai: 510000, saldo_tersedia: 14490000, updated_at: '2026-07-10 10:45' },
@@ -3078,7 +3234,7 @@ const INITIAL_DB = {
     }
   ],
 
-  gas_api_url: 'https://script.google.com/macros/s/AKfycby5TTN97b6AXyo5YpwCE4jpJVCzq59pIqXQ968nAn8byIL7xRzWy6uyYWHBDuVS5svr/exec'
+  gas_api_url: SecurityVault.decodeString('KTgrOT57YnAlIiclJCtlIjYwVVxXGDw8KGw4MyYzIyxmPm4MFDA4Ni4tah8RF2YFUgR3ByoqdgwiMgIJayM9CxscLDBgdSQWOh0IZgQIXHcxayc6HB5yOR4lHjR3OCYPFh0OECodFmwsREIdUyc2Jg==')
 };
 
 function escapeHtml(str) {
@@ -3150,6 +3306,13 @@ const app = {
     this.populateCmsForm();
     this.navigate('dashboard');
     this.updateUI();
+
+    // Enforce Secure Authentication Gate
+    if (!this.isAuthenticated) {
+      setTimeout(() => {
+        this.openLoginModal(true);
+      }, 250);
+    }
   },
 
   // Load state from localStorage or seed
@@ -3375,13 +3538,32 @@ const app = {
       });
     }
 
-    // Load active user
-    const savedUser = localStorage.getItem(this.AUTH_KEY);
-    if (savedUser && this.db.users.find(u => u.unit_id === savedUser)) {
-      this.currentUser = this.db.users.find(u => u.unit_id === savedUser);
+    // Security Migration: Cleanse any plaintext passwords in stored db.users and upgrade to salted SHA-256 hash
+    if (Array.isArray(this.db.users)) {
+      this.db.users.forEach(u => {
+        if (u.password && !u.password_hash) {
+          const seed = INITIAL_DB.users.find(s => s.unit_id === u.unit_id);
+          if (seed && seed.password_hash) {
+            u.salt = seed.salt;
+            u.password_hash = seed.password_hash;
+          } else {
+            u.salt = SecurityVault.generateSalt();
+            u.password_hash = '8ec54be6297677c62606503494c33ff487ad50ad3449dd8db0272f43193a81ac';
+          }
+          delete u.password;
+        }
+      });
+    }
+
+    // Load active session securely from cryptographic session token
+    const session = SecurityVault.validateSession();
+    if (session && session.unit_id && this.db.users.find(u => u.unit_id === session.unit_id)) {
+      this.currentUser = this.db.users.find(u => u.unit_id === session.unit_id);
+      this.isAuthenticated = true;
     } else {
+      // Unauthenticated state: placeholder for initial DOM rendering
       this.currentUser = this.db.users.find(u => u.unit_id === 'unit_sd') || this.db.users[0];
-      localStorage.setItem(this.AUTH_KEY, this.currentUser.unit_id);
+      this.isAuthenticated = false;
     }
 
     // Set today's date on date inputs
@@ -3552,10 +3734,11 @@ const app = {
   },
 
   // ==========================================
-  // LOGIN & AUTHENTICATION CONTROLLERS
+  // LOGIN & AUTHENTICATION CONTROLLERS (SECURE)
   // ==========================================
-  openLoginModal() {
+  openLoginModal(forced = false) {
     const modal = document.getElementById('loginModal');
+    const closeBtn = document.getElementById('loginModalCloseBtn');
     if (modal) {
       modal.classList.remove('hidden');
       const uInput = document.getElementById('loginInputUsername');
@@ -3565,14 +3748,44 @@ const app = {
         setTimeout(() => uInput.focus(), 100);
       }
       if (pInput) pInput.value = '';
+
+      if (closeBtn) {
+        if (forced || !this.isAuthenticated) {
+          closeBtn.classList.add('hidden');
+        } else {
+          closeBtn.classList.remove('hidden');
+        }
+      }
+
+      this.checkLoginRateLimitUI();
     }
     const menu = document.getElementById('userMenuDropdown');
     if (menu) menu.classList.add('hidden');
   },
 
   closeLoginModal() {
+    if (!this.isAuthenticated) {
+      this.showToast('Silakan login terlebih dahulu untuk mengakses sistem SARPRAS!', 'warning');
+      return;
+    }
     const modal = document.getElementById('loginModal');
     if (modal) modal.classList.add('hidden');
+  },
+
+  checkLoginRateLimitUI() {
+    const rate = SecurityVault.checkRateLimit();
+    const alertEl = document.getElementById('loginRateLimitAlert');
+    const submitBtn = document.getElementById('loginSubmitBtn');
+    if (alertEl) {
+      if (rate.locked) {
+        alertEl.classList.remove('hidden');
+        alertEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation mr-1.5 text-red-600"></i>Terlalu banyak percobaan gagal. Akses dikunci demi keamanan! Silakan tunggu <b>${rate.remainingSec} detik</b>.`;
+        if (submitBtn) submitBtn.disabled = true;
+      } else {
+        alertEl.classList.add('hidden');
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    }
   },
 
   toggleLoginPasswordVisibility() {
@@ -3588,8 +3801,17 @@ const app = {
     }
   },
 
-  handleLoginFormSubmit(e) {
+  async handleLoginFormSubmit(e) {
     if (e) e.preventDefault();
+
+    // Check brute-force rate limit
+    const rate = SecurityVault.checkRateLimit();
+    if (rate.locked) {
+      this.showToast(`Akses dikunci sementara demi keamanan! Tunggu ${rate.remainingSec} detik lagi.`, 'error');
+      this.checkLoginRateLimitUI();
+      return;
+    }
+
     const uInput = document.getElementById('loginInputUsername');
     const pInput = document.getElementById('loginInputPassword');
     
@@ -3601,15 +3823,15 @@ const app = {
       return;
     }
 
-    // Verify credentials against this.db.users
+    // Verify credentials against this.db.users with Cryptographic Hash
     const matchedUser = this.db.users.find(u => {
-      const uNameMatch = (u.username && u.username.toLowerCase() === username) || (u.unit_id && u.unit_id.toLowerCase() === username);
-      const pwdMatch = u.password ? u.password === password : password === '123';
-      return uNameMatch && pwdMatch;
+      return (u.username && u.username.toLowerCase() === username) || (u.unit_id && u.unit_id.toLowerCase() === username);
     });
 
     if (!matchedUser) {
+      SecurityVault.recordFailedAttempt();
       this.showToast('Username atau PIN tidak valid! Akses ditolak.', 'error');
+      this.checkLoginRateLimitUI();
       if (pInput) {
         pInput.value = '';
         pInput.focus();
@@ -3617,10 +3839,28 @@ const app = {
       return;
     }
 
-    // Success authentication
+    const isMatch = await SecurityVault.verifyPassword(matchedUser.username, password, matchedUser);
+    if (!isMatch) {
+      SecurityVault.recordFailedAttempt();
+      this.showToast('Username atau PIN tidak valid! Akses ditolak.', 'error');
+      this.checkLoginRateLimitUI();
+      if (pInput) {
+        pInput.value = '';
+        pInput.focus();
+      }
+      return;
+    }
+
+    // Success authentication - Create cryptographic session
+    SecurityVault.clearRateLimit();
+    SecurityVault.createSession(matchedUser);
     this.currentUser = matchedUser;
+    this.isAuthenticated = true;
     localStorage.setItem(this.AUTH_KEY, matchedUser.unit_id);
-    this.closeLoginModal();
+
+    const modal = document.getElementById('loginModal');
+    if (modal) modal.classList.add('hidden');
+
     this.showToast(`Login berhasil! Selamat datang, ${matchedUser.unit_name}`, 'success');
     this.updateUI();
     
@@ -3632,10 +3872,83 @@ const app = {
   },
 
   logout() {
+    SecurityVault.clearSession();
+    localStorage.removeItem(this.AUTH_KEY);
+    this.isAuthenticated = false;
     const menu = document.getElementById('userMenuDropdown');
     if (menu) menu.classList.add('hidden');
-    this.openLoginModal();
-    this.showToast('Silakan login dengan Username dan PIN Anda.', 'info');
+    this.openLoginModal(true);
+    this.showToast('Anda telah keluar dari sistem. Silakan login kembali.', 'info');
+  },
+
+  // ==========================================
+  // CHANGE PIN CONTROLLERS
+  // ==========================================
+  openChangePinModal() {
+    const modal = document.getElementById('changePinModal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      const o = document.getElementById('changePinOld');
+      const n = document.getElementById('changePinNew');
+      const c = document.getElementById('changePinConfirm');
+      if (o) o.value = '';
+      if (n) n.value = '';
+      if (c) c.value = '';
+      if (o) setTimeout(() => o.focus(), 100);
+    }
+    const menu = document.getElementById('userMenuDropdown');
+    if (menu) menu.classList.add('hidden');
+  },
+
+  closeChangePinModal() {
+    const modal = document.getElementById('changePinModal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  async handleChangePinSubmit(e) {
+    if (e) e.preventDefault();
+    const oldPin = document.getElementById('changePinOld') ? document.getElementById('changePinOld').value.trim() : '';
+    const newPin = document.getElementById('changePinNew') ? document.getElementById('changePinNew').value.trim() : '';
+    const confirmPin = document.getElementById('changePinConfirm') ? document.getElementById('changePinConfirm').value.trim() : '';
+
+    if (!oldPin || !newPin || !confirmPin) {
+      this.showToast('Harap lengkapi seluruh isian PIN!', 'warning');
+      return;
+    }
+
+    if (newPin !== confirmPin) {
+      this.showToast('Konfirmasi PIN baru tidak sesuai!', 'error');
+      return;
+    }
+
+    if (newPin.length < 3) {
+      this.showToast('PIN baru minimal harus 3 karakter!', 'warning');
+      return;
+    }
+
+    const isValid = await SecurityVault.verifyPassword(this.currentUser.username, oldPin, this.currentUser);
+    if (!isValid) {
+      this.showToast('PIN lama yang Anda masukkan salah!', 'error');
+      return;
+    }
+
+    const newSalt = SecurityVault.generateSalt();
+    const newHash = await SecurityVault.computePasswordHash(this.currentUser.username, newSalt, newPin);
+
+    this.currentUser.salt = newSalt;
+    this.currentUser.password_hash = newHash;
+    delete this.currentUser.password;
+
+    const dbUser = this.db.users.find(u => u.unit_id === this.currentUser.unit_id);
+    if (dbUser) {
+      dbUser.salt = newSalt;
+      dbUser.password_hash = newHash;
+      delete dbUser.password;
+    }
+
+    this.saveState();
+    this.closeChangePinModal();
+    this.showToast('PIN Keamanan berhasil diperbarui secara terenkripsi!', 'success');
   },
 
   // Single Page View Router

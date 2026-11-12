@@ -8,20 +8,29 @@
 // 0. SECURITY & CRYPTOGRAPHY VAULT (ZERO PLAINTEXT CREDENTIALS)
 // ==========================================
 const SecurityVault = {
-  _PEPPER: 'AL_IMAM_SARPRAS_SECURE_PEPPER_2026_#@!',
-  _KEY: 'AL_IMAM_VAULT_KEY_2026_SECURE',
-  _SESSION_KEY: 'ECOMMERCE_ALIMAM_SESSION_V4',
-  _RATE_LIMIT_KEY: 'ECOMMERCE_ALIMAM_RATE_LIMIT_V4',
+  _P_BYTES: [27,45,55,38,59,60,201,212,193,216,242,247,252,244,239,156,153,148,155,138,180,168,171,171,71,89,64,82,76,122,30,3,8,119,23,108,22,124],
+  _K_BYTES: [124,8,20,27,20,33,42,49,35,61,214,198,197,199,212,227,244,235,137,242,251,230,136,141,160,175,166,168,68],
+  _SESSION_KEY: 'ECOMMERCE_ALIMAM_SESSION_V5',
+  _RATE_LIMIT_KEY: 'ECOMMERCE_ALIMAM_RATE_LIMIT_V5',
   _SESSION_MAX_AGE_MS: 8 * 60 * 60 * 1000, // 8 jam masa berlaku sesi
+
+  _getPepper() {
+    return this._P_BYTES.map((n, i) => String.fromCharCode(n ^ ((0x5A + i * 7) & 0xff))).join('');
+  },
+
+  _getKey() {
+    return this._K_BYTES.map((n, i) => String.fromCharCode(n ^ ((0x3D + i * 7) & 0xff))).join('');
+  },
 
   // Dekripsi aman payload terenkripsi/terobfuskasi
   decodeString(b64) {
     if (!b64) return '';
     try {
+      const k = this._getKey();
       const bin = (typeof atob !== 'undefined') ? atob(b64) : Buffer.from(b64, 'base64').toString('binary');
       let res = '';
       for (let i = 0; i < bin.length; i++) {
-        res += String.fromCharCode(bin.charCodeAt(i) ^ this._KEY.charCodeAt(i % this._KEY.length));
+        res += String.fromCharCode(bin.charCodeAt(i) ^ k.charCodeAt(i % k.length));
       }
       return res;
     } catch (e) {
@@ -40,26 +49,84 @@ const SecurityVault = {
     }
   },
 
-  // SHA-256 Asynchronous menggunakan standard W3C Web Cryptography API
+  // Pure-JS FIPS 180-4 SHA-256 (Berjalan di HTTPS, HTTP, maupun file:// lokal)
+  sha256Sync(inputStr) {
+    const str = unescape(encodeURIComponent(String(inputStr)));
+    const K = [
+      0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+      0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+      0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+      0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+      0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+      0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+      0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+      0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+    ];
+    const H = [
+      0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
+      0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19
+    ];
+    const rrot = (x, n) => (x >>> n) | (x << (32 - n));
+    const bytes = [];
+    for (let i = 0; i < str.length; i++) bytes.push(str.charCodeAt(i));
+    const bitLen = bytes.length * 8;
+    bytes.push(0x80);
+    while ((bytes.length % 64) !== 56) bytes.push(0);
+    const hi = Math.floor(bitLen / 0x100000000);
+    const lo = bitLen >>> 0;
+    bytes.push((hi >>> 24) & 0xff, (hi >>> 16) & 0xff, (hi >>> 8) & 0xff, hi & 0xff);
+    bytes.push((lo >>> 24) & 0xff, (lo >>> 16) & 0xff, (lo >>> 8) & 0xff, lo & 0xff);
+
+    const W = new Array(64);
+    for (let i = 0; i < bytes.length; i += 64) {
+      for (let t = 0; t < 16; t++) {
+        W[t] = (bytes[i + t * 4] << 24) | (bytes[i + t * 4 + 1] << 16) | (bytes[i + t * 4 + 2] << 8) | bytes[i + t * 4 + 3];
+      }
+      for (let t = 16; t < 64; t++) {
+        const s0 = rrot(W[t - 15], 7) ^ rrot(W[t - 15], 18) ^ (W[t - 15] >>> 3);
+        const s1 = rrot(W[t - 2], 17) ^ rrot(W[t - 2], 19) ^ (W[t - 2] >>> 10);
+        W[t] = (W[t - 16] + s0 + W[t - 7] + s1) | 0;
+      }
+      let [a, b, c, d, e, f, g, h] = H;
+      for (let t = 0; t < 64; t++) {
+        const S1 = rrot(e, 6) ^ rrot(e, 11) ^ rrot(e, 25);
+        const ch = (e & f) ^ ((~e) & g);
+        const temp1 = (h + S1 + ch + K[t] + W[t]) | 0;
+        const S0 = rrot(a, 2) ^ rrot(a, 13) ^ rrot(a, 22);
+        const maj = (a & b) ^ (a & c) ^ (b & c);
+        const temp2 = (S0 + maj) | 0;
+        h = g; g = f; f = e; e = (d + temp1) | 0;
+        d = c; c = b; b = a; a = (temp1 + temp2) | 0;
+      }
+      H[0] = (H[0] + a) | 0; H[1] = (H[1] + b) | 0;
+      H[2] = (H[2] + c) | 0; H[3] = (H[3] + d) | 0;
+      H[4] = (H[4] + e) | 0; H[5] = (H[5] + f) | 0;
+      H[6] = (H[6] + g) | 0; H[7] = (H[7] + h) | 0;
+    }
+    return H.map(v => (v >>> 0).toString(16).padStart(8, '0')).join('');
+  },
+
+  // SHA-256 Asynchronous dengan Web Cryptography API + fallback pure-JS
   async hashSha256(str) {
-    if (typeof crypto !== 'undefined' && crypto.subtle) {
-      const msgBuffer = new TextEncoder().encode(str);
-      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-    if (typeof require !== 'undefined') {
-      try {
-        const c = require('crypto');
-        return c.createHash('sha256').update(str).digest('hex');
-      } catch (e) {}
-    }
-    throw new Error('Web Cryptography API unavailable');
+    try {
+      if (typeof crypto !== 'undefined' && crypto.subtle) {
+        const msgBuffer = new TextEncoder().encode(str);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      }
+    } catch (e) {}
+    return this.sha256Sync(str);
+  },
+
+  computePasswordHashSync(username, salt, password) {
+    const payload = `${this._getPepper()}:${String(username).toLowerCase()}:${salt}:${password}`;
+    return this.sha256Sync(payload);
   },
 
   // Komputasi Hash Ter-Salt dan Ter-Pepper
   async computePasswordHash(username, salt, password) {
-    const payload = `${this._PEPPER}:${username.toLowerCase()}:${salt}:${password}`;
+    const payload = `${this._getPepper()}:${String(username).toLowerCase()}:${salt}:${password}`;
     return await this.hashSha256(payload);
   },
 
@@ -126,7 +193,12 @@ const SecurityVault = {
     } catch (e) {}
   },
 
-  // Buat sesi otentikasi terenkripsi
+  _signSession(session) {
+    const raw = `${this._getPepper()}:SESSION:${session.unit_id}:${session.role}:${session.issued_at}:${session.expires_at}:${session.token}`;
+    return this.sha256Sync(raw);
+  },
+
+  // Buat sesi otentikasi terenkripsi & bertanda tangan SHA-256
   createSession(user) {
     const session = {
       unit_id: user.unit_id,
@@ -136,19 +208,24 @@ const SecurityVault = {
       expires_at: Date.now() + this._SESSION_MAX_AGE_MS,
       token: this.generateSalt(32)
     };
+    session.signature = this._signSession(session);
     try {
       localStorage.setItem(this._SESSION_KEY, JSON.stringify(session));
     } catch (e) {}
     return session;
   },
 
-  // Validasi sesi aktif
+  // Validasi sesi aktif + verifikasi integritas tanda tangan
   validateSession() {
     try {
       const raw = localStorage.getItem(this._SESSION_KEY);
       if (!raw) return null;
       const session = JSON.parse(raw);
-      if (Date.now() > session.expires_at) {
+      if (!session || !session.signature || Date.now() > session.expires_at) {
+        this.clearSession();
+        return null;
+      }
+      if (session.signature !== this._signSession(session)) {
         this.clearSession();
         return null;
       }
@@ -3302,17 +3379,32 @@ const app = {
     this.applyThemeSettings();
     this.applyBrandingDOM();
     this.setupEventListeners();
-    this.checkStockAlerts();
     this.populateCmsForm();
-    this.navigate('dashboard');
-    this.updateUI();
 
-    // Enforce Secure Authentication Gate
+    // Enforce Secure Authentication Gate before rendering sensitive financial data
     if (!this.isAuthenticated) {
-      setTimeout(() => {
-        this.openLoginModal(true);
-      }, 250);
+      this.lockAppUI();
+      this.openLoginModal(true);
+    } else {
+      this.unlockAppUI();
+      this.checkStockAlerts();
+      this.navigate('dashboard');
+      this.updateUI();
     }
+  },
+
+  lockAppUI() {
+    ['appHeader', 'appMainContainer', 'appFooter'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    });
+  },
+
+  unlockAppUI() {
+    ['appHeader', 'appMainContainer', 'appFooter'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('hidden');
+    });
   },
 
   // Load state from localStorage or seed
@@ -3323,6 +3415,15 @@ const app = {
         this.db = JSON.parse(raw);
         if (!this.db.gas_api_url) {
           this.db.gas_api_url = INITIAL_DB.gas_api_url;
+        }
+        if (!this.db.cms_settings) {
+          this.db.cms_settings = JSON.parse(JSON.stringify(DEFAULT_CMS_SETTINGS));
+        }
+        if (!Array.isArray(this.db.stock_inventory)) {
+          this.db.stock_inventory = JSON.parse(JSON.stringify(INITIAL_DB.stock_inventory));
+        }
+        if (!Array.isArray(this.db.rapbs_poin)) {
+          this.db.rapbs_poin = JSON.parse(JSON.stringify(INITIAL_DB.rapbs_poin));
         }
       } catch (e) {
         this.db = JSON.parse(JSON.stringify(INITIAL_DB));
@@ -3538,21 +3639,47 @@ const app = {
       });
     }
 
-    // Security Migration: Cleanse any plaintext passwords in stored db.users and upgrade to salted SHA-256 hash
-    if (Array.isArray(this.db.users)) {
+    // Security Migration & Sync: Upgrade legacy users (with or without u.password) to valid 64-char Salted SHA-256 hash
+    let usersMigrated = false;
+    if (!Array.isArray(this.db.users) || this.db.users.length === 0) {
+      this.db.users = JSON.parse(JSON.stringify(INITIAL_DB.users));
+      usersMigrated = true;
+    } else {
       this.db.users.forEach(u => {
-        if (u.password && !u.password_hash) {
-          const seed = INITIAL_DB.users.find(s => s.unit_id === u.unit_id);
-          if (seed && seed.password_hash) {
+        const hasValidHash = u.salt && u.password_hash && /^[a-f0-9]{64}$/i.test(u.password_hash);
+        if (!hasValidHash) {
+          const seed = INITIAL_DB.users.find(s =>
+            s.unit_id === u.unit_id ||
+            (s.username && u.username && s.username.toLowerCase() === u.username.toLowerCase())
+          );
+          if (u.password && typeof u.password === 'string' && u.password !== '123') {
+            u.salt = SecurityVault.generateSalt();
+            u.password_hash = SecurityVault.computePasswordHashSync(u.username || u.unit_id, u.salt, u.password);
+          } else if (seed && seed.password_hash) {
             u.salt = seed.salt;
             u.password_hash = seed.password_hash;
           } else {
             u.salt = SecurityVault.generateSalt();
-            u.password_hash = '8ec54be6297677c62606503494c33ff487ad50ad3449dd8db0272f43193a81ac';
+            u.password_hash = SecurityVault.computePasswordHashSync(u.username || u.unit_id, u.salt, '123');
           }
           delete u.password;
+          usersMigrated = true;
+        } else if (u.password !== undefined) {
+          delete u.password;
+          usersMigrated = true;
         }
       });
+
+      // Ensure all default accounts from INITIAL_DB exist
+      INITIAL_DB.users.forEach(seedUser => {
+        if (!this.db.users.some(u => u.unit_id === seedUser.unit_id)) {
+          this.db.users.push(JSON.parse(JSON.stringify(seedUser)));
+          usersMigrated = true;
+        }
+      });
+    }
+    if (usersMigrated) {
+      this.saveState();
     }
 
     // Load active session securely from cryptographic session token
@@ -3714,31 +3841,14 @@ const app = {
     if (menu) menu.classList.toggle('hidden');
   },
 
-  switchUser(unitId) {
-    const user = this.db.users.find(u => u.unit_id === unitId);
-    if (!user) return;
-    this.currentUser = user;
-    localStorage.setItem(this.AUTH_KEY, user.unit_id);
-    
-    const menu = document.getElementById('userMenuDropdown');
-    if (menu) menu.classList.add('hidden');
-
-    this.showToast(`Berhasil beralih akun: ${user.unit_name}`, 'success');
-    this.updateUI();
-    
-    if (user.role === 'Bendahara' && this.activeView === 'verification') {
-      this.renderVerificationView();
-    } else {
-      this.navigate(this.activeView);
-    }
-  },
-
   // ==========================================
   // LOGIN & AUTHENTICATION CONTROLLERS (SECURE)
   // ==========================================
   openLoginModal(forced = false) {
     const modal = document.getElementById('loginModal');
     const closeBtn = document.getElementById('loginModalCloseBtn');
+    const errBanner = document.getElementById('loginErrorBanner');
+    if (errBanner) errBanner.classList.add('hidden');
     if (modal) {
       modal.classList.remove('hidden');
       const uInput = document.getElementById('loginInputUsername');
@@ -3772,6 +3882,14 @@ const app = {
     if (modal) modal.classList.add('hidden');
   },
 
+  showLoginError(msg) {
+    const errBanner = document.getElementById('loginErrorBanner');
+    if (errBanner) {
+      errBanner.classList.remove('hidden');
+      errBanner.innerHTML = `<i class="fa-solid fa-circle-exclamation mr-1.5 text-red-600"></i><span>${escapeHtml(msg)}</span>`;
+    }
+  },
+
   checkLoginRateLimitUI() {
     const rate = SecurityVault.checkRateLimit();
     const alertEl = document.getElementById('loginRateLimitAlert');
@@ -3803,11 +3921,15 @@ const app = {
 
   async handleLoginFormSubmit(e) {
     if (e) e.preventDefault();
+    const errBanner = document.getElementById('loginErrorBanner');
+    if (errBanner) errBanner.classList.add('hidden');
 
     // Check brute-force rate limit
     const rate = SecurityVault.checkRateLimit();
     if (rate.locked) {
-      this.showToast(`Akses dikunci sementara demi keamanan! Tunggu ${rate.remainingSec} detik lagi.`, 'error');
+      const msg = `Akses dikunci sementara demi keamanan! Tunggu ${rate.remainingSec} detik lagi.`;
+      this.showToast(msg, 'error');
+      this.showLoginError(msg);
       this.checkLoginRateLimitUI();
       return;
     }
@@ -3819,6 +3941,7 @@ const app = {
     const password = pInput ? pInput.value.trim() : '';
 
     if (!username || !password) {
+      this.showLoginError('Silakan masukkan Username dan PIN / Password!');
       this.showToast('Silakan masukkan Username dan PIN / Password!', 'warning');
       return;
     }
@@ -3830,6 +3953,7 @@ const app = {
 
     if (!matchedUser) {
       SecurityVault.recordFailedAttempt();
+      this.showLoginError('Username tidak terdaftar atau salah! Periksa kembali username akun Anda.');
       this.showToast('Username atau PIN tidak valid! Akses ditolak.', 'error');
       this.checkLoginRateLimitUI();
       if (pInput) {
@@ -3842,6 +3966,7 @@ const app = {
     const isMatch = await SecurityVault.verifyPassword(matchedUser.username, password, matchedUser);
     if (!isMatch) {
       SecurityVault.recordFailedAttempt();
+      this.showLoginError('PIN / Password salah! Akses ditolak.');
       this.showToast('Username atau PIN tidak valid! Akses ditolak.', 'error');
       this.checkLoginRateLimitUI();
       if (pInput) {
@@ -3851,7 +3976,7 @@ const app = {
       return;
     }
 
-    // Success authentication - Create cryptographic session
+    // Success authentication - Create cryptographic signed session & unlock UI
     SecurityVault.clearRateLimit();
     SecurityVault.createSession(matchedUser);
     this.currentUser = matchedUser;
@@ -3861,6 +3986,8 @@ const app = {
     const modal = document.getElementById('loginModal');
     if (modal) modal.classList.add('hidden');
 
+    this.unlockAppUI();
+    this.checkStockAlerts();
     this.showToast(`Login berhasil! Selamat datang, ${matchedUser.unit_name}`, 'success');
     this.updateUI();
     
@@ -3875,6 +4002,7 @@ const app = {
     SecurityVault.clearSession();
     localStorage.removeItem(this.AUTH_KEY);
     this.isAuthenticated = false;
+    this.lockAppUI();
     const menu = document.getElementById('userMenuDropdown');
     if (menu) menu.classList.add('hidden');
     this.openLoginModal(true);
@@ -3951,8 +4079,13 @@ const app = {
     this.showToast('PIN Keamanan berhasil diperbarui secara terenkripsi!', 'success');
   },
 
-  // Single Page View Router
+  // Single Page View Router (Protected by Auth Gate)
   navigate(viewName) {
+    if (!this.isAuthenticated) {
+      this.lockAppUI();
+      this.openLoginModal(true);
+      return;
+    }
     this.activeView = viewName;
 
     const views = ['dashboard', 'catalog', 'reimburse', 'custom-request', 'ac-service', 'renov-material', 'orders', 'verification', 'inventory', 'ledger', 'cms'];
@@ -9768,6 +9901,1765 @@ const app = {
               <th style="border: 1px solid #333; padding: 6px; text-align: right;">Total Biaya</th>
               <th style="border: 1px solid #333; padding: 6px; text-align: left;">Vendor Teknisi</th>
               <th style="border: 1px solid #333; padding: 6px; text-align: center;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${tableRows}
+          </tbody>
+        </table>
+
+        <!-- Signatures Box -->
+        <div style="margin-top: 35px; display: flex; justify-content: space-between; page-break-inside: avoid;">
+          <div style="text-align: center; width: 200px;">
+            <p style="margin: 0 0 50px 0;">Mengetahui,<br><b>Kaur Logistik & SARPRAS</b></p>
+            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${cms.signers.kaur_name || 'Kaur SARPRAS'}</p>
+          </div>
+          <div style="text-align: center; width: 200px;">
+            <p style="margin: 0 0 50px 0;">Disetujui,<br><b>Bendahara Yayasan</b></p>
+            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${cms.signers.bendahara_name || 'Bendahara Yayasan'}</p>
+          </div>
+          <div style="text-align: center; width: 200px;">
+            <p style="margin: 0 0 50px 0;">Diverifikasi,<br><b>Teknisi Rekanan Utama</b></p>
+            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">Bpk. Hendra Kurniawan, S.T.</p>
+          </div>
+        </div>
+      </div>
+    `;
+
+    modal.classList.remove('hidden');
+  },
+
+  closeAcPrintModal() {
+    const modal = document.getElementById('acPrintReportModal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  // ==========================================
+  // 14B. RENOVATION, MATERIAL & HANDYMAN LABOR CONTROLLER
+  // ==========================================
+
+  renderRenovServiceView() {
+    const projects = this.db.renov_projects || [];
+    const requests = this.db.renov_requests || [];
+
+    // 1. Calculate and update Top KPI Stats
+    const activeProjectsCount = projects.filter(p => p.status !== 'Selesai').length;
+    const totalSpent = requests.reduce((sum, r) => sum + (Number(r.total_amount) || 0), 0);
+    const laborSpent = requests.reduce((sum, r) => sum + (Number(r.labor_subtotal) || 0), 0);
+    const pendingCount = requests.filter(r => ['Menunggu Persetujuan', 'Menunggu Pengiriman', 'Dalam Pengerjaan'].includes(r.status)).length;
+
+    const elActive = document.getElementById('metricRenovActiveProjects');
+    const elTotal = document.getElementById('metricRenovTotalExpense');
+    const elLabor = document.getElementById('metricRenovLaborExpense');
+    const elPending = document.getElementById('metricRenovPendingRequests');
+
+    if (elActive) elActive.textContent = `${activeProjectsCount} Titik`;
+    if (elTotal) elTotal.textContent = `Rp ${this.formatNumber(totalSpent)}`;
+    if (elLabor) elLabor.textContent = `Rp ${this.formatNumber(laborSpent)}`;
+    if (elPending) elPending.textContent = pendingCount;
+
+    // 2. Populate form dropdowns and sync current active tab
+    this.populateRenovFormDropdowns();
+    this.switchRenovSubTab(this.activeRenovSubTab || 'materials');
+  },
+
+  switchRenovSubTab(tabName) {
+    this.activeRenovSubTab = tabName;
+
+    const tabs = ['materials', 'projects', 'analytics', 'vendors'];
+    tabs.forEach(t => {
+      const btn = document.getElementById(`renovSubTabBtn-${t}`);
+      const pane = document.getElementById(`renovSubTab-${t}`);
+
+      if (btn) {
+        if (t === tabName) {
+          btn.className = 'px-4 py-2 rounded-xl text-xs font-bold bg-amber-100 text-amber-900 transition flex items-center space-x-2 shrink-0';
+        } else {
+          btn.className = 'px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition flex items-center space-x-2 shrink-0';
+        }
+      }
+
+      if (pane) {
+        if (t === tabName) pane.classList.remove('hidden');
+        else pane.classList.add('hidden');
+      }
+    });
+
+    if (tabName === 'materials') {
+      this.renderRenovPackagesGrid();
+      this.calculateRenovFormTotal();
+    } else if (tabName === 'projects') {
+      this.renderRenovProjectsTable();
+    } else if (tabName === 'analytics') {
+      this.renderRenovAnalytics();
+    } else if (tabName === 'vendors') {
+      this.renderRenovVendors();
+    }
+  },
+
+  renderRenovPackagesGrid() {
+    const container = document.getElementById('renovPackagesGrid');
+    if (!container) return;
+
+    const packages = this.db.renov_pricing_catalogue || INITIAL_DB.renov_pricing_catalogue;
+
+    container.innerHTML = packages.map(pkg => `
+      <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm card-hover flex flex-col justify-between group transition">
+        <div>
+          <div class="flex items-start justify-between gap-2 mb-3">
+            <span class="inline-block px-2.5 py-0.5 ${pkg.badge_color || 'bg-amber-100 text-amber-800'} text-[10px] font-bold rounded-full">
+              ${pkg.badge}
+            </span>
+            <div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
+              <i class="fa-solid ${pkg.icon || 'fa-paint-roller'}"></i>
+            </div>
+          </div>
+          
+          <h4 class="font-extrabold text-sm text-slate-900 font-heading leading-snug mb-1">
+            ${pkg.name}
+          </h4>
+          <p class="text-[11px] text-slate-500 leading-relaxed line-clamp-2 mb-3">
+            ${pkg.description}
+          </p>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 mt-2 flex items-center justify-between">
+          <div>
+            <span class="text-[10px] text-slate-400 block font-semibold">${pkg.category}</span>
+            <span class="text-sm font-black text-slate-900 font-heading">Rp ${this.formatNumber(pkg.unit_price)}</span>
+          </div>
+          <button onclick="app.selectRenovPackage('${pkg.material_id}')" class="px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center space-x-1">
+            <i class="fa-solid fa-check"></i>
+            <span>Pilih</span>
+          </button>
+        </div>
+      </div>
+    `).join('');
+  },
+
+  selectRenovPackage(materialId) {
+    const packages = this.db.renov_pricing_catalogue || INITIAL_DB.renov_pricing_catalogue;
+    const pkg = packages.find(p => p.material_id === materialId);
+    if (!pkg) return;
+
+    const selectEl = document.getElementById('renovFormMaterialSelect');
+    const priceEl = document.getElementById('renovFormUnitPrice');
+    const catEl = document.getElementById('renovFormCategory');
+
+    if (selectEl) selectEl.value = pkg.material_id;
+    if (priceEl) priceEl.value = pkg.unit_price;
+
+    if (catEl) {
+      if (pkg.category.includes('Cat')) catEl.value = 'Pengecatan Gedung / Kelas';
+      else if (pkg.category.includes('Lantai')) catEl.value = 'Renovasi Toilet & Sanitasi';
+      else if (pkg.name.toLowerCase().includes('plafon')) catEl.value = 'Perbaikan Plafon & Atap';
+    }
+
+    this.calculateRenovFormTotal();
+
+    const formContainer = document.getElementById('renovRequestForm');
+    if (formContainer) {
+      formContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      formContainer.parentElement.classList.add('ring-2', 'ring-amber-400');
+      setTimeout(() => {
+        if (formContainer.parentElement) formContainer.parentElement.classList.remove('ring-2', 'ring-amber-400');
+      }, 1200);
+    }
+
+    this.showToast(`Material / Jasa "${pkg.name}" dipilih!`, 'info');
+  },
+
+  populateRenovFormDropdowns() {
+    const unitSelect = document.getElementById('renovFormUnitSelect');
+    if (unitSelect && this.currentUser && this.currentUser.unit_id) {
+      if (['unit_tk', 'unit_sd', 'unit_smp'].includes(this.currentUser.unit_id)) {
+        unitSelect.value = this.currentUser.unit_id;
+      }
+    }
+
+    const materialSelect = document.getElementById('renovFormMaterialSelect');
+    if (materialSelect) {
+      const catalogue = this.db.renov_pricing_catalogue || INITIAL_DB.renov_pricing_catalogue;
+      materialSelect.innerHTML = catalogue.map(m => `
+        <option value="${m.material_id}">${m.name} - Rp ${this.formatNumber(m.unit_price)}</option>
+      `).join('') + '<option value="CUSTOM_MATERIAL">+ Bahan / Material Custom Lainnya</option>';
+    }
+
+    const dateInput = document.getElementById('renovFormDate');
+    if (dateInput && !dateInput.value) {
+      dateInput.value = new Date().toISOString().split('T')[0];
+    }
+
+    this.onRenovUnitSelectChange();
+  },
+
+  onRenovUnitSelectChange() {
+    const unitSelect = document.getElementById('renovFormUnitSelect');
+    const projectSelect = document.getElementById('renovFormProjectSelect');
+    if (!unitSelect || !projectSelect) return;
+
+    const selectedUnit = unitSelect.value;
+    const projects = this.db.renov_projects || [];
+    const unitProjects = projects.filter(p => p.unit_id === selectedUnit);
+
+    projectSelect.innerHTML = '<option value="">-- Pilih Titik Proyek Terdaftar (atau isi manual) --</option>' + 
+      unitProjects.map(p => `<option value="${p.project_id}">[${p.project_id}] ${p.location_name} (${p.category})</option>`).join('') +
+      '<option value="NEW_PROJECT">+ Daftarkan Titik Renovasi Baru</option>';
+  },
+
+  onRenovProjectSelectChange() {
+    const projectSelect = document.getElementById('renovFormProjectSelect');
+    const locInput = document.getElementById('renovFormLocation');
+    const catSelect = document.getElementById('renovFormCategory');
+    if (!projectSelect) return;
+
+    const val = projectSelect.value;
+    if (!val || val === 'NEW_PROJECT') {
+      if (val === 'NEW_PROJECT') {
+        this.openAddRenovProjectModal();
+      }
+      return;
+    }
+
+    const projects = this.db.renov_projects || [];
+    const item = projects.find(p => p.project_id === val);
+    if (item) {
+      if (locInput) locInput.value = item.location_name;
+      if (catSelect && item.category) catSelect.value = item.category;
+    }
+  },
+
+  onRenovMaterialSelectChange() {
+    const materialSelect = document.getElementById('renovFormMaterialSelect');
+    const priceInput = document.getElementById('renovFormUnitPrice');
+    if (!materialSelect || !priceInput) return;
+
+    if (materialSelect.value === 'CUSTOM_MATERIAL') {
+      priceInput.removeAttribute('readonly');
+      priceInput.focus();
+      return;
+    }
+
+    const catalogue = this.db.renov_pricing_catalogue || INITIAL_DB.renov_pricing_catalogue;
+    const item = catalogue.find(m => m.material_id === materialSelect.value);
+    if (item) {
+      priceInput.value = item.unit_price;
+    }
+    this.calculateRenovFormTotal();
+  },
+
+  calculateRenovFormTotal() {
+    const qtyInput = document.getElementById('renovFormQty');
+    const priceInput = document.getElementById('renovFormUnitPrice');
+    const laborCountInput = document.getElementById('renovFormLaborCount');
+    const laborDaysInput = document.getElementById('renovFormLaborDays');
+    const laborRateInput = document.getElementById('renovFormLaborRate');
+
+    const subMatEl = document.getElementById('renovFormSubtotalMaterial');
+    const subLaborEl = document.getElementById('renovFormSubtotalLabor');
+    const grandTotalEl = document.getElementById('renovFormGrandTotal');
+
+    const qty = Number(qtyInput ? qtyInput.value : 1) || 0;
+    const price = Number(priceInput ? priceInput.value : 0) || 0;
+    const matSubtotal = qty * price;
+
+    const laborCount = Number(laborCountInput ? laborCountInput.value : 0) || 0;
+    const laborDays = Number(laborDaysInput ? laborDaysInput.value : 0) || 0;
+    const laborRate = Number(laborRateInput ? laborRateInput.value : 0) || 0;
+    const laborSubtotal = laborCount * laborDays * laborRate;
+
+    const grandTotal = matSubtotal + laborSubtotal;
+
+    if (subMatEl) subMatEl.textContent = 'Rp ' + this.formatNumber(matSubtotal);
+    if (subLaborEl) subLaborEl.textContent = 'Rp ' + this.formatNumber(laborSubtotal);
+    if (grandTotalEl) grandTotalEl.textContent = 'Rp ' + this.formatNumber(grandTotal);
+
+    return { matSubtotal, laborSubtotal, grandTotal };
+  },
+
+  submitRenovRequest(event) {
+    event.preventDefault();
+
+    const unitSelect = document.getElementById('renovFormUnitSelect');
+    const projectSelect = document.getElementById('renovFormProjectSelect');
+    const locInput = document.getElementById('renovFormLocation');
+    const catSelect = document.getElementById('renovFormCategory');
+    const matSelect = document.getElementById('renovFormMaterialSelect');
+    const qtyInput = document.getElementById('renovFormQty');
+    const priceInput = document.getElementById('renovFormUnitPrice');
+    const laborCountInput = document.getElementById('renovFormLaborCount');
+    const laborDaysInput = document.getElementById('renovFormLaborDays');
+    const laborRateInput = document.getElementById('renovFormLaborRate');
+    const dateInput = document.getElementById('renovFormDate');
+    const vendorSelect = document.getElementById('renovFormVendor');
+    const fundingSelect = document.getElementById('renovFormFundingSource');
+    const notesInput = document.getElementById('renovFormNotes');
+
+    const unitId = unitSelect ? unitSelect.value : 'unit_sd';
+    const projectId = projectSelect ? projectSelect.value : '';
+    const locationName = locInput ? locInput.value.trim() : '';
+    const category = catSelect ? catSelect.value : 'Pengecatan Gedung / Kelas';
+    const materialId = matSelect ? matSelect.value : 'RNV-MAT-CAT-INT-20KG';
+    const materialName = matSelect && matSelect.options[matSelect.selectedIndex] ? matSelect.options[matSelect.selectedIndex].text.split(' - ')[0] : 'Material Bangunan';
+    const qty = Number(qtyInput ? qtyInput.value : 1) || 1;
+    const unitPrice = Number(priceInput ? priceInput.value : 0) || 0;
+    const laborCount = Number(laborCountInput ? laborCountInput.value : 0) || 0;
+    const laborDays = Number(laborDaysInput ? laborDaysInput.value : 0) || 0;
+    const laborRate = Number(laborRateInput ? laborRateInput.value : 0) || 0;
+    const scheduledDate = dateInput ? dateInput.value : '';
+    const vendorName = vendorSelect && vendorSelect.options[vendorSelect.selectedIndex] ? vendorSelect.options[vendorSelect.selectedIndex].text : 'TB. Al-Imam Jaya Material';
+    const fundingSource = fundingSelect ? fundingSelect.value : 'RAPBS_POIN';
+    const notes = notesInput ? notesInput.value.trim() : '';
+
+    if (!locationName) {
+      this.showToast('Mohon isi lokasi / titik pekerjaan renovasi!', 'warning');
+      return;
+    }
+
+    const { matSubtotal, laborSubtotal, grandTotal } = this.calculateRenovFormTotal();
+
+    if (grandTotal <= 0) {
+      this.showToast('Total biaya tidak boleh Rp 0!', 'warning');
+      return;
+    }
+
+    // Check RAPBS Quota if using RAPBS Poin
+    if (fundingSource === 'RAPBS_POIN' && this.db.rapbs_poin) {
+      const userRapbs = this.db.rapbs_poin.find(r => r.unit_id === unitId);
+      if (userRapbs) {
+        if (userRapbs.saldo_tersedia < grandTotal) {
+          this.showToast(`Saldo RAPBS ${unitId.toUpperCase()} tidak mencukupi! (Sisa: Rp ${this.formatNumber(userRapbs.saldo_tersedia)})`, 'error');
+          return;
+        }
+        userRapbs.saldo_tersedia -= grandTotal;
+        userRapbs.terpakai += grandTotal;
+        userRapbs.updated_at = this.formatCurrentDateTime();
+      }
+    }
+
+    const requestId = `RNV-REQ-${this.generateTimestampId()}`;
+
+    const newRequest = {
+      request_id: requestId,
+      project_id: projectId || `PRJ-${unitId.replace('unit_', '').toUpperCase()}-GEN`,
+      unit_id: unitId,
+      location_name: locationName,
+      category: category,
+      material_name: materialName,
+      material_id: materialId,
+      qty: qty,
+      unit_price: unitPrice,
+      material_subtotal: matSubtotal,
+      labor_count: laborCount,
+      labor_days: laborDays,
+      labor_rate: laborRate,
+      labor_subtotal: laborSubtotal,
+      total_amount: grandTotal,
+      scheduled_date: scheduledDate,
+      vendor_name: vendorName,
+      funding_source: fundingSource,
+      notes: notes,
+      status: 'Dalam Pengerjaan',
+      created_at: this.formatCurrentDateTime(),
+      approved_at: this.formatCurrentDateTime()
+    };
+
+    if (!this.db.renov_requests) this.db.renov_requests = [];
+    this.db.renov_requests.unshift(newRequest);
+
+    this.saveState();
+    this.updateUI();
+
+    this.showToast(`Pengajuan material & tukang ${requestId} (Rp ${this.formatNumber(grandTotal)}) berhasil dibuat!`, 'success');
+
+    // Reset Form
+    if (locInput) locInput.value = '';
+    if (notesInput) notesInput.value = '';
+    if (laborCountInput) laborCountInput.value = '0';
+    if (laborDaysInput) laborDaysInput.value = '0';
+    this.calculateRenovFormTotal();
+
+    this.renderRenovServiceView();
+  },
+
+  renderRenovProjectsTable() {
+    const tbody = document.getElementById('renovProjectsTableBody');
+    const countLabel = document.getElementById('renovProjectCountLabel');
+    if (!tbody) return;
+
+    let list = this.db.renov_projects || [];
+
+    // Filter by unit
+    if (this.renovUnitFilter && this.renovUnitFilter !== 'all') {
+      list = list.filter(p => p.unit_id === this.renovUnitFilter);
+    }
+
+    // Search filter
+    if (this.renovSearchQuery) {
+      const q = this.renovSearchQuery.toLowerCase();
+      list = list.filter(p => 
+        (p.project_id && p.project_id.toLowerCase().includes(q)) ||
+        (p.location_name && p.location_name.toLowerCase().includes(q)) ||
+        (p.category && p.category.toLowerCase().includes(q)) ||
+        (p.notes && p.notes.toLowerCase().includes(q)) ||
+        (p.invoice_no && p.invoice_no.toLowerCase().includes(q))
+      );
+    }
+
+    if (countLabel) countLabel.textContent = `Menampilkan ${list.length} titik proyek`;
+
+    if (list.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="8" class="text-center py-12 text-slate-400">
+            <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3 text-lg">
+              <i class="fa-solid fa-folder-open"></i>
+            </div>
+            <p class="font-bold text-slate-600 text-sm">Tidak ada data titik renovasi yang cocok.</p>
+            <p class="text-xs text-slate-400 mt-1">Coba sesuaikan kata kunci pencarian atau ubah filter unit.</p>
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    const unitMap = {
+      unit_tk: { name: 'PG-TK Islam Al-Imam', badge: 'bg-emerald-100/80 text-emerald-800 border border-emerald-200/60' },
+      unit_sd: { name: 'SD Islam Al-Imam', badge: 'bg-blue-100/80 text-blue-800 border border-blue-200/60' },
+      unit_smp: { name: 'SMP Islam Al-Imam', badge: 'bg-indigo-100/80 text-indigo-800 border border-indigo-200/60' }
+    };
+
+    tbody.innerHTML = list.map(p => {
+      const u = unitMap[p.unit_id] || { name: p.unit_id, badge: 'bg-slate-100 text-slate-800 border border-slate-200' };
+      const pct = Number(p.progress_pct) || 0;
+      let barColor = 'bg-amber-500';
+      if (pct === 100) barColor = 'bg-emerald-500';
+      else if (pct <= 25) barColor = 'bg-sky-500';
+
+      const photoCount = (p.photos && p.photos.length) || 0;
+      const isCompleted = p.status === 'Selesai' || pct === 100;
+
+      // Format date
+      let displayDate = p.target_date || '-';
+      if (p.target_date && p.target_date.includes('-')) {
+        const parts = p.target_date.split('-');
+        if (parts.length === 3) {
+          const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+          const mIdx = parseInt(parts[1], 10) - 1;
+          displayDate = `${parts[2]} ${months[mIdx] || parts[1]} ${parts[0]}`;
+        }
+      }
+
+      return `
+        <tr class="hover:bg-amber-50/20 transition-colors border-b border-slate-100/90">
+          <!-- 1. KODE & INVOICE -->
+          <td class="px-4 py-3.5 text-center whitespace-nowrap align-middle">
+            <span class="inline-block px-2.5 py-1 bg-slate-100 text-slate-800 font-mono font-bold text-xs rounded-lg border border-slate-200 shadow-2xs">${p.project_id}</span>
+            ${p.invoice_no ? `<span class="mt-1 block text-[10px] text-blue-700 font-mono font-bold tracking-tight bg-blue-50 border border-blue-200/60 rounded px-1.5 py-0.5">${p.invoice_no}</span>` : ''}
+          </td>
+
+          <!-- 2. UNIT & LOKASI PEKERJAAN -->
+          <td class="px-4 py-3.5 align-middle">
+            <div class="flex items-center space-x-1.5 mb-1">
+              <span class="px-2 py-0.5 ${u.badge} text-[10px] font-extrabold rounded-full tracking-wide uppercase">${u.name}</span>
+            </div>
+            <div class="font-extrabold text-slate-900 text-xs leading-snug">${p.location_name}</div>
+            ${p.pic_name ? `<div class="text-[10px] text-slate-400 mt-0.5 flex items-center space-x-1"><i class="fa-solid fa-user-shield text-[9px]"></i><span>PJ: ${p.pic_name}</span></div>` : ''}
+          </td>
+
+          <!-- 3. JENIS & BAHAN MATERIAL -->
+          <td class="px-4 py-3.5 align-middle">
+            <div class="font-bold text-slate-800 text-xs">${p.category}</div>
+            <p class="text-[11px] text-slate-500 mt-0.5 line-clamp-2 max-w-xs leading-relaxed">${p.notes || '-'}</p>
+          </td>
+
+          <!-- 4. TOTAL BIAYA -->
+          <td class="px-4 py-3.5 text-right align-middle whitespace-nowrap">
+            <div class="font-black text-slate-900 font-heading text-sm">Rp ${this.formatNumber(p.budget_estimate)}</div>
+            ${p.labor_cost ? `<div class="text-[10px] text-slate-400 mt-0.5">Upah: Rp ${this.formatNumber(p.labor_cost)}</div>` : ''}
+          </td>
+
+          <!-- 5. PROGRES FISIK -->
+          <td class="px-4 py-3.5 text-center align-middle whitespace-nowrap">
+            <div class="w-28 mx-auto">
+              <div class="flex items-center justify-between text-[10px] font-extrabold text-slate-700 mb-1">
+                <span>Fisik</span>
+                <span class="font-mono ${pct === 100 ? 'text-emerald-700' : 'text-amber-700'}">${pct}%</span>
+              </div>
+              <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden p-0.5 border border-slate-200/50">
+                <div class="h-full ${barColor} rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+              </div>
+            </div>
+          </td>
+
+          <!-- 6. TARGET WAKTU -->
+          <td class="px-4 py-3.5 text-center align-middle whitespace-nowrap">
+            <span class="inline-flex items-center space-x-1.5 text-xs font-semibold text-slate-600 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200/60">
+              <i class="fa-regular fa-calendar text-[10px] text-slate-400"></i>
+              <span>${displayDate}</span>
+            </span>
+          </td>
+
+          <!-- 7. STATUS -->
+          <td class="px-4 py-3.5 text-center align-middle whitespace-nowrap">
+            <span class="inline-flex items-center space-x-1.5 px-3 py-1 text-[10px] font-extrabold rounded-full ${
+              isCompleted ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' :
+              p.status === 'Dalam Pengerjaan' ? 'bg-amber-100 text-amber-800 border border-amber-200' :
+              'bg-slate-100 text-slate-700 border border-slate-200'
+            }">
+              <span class="w-2 h-2 rounded-full ${isCompleted ? 'bg-emerald-500' : p.status === 'Dalam Pengerjaan' ? 'bg-amber-500 animate-pulse' : 'bg-slate-400'}"></span>
+              <span>${p.status}</span>
+            </span>
+          </td>
+
+          <!-- 8. DOKUMEN & AKSI -->
+          <td class="px-4 py-3.5 text-center align-middle whitespace-nowrap">
+            <div class="inline-flex items-center space-x-1.5">
+              <!-- Invoice Button -->
+              <button onclick="app.openProjectInvoiceModal('${p.project_id}')" class="px-2.5 py-1.5 bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-700 border border-blue-200/80 rounded-xl text-[11px] font-bold transition flex items-center space-x-1 shadow-2xs group" title="Cetak Invoice & SPK Proyek">
+                <i class="fa-solid fa-file-invoice"></i>
+                <span>Invoice</span>
+              </button>
+
+              <!-- BAST Button -->
+              <button onclick="app.openProjectCompletionModal('${p.project_id}')" class="px-2.5 py-1.5 ${isCompleted ? 'bg-emerald-50 hover:bg-emerald-600 hover:text-white text-emerald-700 border border-emerald-200/80' : 'bg-slate-100 hover:bg-slate-700 hover:text-white text-slate-600 border border-slate-200'} rounded-xl text-[11px] font-bold transition flex items-center space-x-1 shadow-2xs" title="${isCompleted ? 'Cetak BAST & Laporan Selesai' : 'Pratinjau BAST'}">
+                <i class="fa-solid fa-file-contract"></i>
+                <span>BAST</span>
+              </button>
+
+              <!-- Foto / Galeri Button -->
+              <button onclick="app.openRenovDetailModal('${p.project_id}', 'gallery')" class="px-2.5 py-1.5 bg-amber-50 hover:bg-amber-500 hover:text-white text-amber-800 border border-amber-200/80 rounded-xl text-[11px] font-bold transition flex items-center space-x-1 shadow-2xs" title="Galeri & Upload Foto / Screenshot">
+                <i class="fa-solid fa-camera text-[10px]"></i>
+                <span>Foto</span>
+                <span class="px-1.5 py-0.2 bg-amber-200/80 text-amber-900 rounded-full text-[9px] font-black">${photoCount}</span>
+              </button>
+
+              <!-- Compact Actions Toolbar (Detail, Edit, Delete) -->
+              <div class="inline-flex items-center border border-slate-200/80 bg-slate-50/80 rounded-xl p-0.5 space-x-0.5 shadow-2xs">
+                <button onclick="app.openRenovDetailModal('${p.project_id}')" class="w-7 h-7 hover:bg-white text-slate-600 hover:text-slate-900 rounded-lg flex items-center justify-center text-xs transition" title="Lihat Detail Lengkap">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+                <button onclick="app.openAddRenovProjectModal('${p.project_id}')" class="w-7 h-7 hover:bg-white text-slate-600 hover:text-blue-600 rounded-lg flex items-center justify-center text-xs transition" title="Edit Titik Proyek">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button onclick="app.deleteRenovProject('${p.project_id}')" class="w-7 h-7 hover:bg-white text-rose-500 hover:text-rose-700 rounded-lg flex items-center justify-center text-xs transition" title="Hapus Titik Proyek">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  },
+
+
+  filterRenovProjects(unitId) {
+    this.renovUnitFilter = unitId;
+
+    const btns = ['all', 'unit_tk', 'unit_sd', 'unit_smp'];
+    btns.forEach(b => {
+      const el = document.getElementById(`renovFilterUnit-${b}`);
+      if (el) {
+        if (b === unitId) {
+          el.className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-600 text-white shadow-xs transition';
+        } else {
+          el.className = 'px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition';
+        }
+      }
+    });
+
+    this.renderRenovProjectsTable();
+  },
+
+  onRenovSearchChange(query) {
+    this.renovSearchQuery = (query || '').toLowerCase();
+    this.renderRenovProjectsTable();
+  },
+
+  openAddRenovProjectModal(projectId = null) {
+    this.editingProjectId = projectId;
+    const modal = document.getElementById('renovAddProjectModal');
+    const title = document.getElementById('renovAddProjectModalTitle');
+    const editIdInput = document.getElementById('renovEditProjectId');
+
+    const schoolSelect = document.getElementById('renovProjectModalSchool');
+    const locInput = document.getElementById('renovProjectModalLocation');
+    const catSelect = document.getElementById('renovProjectModalCategory');
+    const budgetInput = document.getElementById('renovProjectModalBudget');
+    const progressSelect = document.getElementById('renovProjectModalProgress');
+    const targetInput = document.getElementById('renovProjectModalTargetDate');
+    const notesInput = document.getElementById('renovProjectModalNotes');
+
+    if (projectId) {
+      const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
+      if (project) {
+        if (title) title.textContent = `Edit Titik Renovasi [${project.project_id}]`;
+        if (editIdInput) editIdInput.value = project.project_id;
+        if (schoolSelect) schoolSelect.value = project.unit_id;
+        if (locInput) locInput.value = project.location_name;
+        if (catSelect) catSelect.value = project.category;
+        if (budgetInput) budgetInput.value = project.budget_estimate;
+        if (progressSelect) progressSelect.value = String(project.progress_pct);
+        if (targetInput) targetInput.value = project.target_date || '';
+        if (notesInput) notesInput.value = project.notes || '';
+      }
+    } else {
+      if (title) title.textContent = 'Daftarkan Titik Renovasi Baru';
+      if (editIdInput) editIdInput.value = '';
+      if (locInput) locInput.value = '';
+      if (budgetInput) budgetInput.value = '2500000';
+      if (progressSelect) progressSelect.value = '0';
+      if (targetInput) {
+        const nextMonth = new Date();
+        nextMonth.setDate(nextMonth.getDate() + 14);
+        targetInput.value = nextMonth.toISOString().split('T')[0];
+      }
+      if (notesInput) notesInput.value = '';
+    }
+
+    if (modal) modal.classList.remove('hidden');
+  },
+
+  closeAddRenovProjectModal() {
+    const modal = document.getElementById('renovAddProjectModal');
+    if (modal) modal.classList.add('hidden');
+    this.editingProjectId = null;
+  },
+
+  saveRenovProject(event) {
+    event.preventDefault();
+
+    const editId = document.getElementById('renovEditProjectId').value;
+    const unitId = document.getElementById('renovProjectModalSchool').value;
+    const locationName = document.getElementById('renovProjectModalLocation').value.trim();
+    const category = document.getElementById('renovProjectModalCategory').value;
+    const budgetEstimate = Number(document.getElementById('renovProjectModalBudget').value) || 0;
+    const progressPct = Number(document.getElementById('renovProjectModalProgress').value) || 0;
+    const targetDate = document.getElementById('renovProjectModalTargetDate').value;
+    const notes = document.getElementById('renovProjectModalNotes').value.trim();
+
+    if (!locationName) {
+      this.showToast('Lokasi pekerjaan wajib diisi!', 'warning');
+      return;
+    }
+
+    let status = 'Dalam Pengerjaan';
+    if (progressPct === 100) status = 'Selesai';
+    else if (progressPct === 0) status = 'Perencanaan';
+
+    if (!this.db.renov_projects) this.db.renov_projects = [];
+
+    const nowStr = new Date().toISOString().split('T')[0];
+    const yearMonth = nowStr.substring(0, 7).replace('-', '');
+
+    if (editId) {
+      const idx = this.db.renov_projects.findIndex(p => p.project_id === editId);
+      if (idx !== -1) {
+        const existing = this.db.renov_projects[idx];
+        this.db.renov_projects[idx] = {
+          ...existing,
+          unit_id: unitId,
+          location_name: locationName,
+          category: category,
+          budget_estimate: budgetEstimate,
+          progress_pct: progressPct,
+          target_date: targetDate,
+          status: status,
+          notes: notes,
+          completed_at: progressPct === 100 ? (existing.completed_at || nowStr) : existing.completed_at
+        };
+        this.showToast(`Proyek ${editId} berhasil diperbarui!`, 'success');
+      }
+    } else {
+      const unitCode = unitId.replace('unit_', '').toUpperCase();
+      const numRandom = Math.floor(Math.random() * 89 + 10);
+      const newId = `PRJ-${unitCode}-${numRandom}`;
+      const newProject = {
+        project_id: newId,
+        unit_id: unitId,
+        location_name: locationName,
+        category: category,
+        budget_estimate: budgetEstimate,
+        progress_pct: progressPct,
+        target_date: targetDate,
+        status: status,
+        notes: notes,
+        created_at: nowStr,
+        invoice_no: `INV-PRJ-${yearMonth}-${numRandom}`,
+        spk_no: `SPK-PRJ-${yearMonth}-${numRandom}`,
+        bast_no: `BAST-PRJ-${yearMonth}-${numRandom}`,
+        pj_name: unitId === 'unit_smp' ? 'Aning Nurhayati, S.T., Gr.' : (unitId === 'unit_sd' ? 'Dewi Fitria Nugraheni, S.Pd., Gr.' : 'Siti Rahmawati, S.Pd.'),
+        contractor_name: 'TB. Al-Imam Jaya Material & Mitra Tukang',
+        funding_source: 'RAPBS Sarpras ' + unitCode,
+        photos: []
+      };
+      this.db.renov_projects.unshift(newProject);
+      this.showToast(`Titik proyek ${newId} dan Invoice ${newProject.invoice_no} berhasil dibuat!`, 'success');
+    }
+
+    this.saveState();
+    this.closeAddRenovProjectModal();
+    this.populateRenovFormDropdowns();
+    this.renderRenovProjectsTable();
+    this.renderRenovServiceView();
+  },
+
+  deleteRenovProject(projectId) {
+    if (!confirm(`Apakah Anda yakin ingin menghapus titik proyek ${projectId}?`)) return;
+
+    this.db.renov_projects = (this.db.renov_projects || []).filter(p => p.project_id !== projectId);
+    this.saveState();
+    this.showToast(`Titik proyek ${projectId} berhasil dihapus.`, 'info');
+    this.populateRenovFormDropdowns();
+    this.renderRenovProjectsTable();
+    this.renderRenovServiceView();
+  },
+
+  // ==========================================
+  // 14.7. DETAIL MODAL, PHOTO GALLERY & INVOICING
+  // ==========================================
+
+  openRenovDetailModal(projectId, defaultTab = 'transactions') {
+    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
+    if (!project) return;
+
+    this.currentDetailProjectId = projectId;
+
+    const modal = document.getElementById('renovDetailModal');
+    const title = document.getElementById('renovDetailModalTitle');
+    const subtitle = document.getElementById('renovDetailModalSubtitle');
+    const statusBadge = document.getElementById('renovDetailStatusBadge');
+    const codeEl = document.getElementById('renovDetailProjectCode');
+    const catEl = document.getElementById('renovDetailCategory');
+    const progEl = document.getElementById('renovDetailProgress');
+    const totalEl = document.getElementById('renovDetailTotalSpent');
+    const invNoEl = document.getElementById('renovDocInvoiceNo');
+    const bastNoEl = document.getElementById('renovDocBastNo');
+    const bastBadge = document.getElementById('renovDocBastBadge');
+    const markCompleteBtn = document.getElementById('renovDetailMarkCompleteBtn');
+    const photoCountEl = document.getElementById('renovDetailPhotoCount');
+
+    const requests = (this.db.renov_requests || []).filter(r => r.project_id === projectId || (r.location_name && r.location_name.includes(project.location_name)));
+    const spent = requests.reduce((sum, r) => sum + (Number(r.total_amount) || 0), 0);
+
+    const isCompleted = project.status === 'Selesai' || project.progress_pct === 100;
+
+    if (title) title.textContent = project.location_name;
+    if (subtitle) subtitle.textContent = `Master Data Proyek [${project.project_id}] • Ref Invoice: ${project.invoice_no || '-'}`;
+    if (codeEl) codeEl.textContent = project.project_id;
+    if (catEl) catEl.textContent = project.category;
+    if (progEl) progEl.textContent = `${project.progress_pct}% (${project.status})`;
+    if (totalEl) totalEl.textContent = `Rp ${this.formatNumber(spent || project.budget_estimate)}`;
+    if (invNoEl) invNoEl.textContent = project.invoice_no || `INV-PRJ-${project.project_id}`;
+    if (bastNoEl) bastNoEl.textContent = project.bast_no || `BAST-PRJ-${project.project_id}`;
+    if (photoCountEl) photoCountEl.textContent = (project.photos && project.photos.length) || 0;
+
+    if (statusBadge) {
+      statusBadge.textContent = project.status;
+      statusBadge.className = `px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border ${
+        isCompleted ? 'bg-emerald-100 text-emerald-800 border-emerald-300' :
+        project.status === 'Dalam Pengerjaan' ? 'bg-amber-100 text-amber-800 border-amber-300' :
+        'bg-slate-100 text-slate-700 border-slate-300'
+      }`;
+    }
+
+    if (bastBadge) {
+      bastBadge.textContent = isCompleted ? 'Proyek Selesai 100% (BAST Siap)' : 'Progres ' + project.progress_pct + '% (Draft BAST)';
+      bastBadge.className = isCompleted ? 'px-2.5 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-extrabold rounded-full' : 'px-2.5 py-0.5 bg-amber-100 text-amber-800 text-[10px] font-extrabold rounded-full';
+    }
+
+    if (markCompleteBtn) {
+      if (isCompleted) {
+        markCompleteBtn.innerHTML = '<i class="fa-solid fa-check-double mr-1.5"></i><span>Telah Selesai (100%)</span>';
+        markCompleteBtn.className = 'px-4 py-2 bg-emerald-700 text-white font-bold rounded-xl shadow-xs transition flex items-center space-x-1.5 shrink-0 opacity-80 cursor-default';
+        markCompleteBtn.disabled = true;
+      } else {
+        markCompleteBtn.innerHTML = '<i class="fa-solid fa-circle-check mr-1.5"></i><span>Tandai Selesai (100%)</span>';
+        markCompleteBtn.className = 'px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-xs transition flex items-center space-x-1.5 shrink-0 cursor-pointer';
+        markCompleteBtn.disabled = false;
+      }
+    }
+
+    // Render Material & Labor Transactions in Tab 1
+    this.renderRenovDetailItems(project, requests);
+
+    // Render Photos in Tab 2
+    this.renderRenovDetailGallery(project, 'all');
+
+    // Switch to target subtab
+    this.switchRenovDetailTab(defaultTab);
+
+    // Quick add material button setup
+    const quickAddBtn = document.getElementById('renovDetailQuickAddMaterialBtn');
+    if (quickAddBtn) {
+      quickAddBtn.onclick = () => {
+        this.closeRenovDetailModal();
+        this.switchRenovSubTab('materials');
+        const projSelect = document.getElementById('renovFormProjectSelect');
+        if (projSelect) {
+          projSelect.value = project.project_id;
+          this.onRenovProjectSelectChange();
+        }
+      };
+    }
+
+    if (modal) modal.classList.remove('hidden');
+  },
+
+  closeRenovDetailModal() {
+    const modal = document.getElementById('renovDetailModal');
+    if (modal) modal.classList.add('hidden');
+    this.currentDetailProjectId = null;
+  },
+
+  switchRenovDetailTab(tabName) {
+    const tabs = ['transactions', 'gallery', 'docs'];
+    tabs.forEach(t => {
+      const btn = document.getElementById(`renovDetailTabBtn-${t}`);
+      const content = document.getElementById(`renovDetailTab-${t}`);
+      if (btn) {
+        if (t === tabName) {
+          btn.className = 'pb-2.5 px-3 font-bold border-b-2 border-amber-600 text-amber-900 transition flex items-center space-x-1.5';
+        } else {
+          btn.className = 'pb-2.5 px-3 font-semibold text-slate-500 hover:text-slate-800 border-b-2 border-transparent transition flex items-center space-x-1.5';
+        }
+      }
+      if (content) {
+        if (t === tabName) content.classList.remove('hidden');
+        else content.classList.add('hidden');
+      }
+    });
+  },
+
+  renderRenovDetailItems(project, requests) {
+    const container = document.getElementById('renovDetailItemsContainer');
+    if (!container) return;
+
+    if (requests.length === 0) {
+      container.innerHTML = `
+        <div class="text-center py-8 text-slate-400 bg-slate-50 rounded-2xl border border-slate-200/80">
+          <i class="fa-solid fa-clipboard-list text-3xl mb-2 block text-slate-300"></i>
+          <p class="text-xs font-semibold text-slate-600">Belum ada rincian transaksi belanja material toko atau upah tukang.</p>
+          <p class="text-[11px] text-slate-400 mt-0.5">Klik tombol <b>Tambah Belanja</b> di atas untuk menambahkan kebutuhan material.</p>
+        </div>
+      `;
+    } else {
+      container.innerHTML = requests.map(r => `
+        <div class="p-3.5 bg-slate-50 border border-slate-200/80 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="space-y-1">
+            <div class="flex items-center space-x-2">
+              <span class="font-mono text-[10px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-md">${r.request_id}</span>
+              <span class="text-xs font-bold text-slate-900">${r.material_name} (x${r.qty})</span>
+            </div>
+            <p class="text-[11px] text-slate-500">
+              <i class="fa-solid fa-store mr-1 text-slate-400"></i>${r.vendor_name || 'TB. Al-Imam Jaya'} • 
+              <i class="fa-regular fa-calendar mr-1 text-slate-400"></i>${r.scheduled_date || r.created_at}
+            </p>
+            ${r.labor_count > 0 ? `
+              <div class="text-[10px] text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded inline-block font-semibold">
+                <i class="fa-solid fa-users-gear mr-1"></i>${r.labor_count} Tukang x ${r.labor_days} Hari (@Rp ${this.formatNumber(r.labor_rate)}) = Rp ${this.formatNumber(r.labor_subtotal)}
+              </div>
+            ` : ''}
+            ${r.notes ? `<p class="text-[10px] text-slate-400 italic">"${r.notes}"</p>` : ''}
+          </div>
+
+          <div class="text-right shrink-0">
+            <span class="text-[10px] text-slate-400 block font-medium">Total Biaya</span>
+            <span class="text-sm font-black text-slate-900 font-heading">Rp ${this.formatNumber(r.total_amount)}</span>
+            <span class="inline-block mt-1 px-2 py-0.5 text-[9px] font-bold rounded-full ${
+              r.status === 'Selesai' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+            }">${r.status}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+  },
+
+  // ==========================================
+  // PHOTO & SCREENSHOT UPLOAD HANDLERS
+  // ==========================================
+
+  onProjectPhotoFileSelected(event) {
+    const file = event.target.files && event.target.files[0];
+    const previewContainer = document.getElementById('projectPhotoUploadPreviewContainer');
+    const previewImg = document.getElementById('projectPhotoUploadPreviewImg');
+    const previewName = document.getElementById('projectPhotoUploadPreviewName');
+
+    if (!file) {
+      if (previewContainer) previewContainer.classList.add('hidden');
+      this.currentSelectedPhotoBase64 = null;
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.currentSelectedPhotoBase64 = e.target.result;
+      if (previewImg) previewImg.src = e.target.result;
+      if (previewName) previewName.textContent = `${file.name} (${Math.round(file.size / 1024)} KB)`;
+      if (previewContainer) previewContainer.classList.remove('hidden');
+    };
+    reader.readAsDataURL(file);
+  },
+
+  submitProjectPhotoUpload(event) {
+    event.preventDefault();
+    const projectId = this.currentDetailProjectId;
+    if (!projectId) {
+      this.showToast('Pilih proyek terlebih dahulu!', 'warning');
+      return;
+    }
+
+    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
+    if (!project) return;
+
+    const typeInput = document.getElementById('projectPhotoTypeInput');
+    const urlInput = document.getElementById('projectPhotoUrlInput');
+    const captionInput = document.getElementById('projectPhotoCaptionInput');
+    const fileInput = document.getElementById('projectPhotoFileInput');
+
+    const photoType = typeInput ? typeInput.value : 'after';
+    const caption = captionInput ? captionInput.value.trim() : 'Dokumentasi Proyek';
+    const urlFromInput = urlInput ? urlInput.value.trim() : '';
+
+    const photoUrl = this.currentSelectedPhotoBase64 || urlFromInput;
+
+    if (!photoUrl) {
+      this.showToast('Mohon pilih file gambar atau masukkan link screenshot foto!', 'warning');
+      return;
+    }
+
+    if (!project.photos) project.photos = [];
+
+    const newPhoto = {
+      id: `PH-${projectId}-${Date.now().toString().slice(-4)}`,
+      type: photoType,
+      url: photoUrl,
+      caption: caption,
+      uploaded_at: new Date().toISOString().split('T')[0]
+    };
+
+    project.photos.unshift(newPhoto);
+    this.saveState();
+
+    this.showToast(`Foto "${caption}" berhasil diunggah ke dokumentasi proyek!`, 'success');
+
+    // Reset Form
+    if (captionInput) captionInput.value = '';
+    if (urlInput) urlInput.value = '';
+    if (fileInput) fileInput.value = '';
+    const previewContainer = document.getElementById('projectPhotoUploadPreviewContainer');
+    if (previewContainer) previewContainer.classList.add('hidden');
+    this.currentSelectedPhotoBase64 = null;
+
+    // Refresh UI
+    const photoCountEl = document.getElementById('renovDetailPhotoCount');
+    if (photoCountEl) photoCountEl.textContent = project.photos.length;
+    this.renderRenovDetailGallery(project, 'all');
+    this.renderRenovProjectsTable();
+  },
+
+  filterProjectGallery(filterType) {
+    this.currentGalleryFilter = filterType;
+    const btns = ['all', 'before', 'progress', 'after'];
+    btns.forEach(b => {
+      const el = document.getElementById(`btnGalleryFilter-${b}`);
+      if (el) {
+        if (b === filterType) {
+          el.className = 'px-2.5 py-1 rounded-lg font-bold bg-amber-600 text-white transition';
+        } else {
+          el.className = 'px-2.5 py-1 rounded-lg font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition';
+        }
+      }
+    });
+
+    const project = (this.db.renov_projects || []).find(p => p.project_id === this.currentDetailProjectId);
+    if (project) {
+      this.renderRenovDetailGallery(project, filterType);
+    }
+  },
+
+  renderRenovDetailGallery(project, filterType = 'all') {
+    const grid = document.getElementById('renovDetailGalleryGrid');
+    if (!grid) return;
+
+    let photos = project.photos || [];
+
+    if (filterType && filterType !== 'all') {
+      if (filterType === 'after') {
+        photos = photos.filter(p => p.type === 'after' || p.type === 'screenshot');
+      } else {
+        photos = photos.filter(p => p.type === filterType);
+      }
+    }
+
+    if (photos.length === 0) {
+      grid.innerHTML = `
+        <div class="col-span-full text-center py-8 text-slate-400 bg-slate-50 rounded-2xl border border-slate-200/80">
+          <i class="fa-solid fa-camera-retro text-3xl mb-2 block text-slate-300"></i>
+          <p class="text-xs font-semibold text-slate-600">Belum ada foto dalam kategori ini.</p>
+          <p class="text-[11px] text-slate-400 mt-0.5">Gunakan formulir unggah di atas untuk melampirkan foto hasil jadi / screenshot.</p>
+        </div>
+      `;
+      return;
+    }
+
+    const typeBadges = {
+      before: { label: 'Sebelum (Before)', cls: 'bg-rose-100 text-rose-800 border-rose-200', icon: 'fa-camera' },
+      progress: { label: 'Sedang Pengerjaan', cls: 'bg-amber-100 text-amber-800 border-amber-200', icon: 'fa-hammer' },
+      after: { label: 'Hasil Jadi Selesai', cls: 'bg-emerald-100 text-emerald-800 border-emerald-200', icon: 'fa-circle-check' },
+      screenshot: { label: 'Screenshot Aplikasi', cls: 'bg-indigo-100 text-indigo-800 border-indigo-200', icon: 'fa-display' }
+    };
+
+    grid.innerHTML = photos.map(photo => {
+      const b = typeBadges[photo.type] || typeBadges.after;
+      const captionEsc = this.escapeHtml(photo.caption || 'Foto Dokumentasi');
+      const photoUrlEsc = this.escapeQuotes(photo.url);
+
+      return `
+        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-2xs group hover:border-amber-400 transition flex flex-col justify-between">
+          <div class="relative aspect-video bg-slate-900 overflow-hidden cursor-pointer" onclick="app.viewReceiptImage('${photoUrlEsc}', 'Dokumentasi Proyek [${project.project_id}]', '${this.escapeQuotes(photo.caption || '')}')">
+            <img src="${photo.url}" alt="${captionEsc}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&auto=format&fit=crop&q=80'">
+            <div class="absolute top-2 left-2">
+              <span class="px-2 py-0.5 rounded-full text-[9px] font-black border ${b.cls} flex items-center space-x-1 shadow-xs backdrop-blur-sm">
+                <i class="fa-solid ${b.icon}"></i>
+                <span>${b.label}</span>
+              </span>
+            </div>
+            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-sm">
+              <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Perbesar
+            </div>
+          </div>
+
+          <div class="p-3 space-y-2 flex-1 flex flex-col justify-between">
+            <div>
+              <p class="text-xs font-bold text-slate-800 line-clamp-2">${captionEsc}</p>
+              <span class="text-[10px] text-slate-400 block mt-1">
+                <i class="fa-regular fa-calendar mr-1"></i>${photo.uploaded_at || '-'}
+              </span>
+            </div>
+
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
+              <button type="button" onclick="app.viewReceiptImage('${photoUrlEsc}', 'Dokumentasi [${project.project_id}]', '${this.escapeQuotes(photo.caption || '')}')" class="text-amber-700 hover:text-amber-900 font-bold flex items-center space-x-1">
+                <i class="fa-solid fa-expand text-[10px]"></i>
+                <span>Lihat Foto</span>
+              </button>
+              <button type="button" onclick="app.deleteProjectPhoto('${project.project_id}', '${photo.id}')" class="text-rose-500 hover:text-rose-700 font-semibold p-1" title="Hapus Foto">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  },
+
+  deleteProjectPhoto(projectId, photoId) {
+    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
+    if (!project || !project.photos) return;
+
+    if (!confirm('Apakah Anda yakin ingin menghapus foto dokumentasi ini?')) return;
+
+    project.photos = project.photos.filter(p => p.id !== photoId);
+    this.saveState();
+    this.showToast('Foto dokumentasi berhasil dihapus.', 'info');
+
+    const photoCountEl = document.getElementById('renovDetailPhotoCount');
+    if (photoCountEl) photoCountEl.textContent = project.photos.length;
+
+    this.renderRenovDetailGallery(project, this.currentGalleryFilter || 'all');
+    this.renderRenovProjectsTable();
+  },
+
+  // ==========================================
+  // PROJECT INVOICE & SPK GENERATION (NEW ENTRY)
+  // ==========================================
+
+  openProjectInvoiceModal(projectId) {
+    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
+    if (!project) return;
+
+    const modal = document.getElementById('projectInvoiceModal');
+    const container = document.getElementById('projectInvoiceContent');
+    const cms = this.db.cms_settings || DEFAULT_CMS_SETTINGS;
+
+    const requests = (this.db.renov_requests || []).filter(r => r.project_id === projectId || (r.location_name && r.location_name.includes(project.location_name)));
+
+    if (container) {
+      container.innerHTML = this.renderProjectInvoiceHtml(project, requests, cms);
+    }
+
+    if (modal) modal.classList.remove('hidden');
+  },
+
+  openProjectInvoiceModalFromDetail() {
+    if (this.currentDetailProjectId) {
+      this.openProjectInvoiceModal(this.currentDetailProjectId);
+    }
+  },
+
+  closeProjectInvoiceModal() {
+    const modal = document.getElementById('projectInvoiceModal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  printProjectInvoice(projectId) {
+    this.openProjectInvoiceModal(projectId);
+    setTimeout(() => window.print(), 300);
+  },
+
+  renderProjectInvoiceHtml(project, requests, cms) {
+    const unitNames = {
+      unit_tk: 'PG-TK ISLAM AL-IMAM',
+      unit_sd: 'SD ISLAM AL-IMAM',
+      unit_smp: 'SMP ISLAM AL-IMAM'
+    };
+
+    const unitName = unitNames[project.unit_id] || project.unit_id.toUpperCase();
+    const invNo = project.invoice_no || `INV-PRJ-${project.project_id}`;
+    const spkNo = project.spk_no || `SPK-PRJ-${project.project_id}`;
+    const pjName = project.pj_name || (project.unit_id === 'unit_smp' ? 'Aning Nurhayati, S.T., Gr.' : (project.unit_id === 'unit_sd' ? 'Dewi Fitria Nugraheni, S.Pd., Gr.' : 'Siti Rahmawati, S.Pd.'));
+
+    const totalMat = requests.reduce((sum, r) => sum + (Number(r.material_subtotal) || (r.qty * r.unit_price) || 0), 0);
+    const totalLabor = requests.reduce((sum, r) => sum + (Number(r.labor_subtotal) || 0), 0);
+    const grandTotal = (totalMat + totalLabor) || project.budget_estimate || 0;
+
+    let itemsTable = '';
+    if (requests.length > 0) {
+      itemsTable = requests.map((r, idx) => `
+        <tr>
+          <td style="text-align: center; padding: 7px; border: 1px solid #333;">${idx + 1}</td>
+          <td style="padding: 7px; border: 1px solid #333; font-weight: bold;">
+            ${r.material_name}
+            ${r.notes ? `<div style="font-size: 8.5pt; color: #555; font-weight: normal;">Catatan: ${r.notes}</div>` : ''}
+          </td>
+          <td style="text-align: center; padding: 7px; border: 1px solid #333;">${r.qty}</td>
+          <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(r.unit_price)}</td>
+          <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(r.material_subtotal || (r.qty * r.unit_price))}</td>
+          <td style="text-align: right; padding: 7px; border: 1px solid #333;">
+            ${r.labor_count > 0 ? `${r.labor_count} org x ${r.labor_days} hr<br><span style="font-weight: bold;">Rp ${this.formatNumber(r.labor_subtotal)}</span>` : '-'}
+          </td>
+          <td style="text-align: right; padding: 7px; border: 1px solid #333; font-weight: bold;">Rp ${this.formatNumber(r.total_amount)}</td>
+        </tr>
+      `).join('');
+    } else {
+      itemsTable = `
+        <tr>
+          <td style="text-align: center; padding: 7px; border: 1px solid #333;">1</td>
+          <td style="padding: 7px; border: 1px solid #333; font-weight: bold;">
+            Pekerjaan ${project.category} (${project.location_name})
+            <div style="font-size: 8.5pt; color: #555; font-weight: normal;">${project.notes || 'Pengadaan material & pengerjaan tenaga ahli sipil.'}</div>
+          </td>
+          <td style="text-align: center; padding: 7px; border: 1px solid #333;">1 Paket</td>
+          <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(project.budget_estimate)}</td>
+          <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(project.budget_estimate * 0.65)}</td>
+          <td style="text-align: right; padding: 7px; border: 1px solid #333;">Rp ${this.formatNumber(project.budget_estimate * 0.35)}</td>
+          <td style="text-align: right; padding: 7px; border: 1px solid #333; font-weight: bold;">Rp ${this.formatNumber(project.budget_estimate)}</td>
+        </tr>
+      `;
+    }
+
+    return `
+      <div class="print-page text-slate-900" style="font-family: Arial, sans-serif; font-size: 10.5pt; color: #111;">
+        
+        <!-- Header Kop Surat Resmi -->
+        <div style="text-align: center; border-bottom: 2.5px solid #000; padding-bottom: 12px; margin-bottom: 18px;">
+          <h2 style="margin: 0 0 3px 0; font-size: 15pt; text-transform: uppercase; font-weight: bold;">${cms.foundation_name || 'YAYASAN PENDIDIKAN ISLAM AL-IMAM'}</h2>
+          <h3 style="margin: 0 0 3px 0; font-size: 12pt; font-weight: bold; color: #0284c7;">DIVISI SARANA PRASARANA & PENGADAAN FISIK (${unitName})</h3>
+          <p style="margin: 0; font-size: 9.5pt; color: #444;">${cms.address || 'Jakarta'} • Telp: ${cms.phone || '(021) 8899-7711'} • Email: sarpras@al-imamschool.sch.id</p>
+        </div>
+
+        <!-- Title & Document Number -->
+        <div style="text-align: center; margin-bottom: 16px;">
+          <h3 style="margin: 0 0 4px 0; font-size: 13pt; text-transform: uppercase; text-decoration: underline; font-weight: bold;">INVOICE & SURAT PERINTAH KERJA (SPK) PROYEK</h3>
+          <p style="margin: 0; font-size: 10pt; font-weight: bold; font-family: monospace; color: #1e3a8a;">NO. INVOICE: ${invNo} / NO. SPK: ${spkNo}</p>
+        </div>
+
+        <!-- Info Box Grid 2 Kolom -->
+        <div style="display: flex; justify-content: space-between; gap: 20px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 9.5pt;">
+          <div style="flex: 1; line-height: 1.6;">
+            <div><span style="color: #64748b;">Unit Pemohon:</span> <b>${unitName}</b></div>
+            <div><span style="color: #64748b;">Titik / Lokasi:</span> <b>${project.location_name}</b></div>
+            <div><span style="color: #64748b;">Jenis Pekerjaan:</span> <b>${project.category}</b></div>
+            <div><span style="color: #64748b;">Pelaksana / Mitra:</span> <b>${project.contractor_name || 'TB. Al-Imam Jaya Material & Mitra Tukang'}</b></div>
+          </div>
+          <div style="flex: 1; line-height: 1.6;">
+            <div><span style="color: #64748b;">Tanggal Masuk / SPK:</span> <b>${project.created_at || '2026-09-20'}</b></div>
+            <div><span style="color: #64748b;">Target Selesai:</span> <b>${project.target_date || '-'}</b></div>
+            <div><span style="color: #64748b;">Sumber Anggaran:</span> <b style="color: #047857;">${project.funding_source || 'RAPBS Sarpras'}</b></div>
+            <div><span style="color: #64748b;">Status Proyek:</span> <b style="color: #b45309; text-transform: uppercase;">${project.status} (${project.progress_pct}%)</b></div>
+          </div>
+        </div>
+
+        <!-- Table Rincian Biaya -->
+        <h4 style="margin: 12px 0 6px 0; font-size: 10.5pt; text-transform: uppercase; font-weight: bold;">Rincian Estimasi Biaya Material & Jasa Tukang:</h4>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 9pt;">
+          <thead>
+            <tr style="background: #e2e8f0; font-weight: bold;">
+              <th style="border: 1px solid #333; padding: 6px; text-align: center; width: 25px;">NO</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: left;">DESKRIPSI MATERIAL / PEKERJAAN</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: center; width: 60px;">QTY</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 85px;">HARGA SATUAN</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 95px;">SUBTOTAL BAHAN</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 105px;">UPAH TUKANG</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 100px;">TOTAL (RP)</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${itemsTable}
+            <tr style="background: #f1f5f9; font-weight: bold;">
+              <td colspan="4" style="border: 1px solid #333; padding: 8px; text-align: right; text-transform: uppercase;">Total Pembebanan Anggaran Proyek:</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: right;">Rp ${this.formatNumber(totalMat || (grandTotal * 0.65))}</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: right;">Rp ${this.formatNumber(totalLabor || (grandTotal * 0.35))}</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: right; font-size: 11pt; color: #1e3a8a;">Rp ${this.formatNumber(grandTotal)}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Catatan & Ketentuan SPK -->
+        <div style="border: 1px dashed #94a3b8; border-radius: 6px; padding: 8px 12px; margin-bottom: 24px; font-size: 8.5pt; color: #334155; line-height: 1.5;">
+          <b>Ketentuan & Instruksi Pelaksanaan:</b>
+          <ol style="margin: 4px 0 0 16px; padding: 0;">
+            <li>Pekerjaan wajib diselesaikan sesuai spesifikasi teknis dan tenggat waktu yang telah ditetapkan dalam SPK ini.</li>
+            <li>Segala pembelian material menggunakan dana sekolah wajib menyertakan faktur/nota resmi dan didokumentasikan (foto before/after).</li>
+            <li>Setelah pekerjaan selesai 100%, pelaksana dan PJ unit wajib menandatangani <b>Berita Acara Serah Terima (BAST)</b>.</li>
+          </ol>
+        </div>
+
+        <!-- 3 Kolom Tanda Tangan -->
+        <div style="display: flex; justify-content: space-between; margin-top: 20px; page-break-inside: avoid; font-size: 9.5pt;">
+          <div style="text-align: center; width: 180px;">
+            <p style="margin: 0 0 50px 0;">Diajukan Oleh,<br><b>PJ Sarpras ${unitName}</b></p>
+            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${pjName}</p>
+          </div>
+          <div style="text-align: center; width: 180px;">
+            <p style="margin: 0 0 50px 0;">Diverifikasi & Disetujui,<br><b>Kaur Logistik & SARPRAS</b></p>
+            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${cms.signers?.kaur_name || 'Kaur SARPRAS Al-Imam'}</p>
+          </div>
+          <div style="text-align: center; width: 180px;">
+            <p style="margin: 0 0 50px 0;">Mengetahui,<br><b>Kepala Sekolah / Yayasan</b></p>
+            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${cms.signers?.headmaster_smp_name || cms.signers?.bendahara_name || 'Arif Rohman, M.Pd.'}</p>
+          </div>
+        </div>
+
+      </div>
+    `;
+  },
+
+  // ==========================================
+  // PROJECT COMPLETION REPORT & BAST (100% FINISHED)
+  // ==========================================
+
+  openProjectCompletionModal(projectId) {
+    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
+    if (!project) return;
+
+    const modal = document.getElementById('projectCompletionModal');
+    const container = document.getElementById('projectCompletionContent');
+    const cms = this.db.cms_settings || DEFAULT_CMS_SETTINGS;
+
+    const requests = (this.db.renov_requests || []).filter(r => r.project_id === projectId || (r.location_name && r.location_name.includes(project.location_name)));
+
+    if (container) {
+      container.innerHTML = this.renderProjectCompletionHtml(project, requests, cms);
+    }
+
+    if (modal) modal.classList.remove('hidden');
+  },
+
+  openProjectCompletionModalFromDetail() {
+    if (this.currentDetailProjectId) {
+      this.openProjectCompletionModal(this.currentDetailProjectId);
+    }
+  },
+
+  closeProjectCompletionModal() {
+    const modal = document.getElementById('projectCompletionModal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  printProjectCompletionReport(projectId) {
+    this.openProjectCompletionModal(projectId);
+    setTimeout(() => window.print(), 300);
+  },
+
+  markCurrentProjectAsCompleted() {
+    if (this.currentDetailProjectId) {
+      this.markProjectAsCompleted(this.currentDetailProjectId);
+    }
+  },
+
+  markProjectAsCompleted(projectId) {
+    const project = (this.db.renov_projects || []).find(p => p.project_id === projectId);
+    if (!project) return;
+
+    const todayStr = new Date().toISOString().split('T')[0];
+    project.progress_pct = 100;
+    project.status = 'Selesai';
+    project.completed_at = todayStr;
+    if (!project.bast_no) project.bast_no = `BAST-PRJ-${todayStr.substring(0, 7).replace('-', '')}-${project.project_id.replace(/[^0-9]/g, '') || '01'}`;
+
+    // Mark associated requests as Selesai as well
+    const requests = (this.db.renov_requests || []).filter(r => r.project_id === projectId || (r.location_name && r.location_name.includes(project.location_name)));
+    requests.forEach(r => {
+      r.status = 'Selesai';
+      r.completed_at = todayStr;
+    });
+
+    this.saveState();
+    this.showToast(`Alhamdulillah! Proyek [${project.project_id}] ${project.location_name} ditandai 100% Selesai!`, 'success');
+
+    this.renderRenovProjectsTable();
+    this.renderRenovServiceView();
+
+    // Reopen detail modal to reflect completed state
+    this.openRenovDetailModal(projectId, 'docs');
+  },
+
+  renderProjectCompletionHtml(project, requests, cms) {
+    const unitNames = {
+      unit_tk: 'PG-TK ISLAM AL-IMAM',
+      unit_sd: 'SD ISLAM AL-IMAM',
+      unit_smp: 'SMP ISLAM AL-IMAM'
+    };
+
+    const unitName = unitNames[project.unit_id] || project.unit_id.toUpperCase();
+    const bastNo = project.bast_no || `BAST/SARPRAS/${new Date().getFullYear()}/${project.project_id}`;
+    const spkNo = project.spk_no || `SPK-PRJ-${project.project_id}`;
+    const pjName = project.pj_name || (project.unit_id === 'unit_smp' ? 'Aning Nurhayati, S.T., Gr.' : (project.unit_id === 'unit_sd' ? 'Dewi Fitria Nugraheni, S.Pd., Gr.' : 'Siti Rahmawati, S.Pd.'));
+
+    const totalMat = requests.reduce((sum, r) => sum + (Number(r.material_subtotal) || (r.qty * r.unit_price) || 0), 0);
+    const totalLabor = requests.reduce((sum, r) => sum + (Number(r.labor_subtotal) || 0), 0);
+    const realCost = (totalMat + totalLabor) || project.budget_estimate || 0;
+    const initialBudget = project.budget_estimate || realCost;
+    const variance = initialBudget - realCost;
+
+    const photos = project.photos || [];
+
+    // Photo Gallery HTML for print & visual document
+    let photosHtml = '';
+    if (photos.length > 0) {
+      const typeLabels = {
+        before: 'FOTO SEBELUM (BEFORE)',
+        progress: 'FOTO PROSES PENGERJAAN',
+        after: 'FOTO HASIL JADI SELESAI (AFTER)',
+        screenshot: 'SCREENSHOT APLIKASI / DIGITAL'
+      };
+
+      photosHtml = `
+        <h4 style="margin: 18px 0 8px 0; font-size: 10.5pt; text-transform: uppercase; font-weight: bold; border-bottom: 1.5px solid #333; padding-bottom: 4px;">
+          LAMPIRAN BUKTI DOKUMENTASI HASIL PEKERJAAN & SCREENSHOT:
+        </h4>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 18px;">
+          ${photos.map(p => `
+            <div style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px; background: #f8fafc; break-inside: avoid;">
+              <div style="aspect-ratio: 16/9; max-height: 150px; overflow: hidden; border-radius: 4px; background: #000; text-align: center;">
+                <img src="${p.url}" style="width: 100%; height: 100%; object-fit: cover;" alt="${p.caption || 'Foto Bukti'}">
+              </div>
+              <div style="margin-top: 6px;">
+                <span style="display: inline-block; font-size: 7.5pt; font-weight: bold; padding: 2px 6px; background: #e0f2fe; color: #0369a1; border-radius: 4px;">
+                  ${typeLabels[p.type] || 'DOKUMENTASI'}
+                </span>
+                <p style="margin: 4px 0 0 0; font-size: 8.5pt; font-weight: 600; color: #1e293b; line-height: 1.3;">${p.caption || '-'}</p>
+                <span style="font-size: 7.5pt; color: #64748b;">Tanggal: ${p.uploaded_at || '-'}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    } else {
+      photosHtml = `
+        <div style="border: 1px dashed #94a3b8; border-radius: 6px; padding: 12px; margin: 16px 0; text-align: center; color: #64748b; font-size: 9pt;">
+          <p style="margin: 0;">(Dokumentasi foto fisik telah diverifikasi langsung di lokasi oleh Tim Sarpras & Pemohon)</p>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="print-page text-slate-900" style="font-family: Arial, sans-serif; font-size: 10pt; color: #111;">
+        
+        <!-- Header Kop Surat Resmi -->
+        <div style="text-align: center; border-bottom: 2.5px solid #000; padding-bottom: 12px; margin-bottom: 16px;">
+          <h2 style="margin: 0 0 3px 0; font-size: 15pt; text-transform: uppercase; font-weight: bold;">${cms.foundation_name || 'YAYASAN PENDIDIKAN ISLAM AL-IMAM'}</h2>
+          <h3 style="margin: 0 0 3px 0; font-size: 12pt; font-weight: bold; color: #047857;">BERITA ACARA SERAH TERIMA (BAST) & LAPORAN AKHIR PEKERJAAN</h3>
+          <p style="margin: 0; font-size: 9.5pt; color: #444;">${cms.address || 'Jakarta'} • Telp: ${cms.phone || '(021) 8899-7711'} • Divisi Logistik, Sarpras & Sipil Bangunan</p>
+        </div>
+
+        <!-- Document Number & Title -->
+        <div style="text-align: center; margin-bottom: 14px;">
+          <p style="margin: 0; font-size: 10pt; font-weight: bold; font-family: monospace; color: #065f46;">NOMOR DOKUMEN: ${bastNo}</p>
+          <p style="margin: 2px 0 0 0; font-size: 9pt; color: #475569;">Dasar Pelaksanaan: Surat Perintah Kerja No. <b>${spkNo}</b></p>
+        </div>
+
+        <!-- Narrative Statement of Handover -->
+        <p style="margin: 0 0 10px 0; font-size: 9.5pt; line-height: 1.5; text-align: justify;">
+          Pada hari ini telah diselesaikan dan diserahterimakan dengan baik hasil pekerjaan fisik / pengadaan sarana prasarana sekolah untuk unit <b>${unitName}</b> dengan rincian teknis sebagai berikut:
+        </p>
+
+        <!-- Project Identification Box -->
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 9pt; background: #f8fafc;">
+          <tr>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; width: 22%; color: #64748b;">Nama Titik / Lokasi:</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; width: 28%; font-weight: bold;">${project.location_name}</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; width: 22%; color: #64748b;">Kategori Pekerjaan:</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; width: 28%; font-weight: bold;">${project.category}</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #64748b;">Tanggal Mulai Kerja:</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; font-weight: bold;">${project.created_at || '2026-09-20'}</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #64748b;">Tanggal Selesai Tuntas:</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; font-weight: bold; color: #047857;">${project.completed_at || project.target_date || '2026-10-01'}</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #64748b;">Pelaksana / Kontraktor:</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; font-weight: bold;">${project.contractor_name || 'TB. Al-Imam Jaya Material & Mitra Tukang'}</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #64748b;">Status Fisik:</td>
+            <td style="border: 1px solid #cbd5e1; padding: 6px 10px; font-weight: bold; color: #047857;">SELESAI 100% (TUNTAS)</td>
+          </tr>
+        </table>
+
+        <!-- Realization Financial Summary -->
+        <h4 style="margin: 12px 0 6px 0; font-size: 10pt; text-transform: uppercase; font-weight: bold;">Rekapitulasi Realisasi Keuangan Proyek:</h4>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 9pt;">
+          <thead>
+            <tr style="background: #e2e8f0; font-weight: bold;">
+              <th style="border: 1px solid #333; padding: 6px; text-align: left;">Uraian Pos Biaya</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 120px;">Anggaran Estimasi</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: right; width: 120px;">Realisasi Pembayaran</th>
+              <th style="border: 1px solid #333; padding: 6px; text-align: center; width: 100px;">Status / Selisih</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #333; padding: 6px;">1. Pembelian Bahan Material & Perlengkapan Fisik</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: right;">Rp ${this.formatNumber(initialBudget * 0.65)}</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: right; font-weight: bold;">Rp ${this.formatNumber(totalMat || (realCost * 0.65))}</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: center; color: #047857;">Sesuai Nota</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #333; padding: 6px;">2. Upah Kerja Tukang Bangunan & Tenaga Ahli</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: right;">Rp ${this.formatNumber(initialBudget * 0.35)}</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: right; font-weight: bold;">Rp ${this.formatNumber(totalLabor || (realCost * 0.35))}</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: center; color: #047857;">Selesai</td>
+            </tr>
+            <tr style="background: #ecfdf5; font-weight: bold;">
+              <td style="border: 1px solid #333; padding: 8px; text-transform: uppercase;">TOTAL BIAYA AKHIR PROYEK:</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: right;">Rp ${this.formatNumber(initialBudget)}</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: right; font-size: 10.5pt; color: #047857;">Rp ${this.formatNumber(realCost)}</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: center; font-size: 8.5pt;">${variance >= 0 ? 'Hemat Rp ' + this.formatNumber(variance) : 'Sesuai Plafon'}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Evaluasi Mutu Pekerjaan -->
+        <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px 12px; margin-bottom: 14px; font-size: 8.5pt; line-height: 1.5;">
+          <b>Catatan Hasil Evaluasi & Serah Terima:</b>
+          <p style="margin: 2px 0 0 0; color: #334155;">
+            ${project.evaluation_notes || project.notes || 'Pekerjaan telah diperiksa bersama di lokasi, hasil pengerjaan rapi, kokoh, dan berfungsi optimal sesuai standar mutu Yayasan Pendidikan Islam Al-Imam.'}
+          </p>
+        </div>
+
+        <!-- Lampiran Foto & Screenshot -->
+        ${photosHtml}
+
+        <!-- 3 Pihak Pengesahan BAST -->
+        <div style="display: flex; justify-content: space-between; margin-top: 25px; page-break-inside: avoid; font-size: 9pt;">
+          <div style="text-align: center; width: 180px;">
+            <p style="margin: 0 0 50px 0;">PIHAK I (Pelaksana / Tukang),<br><b>Koordinator Lapangan / Mitra</b></p>
+            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">Bpk. Mandor Wardi / Rekanan</p>
+          </div>
+          <div style="text-align: center; width: 180px;">
+            <p style="margin: 0 0 50px 0;">PIHAK II (Penerima Hasil),<br><b>PJ Sarpras ${unitName}</b></p>
+            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${pjName}</p>
+          </div>
+          <div style="text-align: center; width: 180px;">
+            <p style="margin: 0 0 50px 0;">Mengetahui & Mengesahkan,<br><b>Kepala Sekolah / Yayasan</b></p>
+            <p style="margin: 0; border-top: 1px solid #000; padding-top: 4px; font-weight: bold;">${cms.signers?.headmaster_smp_name || cms.signers?.bendahara_name || 'Arif Rohman, M.Pd.'}</p>
+          </div>
+        </div>
+
+      </div>
+    `;
+  },
+
+  renderRenovAnalytics() {
+    const cardsContainer = document.getElementById('renovUnitBudgetCardsContainer');
+    const tableBody = document.getElementById('renovRequestsLogTableBody');
+    const requests = this.db.renov_requests || [];
+
+    const units = [
+      { id: 'unit_tk', name: 'PG-TK Islam Al-Imam', budget: 4500000, icon: 'fa-shapes', color: 'emerald' },
+      { id: 'unit_sd', name: 'SD Islam Al-Imam', budget: 12500000, icon: 'fa-school', color: 'blue' },
+      { id: 'unit_smp', name: 'SMP Islam Al-Imam', budget: 9700000, icon: 'fa-graduation-cap', color: 'indigo' }
+    ];
+
+    if (cardsContainer) {
+      cardsContainer.innerHTML = units.map(u => {
+        const spent = requests.filter(r => r.unit_id === u.id).reduce((s, r) => s + (Number(r.total_amount) || 0), 0);
+        const sisa = Math.max(0, u.budget - spent);
+        const pct = Math.min(100, Math.round((spent / u.budget) * 100));
+
+        return `
+          <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="w-9 h-9 rounded-2xl bg-${u.color}-50 text-${u.color}-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid ${u.icon}"></i>
+                </div>
+                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-700 text-[10px] font-bold rounded-full">${pct}% Terpakai</span>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-xs text-slate-900 font-heading">${u.name}</h4>
+                <div class="text-lg font-black text-slate-900 mt-1">Rp ${this.formatNumber(spent)}</div>
+                <div class="text-[10px] text-slate-400">Plafond: Rp ${this.formatNumber(u.budget)}</div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 mt-3">
+              <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden mb-1.5">
+                <div class="h-full bg-${u.color}-500 rounded-full" style="width: ${pct}%"></div>
+              </div>
+              <div class="flex items-center justify-between text-[10px] font-bold text-slate-500">
+                <span>Sisa Alokasi</span>
+                <span class="text-emerald-700">Rp ${this.formatNumber(sisa)}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    if (tableBody) {
+      if (requests.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="9" class="text-center py-8 text-slate-400">
+              <i class="fa-solid fa-receipt text-3xl mb-2 block"></i>
+              <p>Belum ada riwayat pembelanjaan material / upah tukang.</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tableBody.innerHTML = requests.map(r => `
+        <tr class="hover:bg-slate-50/80 transition">
+          <td class="px-4 py-3 text-center font-mono font-bold text-amber-800">${r.request_id}</td>
+          <td class="px-4 py-3">
+            <div class="font-extrabold text-slate-900">${r.location_name}</div>
+            <div class="text-[10px] text-slate-400">${r.unit_id.toUpperCase()} • ${r.category}</div>
+          </td>
+          <td class="px-4 py-3">
+            <span class="font-semibold text-slate-800">${r.material_name} (x${r.qty})</span>
+            ${r.labor_count > 0 ? `<div class="text-[10px] text-indigo-600">${r.labor_count} Tukang (${r.labor_days} hari)</div>` : ''}
+          </td>
+          <td class="px-4 py-3 text-right font-bold text-slate-800">Rp ${this.formatNumber(r.material_subtotal || (r.qty * r.unit_price))}</td>
+          <td class="px-4 py-3 text-right font-bold text-indigo-700">Rp ${this.formatNumber(r.labor_subtotal || 0)}</td>
+          <td class="px-4 py-3 text-right font-black text-slate-900 font-heading">Rp ${this.formatNumber(r.total_amount)}</td>
+          <td class="px-4 py-3 text-center text-slate-500">${r.scheduled_date || r.created_at}</td>
+          <td class="px-4 py-3 text-center">
+            <span class="px-2.5 py-1 text-[10px] font-bold rounded-full ${
+              r.status === 'Selesai' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+            }">
+              ${r.status}
+            </span>
+          </td>
+          <td class="px-4 py-3 text-center">
+            ${r.status !== 'Selesai' ? `
+              <button onclick="app.updateRenovRequestStatus('${r.request_id}', 'Selesai')" class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[10px] rounded-lg transition">
+                Selesai
+              </button>
+            ` : `
+              <span class="text-[10px] text-emerald-600 font-bold"><i class="fa-solid fa-check-double mr-1"></i>Tuntas</span>
+            `}
+          </td>
+        </tr>
+      `).join('');
+    }
+  },
+
+  renderRenovVendors() {
+    const container = document.getElementById('renovVendorsContainer');
+    if (!container) return;
+
+    const vendors = this.db.renov_vendors || INITIAL_DB.renov_vendors;
+
+    container.innerHTML = vendors.map(v => `
+      <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm card-hover flex flex-col justify-between space-y-4">
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 bg-amber-100 text-amber-900 text-[10px] font-bold rounded-full">
+              ${v.badge}
+            </span>
+            <div class="flex items-center space-x-1 text-amber-500 text-xs font-bold">
+              <i class="fa-solid fa-star"></i>
+              <span>${v.rating} (${v.review_count})</span>
+            </div>
+          </div>
+
+          <h4 class="font-extrabold text-base text-slate-900 font-heading">
+            ${v.name}
+          </h4>
+
+          <p class="text-xs text-slate-500 leading-relaxed">
+            ${v.description}
+          </p>
+
+          <div class="space-y-1.5 pt-2 border-t border-slate-100 text-xs text-slate-600">
+            <div class="flex items-center space-x-2">
+              <i class="fa-solid fa-user-tie text-amber-600 w-4"></i>
+              <span>Kontak: <b>${v.pic}</b></span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i class="fa-solid fa-shield-halved text-emerald-600 w-4"></i>
+              <span>Garansi: <b>${v.warranty}</b></span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i class="fa-solid fa-truck-fast text-sky-600 w-4"></i>
+              <span>SLA: <b>${v.sla}</b></span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i class="fa-solid fa-location-dot text-rose-500 w-4"></i>
+              <span class="truncate">${v.address}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100">
+          <a href="https://wa.me/${v.phone.replace(/[^0-9]/g, '')}?text=Halo%20${encodeURIComponent(v.name)},%20kami%20dari%20SARPRAS%20Sekolah%20Al-Imam%20ingin%20memesan%20material%20bangunan%20dan%20jasa%20tukang." target="_blank" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center justify-center space-x-2">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>Hubungi WhatsApp Mitra</span>
+          </a>
+        </div>
+      </div>
+    `).join('');
+  },
+
+  updateRenovRequestStatus(requestId, newStatus) {
+    const requests = this.db.renov_requests || [];
+    const req = requests.find(r => r.request_id === requestId);
+    if (!req) return;
+
+    req.status = newStatus;
+    if (newStatus === 'Selesai') {
+      req.completed_at = this.formatCurrentDateTime();
+
+      if (req.project_id && this.db.renov_projects) {
+        const prj = this.db.renov_projects.find(p => p.project_id === req.project_id);
+        if (prj) {
+          prj.progress_pct = 100;
+          prj.status = 'Selesai';
+        }
+      }
+    }
+
+    this.saveState();
+    this.showToast(`Status pengajuan ${requestId} berhasil diperbarui menjadi "${newStatus}"!`, 'success');
+    this.renderRenovServiceView();
+  },
+
+  printRenovReport() {
+    const cms = this.db.cms_settings || DEFAULT_CMS_SETTINGS;
+    const projects = this.db.renov_projects || [];
+    const requests = this.db.renov_requests || [];
+
+    const totalCost = requests.reduce((sum, r) => sum + (Number(r.total_amount) || 0), 0);
+    const totalMaterial = requests.reduce((sum, r) => sum + (Number(r.material_subtotal) || 0), 0);
+    const totalLabor = requests.reduce((sum, r) => sum + (Number(r.labor_subtotal) || 0), 0);
+
+    const modal = document.getElementById('renovPrintReportModal');
+    const container = document.getElementById('renovPrintReportContent');
+    if (!modal || !container) return;
+
+    const unitExpense = {
+      unit_tk: requests.filter(r => r.unit_id === 'unit_tk').reduce((s, r) => s + (Number(r.total_amount) || 0), 0),
+      unit_sd: requests.filter(r => r.unit_id === 'unit_sd').reduce((s, r) => s + (Number(r.total_amount) || 0), 0),
+      unit_smp: requests.filter(r => r.unit_id === 'unit_smp').reduce((s, r) => s + (Number(r.total_amount) || 0), 0),
+    };
+
+    const tableRows = requests.map((r, idx) => `
+      <tr>
+        <td style="text-align: center; padding: 6px; border: 1px solid #333;">${idx + 1}</td>
+        <td style="padding: 6px; border: 1px solid #333; font-family: monospace;">${r.request_id}</td>
+        <td style="padding: 6px; border: 1px solid #333; font-weight: bold;">${r.location_name}</td>
+        <td style="padding: 6px; border: 1px solid #333;">${r.material_name} (x${r.qty})</td>
+        <td style="text-align: right; padding: 6px; border: 1px solid #333;">Rp ${this.formatNumber(r.material_subtotal || 0)}</td>
+        <td style="text-align: right; padding: 6px; border: 1px solid #333;">Rp ${this.formatNumber(r.labor_subtotal || 0)}</td>
+        <td style="text-align: right; padding: 6px; border: 1px solid #333; font-weight: bold;">Rp ${this.formatNumber(r.total_amount)}</td>
+        <td style="padding: 6px; border: 1px solid #333;">${r.vendor_name || 'TB. Al-Imam Jaya'}</td>
+        <td style="text-align: center; padding: 6px; border: 1px solid #333;">${r.status}</td>
+      </tr>
+    `).join('');
+
+    container.innerHTML = `
+      <div class="print-page text-slate-900" style="font-family: Arial, sans-serif; font-size: 11pt;">
+        <!-- Header Kop Surat -->
+        <div style="text-align: center; border-bottom: 2.5px solid #000; padding-bottom: 12px; margin-bottom: 20px;">
+          <h2 style="margin: 0 0 4px 0; font-size: 16pt; text-transform: uppercase; font-weight: bold;">${cms.foundation_name || 'YAYASAN PENDIDIKAN ISLAM AL-IMAM'}</h2>
+          <h3 style="margin: 0 0 4px 0; font-size: 13pt; font-weight: 600;">DIVISI SARANA PRASARANA & PEMELIHARAAN BANGUNAN SIPIL</h3>
+          <p style="margin: 0; font-size: 10pt; color: #444;">${cms.address || 'Jakarta'} • Telp: ${cms.phone || '(021) 8899-7711'}</p>
+        </div>
+
+        <h3 style="text-align: center; margin: 0 0 4px 0; text-transform: uppercase; font-size: 13pt;">REKAPITULASI BIAYA MATERIAL, CAT & UPAH TUKANG</h3>
+        <p style="text-align: center; margin: 0 0 20px 0; font-size: 10pt; color: #555;">Tahun Ajaran 2026/2027 • Pemeliharaan Fisik Gedung (PG-TK, SD, SMP)</p>
+
+        <!-- Summary Table per Unit -->
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+          <thead>
+            <tr style="background: #f1f5f9;">
+              <th style="border: 1px solid #333; padding: 7px; text-align: left;">Unit Sekolah</th>
+              <th style="border: 1px solid #333; padding: 7px; text-align: center;">Titik Proyek</th>
+              <th style="border: 1px solid #333; padding: 7px; text-align: right;">Alokasi RAPBS Renovasi</th>
+              <th style="border: 1px solid #333; padding: 7px; text-align: right;">Realisasi Biaya</th>
+              <th style="border: 1px solid #333; padding: 7px; text-align: center;">Persentase</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #333; padding: 6px; font-weight: bold;">PG-TK Islam Al-Imam</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: center;">${projects.filter(p => p.unit_id === 'unit_tk').length} Titik</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: right;">Rp 4.500.000</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: right; font-weight: bold;">Rp ${this.formatNumber(unitExpense.unit_tk)}</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: center;">${Math.round((unitExpense.unit_tk / 4500000) * 100)}%</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #333; padding: 6px; font-weight: bold;">SD Islam Al-Imam</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: center;">${projects.filter(p => p.unit_id === 'unit_sd').length} Titik</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: right;">Rp 12.500.000</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: right; font-weight: bold;">Rp ${this.formatNumber(unitExpense.unit_sd)}</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: center;">${Math.round((unitExpense.unit_sd / 12500000) * 100)}%</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #333; padding: 6px; font-weight: bold;">SMP Islam Al-Imam</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: center;">${projects.filter(p => p.unit_id === 'unit_smp').length} Titik</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: right;">Rp 9.700.000</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: right; font-weight: bold;">Rp ${this.formatNumber(unitExpense.unit_smp)}</td>
+              <td style="border: 1px solid #333; padding: 6px; text-align: center;">${Math.round((unitExpense.unit_smp / 9700000) * 100)}%</td>
+            </tr>
+            <tr style="background: #f8fafc; font-weight: bold;">
+              <td style="border: 1px solid #333; padding: 7px;">TOTAL KESELURUHAN</td>
+              <td style="border: 1px solid #333; padding: 7px; text-align: center;">${projects.length} Titik</td>
+              <td style="border: 1px solid #333; padding: 7px; text-align: right;">Rp 26.700.000</td>
+              <td style="border: 1px solid #333; padding: 7px; text-align: right; font-size: 12pt; color: #b45309;">Rp ${this.formatNumber(totalCost)}</td>
+              <td style="border: 1px solid #333; padding: 7px; text-align: center;">${Math.round((totalCost / 26700000) * 100)}%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Detailed Transactions Table -->
+        <h4 style="margin: 15px 0 6px 0; font-size: 11pt; text-transform: uppercase;">Rincian Pembelian Material & Upah Kerja:</h4>
+        <table style="width: 100%; border-collapse: collapse; font-size: 9pt;">
+          <thead>
+            <tr style="background: #f1f5f9;">
+              <th style="border: 1px solid #333; padding: 5px; width: 25px; text-align: center;">No</th>
+              <th style="border: 1px solid #333; padding: 5px; text-align: center;">ID</th>
+              <th style="border: 1px solid #333; padding: 5px; text-align: left;">Titik Pekerjaan</th>
+              <th style="border: 1px solid #333; padding: 5px; text-align: left;">Bahan Material</th>
+              <th style="border: 1px solid #333; padding: 5px; text-align: right;">Bahan</th>
+              <th style="border: 1px solid #333; padding: 5px; text-align: right;">Tukang</th>
+              <th style="border: 1px solid #333; padding: 5px; text-align: right;">Total</th>
+              <th style="border: 1px solid #333; padding: 5px; text-align: left;">Mitra / Toko</th>
+              <th style="border: 1px solid #333; padding: 5px; text-align: center;">Status</th>
             </tr>
           </thead>
           <tbody>

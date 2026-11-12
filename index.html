@@ -38,7 +38,7 @@
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
 
   <!-- ================= TOP NAVIGATION BAR ================= -->
-  <header class="glass-nav sticky top-0 z-40 px-4 lg:px-8 py-3 transition-all duration-200">
+  <header id="appHeader" class="hidden glass-nav sticky top-0 z-40 px-4 lg:px-8 py-3 transition-all duration-200">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       
       <!-- Left: Logo & Brand -->
@@ -160,7 +160,7 @@
   </header>
 
   <!-- ================= MAIN CONTAINER WITH SIDEBAR & CONTENT ================= -->
-  <div class="max-w-7xl mx-auto w-full flex-1 flex px-4 lg:px-8 py-6 gap-6">
+  <div id="appMainContainer" class="hidden max-w-7xl mx-auto w-full flex-1 flex px-4 lg:px-8 py-6 gap-6">
 
     <!-- SIDEBAR NAVIGATION -->
     <aside id="sidebar" class="hidden lg:block w-64 shrink-0">
@@ -4184,8 +4184,9 @@ Sapu Lantai Ijuk Dragon	Kebersihan & Sanitasi	28000	15	2026-10-03" class="w-full
       </div>
 
       <div class="p-6">
-        <!-- Rate Limit Alert Box -->
+        <!-- Rate Limit & Error Alert Boxes -->
         <div id="loginRateLimitAlert" class="hidden p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl font-medium mb-3"></div>
+        <div id="loginErrorBanner" class="hidden p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl font-semibold mb-3"></div>
 
         <!-- FORM LOGIN USERNAME & PIN -->
         <form id="loginForm" onsubmit="app.handleLoginFormSubmit(event)" class="space-y-4">
@@ -4288,7 +4289,7 @@ Sapu Lantai Ijuk Dragon	Kebersihan & Sanitasi	28000	15	2026-10-03" class="w-full
   <div id="toastContainer"></div>
 
   <!-- Footer -->
-  <footer class="mt-auto border-t border-slate-200/80 bg-white py-4 px-4 text-center text-xs text-slate-400 no-print">
+  <footer id="appFooter" class="hidden mt-auto border-t border-slate-200/80 bg-white py-4 px-4 text-center text-xs text-slate-400 no-print">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
       <p>&copy; 2026 <span id="footerSchoolName">E-Commerce SARPRAS Al-Imam Islamic School</span>. All rights reserved.</p>
       <div class="flex items-center space-x-4">

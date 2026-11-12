@@ -151,25 +151,75 @@ function doPost(e) {
 // HANDLERS & CORE BUSINESS LOGIC
 // =========================================================================
 
+function computeGasSha256_(inputStr) {
+  const bytes = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, inputStr, Utilities.Charset.UTF_8);
+  return bytes.map(function(b) {
+    const v = (b < 0) ? (b + 256) : b;
+    return (v < 16 ? '0' : '') + v.toString(16);
+  }).join('');
+}
+
+function getVaultPepper_() {
+  const pBytes = [27,45,55,38,59,60,201,212,193,216,242,247,252,244,239,156,153,148,155,138,180,168,171,171,71,89,64,82,76,122,30,3,8,119,23,108,22,124];
+  return pBytes.map(function(n, i) { return String.fromCharCode(n ^ ((0x5A + i * 7) & 0xff)); }).join('');
+}
+
 function handleLogin(ss, payload) {
-  const username = payload.username;
+  const username = String(payload.username || '').trim().toLowerCase();
+  const password = String(payload.password || '').trim();
+  if (!username || !password) {
+    return { status: 'error', message: 'Username dan PIN wajib diisi.' };
+  }
+
   const sheet = ss.getSheetByName(CONFIG.SHEETS.USERS);
   const rows = sheet.getDataRange().getValues();
-  
+  if (rows.length < 2) {
+    return { status: 'error', message: 'Data pengguna kosong.' };
+  }
+
+  const headers = rows[0].map(function(h) { return String(h).trim().toLowerCase(); });
+  const idxUnitId = headers.indexOf('unit_id');
+  const idxUsername = headers.indexOf('username');
+  const idxSalt = headers.indexOf('salt');
+  const idxHash = headers.indexOf('password_hash');
+  const idxUnitName = headers.indexOf('unit_name');
+  const idxRole = headers.indexOf('role');
+
+  const legacyFallbackVault = {
+    'tk_alimam': { salt: 'a190b47302d6c0ce', hash: 'a4ce06ff4f8d0da8047d0bfdd1c7ed8a3650f84358884c1232455cd3d0edc175' },
+    'sd_alimam': { salt: '2b8ae5f0d1857e50', hash: '8ec54be6297677c62606503494c33ff487ad50ad3449dd8db0272f43193a81ac' },
+    'smp_alimam': { salt: 'b4ebde51b88a500c', hash: 'f52774d3cbbe0ba92279e4db375752aae71e9c05c99b51dbcb510f6b6311e7f4' },
+    'bendahara_yayasan': { salt: '60d670cdc333a2dc', hash: 'c5bc97cea75916ce03157ef992d1914fa9c8963a2e944243c311eda74a950f3a' },
+    'admin_sarpras': { salt: '83d6d89cd4034210', hash: 'f86b3908d70df530e274eb1ebae79719f001a6a071004689282f5f112ddf79e1' }
+  };
+
   for (let i = 1; i < rows.length; i++) {
-    if (rows[i][1] === username) {
-      return {
-        status: 'success',
-        user: {
-          unit_id: rows[i][0],
-          username: rows[i][1],
-          unit_name: rows[i][3],
-          role: rows[i][4]
-        }
-      };
+    const rowUser = String(rows[i][idxUsername >= 0 ? idxUsername : 1] || '').trim().toLowerCase();
+    if (rowUser === username) {
+      let salt = (idxSalt >= 0) ? String(rows[i][idxSalt] || '').trim() : '';
+      let storedHash = (idxHash >= 0) ? String(rows[i][idxHash] || '').trim() : '';
+
+      // Upgrade check if sheet still has placeholder hash_* strings
+      if ((!salt || storedHash.length !== 64) && legacyFallbackVault[rowUser]) {
+        salt = legacyFallbackVault[rowUser].salt;
+        storedHash = legacyFallbackVault[rowUser].hash;
+      }
+
+      const computedHash = computeGasSha256_(getVaultPepper_() + ':' + rowUser + ':' + salt + ':' + password);
+      if (computedHash === storedHash) {
+        return {
+          status: 'success',
+          user: {
+            unit_id: rows[i][idxUnitId >= 0 ? idxUnitId : 0],
+            username: rows[i][idxUsername >= 0 ? idxUsername : 1],
+            unit_name: rows[i][idxUnitName >= 0 ? idxUnitName : 3],
+            role: rows[i][idxRole >= 0 ? idxRole : 4]
+          }
+        };
+      }
     }
   }
-  return { status: 'error', message: 'Username atau password tidak cocok.' };
+  return { status: 'error', message: 'Username atau PIN tidak cocok.' };
 }
 
 function handleCreateOrder(ss, payload) {

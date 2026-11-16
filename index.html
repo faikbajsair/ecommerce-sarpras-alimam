@@ -240,6 +240,15 @@
             <span class="bg-amber-500 text-slate-900 text-[9px] font-extrabold px-1.5 py-0.5 rounded-md shadow-xs">PROYEK</span>
           </button>
 
+          <!-- NEW: Pendataan Sarpras & Inventaris Ruangan -->
+          <button onclick="app.navigate('sarpras-assets')" id="nav-sarpras-assets" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-emerald-900 bg-emerald-50/80 hover:bg-emerald-100 transition border border-emerald-200/80 group">
+            <div class="flex items-center space-x-3">
+              <i class="fa-solid fa-boxes-stacked w-4 text-center text-sm text-emerald-600 group-hover:scale-110 transition-transform duration-300"></i>
+              <span>Pendataan Sarpras Ruangan</span>
+            </div>
+            <span id="badge-sarpras-assets-count" class="bg-emerald-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded-md shadow-xs">20</span>
+          </button>
+
           <button onclick="app.navigate('orders')" id="nav-orders" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-brand-primary hover:bg-slate-50 transition">
             <i class="fa-solid fa-clock-rotate-left w-4 text-center text-sm"></i>
             <span>Riwayat & Dokumen</span>
@@ -347,7 +356,7 @@
             </button>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3.5">
             <!-- 1. Belanja Katalog E-Commerce -->
             <button onclick="app.navigate('catalog')" class="p-4 rounded-2xl bg-gradient-to-br from-emerald-50/80 to-emerald-100/40 border border-emerald-200/80 hover:border-emerald-400 hover:shadow-md transition text-left group flex flex-col justify-between h-32">
               <div class="flex items-center justify-between">
@@ -401,6 +410,20 @@
               <div>
                 <h4 class="text-xs font-extrabold text-slate-800 group-hover:text-indigo-700 transition">Request Barang Baru</h4>
                 <p class="text-[11px] text-slate-500 line-clamp-1">Ajukan barang di luar katalog / marketplace</p>
+              </div>
+            </button>
+
+            <!-- 5. Pendataan & Foto Sarpras Ruangan -->
+            <button onclick="app.navigate('sarpras-assets')" class="p-4 rounded-2xl bg-gradient-to-br from-teal-50/90 to-emerald-100/50 border border-emerald-300/80 hover:border-emerald-500 hover:shadow-md transition text-left group flex flex-col justify-between h-32">
+              <div class="flex items-center justify-between">
+                <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-base shadow-sm group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-boxes-stacked"></i>
+                </div>
+                <span class="text-[10px] bg-emerald-200/90 text-emerald-950 font-extrabold px-2 py-0.5 rounded-md">Foto & Aset</span>
+              </div>
+              <div>
+                <h4 class="text-xs font-extrabold text-slate-900 group-hover:text-emerald-700 transition">Pendataan Sarpras Ruangan</h4>
+                <p class="text-[11px] text-slate-600 line-clamp-1">Foto barang, perkakas, ATK per kelas & lab</p>
               </div>
             </button>
           </div>
@@ -2393,6 +2416,186 @@
 
       </section>
 
+
+      <!-- ================= VIEW: PENDATAAN SARPRAS RUANGAN & FOTO ASET ================= -->
+      <section id="view-sarpras-assets" class="hidden space-y-6">
+
+        <!-- Header Hero Banner -->
+        <div class="bg-gradient-to-br from-emerald-900 via-teal-900 to-slate-900 rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-lg shadow-emerald-950/20">
+          <div class="absolute right-0 top-0 translate-x-8 -translate-y-8 text-white/5 pointer-events-none">
+            <i class="fa-solid fa-boxes-stacked text-[220px]"></i>
+          </div>
+          <div class="relative z-10 max-w-3xl space-y-3">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 bg-white/15 backdrop-blur-md rounded-full text-xs font-semibold text-emerald-200">
+              <i class="fa-solid fa-camera"></i>
+              <span>Dokumentasi Visual & Pemetaan Sarpras per Ruangan</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold font-heading tracking-tight leading-tight">
+              Pendataan & Inventaris Sarpras Ruangan
+            </h1>
+            <p class="text-white/85 text-xs sm:text-sm leading-relaxed max-w-2xl">
+              Sistem pendataan fisik terpadu Bagian Maintenance (Pak Nana) & Sarpras Sekolah. Ambil foto barang langsung dari kamera HP/tablet, kelompokkan ke dalam kategori (Perkakas, Perlengkapan Kelas, ATK, dll.), dan petakan ke masing-masing ruangan seperti kelas, kantor guru, lab, musholah, dan kantin.
+            </p>
+            <div class="pt-2 flex flex-wrap gap-2.5">
+              <button type="button" onclick="app.openAddSarprasAssetModal()" class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs rounded-xl shadow-md transition flex items-center space-x-2">
+                <i class="fa-solid fa-camera text-sm"></i>
+                <span>+ Catat & Foto Barang Baru</span>
+              </button>
+              <button type="button" onclick="app.openManageSarprasCategoriesModal()" class="px-4 py-2.5 bg-white/15 hover:bg-white/25 text-white font-bold text-xs rounded-xl backdrop-blur-md border border-white/20 transition flex items-center space-x-2">
+                <i class="fa-solid fa-tags"></i>
+                <span>Kelola Kategori</span>
+              </button>
+              <button type="button" onclick="app.printSarprasAssetsReport()" class="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-xl backdrop-blur-md border border-white/20 transition flex items-center space-x-2">
+                <i class="fa-solid fa-print"></i>
+                <span>Cetak Rekap Ruangan</span>
+              </button>
+              <button type="button" onclick="app.exportSarprasAssetsCsv()" class="px-3.5 py-2.5 bg-black/20 hover:bg-black/30 text-white font-bold text-xs rounded-xl backdrop-blur-md border border-white/10 transition flex items-center space-x-1.5 ml-auto" title="Unduh CSV Excel">
+                <i class="fa-solid fa-file-csv"></i>
+                <span>Export CSV</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric KPI Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+          <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-100 shadow-xs">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Total Barang</span>
+              <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs">
+                <i class="fa-solid fa-boxes-stacked"></i>
+              </div>
+            </div>
+            <div id="sarprasMetricTotalItems" class="text-lg sm:text-xl font-black text-slate-900 font-heading">0 Barang</div>
+            <p class="text-[10px] text-slate-400 mt-1">Aset fisik terdokumentasi</p>
+          </div>
+
+          <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-100 shadow-xs">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Ruangan Terpetakan</span>
+              <div class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xs">
+                <i class="fa-solid fa-map-location-dot"></i>
+              </div>
+            </div>
+            <div id="sarprasMetricTotalRooms" class="text-lg sm:text-xl font-black text-slate-900 font-heading">0 Ruangan</div>
+            <p class="text-[10px] text-slate-400 mt-1">Kelas, kantor, lab & sarfas</p>
+          </div>
+
+          <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-100 shadow-xs">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Kondisi Baik</span>
+              <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs">
+                <i class="fa-solid fa-circle-check"></i>
+              </div>
+            </div>
+            <div id="sarprasMetricKondisiBaik" class="text-lg sm:text-xl font-black text-emerald-700 font-heading">0 Unit</div>
+            <p class="text-[10px] text-emerald-600 font-semibold mt-1">Siap pakai & fungsional</p>
+          </div>
+
+          <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-100 shadow-xs">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Perlu Perhatian</span>
+              <div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xs">
+                <i class="fa-solid fa-wrench"></i>
+              </div>
+            </div>
+            <div id="sarprasMetricPerluServis" class="text-lg sm:text-xl font-black text-amber-600 font-heading">0 Unit</div>
+            <p class="text-[10px] text-amber-600 font-semibold mt-1">Perlu servis / perbaikan</p>
+          </div>
+        </div>
+
+        <!-- Filter & Control Toolbar -->
+        <div class="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-xs space-y-4">
+          
+          <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
+            <!-- Search Input -->
+            <div class="relative flex-1">
+              <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <input type="text" id="sarprasSearchInput" oninput="app.filterSarprasAssets()" placeholder="Cari nama barang, kode aset, catatan, atau ruangan..." class="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition">
+            </div>
+
+            <!-- Dropdown Filters -->
+            <div class="flex flex-wrap sm:flex-nowrap items-center gap-2">
+              <select id="sarprasCategoryFilter" onchange="app.filterSarprasAssets()" class="py-2.5 px-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-bold text-slate-700 focus:bg-white focus:outline-none focus:border-emerald-500 transition">
+                <option value="all">Semua Kategori</option>
+              </select>
+
+              <select id="sarprasRoomFilter" onchange="app.filterSarprasAssets()" class="py-2.5 px-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-bold text-slate-700 focus:bg-white focus:outline-none focus:border-emerald-500 transition max-w-[200px]">
+                <option value="all">Semua Ruangan</option>
+              </select>
+
+              <select id="sarprasConditionFilter" onchange="app.filterSarprasAssets()" class="py-2.5 px-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-bold text-slate-700 focus:bg-white focus:outline-none focus:border-emerald-500 transition">
+                <option value="all">Semua Kondisi</option>
+                <option value="Baik">Kondisi: Baik</option>
+                <option value="Perlu Servis">Kondisi: Perlu Servis</option>
+                <option value="Rusak Ringan">Kondisi: Rusak Ringan</option>
+                <option value="Rusak Berat">Kondisi: Rusak Berat</option>
+              </select>
+
+              <!-- View Switcher -->
+              <div class="flex items-center p-1 bg-slate-100 rounded-2xl border border-slate-200/80 shrink-0">
+                <button type="button" id="btnSarprasViewGrid" onclick="app.setSarprasViewMode('grid')" class="p-2 rounded-xl text-xs font-bold transition bg-emerald-600 text-white shadow-xs" title="Tampilan Galeri Foto (Grid)">
+                  <i class="fa-solid fa-grip"></i>
+                </button>
+                <button type="button" id="btnSarprasViewTable" onclick="app.setSarprasViewMode('table')" class="p-2 rounded-xl text-xs font-bold transition bg-white text-slate-600 hover:text-emerald-700" title="Tampilan Tabel Rinci">
+                  <i class="fa-solid fa-table-list"></i>
+                </button>
+              </div>
+
+              <!-- Reset Filter -->
+              <button type="button" onclick="app.resetSarprasFilters()" class="p-2.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-2xl border border-slate-200 transition shrink-0" title="Reset Semua Filter">
+                <i class="fa-solid fa-filter-circle-xmark text-xs"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Horizontal Room Chips Filter -->
+          <div class="pt-2 border-t border-slate-100">
+            <div class="flex items-center justify-between text-[11px] text-slate-400 font-bold mb-2">
+              <span class="flex items-center space-x-1.5">
+                <i class="fa-solid fa-building-columns text-emerald-600"></i>
+                <span>Filter Cepat per Ruangan / Lokasi:</span>
+              </span>
+              <span id="sarprasResultsCount" class="text-emerald-700">Menampilkan 0 aset</span>
+            </div>
+            <div id="sarprasQuickRoomChips" class="flex items-center space-x-2 overflow-x-auto pb-1 scrollbar-thin">
+              <!-- Dynamically populated room chips -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Grid View Container -->
+        <div id="sarprasAssetsGridContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+          <!-- Dynamically Rendered Cards -->
+        </div>
+
+        <!-- Table View Container -->
+        <div id="sarprasAssetsTableContainer" class="hidden bg-white rounded-3xl border border-slate-200/80 shadow-xs overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider">
+                <tr>
+                  <th class="px-3 py-3.5 text-center w-10">No</th>
+                  <th class="px-3 py-3.5 text-center w-14">Foto</th>
+                  <th class="px-3 py-3.5">Nama Barang & Kode</th>
+                  <th class="px-3 py-3.5">Kategori</th>
+                  <th class="px-3 py-3.5">Ruangan / Kelas</th>
+                  <th class="px-3 py-3.5 text-center">Jumlah</th>
+                  <th class="px-3 py-3.5 text-center">Kondisi</th>
+                  <th class="px-3 py-3.5 text-right w-28">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="sarprasAssetsTableBody" class="divide-y divide-slate-100">
+                <!-- Dynamically Rendered Rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+
     </main>
 
   </div>
@@ -4367,6 +4570,247 @@ Sapu Lantai Ijuk Dragon	Kebersihan & Sanitasi	28000	15	2026-10-03" class="w-full
   </div>
 
   <!-- Toast Notifications Container -->
+  
+  <!-- ================= MODAL: TAMBAH & EDIT ASET SARPRAS (DENGAN FOTO KAMERA) ================= -->
+  <div id="modalAddSarprasAsset" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-xl w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      
+      <!-- Modal Header -->
+      <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-emerald-50/70">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-sm shadow-xs">
+            <i class="fa-solid fa-camera"></i>
+          </div>
+          <div>
+            <h3 id="modalAddSarprasAssetTitle" class="font-extrabold text-base text-slate-900 font-heading">
+              Catat & Foto Barang Sarpras Baru
+            </h3>
+            <p class="text-[11px] text-slate-500">Pendataan fisik sarana prasarana per ruangan sekolah</p>
+          </div>
+        </div>
+        <button type="button" onclick="app.closeAddSarprasAssetModal()" class="w-8 h-8 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-slate-700 flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body Form -->
+      <form id="formAddSarprasAsset" onsubmit="app.saveSarprasAsset(event)" class="p-5 overflow-y-auto space-y-4 flex-1">
+        <input type="hidden" id="formSarprasAssetId">
+        <input type="hidden" id="formSarprasPhotoBase64">
+
+        <!-- 1. Foto Barang (Camera & Gallery Input) -->
+        <div class="space-y-2">
+          <label class="block text-xs font-bold text-slate-700">
+            <i class="fa-solid fa-image text-emerald-600 mr-1"></i>Foto Fisik Barang (Di Ruangan)
+          </label>
+          
+          <div id="formSarprasPhotoPreview" class="cursor-pointer" onclick="document.getElementById('fileSarprasCamera').click()">
+            <!-- Preview Box Rendered Dynamically -->
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 pt-1">
+            <label class="py-2.5 px-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1.5 cursor-pointer">
+              <i class="fa-solid fa-camera text-sm"></i>
+              <span>Buka Kamera HP</span>
+              <input type="file" id="fileSarprasCamera" accept="image/*" capture="environment" onchange="app.handleSarprasPhotoUpload(event)" class="hidden">
+            </label>
+            <label class="py-2.5 px-3 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1.5 cursor-pointer">
+              <i class="fa-solid fa-images text-sm text-slate-500"></i>
+              <span>Pilih dari Galeri</span>
+              <input type="file" id="fileSarprasGallery" accept="image/*" onchange="app.handleSarprasPhotoUpload(event)" class="hidden">
+            </label>
+          </div>
+          <p class="text-[10px] text-slate-400 italic">*Foto otomatis dioptimalkan agar penyimpanan hemat dan cepat dibuka.</p>
+        </div>
+
+        <!-- 2. Nama Barang -->
+        <div>
+          <label for="formSarprasName" class="block text-xs font-bold text-slate-700 mb-1">Nama Barang / Aset <span class="text-rose-500">*</span></label>
+          <input type="text" id="formSarprasName" required placeholder="Contoh: Tangga Lipat 3.8M, Proyektor LCD, Papan Tulis..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition">
+        </div>
+
+        <!-- 3. Kategori & Ruangan -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label for="formSarprasCategory" class="text-xs font-bold text-slate-700">Kategori <span class="text-rose-500">*</span></label>
+              <button type="button" onclick="app.openManageSarprasCategoriesModal()" class="text-[10px] font-bold text-emerald-600 hover:text-emerald-800">
+                + Kategori Baru
+              </button>
+            </div>
+            <select id="formSarprasCategory" required onchange="app.onSarprasCategorySelectChange(this)" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500 transition">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+
+          <div>
+            <label for="formSarprasRoom" class="block text-xs font-bold text-slate-700 mb-1">Lokasi Ruangan / Kelas <span class="text-rose-500">*</span></label>
+            <select id="formSarprasRoom" required onchange="app.onSarprasRoomSelectChange(this)" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500 transition">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+        </div>
+
+        <!-- Custom New Room Input (Hidden by default) -->
+        <div id="formSarprasNewRoomWrapper" class="hidden p-3 bg-emerald-50 border border-emerald-200 rounded-2xl space-y-1.5 animate-in fade-in duration-150">
+          <label for="formSarprasNewRoomInput" class="block text-xs font-extrabold text-emerald-900">
+            <i class="fa-solid fa-plus-circle mr-1"></i>Nama Ruangan / Kelas Baru:
+          </label>
+          <input type="text" id="formSarprasNewRoomInput" placeholder="Contoh: Lab Bahasa, Pos Satpam Belakang, Kantin Baru..." class="w-full px-3 py-2 bg-white border border-emerald-300 rounded-xl text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+          <p class="text-[10px] text-emerald-700">Ruangan ini akan otomatis disimpan ke daftar pilihan ruangan untuk pencatatan berikutnya.</p>
+        </div>
+
+        <!-- 4. Jumlah, Satuan & Kondisi -->
+        <div class="grid grid-cols-3 gap-2.5">
+          <div>
+            <label for="formSarprasQty" class="block text-xs font-bold text-slate-700 mb-1">Jumlah</label>
+            <input type="number" id="formSarprasQty" min="1" value="1" required class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-black text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500 transition">
+          </div>
+
+          <div>
+            <label for="formSarprasMeasure" class="block text-xs font-bold text-slate-700 mb-1">Satuan</label>
+            <select id="formSarprasMeasure" class="w-full px-2 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500 transition">
+              <option value="Unit">Unit</option>
+              <option value="Set">Set</option>
+              <option value="Pcs">Pcs</option>
+              <option value="Buah">Buah</option>
+              <option value="Roll">Roll</option>
+              <option value="Box">Box</option>
+              <option value="Tabung">Tabung</option>
+              <option value="Paket">Paket</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="formSarprasCondition" class="block text-xs font-bold text-slate-700 mb-1">Kondisi</label>
+            <select id="formSarprasCondition" class="w-full px-2 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500 transition">
+              <option value="Baik">Baik</option>
+              <option value="Perlu Servis">Perlu Servis</option>
+              <option value="Rusak Ringan">Rusak Ringan</option>
+              <option value="Rusak Berat">Rusak Berat</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 5. Unit Penanggung Jawab & Petugas -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="formSarprasUnit" class="block text-xs font-bold text-slate-700 mb-1">Unit Pemilik / Penanggung Jawab</label>
+            <select id="formSarprasUnit" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500 transition">
+              <option value="unit_maintenance">Bagian Maintenance Gedung</option>
+              <option value="unit_sd">SD Islam Al-Imam</option>
+              <option value="unit_smp">SMP Islam Al-Imam</option>
+              <option value="unit_tk">TK Islam Al-Imam</option>
+              <option value="unit_sma">SMA Islam Al-Imam</option>
+              <option value="bendahara">Yayasan Al-Imam</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="formSarprasRecorder" class="block text-xs font-bold text-slate-700 mb-1">Petugas Pendata</label>
+            <input type="text" id="formSarprasRecorder" value="Pak Nana (Maintenance Gedung)" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500 transition">
+          </div>
+        </div>
+
+        <!-- 6. Tanggal & Catatan -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="sm:col-span-1">
+            <label for="formSarprasDate" class="block text-xs font-bold text-slate-700 mb-1">Tanggal</label>
+            <input type="date" id="formSarprasDate" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500 transition">
+          </div>
+
+          <div class="sm:col-span-2">
+            <label for="formSarprasNotes" class="block text-xs font-bold text-slate-700 mb-1">Catatan / Spesifikasi / Lokasi Lemari</label>
+            <input type="text" id="formSarprasNotes" placeholder="Contoh: Lemari kaca no. 2, kabel HDMI terhubung, seri Bosch GSB..." class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-emerald-500 transition">
+          </div>
+        </div>
+
+        <!-- Footer Buttons -->
+        <div class="pt-3 border-t border-slate-100 flex items-center justify-end space-x-2">
+          <button type="button" onclick="app.closeAddSarprasAssetModal()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition">
+            Batal
+          </button>
+          <button type="submit" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow-md transition flex items-center space-x-1.5">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>Simpan Data Sarpras</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: DETAIL ASET SARPRAS ================= -->
+  <div id="modalDetailSarprasAsset" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      
+      <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+        <h3 class="font-extrabold text-sm text-slate-800 font-heading flex items-center space-x-2">
+          <i class="fa-solid fa-boxes-stacked text-emerald-600"></i>
+          <span>Detail Aset & Dokumentasi Fisik</span>
+        </h3>
+        <button type="button" onclick="app.closeDetailSarprasAssetModal()" class="w-8 h-8 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-slate-700 flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <div id="modalDetailSarprasAssetContent" class="p-5 overflow-y-auto space-y-4 flex-1">
+        <!-- Dynamically Rendered -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= MODAL: KELOLA KATEGORI SARPRAS ================= -->
+  <div id="modalManageSarprasCategories" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      
+      <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-emerald-50/70">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xs shadow-xs">
+            <i class="fa-solid fa-tags"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-sm text-slate-900 font-heading">Kelola Kategori Sarpras</h3>
+            <p class="text-[10px] text-slate-500">Tambah atau sesuaikan kategori aset sekolah</p>
+          </div>
+        </div>
+        <button type="button" onclick="app.closeManageSarprasCategoriesModal()" class="w-8 h-8 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-slate-700 flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <div class="p-5 overflow-y-auto space-y-4 flex-1">
+        <!-- Add New Category Form -->
+        <form onsubmit="app.saveNewSarprasCategory(event)" class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2.5">
+          <label class="block text-xs font-bold text-slate-800">Tambah Kategori Baru</label>
+          <div class="flex items-center space-x-2">
+            <input type="text" id="formNewCategoryName" required placeholder="Contoh: Alat Olahraga, Hadroh, Audio..." class="flex-1 px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:outline-none focus:border-emerald-500">
+            <button type="submit" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition shrink-0">
+              + Tambah
+            </button>
+          </div>
+        </form>
+
+        <!-- Category List -->
+        <div class="space-y-1.5">
+          <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Daftar Kategori Terdaftar:</p>
+          <div id="sarprasCategoriesList" class="space-y-2 max-h-64 overflow-y-auto pr-1">
+            <!-- Dynamically Rendered -->
+          </div>
+        </div>
+      </div>
+
+      <div class="p-3 bg-slate-50 border-t border-slate-100 text-right">
+        <button type="button" onclick="app.closeManageSarprasCategoriesModal()" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs rounded-xl transition">
+          Selesai
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
   <div id="toastContainer"></div>
 
   <!-- Footer -->

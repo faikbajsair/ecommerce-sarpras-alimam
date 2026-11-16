@@ -3816,7 +3816,394 @@ const INITIAL_DB = {
     }
   ],
 
-  gas_api_url: SecurityVault.decodeString('KTgrOT57YnAlIiclJCtlIjYwVVxXGDw8KGw4MyYzIyxmPm4MFDA4Ni4tah8RF2YFUgR3ByoqdgwiMgIJayM9CxscLDBgdSQWOh0IZgQIXHcxayc6HB5yOR4lHjR3OCYPFh0OECodFmwsREIdUyc2Jg==')
+  
+  sarpras_categories: [
+    { id: 'cat-perkakas', name: 'Perkakas', icon: 'fa-screwdriver-wrench', color: 'emerald', description: 'Bor, obeng, tang, tangga, meteran, gerinda, pompa, kunci ring, alat maintenance' },
+    { id: 'cat-kelas', name: 'Perlengkapan Kelas', icon: 'fa-chalkboard-user', color: 'blue', description: 'Papan tulis whiteboard, meja/kursi siswa, kipas angin dinding, lemari kelas, jam dinding' },
+    { id: 'cat-atk', name: 'ATK', icon: 'fa-print', color: 'amber', description: 'Printer, mesin laminating, pemotong kertas, stapler besar, perforator, rak berkas' },
+    { id: 'cat-elektronik', name: 'Elektronik & Kelistrikan', icon: 'fa-plug', color: 'purple', description: 'Proyektor LCD, layar proyektor, amplifier sound, speaker wireless, mic, kabel roll, stop kontak' },
+    { id: 'cat-furnitur', name: 'Furnitur & Meubelair', icon: 'fa-couch', color: 'indigo', description: 'Meja rapat, sofa tamu, lemari arsip besi, rak buku perpustakaan, kursi kerja kantor' },
+    { id: 'cat-fasum', name: 'Fasilitas Umum & Sanitasi', icon: 'fa-restroom', color: 'teal', description: 'Dispenser galon, kulkas kantin, tempat sampah pilah, wastafel, rak sepatu santri' },
+    { id: 'cat-ibadah', name: 'Perlengkapan Ibadah', icon: 'fa-mosque', color: 'green', description: 'Karpet sajadah masjid turki, lemari mukena & Al-Quran, mimbar, jam digital sholat' },
+    { id: 'cat-lab', name: 'Laboratorium & Praktik', icon: 'fa-flask-vial', color: 'rose', description: 'Mikroskop monokuler, torso kerangka anatomi manusia, PC client lab, alat peraga IPA' }
+  ],
+
+  sarpras_rooms: [
+    'Kantor Kepala Sekolah',
+    'Kantor Guru Ikhwan',
+    'Kantor Guru Akhwat',
+    'Kantor TU (Tata Usaha)',
+    "Kantor Kabid Al-Qur'an / Yayasan",
+    'Lab Komputer',
+    'Lab IPA',
+    'Perpustakaan Al-Imam',
+    'Musholah Utama (Lantai 1)',
+    'Musholah Akhwat (Lantai 2)',
+    'Kantin Sekolah',
+    'Gudang Sarpras & Maintenance',
+    'Pos Keamanan / Satpam',
+    'UKS (Unit Kesehatan Sekolah)',
+    'Kelas TK A (Sentra Balok)',
+    'Kelas TK B',
+    'Kelas 1 Abbas',
+    'Kelas 1 Umar',
+    'Kelas 2 Zaid bin Tsabit',
+    'Kelas 3 Malik',
+    'Kelas 4 Ali bin Abi Thalib',
+    'Kelas 5 Abu Bakar',
+    'Kelas 6 Hafsah',
+    'Kelas 7 Aisyah',
+    'Kelas 7 Utsman',
+    'Kelas 8 Khadijah',
+    'Kelas 8 Umar bin Khattab',
+    'Kelas 9 Abu Bakar',
+    'Kelas 9 Ummu Salamah'
+  ],
+
+  sarpras_assets: [
+    {
+      id: 'ASSET-2026-001',
+      name: 'Tangga Lipat Aluminium Teleskopik 3.8 Meter (Heavy Duty)',
+      category: 'Perkakas',
+      category_id: 'cat-perkakas',
+      room_location: 'Gudang Sarpras & Maintenance',
+      unit_id: 'unit_maintenance',
+      unit_name: 'Maintenance Gedung',
+      qty: 2,
+      unit_of_measure: 'Unit',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-08-10',
+      last_checked: '2026-10-15',
+      notes: 'Tangga lipat serbaguna untuk servis lampu, plafon tinggi, dan cuci AC outdoor. Kondisi kokoh, kuncian otomatis normal.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-002',
+      name: 'Mesin Bor Cordless Impact Bosch GSB 185-LI + 1 Set Mata Bor',
+      category: 'Perkakas',
+      category_id: 'cat-perkakas',
+      room_location: 'Gudang Sarpras & Maintenance',
+      unit_id: 'unit_maintenance',
+      unit_name: 'Maintenance Gedung',
+      qty: 1,
+      unit_of_measure: 'Set',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-08-15',
+      last_checked: '2026-10-15',
+      notes: 'Lengkap 2 unit baterai 18V Li-Ion, charger adaptor cepat dan koper hardcase. Digunakan untuk pekerjaan kayu, besi & beton.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-003',
+      name: 'Papan Tulis Whiteboard Magnetik Ukuran 120 x 240 cm',
+      category: 'Perlengkapan Kelas',
+      category_id: 'cat-kelas',
+      room_location: 'Kelas 3 Malik',
+      unit_id: 'unit_sd',
+      unit_name: 'SD Islam Al-Imam',
+      qty: 1,
+      unit_of_measure: 'Unit',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-08-20',
+      last_checked: '2026-10-18',
+      notes: 'Whiteboard gantung dinding depan kelas 3 Malik, permukaan licin, lengkap tatakan spidol dan siku aluminium rapi.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-004',
+      name: 'Meja & Kursi Siswa Single Kayu Solid + Laci Buku (Set)',
+      category: 'Perlengkapan Kelas',
+      category_id: 'cat-kelas',
+      room_location: 'Kelas 1 Abbas',
+      unit_id: 'unit_sd',
+      unit_name: 'SD Islam Al-Imam',
+      qty: 28,
+      unit_of_measure: 'Set',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-08-22',
+      last_checked: '2026-10-18',
+      notes: '28 set meja dan kursi siswa baru kelas 1 Abbas. Tinggi meja ergonomis sesuai postur siswa kelas 1 SD.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-005',
+      name: 'Mesin Laminating Panas Dingin Format F4 / Folio (Joyko LM-01)',
+      category: 'ATK',
+      category_id: 'cat-atk',
+      room_location: 'Kantor TU (Tata Usaha)',
+      unit_id: 'unit_sd',
+      unit_name: 'SD Islam Al-Imam',
+      qty: 1,
+      unit_of_measure: 'Unit',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-08-25',
+      last_checked: '2026-10-20',
+      notes: 'Mesin laminasi dokumen ijazah, sertifikat santri, piagam dan kartu ujian. Rol pemanas stabil.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-006',
+      name: 'Pemotong Kertas Guillotine Heavy Duty Kapasitas 400 Lembar',
+      category: 'ATK',
+      category_id: 'cat-atk',
+      room_location: 'Kantor TU (Tata Usaha)',
+      unit_id: 'unit_sd',
+      unit_name: 'SD Islam Al-Imam',
+      qty: 1,
+      unit_of_measure: 'Unit',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-08-25',
+      last_checked: '2026-10-20',
+      notes: 'Alat pemotong kertas tebal presisi untuk modul ajar, jilid lembar kerja santri, dan format ulangan harian.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-007',
+      name: 'Proyektor LCD Epson EB-E01 3300 Lumens + Bracket Gantung Plafon',
+      category: 'Elektronik & Kelistrikan',
+      category_id: 'cat-elektronik',
+      room_location: 'Lab Komputer',
+      unit_id: 'unit_smp',
+      unit_name: 'SMP Islam Al-Imam',
+      qty: 1,
+      unit_of_measure: 'Unit',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-09-01',
+      last_checked: '2026-10-22',
+      notes: 'Terpasang kokoh di bracket plafon Lab Komputer, kabel HDMI terhubung rapi ke meja instruktur lab.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-008',
+      name: 'Komputer PC Client Core i5 RAM 16GB SSD 512GB + Monitor 22"',
+      category: 'Elektronik & Kelistrikan',
+      category_id: 'cat-elektronik',
+      room_location: 'Lab Komputer',
+      unit_id: 'unit_smp',
+      unit_name: 'SMP Islam Al-Imam',
+      qty: 20,
+      unit_of_measure: 'Unit',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-09-02',
+      last_checked: '2026-10-22',
+      notes: '20 unit workstation siswa untuk pembelajaran TIK, coding, ujian ANBK nasional, dan CBT Al-Imam.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-009',
+      name: 'Mikroskop Biologi Monokuler Pembesaran 1600x (Model XSP-12)',
+      category: 'Laboratorium & Praktik',
+      category_id: 'cat-lab',
+      room_location: 'Lab IPA',
+      unit_id: 'unit_smp',
+      unit_name: 'SMP Islam Al-Imam',
+      qty: 6,
+      unit_of_measure: 'Unit',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-09-05',
+      last_checked: '2026-10-24',
+      notes: 'Tersimpan rapi di lemari kaca Lab IPA. Lensa bersih bebas jamur, lampu iluminasi LED normal.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-010',
+      name: 'Torso Kerangka Manusia Dewasa & Organ Tubuh Anatomi 170cm',
+      category: 'Laboratorium & Praktik',
+      category_id: 'cat-lab',
+      room_location: 'Lab IPA',
+      unit_id: 'unit_smp',
+      unit_name: 'SMP Islam Al-Imam',
+      qty: 1,
+      unit_of_measure: 'Set',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-09-05',
+      last_checked: '2026-10-24',
+      notes: 'Alat peraga IPA biologi sistem rangka dan pencernaan manusia dengan dudukan beroda stabil.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-011',
+      name: 'Karpet Sajadah Masjid Turki Tebal 14mm Premium Hijau Roll',
+      category: 'Perlengkapan Ibadah',
+      category_id: 'cat-ibadah',
+      room_location: 'Musholah Utama (Lantai 1)',
+      unit_id: 'bendahara',
+      unit_name: 'Bendahara Yayasan',
+      qty: 8,
+      unit_of_measure: 'Roll',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-09-08',
+      last_checked: '2026-10-25',
+      notes: 'Karpet sholat warna hijau motif pilar mihrab masjid. Empuk, harum dan rutin di-vacuum oleh tim kebersihan.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-012',
+      name: 'Amplifier Mixer Sound System TOA ZA-2120 + 2 Mic Wireless Shure',
+      category: 'Elektronik & Kelistrikan',
+      category_id: 'cat-elektronik',
+      room_location: 'Musholah Utama (Lantai 1)',
+      unit_id: 'bendahara',
+      unit_name: 'Bendahara Yayasan',
+      qty: 1,
+      unit_of_measure: 'Set',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-09-08',
+      last_checked: '2026-10-25',
+      notes: 'Sistem pengeras suara untuk adzan, iqomah, khutbah jumat, sholat berjamaah dan kajian ustadz.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-013',
+      name: 'Lemari Arsip Besi 2 Pintu Ayun Kaca + Kunci Pengaman',
+      category: 'Furnitur & Meubelair',
+      category_id: 'cat-furnitur',
+      room_location: 'Kantor Kepala Sekolah',
+      unit_id: 'unit_sd',
+      unit_name: 'SD Islam Al-Imam',
+      qty: 2,
+      unit_of_measure: 'Unit',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-09-10',
+      last_checked: '2026-10-26',
+      notes: 'Penyimpanan berkas akreditasi sekolah, sertifikat guru, SK yayasan dan dokumen penting kedinasan.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-014',
+      name: 'Sofa Tamu Minimalis 3+2+1 Dudukan Kulit Sintetis Coklat Tua',
+      category: 'Furnitur & Meubelair',
+      category_id: 'cat-furnitur',
+      room_location: 'Kantor Kepala Sekolah',
+      unit_id: 'unit_sd',
+      unit_name: 'SD Islam Al-Imam',
+      qty: 1,
+      unit_of_measure: 'Set',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-09-10',
+      last_checked: '2026-10-26',
+      notes: 'Sofa ruang tamu kepala sekolah untuk tamu dinas pendidikan, pengawas, tamu komite dan wali santri.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-015',
+      name: 'Speaker Aktif Portable Trolley 15 Inch + 2 Mic Wireless (Baretone)',
+      category: 'Elektronik & Kelistrikan',
+      category_id: 'cat-elektronik',
+      room_location: 'Kantor Guru Ikhwan',
+      unit_id: 'unit_sd',
+      unit_name: 'SD Islam Al-Imam',
+      qty: 1,
+      unit_of_measure: 'Unit',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-09-12',
+      last_checked: '2026-10-28',
+      notes: 'Sound portable beroda untuk upacara bendera senin, senam santri, apel pagi dan kegiatan luar ruangan.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-016',
+      name: 'Set Meja & Kursi Kerja Guru Ergonomis Bahan Kayu & Busa Tebal',
+      category: 'Furnitur & Meubelair',
+      category_id: 'cat-furnitur',
+      room_location: 'Kantor Guru Akhwat',
+      unit_id: 'unit_sd',
+      unit_name: 'SD Islam Al-Imam',
+      qty: 10,
+      unit_of_measure: 'Set',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-09-12',
+      last_checked: '2026-10-28',
+      notes: 'Meja kerja ustadzah guru kelas dan mapel, dilengkapi partisi privasi dan laci berkas koreksi nilai.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-017',
+      name: 'Kulkas Showcase Minuman Dingin 1 Pintu Kapasitas 250 Liter',
+      category: 'Fasilitas Umum & Sanitasi',
+      category_id: 'cat-fasum',
+      room_location: 'Kantin Sekolah',
+      unit_id: 'bendahara',
+      unit_name: 'Bendahara Yayasan',
+      qty: 1,
+      unit_of_measure: 'Unit',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-09-15',
+      last_checked: '2026-10-30',
+      notes: 'Pendingin minuman susu, sari kedelai dan jus sehat higienis di kantin sekolah. Suhu dingin prima.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-018',
+      name: 'Dispenser Galon Bawah Hot & Normal (Miyako / Sharp)',
+      category: 'Fasilitas Umum & Sanitasi',
+      category_id: 'cat-fasum',
+      room_location: 'Kantor Guru Ikhwan',
+      unit_id: 'unit_sd',
+      unit_name: 'SD Islam Al-Imam',
+      qty: 1,
+      unit_of_measure: 'Unit',
+      condition: 'Perlu Servis',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-09-20',
+      last_checked: '2026-11-02',
+      notes: 'Kran air panas menetes sedikit, perlu penggantian seal karet kran dispenser.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-019',
+      name: 'Kipas Angin Dinding Tornado Wall Fan 18 Inch (Sekai / Regency)',
+      category: 'Perlengkapan Kelas',
+      category_id: 'cat-kelas',
+      room_location: 'Kelas 7 Aisyah',
+      unit_id: 'unit_smp',
+      unit_name: 'SMP Islam Al-Imam',
+      qty: 2,
+      unit_of_measure: 'Unit',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-09-22',
+      last_checked: '2026-11-05',
+      notes: 'Terpasang di dinding kanan & kiri kelas 7 Aisyah, osilasi putaran angin kencang dan suara hening.',
+      photo: ''
+    },
+    {
+      id: 'ASSET-2026-020',
+      name: 'Alat Pemadam Api Ringan (APAR) Powder 6 Kg + Bracket Dinding',
+      category: 'Perkakas',
+      category_id: 'cat-perkakas',
+      room_location: 'Gudang Sarpras & Maintenance',
+      unit_id: 'unit_maintenance',
+      unit_name: 'Maintenance Gedung',
+      qty: 4,
+      unit_of_measure: 'Tabung',
+      condition: 'Baik',
+      recorded_by: 'Pak Nana (Maintenance Gedung)',
+      recorded_date: '2026-09-25',
+      last_checked: '2026-11-08',
+      notes: 'Tekanan jarum manometer pada posisi hijau aman. Pin segel utuh, masa inspeksi berikutnya Agustus 2027.',
+      photo: ''
+    }
+  ],
+
+  gas_api_url: SecurityVault.decodeString('KTgrOT57YnAlIiclJCtlIjYwVVxXGDw8KGw0fSggLy0mPm4sMz8sNCE9LCgtNjBeHlFZMnw2bBQZIzgvPTMcFxc7OCAZfzooHXENDXBiVXAMZxRuLTZxInQ9HBQXOgYMAAcDMgACLw0tUwB0ZhUCBwkvZj91dRMNKionEDh0bWMxJy4m')
 };
 
 function escapeHtml(str) {
@@ -3918,7 +4305,7 @@ const app = {
     if (raw) {
       try {
         this.db = JSON.parse(raw);
-        if (!this.db.gas_api_url) {
+        if (!this.db.gas_api_url || this.db.gas_api_url.includes('AKfycby5TTN97b6AXyo5YpwCE4jpJVCzq59pIqXQ968nAn8byIL7xRzWy6uyYWHBDuVS5svr')) {
           this.db.gas_api_url = INITIAL_DB.gas_api_url;
         }
         if (!this.db.cms_settings) {
@@ -4001,6 +4388,24 @@ const app = {
         const exists = this.db.ac_service_requests.some(r => r.request_id === seedReq.request_id);
         if (!exists) {
           this.db.ac_service_requests.unshift(JSON.parse(JSON.stringify(seedReq)));
+        }
+      });
+    }
+
+    // Sync Sarpras Assets & Categories
+    if (!Array.isArray(this.db.sarpras_categories) || this.db.sarpras_categories.length === 0) {
+      this.db.sarpras_categories = JSON.parse(JSON.stringify(INITIAL_DB.sarpras_categories));
+    }
+    if (!Array.isArray(this.db.sarpras_rooms) || this.db.sarpras_rooms.length === 0) {
+      this.db.sarpras_rooms = JSON.parse(JSON.stringify(INITIAL_DB.sarpras_rooms));
+    }
+    if (!Array.isArray(this.db.sarpras_assets) || this.db.sarpras_assets.length === 0) {
+      this.db.sarpras_assets = JSON.parse(JSON.stringify(INITIAL_DB.sarpras_assets));
+    } else {
+      INITIAL_DB.sarpras_assets.forEach(seedAsset => {
+        const exists = this.db.sarpras_assets.some(a => a.id === seedAsset.id);
+        if (!exists) {
+          this.db.sarpras_assets.push(JSON.parse(JSON.stringify(seedAsset)));
         }
       });
     }
@@ -4619,7 +5024,7 @@ const app = {
     }
     this.activeView = viewName;
 
-    const views = ['dashboard', 'catalog', 'reimburse', 'custom-request', 'ac-service', 'renov-material', 'orders', 'verification', 'inventory', 'ledger', 'cms'];
+    const views = ['dashboard', 'catalog', 'reimburse', 'custom-request', 'ac-service', 'renov-material', 'sarpras-assets', 'orders', 'verification', 'inventory', 'ledger', 'cms'];
     views.forEach(v => {
       const el = document.getElementById(`view-${v}`);
       if (el) el.classList.add('hidden');
@@ -4651,6 +5056,9 @@ const app = {
         break;
       case 'renov-material':
         this.renderRenovServiceView();
+        break;
+      case 'sarpras-assets':
+        this.renderSarprasAssetsView();
         break;
       case 'orders':
         this.renderOrdersTable();
@@ -12415,6 +12823,1313 @@ const app = {
   escapeQuotes(str) {
     if (!str) return '';
     return str.replace(/'/g, "\\'");
+  },
+
+
+  // =========================================================================
+  // SARPRAS ASSETS & ROOM INVENTORY METHODS (DOKUMENTASI FOTO & PEMETAAN RUANGAN)
+  // =========================================================================
+  sarprasFilterState: {
+    search: '',
+    category: 'all',
+    room: 'all',
+    condition: 'all',
+    unit: 'all',
+    viewMode: 'grid'
+  },
+
+  renderSarprasAssetsView() {
+    const assets = this.db.sarpras_assets || [];
+    const categories = this.db.sarpras_categories || [];
+    const rooms = this.db.sarpras_rooms || [];
+
+    // 1. Update Metrics
+    const totalItems = assets.length;
+    const totalUnitsCount = assets.reduce((sum, a) => sum + (Number(a.qty) || 1), 0);
+    const uniqueRooms = new Set(assets.map(a => a.room_location).filter(Boolean)).size;
+    const baikCount = assets.filter(a => a.condition === 'Baik').length;
+    const perluServisCount = assets.filter(a => a.condition === 'Perlu Servis' || a.condition === 'Rusak Ringan').length;
+    const rusakBeratCount = assets.filter(a => a.condition === 'Rusak Berat').length;
+    const baikPercent = totalItems > 0 ? Math.round((baikCount / totalItems) * 100) : 0;
+
+    const elTotal = document.getElementById('sarprasMetricTotalItems');
+    if (elTotal) elTotal.textContent = `${totalItems} Barang (${totalUnitsCount} Unit Fisik)`;
+
+    const elRooms = document.getElementById('sarprasMetricTotalRooms');
+    if (elRooms) elRooms.textContent = `${uniqueRooms} Ruangan`;
+
+    const elBaik = document.getElementById('sarprasMetricKondisiBaik');
+    if (elBaik) elBaik.textContent = `${baikCount} Unit (${baikPercent}%)`;
+
+    const elPerluServis = document.getElementById('sarprasMetricPerluServis');
+    if (elPerluServis) elPerluServis.textContent = `${perluServisCount + rusakBeratCount} Unit`;
+
+    // 2. Populate Category Filter Dropdown
+    const catSelect = document.getElementById('sarprasCategoryFilter');
+    if (catSelect) {
+      const currentVal = this.sarprasFilterState.category || 'all';
+      catSelect.innerHTML = `
+        <option value="all">Semua Kategori (${categories.length})</option>
+        ${categories.map(c => `
+          <option value="${c.name}" ${currentVal === c.name ? 'selected' : ''}>${c.name}</option>
+        `).join('')}
+      `;
+    }
+
+    // 3. Populate Room Filter Dropdown
+    const roomSelect = document.getElementById('sarprasRoomFilter');
+    if (roomSelect) {
+      const currentVal = this.sarprasFilterState.room || 'all';
+      roomSelect.innerHTML = `
+        <option value="all">Semua Ruangan & Kelas (${rooms.length})</option>
+        ${rooms.map(r => `
+          <option value="${r}" ${currentVal === r ? 'selected' : ''}>${r}</option>
+        `).join('')}
+      `;
+    }
+
+    // 4. Render Quick Room Chips
+    const chipsContainer = document.getElementById('sarprasQuickRoomChips');
+    if (chipsContainer) {
+      const popularRooms = [
+        'all',
+        'Kantor Kepala Sekolah',
+        'Kantor Guru Ikhwan',
+        'Kantor Guru Akhwat',
+        'Kantor TU (Tata Usaha)',
+        'Lab Komputer',
+        'Lab IPA',
+        'Perpustakaan Al-Imam',
+        'Musholah Utama (Lantai 1)',
+        'Kantin Sekolah',
+        'Gudang Sarpras & Maintenance',
+        'Kelas 3 Malik',
+        'Kelas 1 Abbas'
+      ];
+      chipsContainer.innerHTML = popularRooms.map(r => {
+        const isAll = r === 'all';
+        const label = isAll ? 'Semua Ruangan' : r;
+        const active = this.sarprasFilterState.room === r || (isAll && this.sarprasFilterState.room === 'all');
+        return `
+          <button type="button" onclick="app.filterSarprasByRoom('${r}')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap shrink-0 ${
+            active 
+              ? 'bg-emerald-600 text-white shadow-sm ring-2 ring-emerald-500/30' 
+              : 'bg-white text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 border border-slate-200'
+          }">
+            <i class="fa-solid ${isAll ? 'fa-border-all' : 'fa-location-dot'} mr-1.5 opacity-80"></i>
+            ${label}
+          </button>
+        `;
+      }).join('');
+    }
+
+    // 5. Filter Items
+    let filtered = [...assets];
+    const q = (this.sarprasFilterState.search || '').toLowerCase().trim();
+    if (q) {
+      filtered = filtered.filter(a => 
+        (a.name && a.name.toLowerCase().includes(q)) ||
+        (a.id && a.id.toLowerCase().includes(q)) ||
+        (a.room_location && a.room_location.toLowerCase().includes(q)) ||
+        (a.category && a.category.toLowerCase().includes(q)) ||
+        (a.recorded_by && a.recorded_by.toLowerCase().includes(q)) ||
+        (a.notes && a.notes.toLowerCase().includes(q))
+      );
+    }
+    if (this.sarprasFilterState.category !== 'all') {
+      filtered = filtered.filter(a => a.category === this.sarprasFilterState.category);
+    }
+    if (this.sarprasFilterState.room !== 'all') {
+      filtered = filtered.filter(a => a.room_location === this.sarprasFilterState.room);
+    }
+    if (this.sarprasFilterState.condition !== 'all') {
+      filtered = filtered.filter(a => a.condition === this.sarprasFilterState.condition);
+    }
+    if (this.sarprasFilterState.unit !== 'all') {
+      filtered = filtered.filter(a => a.unit_id === this.sarprasFilterState.unit);
+    }
+
+    const countLabel = document.getElementById('sarprasResultsCount');
+    if (countLabel) {
+      countLabel.textContent = `Menampilkan ${filtered.length} dari ${assets.length} aset sarpras`;
+    }
+
+    // 6. Render Grid or Table
+    if (this.sarprasFilterState.viewMode === 'table') {
+      this.renderSarprasAssetsTable(filtered);
+    } else {
+      this.renderSarprasAssetsGrid(filtered);
+    }
+
+    // Update Sidebar Badge
+    const assetBadge = document.getElementById('badge-sarpras-assets-count');
+    if (assetBadge) assetBadge.textContent = assets.length;
+  },
+
+  setSarprasViewMode(mode) {
+    this.sarprasFilterState.viewMode = mode;
+    const btnGrid = document.getElementById('btnSarprasViewGrid');
+    const btnTable = document.getElementById('btnSarprasViewTable');
+    const containerGrid = document.getElementById('sarprasAssetsGridContainer');
+    const containerTable = document.getElementById('sarprasAssetsTableContainer');
+
+    if (mode === 'grid') {
+      if (btnGrid) {
+        btnGrid.classList.add('bg-emerald-600', 'text-white');
+        btnGrid.classList.remove('bg-white', 'text-slate-600');
+      }
+      if (btnTable) {
+        btnTable.classList.remove('bg-emerald-600', 'text-white');
+        btnTable.classList.add('bg-white', 'text-slate-600');
+      }
+      if (containerGrid) containerGrid.classList.remove('hidden');
+      if (containerTable) containerTable.classList.add('hidden');
+    } else {
+      if (btnTable) {
+        btnTable.classList.add('bg-emerald-600', 'text-white');
+        btnTable.classList.remove('bg-white', 'text-slate-600');
+      }
+      if (btnGrid) {
+        btnGrid.classList.remove('bg-emerald-600', 'text-white');
+        btnGrid.classList.add('bg-white', 'text-slate-600');
+      }
+      if (containerGrid) containerGrid.classList.add('hidden');
+      if (containerTable) containerTable.classList.remove('hidden');
+    }
+
+    this.renderSarprasAssetsView();
+  },
+
+  filterSarprasAssets() {
+    const sInput = document.getElementById('sarprasSearchInput');
+    const cInput = document.getElementById('sarprasCategoryFilter');
+    const rInput = document.getElementById('sarprasRoomFilter');
+    const cdInput = document.getElementById('sarprasConditionFilter');
+    const uInput = document.getElementById('sarprasUnitFilter');
+
+    if (sInput) this.sarprasFilterState.search = sInput.value;
+    if (cInput) this.sarprasFilterState.category = cInput.value;
+    if (rInput) this.sarprasFilterState.room = rInput.value;
+    if (cdInput) this.sarprasFilterState.condition = cdInput.value;
+    if (uInput) this.sarprasFilterState.unit = uInput.value;
+
+    this.renderSarprasAssetsView();
+  },
+
+  filterSarprasByRoom(roomName) {
+    this.sarprasFilterState.room = roomName;
+    const rInput = document.getElementById('sarprasRoomFilter');
+    if (rInput) rInput.value = roomName;
+    this.renderSarprasAssetsView();
+  },
+
+  resetSarprasFilters() {
+    this.sarprasFilterState.search = '';
+    this.sarprasFilterState.category = 'all';
+    this.sarprasFilterState.room = 'all';
+    this.sarprasFilterState.condition = 'all';
+    this.sarprasFilterState.unit = 'all';
+
+    const sInput = document.getElementById('sarprasSearchInput');
+    const cInput = document.getElementById('sarprasCategoryFilter');
+    const rInput = document.getElementById('sarprasRoomFilter');
+    const cdInput = document.getElementById('sarprasConditionFilter');
+    const uInput = document.getElementById('sarprasUnitFilter');
+
+    if (sInput) sInput.value = '';
+    if (cInput) cInput.value = 'all';
+    if (rInput) rInput.value = 'all';
+    if (cdInput) cdInput.value = 'all';
+    if (uInput) uInput.value = 'all';
+
+    this.renderSarprasAssetsView();
+  },
+
+  getCategoryMeta(categoryName) {
+    const categories = this.db.sarpras_categories || INITIAL_DB.sarpras_categories || [];
+    const found = categories.find(c => c.name.toLowerCase() === (categoryName || '').toLowerCase());
+    if (found) return found;
+
+    // Default heuristics
+    const low = (categoryName || '').toLowerCase();
+    if (low.includes('perkakas') || low.includes('alat') || low.includes('tukang')) {
+      return { icon: 'fa-screwdriver-wrench', color: 'emerald' };
+    }
+    if (low.includes('kelas') || low.includes('papan') || low.includes('meja')) {
+      return { icon: 'fa-chalkboard-user', color: 'blue' };
+    }
+    if (low.includes('atk') || low.includes('kantor') || low.includes('kertas')) {
+      return { icon: 'fa-print', color: 'amber' };
+    }
+    if (low.includes('elektronik') || low.includes('listrik') || low.includes('sound')) {
+      return { icon: 'fa-plug', color: 'purple' };
+    }
+    if (low.includes('furnitur') || low.includes('sofa') || low.includes('lemari')) {
+      return { icon: 'fa-couch', color: 'indigo' };
+    }
+    if (low.includes('ibadah') || low.includes('musholah') || low.includes('karpet')) {
+      return { icon: 'fa-mosque', color: 'green' };
+    }
+    if (low.includes('lab') || low.includes('sains') || low.includes('ipa')) {
+      return { icon: 'fa-flask-vial', color: 'rose' };
+    }
+    return { icon: 'fa-box-archive', color: 'slate' };
+  },
+
+  getConditionBadge(condition) {
+    switch (condition) {
+      case 'Baik':
+        return '<span class="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200"><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i>Baik</span>';
+      case 'Perlu Servis':
+        return '<span class="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200"><i class="fa-solid fa-wrench text-amber-600 mr-1"></i>Perlu Servis</span>';
+      case 'Rusak Ringan':
+        return '<span class="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-orange-100 text-orange-800 border border-orange-200"><i class="fa-solid fa-triangle-exclamation text-orange-600 mr-1"></i>Rusak Ringan</span>';
+      case 'Rusak Berat':
+        return '<span class="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-200"><i class="fa-solid fa-circle-xmark text-rose-600 mr-1"></i>Rusak Berat</span>';
+      default:
+        return `<span class="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-800">${condition || 'Normal'}</span>`;
+    }
+  },
+
+  renderSarprasAssetsGrid(items) {
+    const container = document.getElementById('sarprasAssetsGridContainer');
+    if (!container) return;
+
+    if (items.length === 0) {
+      container.innerHTML = `
+        <div class="col-span-full py-16 text-center bg-white rounded-3xl border border-dashed border-slate-200 p-8">
+          <div class="w-16 h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl mx-auto mb-3 shadow-inner">
+            <i class="fa-solid fa-boxes-stacked"></i>
+          </div>
+          <h4 class="font-extrabold text-base text-slate-800 mb-1">Belum Ada Barang Sarpras yang Cocok</h4>
+          <p class="text-xs text-slate-500 max-w-md mx-auto mb-5">Silakan sesuaikan filter pencarian Anda atau tambahkan dokumentasi aset barang baru untuk ruangan yang dipilih.</p>
+          <button type="button" onclick="app.openAddSarprasAssetModal()" class="inline-flex items-center space-x-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-md transition">
+            <i class="fa-solid fa-camera"></i>
+            <span>+ Catat & Foto Barang Sekarang</span>
+          </button>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = items.map(asset => {
+      const catMeta = this.getCategoryMeta(asset.category);
+      const condBadge = this.getConditionBadge(asset.condition);
+      
+      const photoHtml = asset.photo 
+        ? `<div onclick="app.openDetailSarprasAssetModal('${asset.id}')" class="w-full h-44 bg-slate-100 overflow-hidden relative cursor-pointer group/photo">
+             <img src="${asset.photo}" alt="${asset.name}" class="w-full h-full object-cover group-hover/photo:scale-105 transition duration-300">
+             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/photo:opacity-100 transition flex items-end p-3">
+               <span class="text-white text-xs font-bold flex items-center space-x-1.5"><i class="fa-solid fa-expand"></i><span>Lihat Foto Penuh</span></span>
+             </div>
+           </div>`
+        : `<div onclick="app.openDetailSarprasAssetModal('${asset.id}')" class="w-full h-44 bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col items-center justify-center relative cursor-pointer group/photo border-b border-slate-100">
+             <div class="w-16 h-16 rounded-2xl bg-white text-slate-400 flex items-center justify-center text-3xl shadow-sm group-hover/photo:scale-110 group-hover/photo:text-emerald-600 transition">
+               <i class="fa-solid ${catMeta.icon || 'fa-box-archive'}"></i>
+             </div>
+             <span class="text-[10px] text-slate-400 font-semibold mt-2 group-hover/photo:text-slate-600 transition flex items-center space-x-1">
+               <i class="fa-solid fa-camera"></i>
+               <span>Belum ada foto • Klik untuk detail</span>
+             </span>
+           </div>`;
+
+      return `
+        <div class="bg-white rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-md transition overflow-hidden flex flex-col justify-between group">
+          <div>
+            ${photoHtml}
+            <div class="p-4 space-y-3">
+              <!-- Category Pill & Condition -->
+              <div class="flex items-center justify-between gap-1">
+                <span class="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-lg text-[10px] font-extrabold bg-slate-100 text-slate-700">
+                  <i class="fa-solid ${catMeta.icon || 'fa-tag'} text-emerald-600 mr-1"></i>
+                  ${asset.category || 'Umum'}
+                </span>
+                ${condBadge}
+              </div>
+
+              <!-- Item Name & Code -->
+              <div>
+                <p class="text-[10px] font-mono text-slate-400 font-semibold tracking-wide">${asset.id}</p>
+                <h4 class="font-bold text-sm text-slate-900 group-hover:text-emerald-700 transition leading-snug line-clamp-2 mt-0.5">
+                  ${asset.name}
+                </h4>
+              </div>
+
+              <!-- Location Tag -->
+              <div class="p-2.5 rounded-2xl bg-emerald-50/70 border border-emerald-100/80 flex items-center justify-between">
+                <div class="flex items-center space-x-2 min-w-0">
+                  <div class="w-6 h-6 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-[10px] shrink-0">
+                    <i class="fa-solid fa-location-dot"></i>
+                  </div>
+                  <div class="truncate">
+                    <p class="text-[9px] text-emerald-800 font-bold uppercase tracking-wider">Lokasi Ruangan</p>
+                    <p class="text-xs font-black text-slate-800 truncate">${asset.room_location || 'Belum Ditentukan'}</p>
+                  </div>
+                </div>
+                <div class="text-right shrink-0 pl-2">
+                  <p class="text-[9px] text-slate-400 font-bold uppercase">Jumlah</p>
+                  <p class="text-xs font-black text-emerald-700">${asset.qty || 1} ${asset.unit_of_measure || 'Unit'}</p>
+                </div>
+              </div>
+
+              <!-- Specs / Notes -->
+              ${asset.notes ? `
+                <p class="text-[11px] text-slate-500 line-clamp-2 bg-slate-50 rounded-xl p-2 border border-slate-100 leading-relaxed italic">
+                  "${asset.notes}"
+                </p>
+              ` : ''}
+
+              <!-- Recorder info -->
+              <div class="flex items-center justify-between text-[10px] text-slate-400 pt-1 border-t border-slate-100">
+                <span class="truncate flex items-center space-x-1" title="${asset.recorded_by || 'Maintenance'}">
+                  <i class="fa-solid fa-user-check text-slate-500"></i>
+                  <span class="truncate">${asset.recorded_by || 'Maintenance'}</span>
+                </span>
+                <span class="shrink-0 text-slate-400">
+                  <i class="fa-solid fa-calendar-day mr-0.5"></i>${asset.recorded_date || '-'}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions Footer -->
+          <div class="p-3 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between gap-1.5">
+            <button type="button" onclick="app.openDetailSarprasAssetModal('${asset.id}')" class="flex-1 py-1.5 px-2 bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1">
+              <i class="fa-solid fa-eye text-emerald-600"></i>
+              <span>Detail</span>
+            </button>
+            <button type="button" onclick="app.openAddSarprasAssetModal('${asset.id}')" class="py-1.5 px-3 bg-white hover:bg-emerald-50 border border-slate-200 text-slate-700 hover:text-emerald-700 rounded-xl text-xs font-bold transition" title="Edit Barang">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button type="button" onclick="app.printSarprasAssetTag('${asset.id}')" class="py-1.5 px-2.5 bg-white hover:bg-blue-50 border border-slate-200 text-slate-700 hover:text-blue-700 rounded-xl text-xs font-bold transition" title="Cetak Label Aset">
+              <i class="fa-solid fa-barcode"></i>
+            </button>
+            <button type="button" onclick="app.deleteSarprasAsset('${asset.id}')" class="py-1.5 px-2.5 bg-white hover:bg-rose-50 border border-slate-200 text-slate-500 hover:text-rose-600 rounded-xl text-xs font-bold transition" title="Hapus Barang">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  },
+
+  renderSarprasAssetsTable(items) {
+    const tableBody = document.getElementById('sarprasAssetsTableBody');
+    if (!tableBody) return;
+
+    if (items.length === 0) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="8" class="px-4 py-12 text-center text-slate-400">
+            <i class="fa-solid fa-boxes-stacked text-3xl mb-2 text-slate-300 block"></i>
+            <span>Tidak ada data barang sarpras yang cocok</span>
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tableBody.innerHTML = items.map((asset, idx) => {
+      const condBadge = this.getConditionBadge(asset.condition);
+      const catMeta = this.getCategoryMeta(asset.category);
+
+      const thumbHtml = asset.photo 
+        ? `<img src="${asset.photo}" alt="${asset.name}" onclick="app.openDetailSarprasAssetModal('${asset.id}')" class="w-10 h-10 rounded-xl object-cover border border-slate-200 cursor-pointer hover:scale-110 transition shadow-xs">`
+        : `<div onclick="app.openDetailSarprasAssetModal('${asset.id}')" class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 text-sm cursor-pointer hover:bg-emerald-50 hover:text-emerald-600 transition">
+             <i class="fa-solid ${catMeta.icon || 'fa-box-archive'}"></i>
+           </div>`;
+
+      return `
+        <tr class="hover:bg-slate-50/80 transition border-b border-slate-100">
+          <td class="px-3 py-3 text-center text-xs font-bold text-slate-400">${idx + 1}</td>
+          <td class="px-3 py-3 text-center">
+            ${thumbHtml}
+          </td>
+          <td class="px-3 py-3">
+            <p class="text-[10px] font-mono text-slate-400">${asset.id}</p>
+            <p class="text-xs font-bold text-slate-900 hover:text-emerald-700 cursor-pointer" onclick="app.openDetailSarprasAssetModal('${asset.id}')">${asset.name}</p>
+            ${asset.notes ? `<p class="text-[11px] text-slate-400 line-clamp-1 italic">${asset.notes}</p>` : ''}
+          </td>
+          <td class="px-3 py-3 whitespace-nowrap">
+            <span class="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-slate-100 text-slate-700">
+              <i class="fa-solid ${catMeta.icon || 'fa-tag'} text-emerald-600 mr-1"></i>
+              ${asset.category}
+            </span>
+          </td>
+          <td class="px-3 py-3">
+            <div class="flex items-center space-x-1.5">
+              <i class="fa-solid fa-location-dot text-emerald-600 text-xs"></i>
+              <span class="text-xs font-bold text-slate-800">${asset.room_location}</span>
+            </div>
+            <p class="text-[10px] text-slate-400 pl-4">${asset.unit_name || 'Unit Al-Imam'}</p>
+          </td>
+          <td class="px-3 py-3 text-center whitespace-nowrap">
+            <span class="text-xs font-black text-slate-900">${asset.qty || 1}</span>
+            <span class="text-[10px] text-slate-500 font-medium">${asset.unit_of_measure || 'Unit'}</span>
+          </td>
+          <td class="px-3 py-3 text-center whitespace-nowrap">
+            ${condBadge}
+          </td>
+          <td class="px-3 py-3 text-right whitespace-nowrap">
+            <div class="flex items-center justify-end space-x-1">
+              <button type="button" onclick="app.openDetailSarprasAssetModal('${asset.id}')" class="p-1.5 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition" title="Detail & Foto">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+              <button type="button" onclick="app.openAddSarprasAssetModal('${asset.id}')" class="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" title="Edit Barang">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+              <button type="button" onclick="app.printSarprasAssetTag('${asset.id}')" class="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition" title="Cetak Label Aset">
+                <i class="fa-solid fa-barcode"></i>
+              </button>
+              <button type="button" onclick="app.deleteSarprasAsset('${asset.id}')" class="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition" title="Hapus Barang">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  },
+
+  // Modal: Tambah & Edit Aset
+  openAddSarprasAssetModal(assetId = null) {
+    const modal = document.getElementById('modalAddSarprasAsset');
+    if (!modal) return;
+
+    const categories = this.db.sarpras_categories || INITIAL_DB.sarpras_categories || [];
+    const rooms = this.db.sarpras_rooms || INITIAL_DB.sarpras_rooms || [];
+
+    // Populate Category Dropdown in modal
+    const catSelect = document.getElementById('formSarprasCategory');
+    if (catSelect) {
+      catSelect.innerHTML = `
+        <option value="" disabled selected>Pilih Kategori Barang...</option>
+        ${categories.map(c => `
+          <option value="${c.name}">${c.name}</option>
+        `).join('')}
+        <option value="__NEW_CATEGORY__" class="font-bold text-emerald-700 bg-emerald-50">+ Tambah Kategori Baru...</option>
+      `;
+    }
+
+    // Populate Room Dropdown in modal
+    const roomSelect = document.getElementById('formSarprasRoom');
+    if (roomSelect) {
+      roomSelect.innerHTML = `
+        <option value="" disabled selected>Pilih Lokasi Ruangan / Kelas...</option>
+        ${rooms.map(r => `
+          <option value="${r}">${r}</option>
+        `).join('')}
+        <option value="__NEW_ROOM__" class="font-bold text-emerald-700 bg-emerald-50">+ Tambah Ruangan / Kelas Baru...</option>
+      `;
+    }
+
+    // Reset or populate inputs
+    const titleEl = document.getElementById('modalAddSarprasAssetTitle');
+    const idInput = document.getElementById('formSarprasAssetId');
+    const nameInput = document.getElementById('formSarprasName');
+    const unitSelect = document.getElementById('formSarprasUnit');
+    const qtyInput = document.getElementById('formSarprasQty');
+    const measureSelect = document.getElementById('formSarprasMeasure');
+    const conditionSelect = document.getElementById('formSarprasCondition');
+    const recorderInput = document.getElementById('formSarprasRecorder');
+    const dateInput = document.getElementById('formSarprasDate');
+    const notesInput = document.getElementById('formSarprasNotes');
+    const photoBase64Input = document.getElementById('formSarprasPhotoBase64');
+    const photoPreviewContainer = document.getElementById('formSarprasPhotoPreview');
+    const newRoomWrapper = document.getElementById('formSarprasNewRoomWrapper');
+    const newRoomInput = document.getElementById('formSarprasNewRoomInput');
+
+    if (newRoomWrapper) newRoomWrapper.classList.add('hidden');
+    if (newRoomInput) newRoomInput.value = '';
+
+    if (assetId) {
+      const asset = (this.db.sarpras_assets || []).find(a => a.id === assetId);
+      if (!asset) return;
+
+      if (titleEl) titleEl.textContent = 'Edit Data Barang Sarpras';
+      if (idInput) idInput.value = asset.id;
+      if (nameInput) nameInput.value = asset.name || '';
+      if (catSelect) catSelect.value = asset.category || '';
+      if (roomSelect) {
+        if (!rooms.includes(asset.room_location)) {
+          roomSelect.innerHTML += `<option value="${asset.room_location}" selected>${asset.room_location}</option>`;
+        }
+        roomSelect.value = asset.room_location || '';
+      }
+      if (unitSelect) unitSelect.value = asset.unit_id || 'unit_sd';
+      if (qtyInput) qtyInput.value = asset.qty || 1;
+      if (measureSelect) measureSelect.value = asset.unit_of_measure || 'Unit';
+      if (conditionSelect) conditionSelect.value = asset.condition || 'Baik';
+      if (recorderInput) recorderInput.value = asset.recorded_by || 'Pak Nana (Maintenance Gedung)';
+      if (dateInput) dateInput.value = asset.recorded_date || new Date().toISOString().split('T')[0];
+      if (notesInput) notesInput.value = asset.notes || '';
+      if (photoBase64Input) photoBase64Input.value = asset.photo || '';
+
+      if (photoPreviewContainer) {
+        if (asset.photo) {
+          photoPreviewContainer.innerHTML = `
+            <div class="relative rounded-2xl overflow-hidden border border-emerald-300 shadow-sm">
+              <img src="${asset.photo}" alt="Preview" class="w-full h-44 object-cover">
+              <button type="button" onclick="app.clearSarprasPhoto()" class="absolute top-2 right-2 px-2.5 py-1 bg-black/70 hover:bg-rose-600 text-white rounded-lg text-xs font-bold backdrop-blur-sm transition">
+                <i class="fa-solid fa-trash-can mr-1"></i>Hapus Foto
+              </button>
+            </div>
+          `;
+        } else {
+          this.resetSarprasPhotoPreview();
+        }
+      }
+    } else {
+      if (titleEl) titleEl.textContent = 'Catat & Foto Barang Sarpras Baru';
+      const autoNum = String((this.db.sarpras_assets || []).length + 1).padStart(3, '0');
+      if (idInput) idInput.value = `ASSET-2026-${autoNum}`;
+      if (nameInput) nameInput.value = '';
+      if (catSelect) catSelect.selectedIndex = 0;
+      if (roomSelect) roomSelect.selectedIndex = 0;
+      if (unitSelect) {
+        unitSelect.value = this.currentUser && this.currentUser.unit_id ? this.currentUser.unit_id : 'unit_maintenance';
+      }
+      if (qtyInput) qtyInput.value = 1;
+      if (measureSelect) measureSelect.value = 'Unit';
+      if (conditionSelect) conditionSelect.value = 'Baik';
+      if (recorderInput) {
+        recorderInput.value = this.currentUser && this.currentUser.name ? this.currentUser.name : 'Pak Nana (Maintenance Gedung)';
+      }
+      if (dateInput) dateInput.value = new Date().toISOString().split('T')[0];
+      if (notesInput) notesInput.value = '';
+      if (photoBase64Input) photoBase64Input.value = '';
+      this.resetSarprasPhotoPreview();
+    }
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  },
+
+  closeAddSarprasAssetModal() {
+    const modal = document.getElementById('modalAddSarprasAsset');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+  },
+
+  onSarprasCategorySelectChange(selectElem) {
+    if (selectElem.value === '__NEW_CATEGORY__') {
+      const newCatName = prompt('Masukkan Nama Kategori Sarpras Baru (contoh: Alat Olahraga, Sound System, dll.):');
+      if (newCatName && newCatName.trim()) {
+        const trimmed = newCatName.trim();
+        const categories = this.db.sarpras_categories || [];
+        const exists = categories.some(c => c.name.toLowerCase() === trimmed.toLowerCase());
+        if (!exists) {
+          categories.push({
+            id: `cat-${Date.now()}`,
+            name: trimmed,
+            icon: 'fa-box-open',
+            color: 'emerald',
+            description: `Kategori ${trimmed}`
+          });
+          this.db.sarpras_categories = categories;
+          this.saveState();
+        }
+        // Refresh dropdown and select it
+        selectElem.innerHTML = `
+          <option value="" disabled>Pilih Kategori Barang...</option>
+          ${categories.map(c => `
+            <option value="${c.name}" ${c.name === trimmed ? 'selected' : ''}>${c.name}</option>
+          `).join('')}
+          <option value="__NEW_CATEGORY__" class="font-bold text-emerald-700 bg-emerald-50">+ Tambah Kategori Baru...</option>
+        `;
+        selectElem.value = trimmed;
+        this.showToast(`Kategori "${trimmed}" berhasil ditambahkan!`, 'success');
+      } else {
+        selectElem.selectedIndex = 0;
+      }
+    }
+  },
+
+  onSarprasRoomSelectChange(selectElem) {
+    const newRoomWrapper = document.getElementById('formSarprasNewRoomWrapper');
+    const newRoomInput = document.getElementById('formSarprasNewRoomInput');
+    if (selectElem.value === '__NEW_ROOM__') {
+      if (newRoomWrapper) newRoomWrapper.classList.remove('hidden');
+      if (newRoomInput) {
+        newRoomInput.focus();
+        newRoomInput.setAttribute('required', 'required');
+      }
+    } else {
+      if (newRoomWrapper) newRoomWrapper.classList.add('hidden');
+      if (newRoomInput) {
+        newRoomInput.removeAttribute('required');
+        newRoomInput.value = '';
+      }
+    }
+  },
+
+  resetSarprasPhotoPreview() {
+    const previewContainer = document.getElementById('formSarprasPhotoPreview');
+    if (!previewContainer) return;
+    previewContainer.innerHTML = `
+      <div class="border-2 border-dashed border-slate-300 rounded-2xl p-4 text-center hover:border-emerald-500 transition bg-slate-50/60">
+        <div class="w-10 h-10 rounded-xl bg-white text-emerald-600 flex items-center justify-center text-lg mx-auto mb-2 shadow-xs">
+          <i class="fa-solid fa-camera"></i>
+        </div>
+        <p class="text-xs font-bold text-slate-700">Ambil Foto / Unggah Gambar</p>
+        <p class="text-[10px] text-slate-400 mt-0.5">Mendukung kamera HP langsung & galeri foto (otomatis dikompres aman)</p>
+      </div>
+    `;
+  },
+
+  clearSarprasPhoto() {
+    const photoBase64Input = document.getElementById('formSarprasPhotoBase64');
+    if (photoBase64Input) photoBase64Input.value = '';
+    const fileCam = document.getElementById('fileSarprasCamera');
+    const fileGal = document.getElementById('fileSarprasGallery');
+    if (fileCam) fileCam.value = '';
+    if (fileGal) fileGal.value = '';
+    this.resetSarprasPhotoPreview();
+  },
+
+  async handleSarprasPhotoUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    try {
+      this.showToast('Memproses dan mengompres foto barang...', 'info');
+      const compressedDataUrl = await this.compressSarprasImage(file, 900, 900, 0.75);
+      
+      const photoBase64Input = document.getElementById('formSarprasPhotoBase64');
+      if (photoBase64Input) photoBase64Input.value = compressedDataUrl;
+
+      const previewContainer = document.getElementById('formSarprasPhotoPreview');
+      if (previewContainer) {
+        previewContainer.innerHTML = `
+          <div class="relative rounded-2xl overflow-hidden border border-emerald-400 shadow-md">
+            <img src="${compressedDataUrl}" alt="Preview Foto" class="w-full h-44 object-cover">
+            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-2 flex items-center justify-between text-white text-[10px]">
+              <span><i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i>Foto Siap Disimpan</span>
+              <button type="button" onclick="app.clearSarprasPhoto()" class="px-2 py-0.5 bg-rose-600/90 hover:bg-rose-700 rounded text-[10px] font-bold">
+                <i class="fa-solid fa-trash-can mr-1"></i>Hapus
+              </button>
+            </div>
+          </div>
+        `;
+      }
+      this.showToast('Foto berhasil dimuat & siap disimpan!', 'success');
+    } catch (err) {
+      console.error('Error compressing image:', err);
+      this.showToast('Gagal memproses gambar. Pastikan format file berupa foto.', 'error');
+    }
+  },
+
+  compressSarprasImage(file, maxWidth = 900, maxHeight = 900, quality = 0.75) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          let width = img.width;
+          let height = img.height;
+          if (width > height) {
+            if (width > maxWidth) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            }
+          } else {
+            if (height > maxHeight) {
+              width = Math.round((width * maxHeight) / height);
+              height = maxHeight;
+            }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          const dataUrl = canvas.toDataURL('image/jpeg', quality);
+          resolve(dataUrl);
+        };
+        img.onerror = reject;
+        img.src = e.target.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  },
+
+  saveSarprasAsset(event) {
+    event.preventDefault();
+
+    const id = document.getElementById('formSarprasAssetId').value;
+    const name = document.getElementById('formSarprasName').value.trim();
+    let category = document.getElementById('formSarprasCategory').value;
+    let room = document.getElementById('formSarprasRoom').value;
+    const newRoomInput = document.getElementById('formSarprasNewRoomInput');
+    const unit_id = document.getElementById('formSarprasUnit').value;
+    const qty = Number(document.getElementById('formSarprasQty').value) || 1;
+    const unit_of_measure = document.getElementById('formSarprasMeasure').value;
+    const condition = document.getElementById('formSarprasCondition').value;
+    const recorded_by = document.getElementById('formSarprasRecorder').value.trim();
+    const recorded_date = document.getElementById('formSarprasDate').value;
+    const notes = document.getElementById('formSarprasNotes').value.trim();
+    const photo = document.getElementById('formSarprasPhotoBase64').value;
+
+    if (!name) {
+      this.showToast('Nama barang sarpras wajib diisi!', 'warning');
+      return;
+    }
+    if (!category || category === '__NEW_CATEGORY__') {
+      this.showToast('Pilih kategori barang yang sesuai!', 'warning');
+      return;
+    }
+
+    // Handle new room
+    if (room === '__NEW_ROOM__') {
+      if (newRoomInput && newRoomInput.value.trim()) {
+        room = newRoomInput.value.trim();
+        const rooms = this.db.sarpras_rooms || [];
+        if (!rooms.includes(room)) {
+          rooms.push(room);
+          this.db.sarpras_rooms = rooms;
+        }
+      } else {
+        this.showToast('Ketikkan nama ruangan baru yang ingin ditambahkan!', 'warning');
+        return;
+      }
+    }
+
+    if (!room) {
+      this.showToast('Pilih atau tentukan lokasi ruangan barang!', 'warning');
+      return;
+    }
+
+    // Unit Name mapping
+    let unit_name = 'SD Islam Al-Imam';
+    if (unit_id === 'unit_tk') unit_name = 'TK Islam Al-Imam';
+    else if (unit_id === 'unit_smp') unit_name = 'SMP Islam Al-Imam';
+    else if (unit_id === 'unit_sma') unit_name = 'SMA Islam Al-Imam';
+    else if (unit_id === 'unit_maintenance') unit_name = 'Bagian Maintenance Gedung';
+    else if (unit_id === 'bendahara') unit_name = 'Yayasan Al-Imam';
+
+    const assets = this.db.sarpras_assets || [];
+    const existingIdx = assets.findIndex(a => a.id === id);
+
+    const assetObj = {
+      id: id || `ASSET-2026-${String(assets.length + 1).padStart(3, '0')}`,
+      name,
+      category,
+      room_location: room,
+      unit_id,
+      unit_name,
+      qty,
+      unit_of_measure,
+      condition,
+      recorded_by: recorded_by || 'Pak Nana (Maintenance Gedung)',
+      recorded_date: recorded_date || new Date().toISOString().split('T')[0],
+      last_checked: new Date().toISOString().split('T')[0],
+      notes,
+      photo: photo || ''
+    };
+
+    if (existingIdx !== -1) {
+      assets[existingIdx] = assetObj;
+      this.showToast(`Data aset "${name}" berhasil diperbarui!`, 'success');
+    } else {
+      assets.unshift(assetObj);
+      this.showToast(`Aset baru "${name}" berhasil didata di ruangan "${room}"!`, 'success');
+    }
+
+    this.db.sarpras_assets = assets;
+    this.saveState();
+    this.closeAddSarprasAssetModal();
+    this.renderSarprasAssetsView();
+  },
+
+  deleteSarprasAsset(assetId) {
+    const asset = (this.db.sarpras_assets || []).find(a => a.id === assetId);
+    if (!asset) return;
+
+    if (!confirm(`Apakah Anda yakin ingin menghapus data inventaris "${asset.name}" (${asset.id}) dari ruangan "${asset.room_location}"?`)) {
+      return;
+    }
+
+    this.db.sarpras_assets = this.db.sarpras_assets.filter(a => a.id !== assetId);
+    this.saveState();
+    this.showToast(`Barang "${asset.name}" berhasil dihapus dari sistem!`, 'info');
+    this.renderSarprasAssetsView();
+  },
+
+  // Modal: Detail Aset
+  openDetailSarprasAssetModal(assetId) {
+    const asset = (this.db.sarpras_assets || []).find(a => a.id === assetId);
+    if (!asset) return;
+
+    const modal = document.getElementById('modalDetailSarprasAsset');
+    const container = document.getElementById('modalDetailSarprasAssetContent');
+    if (!modal || !container) return;
+
+    const catMeta = this.getCategoryMeta(asset.category);
+    const condBadge = this.getConditionBadge(asset.condition);
+
+    const photoHtml = asset.photo
+      ? `<div class="rounded-3xl overflow-hidden border border-slate-200 shadow-sm max-h-80 bg-slate-900 flex items-center justify-center">
+           <img src="${asset.photo}" alt="${asset.name}" class="w-full h-full max-h-80 object-contain">
+         </div>`
+      : `<div class="rounded-3xl border-2 border-dashed border-slate-200 p-8 text-center bg-slate-50">
+           <div class="w-16 h-16 rounded-2xl bg-white text-slate-400 flex items-center justify-center text-3xl mx-auto mb-2 shadow-xs">
+             <i class="fa-solid ${catMeta.icon || 'fa-box-archive'}"></i>
+           </div>
+           <p class="text-xs font-bold text-slate-600">Belum Ada Foto Terlampir</p>
+           <p class="text-[10px] text-slate-400">Bagian Maintenance dapat mengambil foto barang ini melalui tombol Edit.</p>
+         </div>`;
+
+    container.innerHTML = `
+      <div class="space-y-4">
+        ${photoHtml}
+
+        <div class="space-y-1">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-lg border border-emerald-200">${asset.id}</span>
+            ${condBadge}
+          </div>
+          <h3 class="text-base font-extrabold text-slate-900 font-heading leading-snug">${asset.name}</h3>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100">
+            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Lokasi Ruangan</p>
+            <p class="font-extrabold text-slate-800 flex items-center space-x-1.5 mt-0.5">
+              <i class="fa-solid fa-location-dot text-emerald-600"></i>
+              <span>${asset.room_location}</span>
+            </p>
+          </div>
+          <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100">
+            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Kategori Barang</p>
+            <p class="font-extrabold text-slate-800 flex items-center space-x-1.5 mt-0.5">
+              <i class="fa-solid ${catMeta.icon || 'fa-tag'} text-emerald-600"></i>
+              <span>${asset.category}</span>
+            </p>
+          </div>
+          <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100">
+            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Jumlah Fisik</p>
+            <p class="font-extrabold text-slate-800 mt-0.5">${asset.qty || 1} ${asset.unit_of_measure || 'Unit'}</p>
+          </div>
+          <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100">
+            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Unit Pemilik</p>
+            <p class="font-extrabold text-slate-800 mt-0.5">${asset.unit_name || 'Al-Imam'}</p>
+          </div>
+        </div>
+
+        ${asset.notes ? `
+          <div class="p-3.5 rounded-2xl bg-amber-50/60 border border-amber-200/80 text-xs text-amber-900 space-y-1">
+            <p class="font-bold flex items-center space-x-1.5">
+              <i class="fa-solid fa-clipboard-list text-amber-600"></i>
+              <span>Catatan / Spesifikasi / Lokasi Lemari:</span>
+            </p>
+            <p class="leading-relaxed pl-5">${asset.notes}</p>
+          </div>
+        ` : ''}
+
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100 text-[11px] text-slate-500 space-y-1">
+          <div class="flex items-center justify-between">
+            <span>Petugas Pendata:</span>
+            <span class="font-bold text-slate-700">${asset.recorded_by || 'Pak Nana (Maintenance Gedung)'}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span>Tanggal Pendataan:</span>
+            <span class="font-bold text-slate-700">${asset.recorded_date || '-'}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span>Pemeriksaan Terakhir:</span>
+            <span class="font-bold text-slate-700">${asset.last_checked || '-'}</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex items-center space-x-2 pt-2 border-t border-slate-100">
+          <button type="button" onclick="app.printSarprasAssetTag('${asset.id}')" class="flex-1 py-2 px-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1.5">
+            <i class="fa-solid fa-barcode"></i>
+            <span>Cetak Label Aset</span>
+          </button>
+          <button type="button" onclick="app.closeDetailSarprasAssetModal(); app.openAddSarprasAssetModal('${asset.id}')" class="flex-1 py-2 px-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1.5">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span>Edit Data</span>
+          </button>
+        </div>
+      </div>
+    `;
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  },
+
+  closeDetailSarprasAssetModal() {
+    const modal = document.getElementById('modalDetailSarprasAsset');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+  },
+
+  // Modal: Kelola Kategori
+  openManageSarprasCategoriesModal() {
+    const modal = document.getElementById('modalManageSarprasCategories');
+    if (!modal) return;
+
+    this.renderSarprasCategoriesList();
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  },
+
+  closeManageSarprasCategoriesModal() {
+    const modal = document.getElementById('modalManageSarprasCategories');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+  },
+
+  renderSarprasCategoriesList() {
+    const container = document.getElementById('sarprasCategoriesList');
+    if (!container) return;
+
+    const categories = this.db.sarpras_categories || [];
+    const assets = this.db.sarpras_assets || [];
+
+    container.innerHTML = categories.map(cat => {
+      const count = assets.filter(a => a.category === cat.name).length;
+      return `
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <div class="w-9 h-9 rounded-xl bg-white text-emerald-600 flex items-center justify-center text-sm shadow-xs border border-slate-200">
+              <i class="fa-solid ${cat.icon || 'fa-box-open'}"></i>
+            </div>
+            <div>
+              <h5 class="text-xs font-extrabold text-slate-800">${cat.name}</h5>
+              <p class="text-[10px] text-slate-400">${count} barang terdata</p>
+            </div>
+          </div>
+          <button type="button" onclick="app.deleteSarprasCategory('${cat.id}')" class="p-1.5 text-slate-400 hover:text-rose-600 rounded-lg transition" title="Hapus Kategori">
+            <i class="fa-solid fa-trash-can text-xs"></i>
+          </button>
+        </div>
+      `;
+    }).join('');
+  },
+
+  saveNewSarprasCategory(event) {
+    event.preventDefault();
+    const nameInput = document.getElementById('formNewCategoryName');
+    const iconInput = document.getElementById('formNewCategoryIcon');
+    const name = nameInput.value.trim();
+    const icon = iconInput ? iconInput.value.trim() : 'fa-box-open';
+
+    if (!name) {
+      this.showToast('Nama kategori wajib diisi!', 'warning');
+      return;
+    }
+
+    const categories = this.db.sarpras_categories || [];
+    if (categories.some(c => c.name.toLowerCase() === name.toLowerCase())) {
+      this.showToast(`Kategori "${name}" sudah ada!`, 'warning');
+      return;
+    }
+
+    categories.push({
+      id: `cat-${Date.now()}`,
+      name,
+      icon: icon || 'fa-box-open',
+      color: 'emerald',
+      description: `Kategori ${name}`
+    });
+
+    this.db.sarpras_categories = categories;
+    this.saveState();
+    nameInput.value = '';
+    this.renderSarprasCategoriesList();
+    this.renderSarprasAssetsView();
+    this.showToast(`Kategori "${name}" berhasil ditambahkan!`, 'success');
+  },
+
+  deleteSarprasCategory(catId) {
+    const categories = this.db.sarpras_categories || [];
+    const cat = categories.find(c => c.id === catId);
+    if (!cat) return;
+
+    const count = (this.db.sarpras_assets || []).filter(a => a.category === cat.name).length;
+    if (count > 0) {
+      if (!confirm(`Kategori "${cat.name}" saat ini digunakan oleh ${count} barang. Apakah Anda yakin ingin menghapus kategori ini?`)) {
+        return;
+      }
+    }
+
+    this.db.sarpras_categories = categories.filter(c => c.id !== catId);
+    this.saveState();
+    this.renderSarprasCategoriesList();
+    this.renderSarprasAssetsView();
+    this.showToast(`Kategori "${cat.name}" berhasil dihapus!`, 'info');
+  },
+
+  // Cetak Label Aset (Mock Barcode / Tag Stiker)
+  printSarprasAssetTag(assetId) {
+    const asset = (this.db.sarpras_assets || []).find(a => a.id === assetId);
+    if (!asset) return;
+
+    const cms = this.db.cms_settings || DEFAULT_CMS_SETTINGS;
+
+    const printWin = window.open('', '_blank', 'width=650,height=500');
+    if (!printWin) {
+      this.showToast('Mohon izinkan pop-up browser untuk mencetak label aset!', 'warning');
+      return;
+    }
+
+    printWin.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Label Aset - ${asset.id}</title>
+        <style>
+          body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; color: #111; }
+          .tag-card {
+            width: 380px;
+            border: 2px solid #000;
+            border-radius: 12px;
+            padding: 12px;
+            box-sizing: border-box;
+            background: #fff;
+          }
+          .header {
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+          }
+          .header-text { margin-left: 10px; }
+          .header-text h3 { margin: 0; font-size: 11pt; text-transform: uppercase; font-weight: 800; }
+          .header-text p { margin: 2px 0 0 0; font-size: 8pt; color: #444; }
+          .body-content { font-size: 9pt; }
+          .row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+          .label { color: #555; }
+          .value { font-weight: bold; }
+          .barcode-box {
+            text-align: center;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px dashed #666;
+          }
+          .barcode-bars {
+            display: inline-block;
+            letter-spacing: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 20pt;
+            font-weight: 900;
+          }
+          .code-text { font-family: monospace; font-size: 10pt; font-weight: bold; margin-top: 2px; }
+          @media print {
+            body { margin: 0; }
+            .no-print { display: none; }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="tag-card">
+          <div class="header">
+            <div style="font-size: 24pt;">🏫</div>
+            <div class="header-text">
+              <h3>${cms.foundation_name || 'SEKOLAH ISLAM AL-IMAM'}</h3>
+              <p>DIVISI SARANA PRASARANA & PEMELIHARAAN GEDUNG</p>
+            </div>
+          </div>
+          <div class="body-content">
+            <div class="row">
+              <span class="label">Nama Barang:</span>
+              <span class="value">${asset.name}</span>
+            </div>
+            <div class="row">
+              <span class="label">Kategori:</span>
+              <span class="value">${asset.category}</span>
+            </div>
+            <div class="row">
+              <span class="label">Lokasi Ruangan:</span>
+              <span class="value" style="color: #047857;">${asset.room_location}</span>
+            </div>
+            <div class="row">
+              <span class="label">Kondisi:</span>
+              <span class="value">${asset.condition}</span>
+            </div>
+            <div class="row">
+              <span class="label">Petugas:</span>
+              <span class="value">${asset.recorded_by}</span>
+            </div>
+          </div>
+          <div class="barcode-box">
+            <div class="barcode-bars">|||| | | ||||| || ||| | |||</div>
+            <div class="code-text">${asset.id}</div>
+          </div>
+        </div>
+        <div style="margin-top: 15px;" class="no-print">
+          <button onclick="window.print()" style="padding: 8px 16px; font-weight: bold; background: #047857; color: white; border: none; border-radius: 6px; cursor: pointer;">Cetak Label</button>
+        </div>
+        <script>
+          window.onload = function() {
+            setTimeout(function() { window.print(); }, 500);
+          };
+        </script>
+      </body>
+      </html>
+    `);
+    printWin.document.close();
+  },
+
+  // Cetak Rekapitulasi Inventaris Ruangan (Kop Surat Resmi)
+  printSarprasAssetsReport() {
+    const assets = this.db.sarpras_assets || [];
+    const cms = this.db.cms_settings || DEFAULT_CMS_SETTINGS;
+    const currentRoomFilter = this.sarprasFilterState.room || 'all';
+
+    let printItems = [...assets];
+    if (currentRoomFilter !== 'all') {
+      printItems = printItems.filter(a => a.room_location === currentRoomFilter);
+    }
+
+    const printWin = window.open('', '_blank', 'width=900,height=700');
+    if (!printWin) {
+      this.showToast('Mohon izinkan pop-up browser untuk mencetak laporan inventaris!', 'warning');
+      return;
+    }
+
+    const titleSuffix = currentRoomFilter !== 'all' ? `RUANGAN / KELAS: ${currentRoomFilter.toUpperCase()}` : 'SELURUH RUANGAN & KELAS';
+
+    const tableRows = printItems.map((a, idx) => `
+      <tr>
+        <td style="text-align: center; padding: 6px; border: 1px solid #333;">${idx + 1}</td>
+        <td style="padding: 6px; border: 1px solid #333; font-family: monospace; font-size: 9pt;">${a.id}</td>
+        <td style="padding: 6px; border: 1px solid #333; font-weight: bold;">${a.name}</td>
+        <td style="padding: 6px; border: 1px solid #333;">${a.category}</td>
+        <td style="padding: 6px; border: 1px solid #333;">${a.room_location}</td>
+        <td style="text-align: center; padding: 6px; border: 1px solid #333; font-weight: bold;">${a.qty || 1} ${a.unit_of_measure || 'Unit'}</td>
+        <td style="text-align: center; padding: 6px; border: 1px solid #333;">${a.condition}</td>
+        <td style="padding: 6px; border: 1px solid #333; font-size: 8.5pt;">${a.notes || '-'}</td>
+      </tr>
+    `).join('');
+
+    printWin.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Laporan Inventaris Sarpras - ${cms.school_name || 'Al-Imam'}</title>
+        <style>
+          body { font-family: Arial, sans-serif; font-size: 10pt; margin: 25px; color: #111; }
+          .header { text-align: center; border-bottom: 2.5px solid #000; padding-bottom: 10px; margin-bottom: 18px; }
+          .header h2 { margin: 0 0 4px 0; font-size: 15pt; text-transform: uppercase; font-weight: bold; }
+          .header h3 { margin: 0 0 4px 0; font-size: 12pt; }
+          .header p { margin: 0; font-size: 9pt; color: #444; }
+          .title { text-align: center; margin: 0 0 4px 0; font-size: 13pt; text-transform: uppercase; font-weight: bold; }
+          .subtitle { text-align: center; margin: 0 0 18px 0; font-size: 10pt; color: #555; }
+          table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 9pt; }
+          th { background: #f1f5f9; padding: 7px; border: 1px solid #333; }
+          .sig-container { margin-top: 35px; width: 100%; display: flex; justify-content: space-between; page-break-inside: avoid; }
+          .sig-box { text-align: center; width: 30%; }
+          .sig-space { height: 60px; }
+          @media print {
+            body { margin: 15mm; }
+            .no-print { display: none; }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <h2>${cms.foundation_name || 'YAYASAN PENDIDIKAN ISLAM AL-IMAM'}</h2>
+          <h3>DIVISI SARANA PRASARANA & BAGIAN MAINTENANCE GEDUNG</h3>
+          <p>${cms.address || 'Jakarta'} • Telp: ${cms.phone || '(021) 8899-7711'}</p>
+        </div>
+
+        <div class="title">BUKU INDUK INVENTARIS SARANA PRASARANA</div>
+        <div class="subtitle">${titleSuffix} • TAHUN AJARAN 2026/2027</div>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 4%;">No</th>
+              <th style="width: 14%;">Kode Aset</th>
+              <th style="width: 25%;">Nama Barang / Peralatan</th>
+              <th style="width: 15%;">Kategori</th>
+              <th style="width: 16%;">Lokasi Ruangan</th>
+              <th style="width: 8%;">Jumlah</th>
+              <th style="width: 8%;">Kondisi</th>
+              <th style="width: 10%;">Keterangan</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${tableRows}
+          </tbody>
+        </table>
+
+        <div class="sig-container">
+          <div class="sig-box">
+            <p>Mengetahui,<br><b>Kepala Sekolah / Yayasan</b></p>
+            <div class="sig-space"></div>
+            <p><b>( ..................................... )</b></p>
+          </div>
+          <div class="sig-box">
+            <p>Penanggung Jawab,<br><b>Koordinator SARPRAS</b></p>
+            <div class="sig-space"></div>
+            <p><b>( Radinal Bajsair )</b></p>
+          </div>
+          <div class="sig-box">
+            <p>Petugas Lapangan,<br><b>Maintenance Gedung</b></p>
+            <div class="sig-space"></div>
+            <p><b>( Pak Nana )</b></p>
+          </div>
+        </div>
+
+        <div style="margin-top: 20px;" class="no-print">
+          <button onclick="window.print()" style="padding: 10px 20px; font-weight: bold; background: #047857; color: white; border: none; border-radius: 8px; cursor: pointer;">Cetak Laporan</button>
+        </div>
+        <script>
+          window.onload = function() {
+            setTimeout(function() { window.print(); }, 500);
+          };
+        </script>
+      </body>
+      </html>
+    `);
+    printWin.document.close();
+  },
+
+  // Export CSV
+  exportSarprasAssetsCsv() {
+    const assets = this.db.sarpras_assets || [];
+    if (assets.length === 0) {
+      this.showToast('Tidak ada data sarpras untuk diunduh!', 'warning');
+      return;
+    }
+
+    const headers = ['Kode Aset', 'Nama Barang', 'Kategori', 'Lokasi Ruangan', 'Unit', 'Jumlah', 'Satuan', 'Kondisi', 'Petugas Pendata', 'Tanggal Pendataan', 'Catatan'];
+    const rows = assets.map(a => [
+      `"${a.id}"`,
+      `"${(a.name || '').replace(/"/g, '""')}"`,
+      `"${(a.category || '').replace(/"/g, '""')}"`,
+      `"${(a.room_location || '').replace(/"/g, '""')}"`,
+      `"${(a.unit_name || '').replace(/"/g, '""')}"`,
+      a.qty || 1,
+      `"${a.unit_of_measure || 'Unit'}"`,
+      `"${a.condition || 'Baik'}"`,
+      `"${(a.recorded_by || '').replace(/"/g, '""')}"`,
+      `"${a.recorded_date || ''}"`,
+      `"${(a.notes || '').replace(/"/g, '""')}"`
+    ]);
+
+    const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `Inventaris_Sarpras_AlImam_${new Date().toISOString().split('T')[0]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    this.showToast('File CSV inventaris sarpras berhasil diunduh!', 'success');
   },
 
   showToast(message, type = 'info') {

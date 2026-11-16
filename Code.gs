@@ -19,7 +19,8 @@ const CONFIG = {
     AC_INVENTORY: 'AC_Inventory',
     AC_SERVICES: 'AC_Services',
     RENOV_PROJECTS: 'Renov_Projects',
-    RENOV_REQUESTS: 'Renov_Requests'
+    RENOV_REQUESTS: 'Renov_Requests',
+    SARPRAS_ASSETS: 'Sarpras_Assets'
   }
 };
 
@@ -51,6 +52,15 @@ function doGet(e) {
 
       case 'getSettings':
         return createJsonResponse({ status: 'success', data: getSettingsData(ss) });
+
+      case 'getSarprasAssets':
+        return createJsonResponse({ status: 'success', data: getSarprasAssetsData(ss) });
+
+      case 'saveSarprasAsset':
+        return createJsonResponse(handleSaveSarprasAsset(ss, payload));
+
+      case 'deleteSarprasAsset':
+        return createJsonResponse(handleDeleteSarprasAsset(ss, payload));
 
       case 'fetchMarketplaceInfo':
         return createJsonResponse(handleFetchMarketplaceInfo(e.parameter || {}));
@@ -1155,6 +1165,22 @@ function initDatabase() {
     renovRequestsSheet = ss.insertSheet(CONFIG.SHEETS.RENOV_REQUESTS);
     renovRequestsSheet.appendRow(['Request_ID', 'Project_ID', 'Unit_ID', 'Location_Name', 'Category', 'Material_Name', 'Qty', 'Unit_Price', 'Material_Subtotal', 'Labor_Count', 'Labor_Days', 'Labor_Rate', 'Labor_Subtotal', 'Total_Amount', 'Scheduled_Date', 'Vendor_Name', 'Funding_Source', 'Status', 'Notes', 'Created_At']);
     renovRequestsSheet.appendRow(['RNV-REQ-202609-01', 'PRJ-SD-01', 'unit_sd', 'Dinding Kelas 1A & 1B', 'Pengecatan Gedung / Kelas', 'Cat Tembok Interior Dulux / Catylac 20kg', 4, 650000, 2600000, 2, 4, 175000, 1400000, 4000000, '2026-09-28', 'TB. Al-Imam Jaya Material', 'RAPBS_POIN', 'Dalam Pengerjaan', 'Warna Putih Salju & Hijau Pastel kelas.', '2026-09-24 10:00']);
+  }
+
+  // 11. Sarpras_Assets Sheet (Pendataan Fisik Barang & Foto Ruangan)
+  let sarprasAssetsSheet = ss.getSheetByName(CONFIG.SHEETS.SARPRAS_ASSETS);
+  if (!sarprasAssetsSheet) {
+    sarprasAssetsSheet = ss.insertSheet(CONFIG.SHEETS.SARPRAS_ASSETS);
+    sarprasAssetsSheet.appendRow(['Asset_ID', 'Name', 'Category', 'Room_Location', 'Unit_ID', 'Unit_Name', 'Qty', 'Unit_Of_Measure', 'Condition', 'Recorded_By', 'Recorded_Date', 'Last_Checked', 'Notes', 'Photo_URL']);
+    sarprasAssetsSheet.appendRow(['ASSET-2026-001', 'Tangga Lipat Aluminium Teleskopik 3.8 Meter (Heavy Duty)', 'Perkakas', 'Gudang Sarpras & Maintenance', 'unit_maintenance', 'Maintenance Gedung', 2, 'Unit', 'Baik', 'Pak Nana (Maintenance Gedung)', '2026-08-10', '2026-10-15', 'Tangga lipat serbaguna servis lampu & AC outdoor', '']);
+    sarprasAssetsSheet.appendRow(['ASSET-2026-002', 'Mesin Bor Cordless Impact Bosch GSB 185-LI + 1 Set Mata Bor', 'Perkakas', 'Gudang Sarpras & Maintenance', 'unit_maintenance', 'Maintenance Gedung', 1, 'Set', 'Baik', 'Pak Nana (Maintenance Gedung)', '2026-08-15', '2026-10-15', 'Lengkap 2 baterai 18V & koper hardcase', '']);
+    sarprasAssetsSheet.appendRow(['ASSET-2026-003', 'Papan Tulis Whiteboard Magnetik Ukuran 120 x 240 cm', 'Perlengkapan Kelas', 'Kelas 3 Malik', 'unit_sd', 'SD Islam Al-Imam', 1, 'Unit', 'Baik', 'Pak Nana (Maintenance Gedung)', '2026-08-20', '2026-10-18', 'Whiteboard gantung dinding depan kelas 3 Malik', '']);
+    sarprasAssetsSheet.appendRow(['ASSET-2026-005', 'Mesin Laminating Panas Dingin Format F4 / Folio (Joyko LM-01)', 'ATK', 'Kantor TU (Tata Usaha)', 'unit_sd', 'SD Islam Al-Imam', 1, 'Unit', 'Baik', 'Pak Nana (Maintenance Gedung)', '2026-08-25', '2026-10-20', 'Mesin laminasi dokumen ijazah & kartu ujian', '']);
+    sarprasAssetsSheet.appendRow(['ASSET-2026-007', 'Proyektor LCD Epson EB-E01 3300 Lumens + Bracket Plafon', 'Elektronik & Kelistrikan', 'Lab Komputer', 'unit_smp', 'SMP Islam Al-Imam', 1, 'Unit', 'Baik', 'Pak Nana (Maintenance Gedung)', '2026-09-01', '2026-10-22', 'Terpasang kokoh di bracket plafon Lab Komputer', '']);
+    sarprasAssetsSheet.appendRow(['ASSET-2026-009', 'Mikroskop Biologi Monokuler Pembesaran 1600x', 'Laboratorium & Praktik', 'Lab IPA', 'unit_smp', 'SMP Islam Al-Imam', 6, 'Unit', 'Baik', 'Pak Nana (Maintenance Gedung)', '2026-09-05', '2026-10-24', 'Tersimpan rapi di lemari kaca Lab IPA', '']);
+    sarprasAssetsSheet.appendRow(['ASSET-2026-011', 'Karpet Sajadah Masjid Turki Tebal 14mm Premium Hijau Roll', 'Perlengkapan Ibadah', 'Musholah Utama (Lantai 1)', 'bendahara', 'Bendahara Yayasan', 8, 'Roll', 'Baik', 'Pak Nana (Maintenance Gedung)', '2026-09-08', '2026-10-25', 'Karpet sholat warna hijau motif pilar masjid', '']);
+    sarprasAssetsSheet.appendRow(['ASSET-2026-013', 'Lemari Arsip Besi 2 Pintu Ayun Kaca + Kunci Pengaman', 'Furnitur & Meubelair', 'Kantor Kepala Sekolah', 'unit_sd', 'SD Islam Al-Imam', 2, 'Unit', 'Baik', 'Pak Nana (Maintenance Gedung)', '2026-09-10', '2026-10-26', 'Penyimpanan berkas akreditasi sekolah & SK yayasan', '']);
+    sarprasAssetsSheet.appendRow(['ASSET-2026-017', 'Kulkas Showcase Minuman Dingin 1 Pintu 250L', 'Fasilitas Umum & Sanitasi', 'Kantin Sekolah', 'bendahara', 'Bendahara Yayasan', 1, 'Unit', 'Baik', 'Pak Nana (Maintenance Gedung)', '2026-09-15', '2026-10-30', 'Pendingin minuman susu & jus higienis kantin', '']);
   }
 
   return ss;

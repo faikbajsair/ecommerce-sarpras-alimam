@@ -1845,7 +1845,11 @@
                 <input type="text" id="acSearchInput" oninput="app.onAcSearchChange(this.value)" placeholder="Cari ruang / merk AC..." class="w-full pl-9 pr-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:bg-white focus:outline-none focus:border-sky-500">
               </div>
 
-              <button onclick="app.openAddAcUnitModal()" class="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center space-x-1.5 shrink-0">
+              <button onclick="app.openRecordMaintenanceModal()" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center space-x-1.5 shrink-0 cursor-pointer">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <span>+ Catat Cuci / Servis (Pak Nana)</span>
+              </button>
+              <button onclick="app.openAddAcUnitModal()" class="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center space-x-1.5 shrink-0 cursor-pointer">
                 <i class="fa-solid fa-plus"></i>
                 <span>Tambah Unit AC</span>
               </button>
@@ -1867,14 +1871,15 @@
               <table class="w-full text-left text-xs border-collapse">
                 <thead>
                   <tr class="bg-slate-100 text-slate-700 font-extrabold text-[11px] uppercase tracking-wider">
-                    <th class="px-4 py-3 text-center w-24">KODE ASET</th>
-                    <th class="px-4 py-3">UNIT & RUANGAN</th>
-                    <th class="px-4 py-3">SPESIFIKASI / MERK</th>
-                    <th class="px-4 py-3 text-center">KONDISI</th>
-                    <th class="px-4 py-3 text-center">CUCI TERAKHIR</th>
-                    <th class="px-4 py-3 text-center">JADWAL BERIKUTNYA</th>
-                    <th class="px-4 py-3 text-center">TOTAL SERVIS</th>
-                    <th class="px-4 py-3 text-center w-36">AKSI CEPAT</th>
+                    <th class="px-3 py-3 text-center w-24">KODE ASET</th>
+                    <th class="px-3 py-3">UNIT & RUANGAN</th>
+                    <th class="px-3 py-3">SPESIFIKASI / MERK</th>
+                    <th class="px-3 py-3 text-center">KONDISI</th>
+                    <th class="px-3 py-3 text-center">CUCI TERAKHIR</th>
+                    <th class="px-3 py-3 text-center">SERVIS TERAKHIR</th>
+                    <th class="px-3 py-3 text-center">TEKNISI / PETUGAS</th>
+                    <th class="px-3 py-3 text-center">JADWAL BERIKUTNYA</th>
+                    <th class="px-3 py-3 text-center w-36">AKSI CEPAT</th>
                   </tr>
                 </thead>
                 <tbody id="acInventoryTableBody" class="divide-y divide-slate-100 font-medium text-slate-800">
@@ -3560,6 +3565,82 @@ Sapu Lantai Ijuk Dragon	Kebersihan & Sanitasi	28000	15	2026-10-03" class="w-full
           Tutup
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 0: CATAT CUCI & SERVIS AC (BAGIAN MAINTENANCE PAK NANA) ================= -->
+  <div id="acRecordMaintenanceModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-slate-100 overflow-hidden my-auto animate-fadeIn">
+      <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-gradient-to-r from-sky-50 to-emerald-50">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-lg shadow-sm">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-sm text-slate-800 font-heading">Catat Perawatan Cuci / Servis AC</h3>
+            <p class="text-xs text-slate-500 font-medium">Bagian Maintenance Gedung • Petugas: Pak Nana</p>
+          </div>
+        </div>
+        <button onclick="app.closeRecordMaintenanceModal()" class="w-8 h-8 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-slate-600 flex items-center justify-center text-xs transition cursor-pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="acRecordMaintenanceForm" onsubmit="app.saveMaintenanceRecord(event)" class="p-5 sm:p-6 space-y-4 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 uppercase mb-1">Pilih Unit & Ruangan AC *</label>
+          <select id="acRecordSelectUnit" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500" required>
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">Jenis Pekerjaan *</label>
+            <select id="acRecordType" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500" required>
+              <option value="Cuci_AC" selected>Cleaning Indoor & Outdoor</option>
+              <option value="Perbaikan">Servis / Perbaikan AC</option>
+              <option value="Freon">Tambah / Isi Freon AC</option>
+              <option value="Cek_Rutin">Pengecekan Rutin Kelistrikan</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">Tanggal Pengerjaan *</label>
+            <input type="date" id="acRecordDate" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500" required>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">Teknisi / Pelaksana *</label>
+            <input type="text" id="acRecordTechnician" value="Pak Nana (Bagian Maintenance Gedung)" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500" required>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">Kondisi Pasca Perawatan</label>
+            <select id="acRecordCondition" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500">
+              <option value="Baik / Normal" selected>Baik / Normal (Dingin Optimal)</option>
+              <option value="Cukup Baik">Cukup Baik / Normal</option>
+              <option value="Perlu Cuci Rutin">Perlu Cuci Lanjutan</option>
+              <option value="Kurang Dingin / Menetes">Perlu Cek Pipa / Freon</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 uppercase mb-1">Catatan & Keterangan Pengerjaan</label>
+          <textarea id="acRecordNotes" rows="2" placeholder="Contoh: Cleaning evaporator indoor dan kondensor outdoor tuntas. Tekanan freon normal, hembusan dingin kencang." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500"></textarea>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-end space-x-2">
+          <button type="button" onclick="app.closeRecordMaintenanceModal()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition cursor-pointer">
+            Batal
+          </button>
+          <button type="submit" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-md transition flex items-center space-x-1.5 cursor-pointer">
+            <i class="fa-solid fa-check"></i>
+            <span>Simpan Catatan Perawatan</span>
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 

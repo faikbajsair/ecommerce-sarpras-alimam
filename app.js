@@ -730,7 +730,7 @@ const INITIAL_DB = {
   cms_settings: JSON.parse(JSON.stringify(DEFAULT_CMS_SETTINGS)),
 
   // Database Kredensial Pengguna Terenkripsi (Salted SHA-256 Hash Vault)
-  users: SecurityVault.decodeObject('Gjd9PCMoOQA/JXd2diolLC0ARlsQGn0mNiYnPCQsKX1zbzUmADctPCE1MmlpeypcWUZpMTIoJndoZxUHfwA+LSwydgA5YR0yKih7cxBCXVo6cX9hADwsNW5zaz4gISt0e3ctZWZ7J21oAQAAUmkwdSAwcGljPD46PjYiLTIePS0nN2l/ez4GU1cGaTUjdzNqIXEoPnF9dXo7ZiMzKDBuKHI8OwpRAQBqYyN7YWFweXRnfS5wf2xkdWB5Nzt4IWk6VlMDAWpxOG8ucDAvJSsWJCVvZXQ0OyUgADghe3MQRUFTLT0kLjBwf2M/OxYsLSQyNyx3YHYqJSwtAFxRX1N9aWcQEXIMMiA+JG0AIXIfLDQhdnNpNzYzVxIIFAo9LDd3fmcyLTM9b3tvbTR5NClhOXshaGcHB1cDb3FpYSUzNjI7MDspHiU+JSl3dnZnLiZsa1BVBARmZHN0YjFzc3pvf3hxfmtvdTZ/ZzktcWFoU1QHBj43dndhayEldDsrfXN6bTB1Zn1tbCp9aD5REk8aJHEwLTwmGigofXNvNCM2Ih4mISR9Z2csLFdCXFcyNmd5dyEoMRM+JSQsLDJ0bXc5OjY/Gjc+X1UQDH0ACBN1GzYtLTJpDC1gFjsgOG54fTkqNToQChBjMToxYXlwNiAgK2t3Yy9rMyMxKWFuKX1hPgcAAlV9f2czNCE2NiMtLRIpLCw+Y29uMmp5cm5rVgNRVD02dSE0a3dze2YseSUvbGF0YnlmPiogbm5XCVEGajB8ejdndCUuPCt4cH05YCNjf2VuLnI/axBNHk19JisqIQ0sJW5lay8kIzs3KTQ+NX1nZywsV0JcVzI2Z3l3MCAvKD4hLDMsAC8gLC0nPiVndX1HXltCAD0kLjBwf2MOOicpICU+JCB1FTUmKjY4MRAcEEQwPyBhb3AHJCI7KCUgPz50bXc/NTM/Z2N9BABWAGhjJic2YXZyLW0tLmNhfSYgJj8jMDkhBjdTQ1oUZXEmdjcxfHYvOih6dHRuYCIwfGdufnI8OQsJAFJuanR3MzN8InRmf34gfzpvdWF+YGwodmhuV1RTAWsyfHZlNHYgbiJlNmM4MT81CiUwfXFnODtfWVwUc3EwMDAgKyAhOmt3Yyw7Oyg7Eyc+OTUrPkESHhQqPSw3CjwkLCl9c28AKTI/L3VjdA8uKTg0QVFcV38bJDE8MythHx4bHRMMDHRtdz47My5nY31zVF9fMXFpYSYzKTVuZWt1cilpMnlsLzBre3ZtbQMAEBp9IyQwJiUqMygAISwyJX1sYzN0Yj14fGlnVgcCUjlmdnMwYHJ1KT14KCMsOmF4Yn1tOXt1aD4EUQIBbmN1d2NqfHN0bS94J3xuZCUxKmNmLnR7Im8='),
+  users: SecurityVault.decodeObject('Gjd9PCMoOQA/JXd2dH0+KzArbURZFHNzZzYmNzcvLTIsb3ttfSIqCi04NiYkNH0eEBBDMToxHDszKCRuZWlvFQZ/HzI5LTl/Cil0Fl9RXxRzc2cxOj4gY3Z/axgvJCt0bXVuJz4nMXtlEhJTB2ZjJ3diYXVzKGkqfSIofXphdzw1LDgyNi1Wb1pXLDtneXVwJHUvOnl7JytrMHkxfDA+c3VtaFYAUFA7N3QgYjcheS1sf3hxK2dicmB0bGd/JmhtAQIGA2owIXAxYiAlL25+eGMwc3Y6dzk6Nj8aMDsQChIUKj0sNwohIWNgf2s4MigtOCA4KXZla2cqO21RXl8yMihheXJnNCI2PRIvLDIzY29sdgwPZRAsXlFfFh4/aAo4MyhjYH9rPy4hOnR7dW4BMSIxe3MSEkFXMydneXVwdyN0Pix4J307Z3lgezFqe2d1fxBAU0UsJCoxMQ0tID83a3dhb2czImB4Njp9d2BoBAcFVWlhc3NjZ3VyeGZ9LnJ+OTB1bXs1O351ODsBBAYPOzd9Jzdid3Z+OX1+cHRsN3lkLTd9Nml5JBBFXF8rDCwnd2hlYzkxIDkePjImY3lsdio4ICsxU11XFGVzZzA4IhogIDYkLCxvc3ZjICI9KxQrODJXEggWfQAIE3UbNi0tMmkMLWAWOyA4bnh/aTc2M1cSCBZ9BisqIXBpYW4sKCE1b2V2Yzd4MT0vIGxuUAgKV2pjdSB3fmVjPD46PjYiLTIePS0nN2l/eX1UBQABaGchcDYwJyR8PSh0c39obyRhKDZsfHBuagBRU1NoYiB6NmJwInVmK3hwKT01I2B9ZDl9J29sAwFXATlnZz55cj5jOTEgOR4kO3R7dW42OiUhODdTQlMUc3NnNiY3Ny8tMixve219NCQ7KDU3Kjc4AEtRS1csMitheXJnNCI2PRIvLDIzY29sdh0uKz0+WlFAV38KJDo0ISQvbnNpbzMiMzNjb2x2HS4rPT5aUUBXfX9lYSYzKTVuZWlvd307YHZlLzA8eHZqPgBUURRzc2czNCE2NiMtLRIpLCw+Y29sdjx+JzpmBVNXV2hmfHJjMSBxf258eiQrZm9zMX1tbn8jOGZRCAsAbDJ3JmxmcXN4bCp+cHw6MiBieDVmfnU/bFMSTxp/KGc2OzsxHiU7a3dhbz4yLDwidnNrZywsV0JcVzI2Z3l1cCQlITYnEjIsLSYzND92c2tnLDFbRG1YPj4gYW9yZwAoMiAjYWJ/BiQ5LT8sKis4f3pRQF8+PWUQFAAVEw0Ma2Fhby05LTBubn9pBD0yW14QGn9xNiI5Jmd7bH1xfiV7O254Nihgb3hxa24CEh4WfSMkMCYlKjMoACEsMiV9bGF3KmxpKXZgbwpUBQY7NXBwZTd3dng6K3wkLz4zdmx7ZWYtdWluUwZTBmhidXNhZH14fmd7K3QrbmdzMSgyaHIgaH1PHBJNfSYrKiENLCVuZWlvNCM2Ih44LT0xPyA3PlxTVxRzc2c2Jjc3Ly0yLG97bX07IDwiIDolJDc8V29VUzsmKyR3fmVjOTEgOR4jPjskd3Z0fQkkPjZTXhJ7PjorNzA8JC8vOmkKJCkqOCZ1ZAQ+IGUXPlxRGxRzc2cxOj4gY3Z/awAgJDEiJDstOjwuZ3V/EFFeXz4gIDB3aGUabi8oJh4jPjggd2B0fSUkNz5tXVNfMScgLTQ8JiRuc2lvLCw2ODUwIjUxKCB7Ah4QEEU+PzFhb3JnIns7eyh5fD5vdTd5Mm94c3tzEhJCVywgMiwnNhopLSwhb3ttfWQiZHk1PClwPDpTCQUAOWd2J203Jncoanx7I3huYHNtdGBseyA8OgYBUFI7YCQiM2YjcXhmeS4iL2lvJTEpYGhpOAQ='),
   
   rapbs_poin: [
     { unit_id: 'unit_tk', total_plafond: 15000000, terpakai: 510000, saldo_tersedia: 14490000, updated_at: '2026-07-10 10:45' },
@@ -2587,54 +2587,181 @@ const INITIAL_DB = {
 
   ac_inventory: [
     // PG-TK AC Assets (8 units)
-    { ac_id: 'AC-TK-01', unit_id: 'unit_tk', room_name: 'Kelas TK A (Sentra Balok)', brand: 'Daikin FTKC25 (Inverter)', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2024, total_service_count: 1, notes: 'Outdoor di balkon lantai 1' },
-    { ac_id: 'AC-TK-02', unit_id: 'unit_tk', room_name: 'Kelas TK B (Sentra Imtaq)', brand: 'Sharp AH-A9UCY', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2024, total_service_count: 1, notes: 'Outdoor samping lorong bermain' },
-    { ac_id: 'AC-TK-03', unit_id: 'unit_tk', room_name: 'Kelas Playgroup (Sentra Main Peran)', brand: 'Panasonic CS-YN9WKJ', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2025, total_service_count: 1, notes: 'Indoor bersih' },
-    { ac_id: 'AC-TK-04', unit_id: 'unit_tk', room_name: 'Kantor Kepala & Guru PG-TK', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2023, total_service_count: 1, notes: 'Outdoor aman beratap' },
-    { ac_id: 'AC-TK-05', unit_id: 'unit_tk', room_name: 'Ruang UKS & Konseling PG-TK', brand: 'Gree Eco King GWC-05MOO', capacity_pk: '0.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2025, total_service_count: 1, notes: 'Unit baru dipasang awal tahun' },
-    { ac_id: 'AC-TK-06', unit_id: 'unit_tk', room_name: 'Ruang Makan / Daycare Balita', brand: 'Panasonic Low Watt 1 PK', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2023, total_service_count: 1, notes: 'Sering dipakai full day' },
-    { ac_id: 'AC-TK-07', unit_id: 'unit_tk', room_name: 'Ruang Sentra Bahan Alam', brand: 'Sharp Standard 1 PK', capacity_pk: '1 PK', condition: 'Baik / Normal', last_service_date: '2026-08-01', next_service_date: '2026-11-01', install_year: 2024, total_service_count: 1, notes: 'Outdoor di taman belakang' },
-    { ac_id: 'AC-TK-08', unit_id: 'unit_tk', room_name: 'Lobby & Ruang Tunggu Orang Tua TK', brand: 'Daikin Inverter 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-08-01', next_service_date: '2026-11-01', install_year: 2025, total_service_count: 1, notes: 'Heavy duty lobby' },
+    { ac_id: 'AC-TK-01', unit_id: 'unit_tk', room_name: 'Kelas TK A (Sentra Balok)', brand: 'Daikin FTKC25 (Inverter)', capacity_pk: '1 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-07-10', last_service_date: '2026-07-10', next_service_date: '2026-10-10', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Outdoor di balkon lantai 1' },
+    { ac_id: 'AC-TK-02', unit_id: 'unit_tk', room_name: 'Kelas TK B (Sentra Imtaq)', brand: 'Sharp AH-A9UCY', capacity_pk: '1 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-07-10', last_service_date: '2026-07-10', next_service_date: '2026-10-10', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Outdoor samping lorong bermain' },
+    { ac_id: 'AC-TK-03', unit_id: 'unit_tk', room_name: 'Kelas Playgroup (Sentra Main Peran)', brand: 'Panasonic CS-YN9WKJ', capacity_pk: '1 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-07-10', last_service_date: '2026-07-10', next_service_date: '2026-10-10', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2025, total_service_count: 1, notes: 'Indoor bersih' },
+    { ac_id: 'AC-TK-04', unit_id: 'unit_tk', room_name: 'Kantor Kepala & Guru PG-TK', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-07-10', last_service_date: '2026-07-10', next_service_date: '2026-10-10', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2023, total_service_count: 1, notes: 'Outdoor aman beratap' },
+    { ac_id: 'AC-TK-05', unit_id: 'unit_tk', room_name: 'Ruang UKS & Konseling PG-TK', brand: 'Gree Eco King GWC-05MOO', capacity_pk: '0.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-07-10', last_service_date: '2026-07-10', next_service_date: '2026-10-10', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2025, total_service_count: 1, notes: 'Unit baru dipasang awal tahun' },
+    { ac_id: 'AC-TK-06', unit_id: 'unit_tk', room_name: 'Ruang Makan / Daycare Balita', brand: 'Panasonic Low Watt 1 PK', capacity_pk: '1 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-07-10', last_service_date: '2026-07-10', next_service_date: '2026-10-10', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2023, total_service_count: 1, notes: 'Sering dipakai full day' },
+    { ac_id: 'AC-TK-07', unit_id: 'unit_tk', room_name: 'Ruang Sentra Bahan Alam', brand: 'Sharp Standard 1 PK', capacity_pk: '1 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-08-01', last_service_date: '2026-08-01', next_service_date: '2026-11-01', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Outdoor di taman belakang' },
+    { ac_id: 'AC-TK-08', unit_id: 'unit_tk', room_name: 'Lobby & Ruang Tunggu Orang Tua TK', brand: 'Daikin Inverter 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-08-01', last_service_date: '2026-08-01', next_service_date: '2026-11-01', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2025, total_service_count: 1, notes: 'Heavy duty lobby' },
 
-    // SD AC Assets (18 units)
-    { ac_id: 'AC-SD-01', unit_id: 'unit_sd', room_name: 'Kantor Kepala SD', brand: 'Gree Eco 1/2 PK', capacity_pk: '0.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-31', next_service_date: '2026-10-31', install_year: 2024, total_service_count: 1, notes: 'Kantor Kepala Sekolah SD' },
-    { ac_id: 'AC-SD-02', unit_id: 'unit_sd', room_name: 'Kantor Guru Ikhwan', brand: 'Gree Eco 1/2 PK', capacity_pk: '0.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-31', next_service_date: '2026-10-31', install_year: 2024, total_service_count: 1, notes: 'Ruang Kerja Guru Ikhwan' },
-    { ac_id: 'AC-SD-03', unit_id: 'unit_sd', room_name: "Kantor Kabid Al-Qur'an", brand: 'Gree Eco 1/2 PK', capacity_pk: '0.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-16', next_service_date: '2026-10-16', install_year: 2024, total_service_count: 1, notes: "Gedung Pusat Al-Qur'an Al-Imam (Kabel AC baru diganti)" },
-    { ac_id: 'AC-SD-04', unit_id: 'unit_sd', room_name: 'Ruang Guru SD', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-28', next_service_date: '2026-12-28', install_year: 2024, total_service_count: 1, notes: 'Ruang Guru SD' },
-    { ac_id: 'AC-SD-05', unit_id: 'unit_sd', room_name: 'Kelas 1 Abdullah (Unit 1)', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-28', next_service_date: '2026-12-28', install_year: 2024, total_service_count: 1, notes: 'Cleaning AC Kelas 1 (28/9/2026)' },
-    { ac_id: 'AC-SD-06', unit_id: 'unit_sd', room_name: 'Kelas 1 Abdullah (Unit 2)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-28', next_service_date: '2026-12-28', install_year: 2024, total_service_count: 1, notes: 'Cleaning AC Kelas 1 (28/9/2026)' },
-    { ac_id: 'AC-SD-07', unit_id: 'unit_sd', room_name: 'Kelas 2 Saad (Unit 1)', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-28', next_service_date: '2026-12-28', install_year: 2024, total_service_count: 1, notes: 'Cleaning AC Kelas 2 (28/9/2026)' },
-    { ac_id: 'AC-SD-08', unit_id: 'unit_sd', room_name: 'Kelas 2 Saad (Unit 2)', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-28', next_service_date: '2026-12-28', install_year: 2024, total_service_count: 1, notes: 'Cleaning AC Kelas 2 (28/9/2026)' },
-    { ac_id: 'AC-SD-09', unit_id: 'unit_sd', room_name: "Kelas 3 Ka'ab (Unit 1)", brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-31', next_service_date: '2026-10-31', install_year: 2024, total_service_count: 1, notes: 'Servis rutin 31/7/2026' },
-    { ac_id: 'AC-SD-10', unit_id: 'unit_sd', room_name: "Kelas 3 Ka'ab (Unit 2)", brand: 'Gree Heavy Duty 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-07-31', next_service_date: '2026-10-31', install_year: 2024, total_service_count: 1, notes: 'Servis rutin 31/7/2026' },
-    { ac_id: 'AC-SD-11', unit_id: 'unit_sd', room_name: 'Kelas 4 Ali', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-29', next_service_date: '2026-11-29', install_year: 2024, total_service_count: 1, notes: 'Servis & pengecekan (29/8/2026)' },
-    { ac_id: 'AC-SD-12', unit_id: 'unit_sd', room_name: 'Kelas 4 Sumayyah / Ruang Guru Kls 4', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-28', next_service_date: '2026-12-28', install_year: 2024, total_service_count: 1, notes: 'Tambah freon 1.5-2 PK (28/9/2026)' },
-    { ac_id: 'AC-SD-13', unit_id: 'unit_sd', room_name: 'Kelas 5 Utsman', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-15', next_service_date: '2026-11-15', install_year: 2024, total_service_count: 1, notes: 'Lantai 2 Gedung SD' },
-    { ac_id: 'AC-SD-14', unit_id: 'unit_sd', room_name: 'Kelas 5 Rumaysha', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-15', next_service_date: '2026-11-15', install_year: 2024, total_service_count: 1, notes: 'Lantai 2 Gedung SD' },
-    { ac_id: 'AC-SD-15', unit_id: 'unit_sd', room_name: 'Kelas 6 Umar', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-10', next_service_date: '2026-11-10', install_year: 2024, total_service_count: 1, notes: 'Lantai 2 Gedung SD' },
-    { ac_id: 'AC-SD-16', unit_id: 'unit_sd', room_name: 'Kelas 6 Hafsah', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-10', next_service_date: '2026-11-10', install_year: 2024, total_service_count: 1, notes: 'Lantai 2 Gedung SD' },
-    { ac_id: 'AC-SD-17', unit_id: 'unit_sd', room_name: 'Lab Komputer SD', brand: 'Daikin Heavy Duty 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-01', next_service_date: '2026-11-01', install_year: 2025, total_service_count: 1, notes: 'Ruang Laboratorium Komputer' },
-    { ac_id: 'AC-SD-18', unit_id: 'unit_sd', room_name: 'Lab IPA SD', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-08-01', next_service_date: '2026-11-01', install_year: 2024, total_service_count: 1, notes: 'Ruang Praktikum Sains & IPA' },
+    // SD AC Assets (18 units) - Termasuk Ruang Kelas yang Dikerjakan Pak Nana (Agustus 2026)
+    { ac_id: 'AC-SD-01', unit_id: 'unit_sd', room_name: 'Kantor Kepala SD', brand: 'Gree Eco 1/2 PK', capacity_pk: '0.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-07-31', last_service_date: '2026-07-31', next_service_date: '2026-10-31', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Kantor Kepala Sekolah SD' },
+    { ac_id: 'AC-SD-02', unit_id: 'unit_sd', room_name: 'Kantor Guru Ikhwan', brand: 'Gree Eco 1/2 PK', capacity_pk: '0.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-07-31', last_service_date: '2026-07-31', next_service_date: '2026-10-31', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Ruang Kerja Guru Ikhwan' },
+    { ac_id: 'AC-SD-03', unit_id: 'unit_sd', room_name: "Kantor Kabid Al-Qur'an", brand: 'Gree Eco 1/2 PK', capacity_pk: '0.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-07-16', last_service_date: '2026-07-16', next_service_date: '2026-10-16', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: "Gedung Pusat Al-Qur'an Al-Imam (Kabel AC baru diganti)" },
+    { ac_id: 'AC-SD-04', unit_id: 'unit_sd', room_name: 'Ruang Guru SD', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-09-28', last_service_date: '2026-09-28', next_service_date: '2026-12-28', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Ruang Guru SD' },
+    { ac_id: 'AC-SD-05', unit_id: 'unit_sd', room_name: 'Kelas 1 Umar bin Khattab', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal (Selesai Cleaning)', last_cleaning_date: '2026-08-21', last_service_date: '2026-08-21', next_service_date: '2026-11-21', last_technician: 'Pak Nana (Maintenance Gedung)', install_year: 2024, total_service_count: 2, notes: 'Cleaning AC Indoor dan Outdoor tuntas dikerjakan oleh Pak Nana (Agustus 2026)' },
+    { ac_id: 'AC-SD-06', unit_id: 'unit_sd', room_name: 'Kelas 1 Abbas', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal (Selesai Cleaning)', last_cleaning_date: '2026-08-23', last_service_date: '2026-08-23', next_service_date: '2026-11-23', last_technician: 'Pak Nana (Maintenance Gedung)', install_year: 2024, total_service_count: 2, notes: 'Cleaning AC Indoor dan Outdoor tuntas dikerjakan oleh Pak Nana (Agustus 2026)' },
+    { ac_id: 'AC-SD-07', unit_id: 'unit_sd', room_name: 'Kelas 2 Zaid bin Tsabit', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal (Selesai Cleaning)', last_cleaning_date: '2026-08-18', last_service_date: '2026-08-18', next_service_date: '2026-11-18', last_technician: 'Pak Nana (Maintenance Gedung)', install_year: 2024, total_service_count: 2, notes: 'Cleaning AC Indoor dan Outdoor tuntas dikerjakan oleh Pak Nana (Agustus 2026)' },
+    { ac_id: 'AC-SD-08', unit_id: 'unit_sd', room_name: 'Kelas 2 Saad bin Abi Waqqas', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-09-28', last_service_date: '2026-09-28', next_service_date: '2026-12-28', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Cleaning AC Kelas 2 (28/9/2026)' },
+    { ac_id: 'AC-SD-09', unit_id: 'unit_sd', room_name: 'Kelas 3 Malik', brand: 'Daikin Inverter 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal (Selesai Cleaning)', last_cleaning_date: '2026-08-22', last_service_date: '2026-08-22', next_service_date: '2026-11-22', last_technician: 'Pak Nana (Maintenance Gedung)', install_year: 2024, total_service_count: 2, notes: 'Cleaning AC Indoor dan Outdoor tuntas dikerjakan oleh Pak Nana (Agustus 2026)' },
+    { ac_id: 'AC-SD-10', unit_id: 'unit_sd', room_name: "Kelas 3 Ka'ab bin Malik", brand: 'Gree Heavy Duty 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-07-31', last_service_date: '2026-07-31', next_service_date: '2026-10-31', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Servis rutin 31/7/2026' },
+    { ac_id: 'AC-SD-11', unit_id: 'unit_sd', room_name: 'Kelas 4 Ali bin Abi Thalib', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-08-29', last_service_date: '2026-08-29', next_service_date: '2026-11-29', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Servis & pengecekan (29/8/2026)' },
+    { ac_id: 'AC-SD-12', unit_id: 'unit_sd', room_name: 'Kelas 4 Sumayyah / Ruang Guru Kls 4', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-09-28', last_service_date: '2026-09-28', next_service_date: '2026-12-28', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Tambah freon 1.5-2 PK (28/9/2026)' },
+    { ac_id: 'AC-SD-13', unit_id: 'unit_sd', room_name: 'Kelas 5 Utsman bin Affan', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-08-15', last_service_date: '2026-08-15', next_service_date: '2026-11-15', last_technician: 'Pak Nana (Maintenance Gedung)', install_year: 2024, total_service_count: 1, notes: 'Lantai 2 Gedung SD' },
+    { ac_id: 'AC-SD-14', unit_id: 'unit_sd', room_name: 'Kelas 5 Rumaysha', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-08-15', last_service_date: '2026-08-15', next_service_date: '2026-11-15', last_technician: 'Pak Nana (Maintenance Gedung)', install_year: 2024, total_service_count: 1, notes: 'Lantai 2 Gedung SD' },
+    { ac_id: 'AC-SD-15', unit_id: 'unit_sd', room_name: 'Kelas 6 Umar', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-08-10', last_service_date: '2026-08-10', next_service_date: '2026-11-10', last_technician: 'Pak Nana (Maintenance Gedung)', install_year: 2024, total_service_count: 1, notes: 'Lantai 2 Gedung SD' },
+    { ac_id: 'AC-SD-16', unit_id: 'unit_sd', room_name: 'Kelas 6 Hafsah', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-08-10', last_service_date: '2026-08-10', next_service_date: '2026-11-10', last_technician: 'Pak Nana (Maintenance Gedung)', install_year: 2024, total_service_count: 1, notes: 'Lantai 2 Gedung SD' },
+    { ac_id: 'AC-SD-17', unit_id: 'unit_sd', room_name: 'Lab Komputer SD', brand: 'Daikin Heavy Duty 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-08-01', last_service_date: '2026-08-01', next_service_date: '2026-11-01', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2025, total_service_count: 1, notes: 'Ruang Laboratorium Komputer' },
+    { ac_id: 'AC-SD-18', unit_id: 'unit_sd', room_name: 'Lab IPA SD', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-08-01', last_service_date: '2026-08-01', next_service_date: '2026-11-01', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Ruang Praktikum Sains & IPA' },
 
-    // SMP AC Assets (15 units)
-    { ac_id: 'AC-SMP-01', unit_id: 'unit_smp', room_name: 'Kantor TU SD SMP (Unit 1)', brand: 'Daikin Inverter 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2024, total_service_count: 1, notes: 'Kantor Tata Usaha Bersama SD-SMP' },
-    { ac_id: 'AC-SMP-02', unit_id: 'unit_smp', room_name: 'Kantor TU SD SMP (Unit 2)', brand: 'Gree Standard 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2024, total_service_count: 1, notes: 'Kantor Tata Usaha Bersama SD-SMP' },
-    { ac_id: 'AC-SMP-03', unit_id: 'unit_smp', room_name: 'Kantor Kepala Sekolah SMP', brand: 'Gree Eco 1/2 PK', capacity_pk: '0.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-17', next_service_date: '2026-10-17', install_year: 2024, total_service_count: 1, notes: 'Kantor Kepala Sekolah SMP' },
-    { ac_id: 'AC-SMP-04', unit_id: 'unit_smp', room_name: 'Perpustakaan Al-Imam (SD/SMP)', brand: 'Gree Low Watt 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-28', next_service_date: '2026-12-28', install_year: 2024, total_service_count: 1, notes: 'Penanganan bocor air tuntas 28/9/2026' },
-    { ac_id: 'AC-SMP-05', unit_id: 'unit_smp', room_name: 'Kelas 7 Utsman', brand: 'Gree Heavy Duty 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 10/7/2026 (Pos D Item 16)' },
-    { ac_id: 'AC-SMP-06', unit_id: 'unit_smp', room_name: 'Kelas 7 Aisyah', brand: 'Daikin Inverter 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-07-10', next_service_date: '2026-10-10', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 10/7/2026 (Pos D Item 16)' },
-    { ac_id: 'AC-SMP-07', unit_id: 'unit_smp', room_name: 'Kantor Guru Akhwat SMP', brand: 'Daikin Inverter 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_service_date: '2026-09-04', next_service_date: '2026-12-04', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
-    { ac_id: 'AC-SMP-08', unit_id: 'unit_smp', room_name: 'Kelas 9 Ummu (Unit 1)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-04', next_service_date: '2026-12-04', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
-    { ac_id: 'AC-SMP-09', unit_id: 'unit_smp', room_name: 'Kelas 9 Ummu (Unit 2)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-04', next_service_date: '2026-12-04', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
-    { ac_id: 'AC-SMP-10', unit_id: 'unit_smp', room_name: 'Kelas 8 Khodijah (Unit 1)', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-31', next_service_date: '2026-10-31', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 31/7/2026 (Pos D Item 16)' },
-    { ac_id: 'AC-SMP-11', unit_id: 'unit_smp', room_name: 'Kelas 8 Khodijah (Unit 2)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-07-31', next_service_date: '2026-10-31', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 31/7/2026 (Pos D Item 16)' },
-    { ac_id: 'AC-SMP-12', unit_id: 'unit_smp', room_name: 'Kelas 8 Umar bin Khattab (Unit 1)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-04', next_service_date: '2026-12-04', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
-    { ac_id: 'AC-SMP-13', unit_id: 'unit_smp', room_name: 'Kelas 8 Umar bin Khattab (Unit 2)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-04', next_service_date: '2026-12-04', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
-    { ac_id: 'AC-SMP-14', unit_id: 'unit_smp', room_name: 'Kelas 9 Abu Bakar (Unit 1)', brand: 'Daikin Inverter 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-04', next_service_date: '2026-12-04', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
-    { ac_id: 'AC-SMP-15', unit_id: 'unit_smp', room_name: 'Kelas 9 Abu Bakar (Unit 2)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_service_date: '2026-09-04', next_service_date: '2026-12-04', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' }
+    // SMP AC Assets (15 units) - Termasuk Ruang Kelas yang Dikerjakan Pak Nana (Agustus 2026)
+    { ac_id: 'AC-SMP-01', unit_id: 'unit_smp', room_name: 'Kantor TU SD SMP (Unit 1)', brand: 'Daikin Inverter 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-07-10', last_service_date: '2026-07-10', next_service_date: '2026-10-10', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Kantor Tata Usaha Bersama SD-SMP' },
+    { ac_id: 'AC-SMP-02', unit_id: 'unit_smp', room_name: 'Kantor TU SD SMP (Unit 2)', brand: 'Gree Standard 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-07-10', last_service_date: '2026-07-10', next_service_date: '2026-10-10', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Kantor Tata Usaha Bersama SD-SMP' },
+    { ac_id: 'AC-SMP-03', unit_id: 'unit_smp', room_name: 'Kantor Kepala Sekolah SMP', brand: 'Gree Eco 1/2 PK', capacity_pk: '0.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-07-17', last_service_date: '2026-07-17', next_service_date: '2026-10-17', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Kantor Kepala Sekolah SMP' },
+    { ac_id: 'AC-SMP-04', unit_id: 'unit_smp', room_name: 'Perpustakaan Al-Imam (SD/SMP)', brand: 'Gree Low Watt 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-09-28', last_service_date: '2026-09-28', next_service_date: '2026-12-28', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Penanganan bocor air tuntas 28/9/2026' },
+    { ac_id: 'AC-SMP-05', unit_id: 'unit_smp', room_name: 'Kelas 7 Utsman', brand: 'Gree Heavy Duty 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-07-10', last_service_date: '2026-07-10', next_service_date: '2026-10-10', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 10/7/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-06', unit_id: 'unit_smp', room_name: 'Kelas 7 Aisyah', brand: 'Daikin Inverter 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-07-10', last_service_date: '2026-07-10', next_service_date: '2026-10-10', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 10/7/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-07', unit_id: 'unit_smp', room_name: 'Kantor Guru Akhwat SMP', brand: 'Daikin Inverter 2 PK', capacity_pk: '2 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-09-04', last_service_date: '2026-09-04', next_service_date: '2026-12-04', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-08', unit_id: 'unit_smp', room_name: 'Kelas 9 Ummu Salamah', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal (Selesai Cleaning)', last_cleaning_date: '2026-08-19', last_service_date: '2026-08-19', next_service_date: '2026-11-19', last_technician: 'Pak Nana (Maintenance Gedung)', install_year: 2024, total_service_count: 2, notes: 'Cleaning AC Indoor dan Outdoor tuntas dikerjakan oleh Pak Nana (Agustus 2026)' },
+    { ac_id: 'AC-SMP-09', unit_id: 'unit_smp', room_name: 'Kelas 9 Ummu Salamah (Unit 2)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-09-04', last_service_date: '2026-09-04', next_service_date: '2026-12-04', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-10', unit_id: 'unit_smp', room_name: 'Kelas 8 Khadijah', brand: 'Daikin Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal (Selesai Cleaning)', last_cleaning_date: '2026-08-20', last_service_date: '2026-08-20', next_service_date: '2026-11-20', last_technician: 'Pak Nana (Maintenance Gedung)', install_year: 2024, total_service_count: 2, notes: 'Cleaning AC Indoor dan Outdoor tuntas dikerjakan oleh Pak Nana (Agustus 2026)' },
+    { ac_id: 'AC-SMP-11', unit_id: 'unit_smp', room_name: 'Kelas 8 Khadijah (Unit 2)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-07-31', last_service_date: '2026-07-31', next_service_date: '2026-10-31', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 31/7/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-12', unit_id: 'unit_smp', room_name: 'Kelas 8 Umar bin Khattab (Unit 1)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-09-04', last_service_date: '2026-09-04', next_service_date: '2026-12-04', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-13', unit_id: 'unit_smp', room_name: 'Kelas 8 Umar bin Khattab (Unit 2)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-09-04', last_service_date: '2026-09-04', next_service_date: '2026-12-04', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-14', unit_id: 'unit_smp', room_name: 'Kelas 9 Abu Bakar (Unit 1)', brand: 'Daikin Inverter 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-09-04', last_service_date: '2026-09-04', next_service_date: '2026-12-04', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' },
+    { ac_id: 'AC-SMP-15', unit_id: 'unit_smp', room_name: 'Kelas 9 Abu Bakar (Unit 2)', brand: 'Gree Standard 1.5 PK', capacity_pk: '1.5 PK', condition: 'Baik / Normal', last_cleaning_date: '2026-09-04', last_service_date: '2026-09-04', next_service_date: '2026-12-04', last_technician: 'CV Sarana Sejuk Al-Imam', install_year: 2024, total_service_count: 1, notes: 'Cuci rutin 4/9/2026 (Pos D Item 16)' }
   ],
 
   ac_service_requests: [
+    // Catatan Pekerjaan Bagian Maintenance Gedung (Pak Nana) - Agustus 2026
+    {
+      request_id: 'AC-REQ-202608-MN01',
+      unit_id: 'unit_sd',
+      room_name: 'Kelas 2 Zaid bin Tsabit',
+      ac_id: 'AC-SD-07',
+      service_name: 'Cleaning AC Indoor dan Outdoor',
+      service_type: 'Cuci_AC',
+      service_type_name: 'Cleaning Indoor & Outdoor',
+      technician_name: 'Pak Nana (Maintenance Gedung)',
+      vendor_name: 'Bagian Maintenance Gedung (Pak Nana)',
+      qty: 1,
+      unit_price: 0,
+      total_amount: 0,
+      funding_source: 'INTERNAL_MAINTENANCE',
+      scheduled_date: '2026-08-18',
+      completed_date: '2026-08-18',
+      status: 'Selesai',
+      created_at: '2026-08-18 08:30',
+      approved_at: '2026-08-18 08:30',
+      notes: 'Cleaning AC Indoor dan Outdoor tuntas dikerjakan oleh Bagian Maintenance Pak Nana (Agustus 2026).'
+    },
+    {
+      request_id: 'AC-REQ-202608-MN02',
+      unit_id: 'unit_smp',
+      room_name: 'Kelas 9 Ummu Salamah',
+      ac_id: 'AC-SMP-08',
+      service_name: 'Cleaning AC Indoor dan Outdoor',
+      service_type: 'Cuci_AC',
+      service_type_name: 'Cleaning Indoor & Outdoor',
+      technician_name: 'Pak Nana (Maintenance Gedung)',
+      vendor_name: 'Bagian Maintenance Gedung (Pak Nana)',
+      qty: 1,
+      unit_price: 0,
+      total_amount: 0,
+      funding_source: 'INTERNAL_MAINTENANCE',
+      scheduled_date: '2026-08-19',
+      completed_date: '2026-08-19',
+      status: 'Selesai',
+      created_at: '2026-08-19 09:00',
+      approved_at: '2026-08-19 09:00',
+      notes: 'Cleaning AC Indoor dan Outdoor tuntas dikerjakan oleh Bagian Maintenance Pak Nana (Agustus 2026).'
+    },
+    {
+      request_id: 'AC-REQ-202608-MN03',
+      unit_id: 'unit_smp',
+      room_name: 'Kelas 8 Khadijah',
+      ac_id: 'AC-SMP-10',
+      service_name: 'Cleaning AC Indoor dan Outdoor',
+      service_type: 'Cuci_AC',
+      service_type_name: 'Cleaning Indoor & Outdoor',
+      technician_name: 'Pak Nana (Maintenance Gedung)',
+      vendor_name: 'Bagian Maintenance Gedung (Pak Nana)',
+      qty: 1,
+      unit_price: 0,
+      total_amount: 0,
+      funding_source: 'INTERNAL_MAINTENANCE',
+      scheduled_date: '2026-08-20',
+      completed_date: '2026-08-20',
+      status: 'Selesai',
+      created_at: '2026-08-20 09:30',
+      approved_at: '2026-08-20 09:30',
+      notes: 'Cleaning AC Indoor dan Outdoor tuntas dikerjakan oleh Bagian Maintenance Pak Nana (Agustus 2026).'
+    },
+    {
+      request_id: 'AC-REQ-202608-MN04',
+      unit_id: 'unit_sd',
+      room_name: 'Kelas 1 Umar bin Khattab',
+      ac_id: 'AC-SD-05',
+      service_name: 'Cleaning AC Indoor dan Outdoor',
+      service_type: 'Cuci_AC',
+      service_type_name: 'Cleaning Indoor & Outdoor',
+      technician_name: 'Pak Nana (Maintenance Gedung)',
+      vendor_name: 'Bagian Maintenance Gedung (Pak Nana)',
+      qty: 1,
+      unit_price: 0,
+      total_amount: 0,
+      funding_source: 'INTERNAL_MAINTENANCE',
+      scheduled_date: '2026-08-21',
+      completed_date: '2026-08-21',
+      status: 'Selesai',
+      created_at: '2026-08-21 08:30',
+      approved_at: '2026-08-21 08:30',
+      notes: 'Cleaning AC Indoor dan Outdoor tuntas dikerjakan oleh Bagian Maintenance Pak Nana (Agustus 2026).'
+    },
+    {
+      request_id: 'AC-REQ-202608-MN05',
+      unit_id: 'unit_sd',
+      room_name: 'Kelas 3 Malik',
+      ac_id: 'AC-SD-09',
+      service_name: 'Cleaning AC Indoor dan Outdoor',
+      service_type: 'Cuci_AC',
+      service_type_name: 'Cleaning Indoor & Outdoor',
+      technician_name: 'Pak Nana (Maintenance Gedung)',
+      vendor_name: 'Bagian Maintenance Gedung (Pak Nana)',
+      qty: 1,
+      unit_price: 0,
+      total_amount: 0,
+      funding_source: 'INTERNAL_MAINTENANCE',
+      scheduled_date: '2026-08-22',
+      completed_date: '2026-08-22',
+      status: 'Selesai',
+      created_at: '2026-08-22 09:00',
+      approved_at: '2026-08-22 09:00',
+      notes: 'Cleaning AC Indoor dan Outdoor tuntas dikerjakan oleh Bagian Maintenance Pak Nana (Agustus 2026).'
+    },
+    {
+      request_id: 'AC-REQ-202608-MN06',
+      unit_id: 'unit_sd',
+      room_name: 'Kelas 1 Abbas',
+      ac_id: 'AC-SD-06',
+      service_name: 'Cleaning AC Indoor dan Outdoor',
+      service_type: 'Cuci_AC',
+      service_type_name: 'Cleaning Indoor & Outdoor',
+      technician_name: 'Pak Nana (Maintenance Gedung)',
+      vendor_name: 'Bagian Maintenance Gedung (Pak Nana)',
+      qty: 1,
+      unit_price: 0,
+      total_amount: 0,
+      funding_source: 'INTERNAL_MAINTENANCE',
+      scheduled_date: '2026-08-23',
+      completed_date: '2026-08-23',
+      status: 'Selesai',
+      created_at: '2026-08-23 09:30',
+      approved_at: '2026-08-23 09:30',
+      notes: 'Cleaning AC Indoor dan Outdoor tuntas dikerjakan oleh Bagian Maintenance Pak Nana (Agustus 2026).'
+    },
     {
       request_id: 'AC-REQ-202607-01',
       unit_id: 'unit_smp',
@@ -3488,14 +3615,32 @@ const app = {
       }
     }
 
-    // Sync seed real AC service requests if empty
+    // Sync seed real AC service requests if empty or missing newly seeded records (e.g. Pak Nana August 2026)
     if (!this.db.ac_service_requests || this.db.ac_service_requests.length === 0) {
       this.db.ac_service_requests = JSON.parse(JSON.stringify(INITIAL_DB.ac_service_requests));
+    } else {
+      INITIAL_DB.ac_service_requests.forEach(seedReq => {
+        const exists = this.db.ac_service_requests.some(r => r.request_id === seedReq.request_id);
+        if (!exists) {
+          this.db.ac_service_requests.unshift(JSON.parse(JSON.stringify(seedReq)));
+        }
+      });
     }
 
     // Sync real AC asset inventory
     if (!this.db.ac_inventory || this.db.ac_inventory.length < INITIAL_DB.ac_inventory.length) {
       this.db.ac_inventory = JSON.parse(JSON.stringify(INITIAL_DB.ac_inventory));
+    } else {
+      INITIAL_DB.ac_inventory.forEach(seedAc => {
+        const existing = this.db.ac_inventory.find(a => a.ac_id === seedAc.ac_id);
+        if (existing) {
+          if (seedAc.last_cleaning_date) existing.last_cleaning_date = seedAc.last_cleaning_date;
+          if (seedAc.last_technician) existing.last_technician = seedAc.last_technician;
+          if (seedAc.room_name) existing.room_name = seedAc.room_name;
+        } else {
+          this.db.ac_inventory.push(JSON.parse(JSON.stringify(seedAc)));
+        }
+      });
     }
 
     // Sync seed orders and logs
@@ -3946,9 +4091,12 @@ const app = {
       return;
     }
 
-    // Verify credentials against this.db.users with Cryptographic Hash
+    // Verify credentials against this.db.users with Cryptographic Hash (Supports aliases like pak_nana)
     const matchedUser = this.db.users.find(u => {
-      return (u.username && u.username.toLowerCase() === username) || (u.unit_id && u.unit_id.toLowerCase() === username);
+      const uname = (u.username && u.username.toLowerCase()) || '';
+      const uid = (u.unit_id && u.unit_id.toLowerCase()) || '';
+      const hasAlias = Array.isArray(u.aliases) && u.aliases.some(a => a.toLowerCase() === username);
+      return uname === username || uid === username || hasAlias;
     });
 
     if (!matchedUser) {
@@ -3991,7 +4139,9 @@ const app = {
     this.showToast(`Login berhasil! Selamat datang, ${matchedUser.unit_name}`, 'success');
     this.updateUI();
     
-    if (matchedUser.role === 'Bendahara' && this.activeView === 'verification') {
+    if (matchedUser.role === 'Maintenance') {
+      this.navigate('ac-service');
+    } else if (matchedUser.role === 'Bendahara' && this.activeView === 'verification') {
       this.renderVerificationView();
     } else {
       this.navigate(this.activeView || 'dashboard');
@@ -4147,6 +4297,7 @@ const app = {
     const isBendahara = this.currentUser.role === 'Bendahara';
     const isAdmin = this.currentUser.role === 'Admin';
     const isUnit = this.currentUser.role === 'Unit';
+    const isMaintenance = this.currentUser.role === 'Maintenance';
 
     const userNameEl = document.getElementById('userNameDisplay');
     if (userNameEl) userNameEl.textContent = this.currentUser.unit_name;
@@ -4159,11 +4310,13 @@ const app = {
     
     const dropRoleBadge = document.getElementById('dropdownRoleBadge');
     if (dropRoleBadge) {
-      dropRoleBadge.textContent = isUnit ? 'Unit Pemohon' : (isBendahara ? 'Approver Yayasan' : 'Admin SARPRAS');
+      dropRoleBadge.textContent = isUnit ? 'Unit Pemohon' : (isBendahara ? 'Approver Yayasan' : (isMaintenance ? 'Maintenance Gedung' : 'Admin SARPRAS'));
       if (isUnit) {
         dropRoleBadge.className = 'inline-block px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded-md';
       } else if (isBendahara) {
         dropRoleBadge.className = 'inline-block px-2 py-0.5 bg-amber-100 text-amber-800 text-[10px] font-bold rounded-md';
+      } else if (isMaintenance) {
+        dropRoleBadge.className = 'inline-block px-2 py-0.5 bg-sky-100 text-sky-800 text-[10px] font-bold rounded-md';
       } else {
         dropRoleBadge.className = 'inline-block px-2 py-0.5 bg-slate-200 text-slate-800 text-[10px] font-bold rounded-md';
       }
@@ -4178,6 +4331,7 @@ const app = {
     else if (this.currentUser.unit_id === 'unit_smp') avatarText = 'SMP';
     else if (this.currentUser.unit_id === 'bendahara') avatarText = 'BY';
     else if (this.currentUser.unit_id === 'admin') avatarText = 'ADM';
+    else if (this.currentUser.unit_id === 'unit_maintenance' || this.currentUser.role === 'Maintenance') avatarText = 'MN';
     const avatarEl = document.getElementById('userAvatar');
     if (avatarEl) avatarEl.textContent = avatarText;
 
@@ -8957,6 +9111,140 @@ const app = {
   // 14.6. DEDICATED AC MANAGEMENT & SERVICE MODULE (PG-TK, SD, SMP)
   // ==========================================
 
+  formatDateMonth(dateStr) {
+    if (!dateStr || dateStr === '-') return '-';
+    try {
+      const parts = dateStr.split('T')[0].split(' ')[0].split('-');
+      if (parts.length === 3) {
+        const day = parseInt(parts[2], 10);
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+        const mIdx = parseInt(parts[1], 10) - 1;
+        return `${day} ${months[mIdx] || parts[1]} ${parts[0]}`;
+      }
+      return dateStr;
+    } catch (e) {
+      return dateStr;
+    }
+  },
+
+  openRecordMaintenanceModal(preselectedAcId = null) {
+    const modal = document.getElementById('acRecordMaintenanceModal');
+    const select = document.getElementById('acRecordSelectUnit');
+    const dateInput = document.getElementById('acRecordDate');
+    const techInput = document.getElementById('acRecordTechnician');
+
+    if (!modal) return;
+
+    if (select) {
+      const inventory = this.db.ac_inventory || [];
+      const unitMap = { unit_tk: 'TK', unit_sd: 'SD', unit_smp: 'SMP' };
+      select.innerHTML = `
+        <option value="">-- Pilih Unit / Ruangan AC --</option>
+        ${inventory.map(u => `
+          <option value="${u.ac_id}" ${preselectedAcId === u.ac_id ? 'selected' : ''}>
+            [${unitMap[u.unit_id] || 'Unit'}] ${u.room_name} (${u.ac_id} - ${u.brand})
+          </option>
+        `).join('')}
+      `;
+    }
+
+    if (dateInput && !dateInput.value) {
+      dateInput.value = new Date().toISOString().split('T')[0];
+    }
+    if (techInput && (!techInput.value || techInput.value.trim() === '')) {
+      techInput.value = 'Pak Nana (Bagian Maintenance Gedung)';
+    }
+
+    modal.classList.remove('hidden');
+  },
+
+  closeRecordMaintenanceModal() {
+    const modal = document.getElementById('acRecordMaintenanceModal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  saveMaintenanceRecord(e) {
+    if (e) e.preventDefault();
+    const acId = document.getElementById('acRecordSelectUnit') ? document.getElementById('acRecordSelectUnit').value : '';
+    const actionType = document.getElementById('acRecordType') ? document.getElementById('acRecordType').value : 'Cuci_AC';
+    const date = document.getElementById('acRecordDate') ? document.getElementById('acRecordDate').value : new Date().toISOString().split('T')[0];
+    const technician = document.getElementById('acRecordTechnician') ? document.getElementById('acRecordTechnician').value.trim() : 'Pak Nana (Maintenance Gedung)';
+    const condition = document.getElementById('acRecordCondition') ? document.getElementById('acRecordCondition').value : 'Baik / Normal';
+    const notes = document.getElementById('acRecordNotes') ? document.getElementById('acRecordNotes').value.trim() : '';
+
+    if (!acId) {
+      this.showToast('Silakan pilih unit AC yang dirawat!', 'warning');
+      return;
+    }
+
+    const inventory = this.db.ac_inventory || [];
+    const unit = inventory.find(a => a.ac_id === acId);
+    if (!unit) {
+      this.showToast('Unit AC tidak ditemukan!', 'error');
+      return;
+    }
+
+    let nextDateStr = '';
+    try {
+      const d = new Date(date);
+      d.setMonth(d.getMonth() + 3);
+      nextDateStr = d.toISOString().split('T')[0];
+    } catch (err) {
+      nextDateStr = date;
+    }
+
+    // Update data Aset AC
+    if (actionType === 'Cuci_AC' || actionType.includes('Cuci') || actionType.includes('Cleaning')) {
+      unit.last_cleaning_date = date;
+      unit.last_service_date = date;
+    } else {
+      unit.last_service_date = date;
+    }
+    unit.next_service_date = nextDateStr;
+    unit.last_technician = technician;
+    unit.condition = condition;
+    unit.total_service_count = (Number(unit.total_service_count) || 0) + 1;
+    if (notes) {
+      unit.notes = notes;
+    }
+
+    // Buat Log Riwayat Servis / Pengerjaan
+    if (!this.db.ac_service_requests) this.db.ac_service_requests = [];
+    
+    let serviceTypeName = 'Cleaning AC Indoor & Outdoor';
+    if (actionType === 'Perbaikan') serviceTypeName = 'Perbaikan / Servis Komponen AC';
+    else if (actionType === 'Freon') serviceTypeName = 'Pengisian / Tambah Freon AC';
+    else if (actionType === 'Cek_Rutin') serviceTypeName = 'Pengecekan Rutin Kelistrikan & Tekanan';
+
+    const newReq = {
+      request_id: 'AC-REQ-' + Date.now().toString(36).toUpperCase(),
+      unit_id: unit.unit_id,
+      room_name: unit.room_name,
+      ac_id: unit.ac_id,
+      service_name: serviceTypeName + ' (' + unit.room_name + ')',
+      service_type: actionType,
+      service_type_name: serviceTypeName,
+      technician_name: technician,
+      vendor_name: technician,
+      qty: 1,
+      unit_price: 0,
+      total_amount: 0,
+      funding_source: 'INTERNAL_MAINTENANCE',
+      scheduled_date: date,
+      completed_date: date,
+      status: 'Selesai',
+      created_at: date + ' 09:00',
+      approved_at: date + ' 09:00',
+      notes: notes || `Pengerjaan ${serviceTypeName} selesai dikerjakan oleh ${technician}. Kondisi unit: ${condition}.`
+    };
+
+    this.db.ac_service_requests.unshift(newReq);
+    this.saveState();
+    this.closeRecordMaintenanceModal();
+    this.showToast(`Berhasil mencatat perawatan AC ${unit.room_name} oleh ${technician}!`, 'success');
+    this.renderAcServiceView();
+  },
+
   renderAcServiceView() {
     // 1. Calculate and update top metrics
     const inventory = this.db.ac_inventory || [];
@@ -9321,44 +9609,63 @@ const app = {
         unit_smp: 'SMP'
       };
 
+      const techBadgeClass = (ac.last_technician && ac.last_technician.includes('Nana')) 
+        ? 'bg-sky-100 text-sky-900 border border-sky-300 font-bold' 
+        : 'bg-slate-100 text-slate-700 font-medium';
+
       return `
         <tr class="hover:bg-sky-50/40 transition border-b border-slate-100">
-          <td class="px-4 py-3 text-center">
+          <td class="px-3 py-3 text-center">
             <span class="inline-block px-2 py-0.5 bg-sky-100 text-sky-900 font-extrabold text-[10px] rounded-md font-mono">
               ${ac.ac_id}
             </span>
           </td>
-          <td class="px-4 py-3 font-bold text-slate-800">
+          <td class="px-3 py-3 font-bold text-slate-800">
             <div class="flex items-center space-x-2">
               <span class="px-1.5 py-0.5 ${unitBadge} text-[9px] font-black rounded">${unitNameMap[ac.unit_id] || 'Unit'}</span>
               <span>${ac.room_name}</span>
             </div>
             ${ac.notes ? `<span class="text-[10px] text-slate-400 font-normal block mt-0.5"><i class="fa-solid fa-location-dot text-sky-400 mr-1"></i>${ac.notes}</span>` : ''}
           </td>
-          <td class="px-4 py-3 text-slate-700 font-semibold">
+          <td class="px-3 py-3 text-slate-700 font-semibold">
             <div>${ac.brand}</div>
             <span class="text-[10px] text-slate-400 font-bold bg-slate-100 px-1.5 py-0.2 rounded">${ac.capacity_pk || '1 PK'}</span>
           </td>
-          <td class="px-4 py-3 text-center">
+          <td class="px-3 py-3 text-center">
             <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold ${condBadge}">
               ${ac.condition || 'Baik / Normal'}
             </span>
           </td>
-          <td class="px-4 py-3 text-center text-slate-600 font-medium">${ac.last_service_date || '-'}</td>
-          <td class="px-4 py-3 text-center font-bold text-slate-800">${ac.next_service_date || '-'}</td>
-          <td class="px-4 py-3 text-center font-extrabold text-sky-700">${ac.total_service_count || 0}x</td>
-          <td class="px-4 py-3 text-center">
+          <td class="px-3 py-3 text-center">
+            <div class="font-extrabold text-sky-900 text-xs">${this.formatDateMonth(ac.last_cleaning_date || ac.last_service_date)}</div>
+            <span class="text-[9px] text-sky-600 font-semibold block">Indoor & Outdoor</span>
+          </td>
+          <td class="px-3 py-3 text-center">
+            <div class="font-bold text-slate-800 text-xs">${this.formatDateMonth(ac.last_service_date)}</div>
+            <span class="text-[9px] text-slate-400 block">${ac.total_service_count || 1}x Servis</span>
+          </td>
+          <td class="px-3 py-3 text-center">
+            <span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded-full text-[10px] ${techBadgeClass}">
+              <i class="fa-solid fa-user-gear text-[9px] text-sky-600"></i>
+              <span>${ac.last_technician || 'Tim SARPRAS'}</span>
+            </span>
+          </td>
+          <td class="px-3 py-3 text-center font-bold text-slate-700 text-xs">${this.formatDateMonth(ac.next_service_date)}</td>
+          <td class="px-3 py-3 text-center">
             <div class="flex items-center justify-center space-x-1.5">
-              <button onclick="app.quickScheduleAcWash('${ac.ac_id}')" title="Jadwalkan Cuci Rutin Cepat" class="w-7 h-7 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-600 flex items-center justify-center text-xs transition border border-sky-200">
+              <button onclick="app.openRecordMaintenanceModal('${ac.ac_id}')" title="Catat Cuci / Servis AC (Pak Nana)" class="w-7 h-7 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs transition border border-emerald-300 shadow-xs cursor-pointer">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+              </button>
+              <button onclick="app.quickScheduleAcWash('${ac.ac_id}')" title="Jadwalkan Cuci Rutin Cepat" class="w-7 h-7 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-600 flex items-center justify-center text-xs transition border border-sky-200 cursor-pointer">
                 <i class="fa-solid fa-soap"></i>
               </button>
-              <button onclick="app.openAcUnitHistoryModal('${ac.ac_id}')" title="Lihat Riwayat & Log Servis" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-xs transition border border-slate-200">
+              <button onclick="app.openAcUnitHistoryModal('${ac.ac_id}')" title="Lihat Riwayat & Log Servis" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-xs transition border border-slate-200 cursor-pointer">
                 <i class="fa-solid fa-clock-rotate-left"></i>
               </button>
-              <button onclick="app.openAddAcUnitModal('${ac.ac_id}')" title="Edit Data Unit AC" class="w-7 h-7 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-700 flex items-center justify-center text-xs transition border border-amber-200">
+              <button onclick="app.openAddAcUnitModal('${ac.ac_id}')" title="Edit Data Unit AC" class="w-7 h-7 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-700 flex items-center justify-center text-xs transition border border-amber-200 cursor-pointer">
                 <i class="fa-solid fa-pen"></i>
               </button>
-              <button onclick="app.deleteAcUnit('${ac.ac_id}')" title="Hapus Unit AC" class="w-7 h-7 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 flex items-center justify-center text-xs transition border border-rose-200">
+              <button onclick="app.deleteAcUnit('${ac.ac_id}')" title="Hapus Unit AC" class="w-7 h-7 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 flex items-center justify-center text-xs transition border border-rose-200 cursor-pointer">
                 <i class="fa-solid fa-trash"></i>
               </button>
             </div>

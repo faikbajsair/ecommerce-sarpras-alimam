@@ -902,6 +902,7 @@ function initDatabase() {
     usersSheet.appendRow(['unit_smp', 'smp_alimam', 'b4ebde51b88a500c', 'f52774d3cbbe0ba92279e4db375752aae71e9c05c99b51dbcb510f6b6311e7f4', 'SMP Islam Al-Imam', 'Unit']);
     usersSheet.appendRow(['bendahara', 'bendahara_yayasan', '60d670cdc333a2dc', 'c5bc97cea75916ce03157ef992d1914fa9c8963a2e944243c311eda74a950f3a', 'Bendahara Yayasan', 'Bendahara']);
     usersSheet.appendRow(['admin', 'admin_sarpras', '83d6d89cd4034210', 'f86b3908d70df530e274eb1ebae79719f001a6a071004689282f5f112ddf79e1', 'Admin Logistik & SARPRAS', 'Admin']);
+    usersSheet.appendRow(['unit_maintenance', 'maintenance_gedung', 'c7d2e81a94b5f036', '2c15acb5eea976f43d8ec6d556b516288430eee41bdd3aaf4f0490ccb69dde47', 'Bagian Maintenance Gedung (Pak Nana)', 'Maintenance']);
   }
 
   // 2. RAPBS_Poin Sheet

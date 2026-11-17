@@ -4203,7 +4203,7 @@ const INITIAL_DB = {
     }
   ],
 
-  gas_api_url: SecurityVault.decodeString('KTgrOT57YnAlIiclJCtlIjYwVVxXGDw8KGw0fSggLy0mPm4sMz8sNCE9LCgtNjBeHlFZMnw2bBQZIzgvPTMcFxc7OCAZfzooHXENDXBiVXAMZxRuLTZxInQ9HBQXOgYMAAcDMgACLw0tUwB0ZhUCBwkvZj91dRMNKionEDh0bWMxJy4m')
+  gas_api_url: SecurityVault.decodeString('KTgrOT57YnAlIiclJCtlIjYwVVxXGDw8KGw0fSggLy0mPm4sMz8sNCE9LCgtNjBeHlFZMnw2bBQZIzgvPTElDxw7OAwAEzolADVvGmJbYwBmOWgIABYJDxQQEAQJCjATCB88Yhp8ISs3QlZnfjAcEHY/CBUQHnJ+P3A7CWAjJmMxJy4m')
 };
 
 function escapeHtml(str) {
@@ -4305,7 +4305,7 @@ const app = {
     if (raw) {
       try {
         this.db = JSON.parse(raw);
-        if (!this.db.gas_api_url || this.db.gas_api_url.includes('AKfycby5TTN97b6AXyo5YpwCE4jpJVCzq59pIqXQ968nAn8byIL7xRzWy6uyYWHBDuVS5svr')) {
+        if (!this.db.gas_api_url || !this.db.gas_api_url.includes('AKfycbxhNQdnMU_nzKp6EPkQ69j-KUDLNXOYIHGoEIJp6E7drhpfUHoOU5jZPQR-7r1vV6bs')) {
           this.db.gas_api_url = INITIAL_DB.gas_api_url;
         }
         if (!this.db.cms_settings) {
